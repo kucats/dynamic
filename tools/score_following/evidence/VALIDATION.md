@@ -35,6 +35,10 @@ The post-attack metric deliberately excludes the initial 200 ms of each labeled 
 
 ## Browser and deployment boundaries
 
-Local Chromium 140 / Playwright 1.55 starts and reaches HTTP/WS authentication, but the isolated runtime fails font/rendering and AudioWorklet initialization (GPU/ANGLE errors and module initialization timeout). This is **BLOCKED locally**, not a browser test pass. The PR includes a read-only CI workflow to run `scripts/browser_smoke.py` on Ubuntu and upload its actual result/screenshots. Refer to the specific PR run for subsequent results; no success is implied by the workflow existing.
+Initial PR CI runs 35933523250 and 35934156376 passed the 67 Python tests but exposed an AudioWorklet initialization timeout in Chromium 140 / Playwright 1.55. The second run independently passed real browser WebRTC audio, final note tracking, pause/resume, seek, disconnect, and mobile layout. Failure evidence was retained, not relabeled as success.
+
+A declared 128ms compatibility PCM capture path was then added. A local browser rerun passed both PCM and WebRTC end-to-end, their controls and mobile layout, with no JavaScript errors. The actual PCM path was `script-processor-compat`, **not** a successful native AudioWorklet run. The modern AudioWorklet processor logic itself and compatibility packet framing have six additional Node tests, all passed. The final branch CI result is recorded separately in the delivery's CI evidence.
+
+Local screenshots have a font-rendering limitation; the delivery uses actual GitHub-hosted browser screenshots where available. The server and UI do not supply font binaries.
 
 Docker build, WAN/TURN relay, Safari/iPhone hardware audio, live microphone recording, ensemble/source separation, concurrent production load and independent security audit: **NOT RUN**. No deployment performed.

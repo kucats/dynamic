@@ -1,4 +1,5 @@
 import {ScoreClient} from './client.js';
+import {createPcmCapture} from './pcm-capture.js';
 const $=(id)=>document.getElementById(id);
 let score=null,client=null,context=null,mic=null,capture=null,source=null,timer=null,paused=false;
 let running=false,lastPosition=0,logLines=[];
@@ -32,7 +33,7 @@ function position(m){
   $('alternatives').textContent=m.alternatives.map(x=>`${x.event_id.padEnd(18)} Δlog=${x.relative_log_weight.toFixed(2)}  evidence=${x.evidence_notes}`).join('\n')||'候補なし';
   $('freshness').textContent=`音声時計 ${m.audio_time_s.toFixed(2)} s · gap ${m.gap_count} · ${p?.confirmed?'連続音から推定中':'自動改ページには使わず、暫定位置として扱ってください'}`;
   // An explicit, bounded diagnostics surface for automated browser verification; no tokens or audio.
-  window.labState={event:p?.event_id??null,status:m.status,confirmed:p?.confirmed??false,revision:m.revision,generation:m.generation};
+  window.labState={event:p?.event_id??null,status:m.status,confirmed:p?.confirmed??false,revision:m.revision,generation:m.generation,capture:capture?.kind??'webrtc-opus',captureBufferMs:capture?.bufferMs??null};
 }
 async function loadDemo(){const r=await fetch('/v1/demo-score');if(!r.ok)throw new Error('demo load failed');score=await r.json();displayScore();}
 async function stop(){
@@ -74,18 +75,16 @@ async function start(useMic){
     client=new ScoreClient();client.addEventListener('failure',e=>failure(e.detail));client.addEventListener('position',e=>position(e.detail));
     client.addEventListener('client-drop',()=>log('送信バッファ上限: 古い音声を破棄'));
     client.addEventListener('rtc-state',e=>{$('connection').textContent=`WebRTC ${e.detail.state}`;});
-    client.addEventListener('reset-audio-clock',e=>capture?.port.postMessage({type:'reset',epoch:e.detail.epoch}));
+    client.addEventListener('reset-audio-clock',e=>capture?.reset(e.detail.epoch));
     await client.open(score,mode,$('api-key').value,$('allow-unreviewed').checked);
     source=useMic?context.createMediaStreamSource(mic):makeSynthetic(context).node;
     if(mode==='webrtc'){
       const destination=context.createMediaStreamDestination();source.connect(destination);
       await client.rtc(destination.stream);
     }else{
-      await Promise.race([context.audioWorklet.addModule('pcm-worklet.js'),new Promise((_,reject)=>setTimeout(()=>reject(new Error('AudioWorkletの初期化がタイムアウトしました。WebRTCをお試しください')),8000))]);
-      capture=new AudioWorkletNode(context,'capture16k');
-      capture.port.postMessage({type:'reset',epoch:client.epoch});
-      capture.port.onmessage=e=>{if(client&&e.data.epoch===client.epoch)client.pcm(new Int16Array(e.data.buffer),e.data.sample);};
-      source.connect(capture);const muted=context.createGain();muted.gain.value=0;capture.connect(muted);muted.connect(context.destination);
+      capture=await createPcmCapture(context,data=>{if(client&&data.epoch===client.epoch)client.pcm(new Int16Array(data.buffer),data.sample);},log,failure);
+      capture.reset(client.epoch);
+      source.connect(capture.node);const muted=context.createGain();muted.gain.value=0;capture.node.connect(muted);muted.connect(context.destination);
     }
     if(!useMic)source.start();
     for(const id of ['stop','pause','seek'])$(id).disabled=false;

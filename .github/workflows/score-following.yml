@@ -29,6 +29,7 @@ jobs:
           python -m pytest -q --junitxml=evidence/ci/junit.xml
           python -m ruff check scorefollow tests scripts
           for file in scorefollow/web/*.js; do node --check "$file"; done
+          node --test scripts/pcm-capture.test.mjs
           python -m scorefollow benchmark evidence/ci/benchmark
       - name: Browser PCM, Opus, controls and mobile layout
         run: |
