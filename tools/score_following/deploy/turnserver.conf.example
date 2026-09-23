@@ -1,0 +1,19 @@
+# Example only. Copy to a private 0600 config and supply real realm/IP/cert/secret.
+listening-port=3478
+tls-listening-port=5349
+min-port=49160
+max-port=49200
+fingerprint
+use-auth-secret
+# static-auth-secret=<at least 32 random characters; same as SF_TURN_SECRET>
+# realm=turn.your-domain.example
+# external-ip=<public-ip>/<private-ip>
+# cert=/run/secrets/turn-fullchain.pem
+# pkey=/run/secrets/turn-privatekey.pem
+no-cli
+no-loopback-peers
+no-multicast-peers
+no-tcp-relay
+user-quota=2
+total-quota=32
+# Review internal-network/metadata peer deny rules for YOUR network before public use.

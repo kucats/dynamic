@@ -1,0 +1,246 @@
+{
+  "$defs": {
+    "Note": {
+      "additionalProperties": false,
+      "properties": {
+        "event_id": {
+          "maxLength": 100,
+          "minLength": 1,
+          "pattern": "^[\\w.:-]+$",
+          "title": "Event Id",
+          "type": "string"
+        },
+        "source_id": {
+          "anyOf": [
+            {
+              "maxLength": 100,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Source Id"
+        },
+        "occurrence": {
+          "default": 1,
+          "maximum": 64,
+          "minimum": 1,
+          "title": "Occurrence",
+          "type": "integer"
+        },
+        "measure": {
+          "default": "1",
+          "maxLength": 24,
+          "minLength": 1,
+          "title": "Measure",
+          "type": "string"
+        },
+        "beat": {
+          "default": 1,
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Beat",
+          "type": "number"
+        },
+        "start": {
+          "maximum": 100000,
+          "minimum": 0,
+          "title": "Start",
+          "type": "number"
+        },
+        "duration": {
+          "exclusiveMinimum": 0,
+          "maximum": 256,
+          "title": "Duration",
+          "type": "number"
+        },
+        "pitch": {
+          "anyOf": [
+            {
+              "maximum": 120,
+              "minimum": 12,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Pitch"
+        },
+        "page": {
+          "anyOf": [
+            {
+              "maximum": 9999,
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Page"
+        },
+        "anchor": {
+          "anyOf": [
+            {
+              "maxLength": 200,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Anchor"
+        }
+      },
+      "required": [
+        "event_id",
+        "start",
+        "duration"
+      ],
+      "title": "Note",
+      "type": "object"
+    },
+    "Options": {
+      "additionalProperties": false,
+      "properties": {
+        "a4_hz": {
+          "default": 440,
+          "maximum": 480,
+          "minimum": 400,
+          "title": "A4 Hz",
+          "type": "number"
+        },
+        "start_event_id": {
+          "anyOf": [
+            {
+              "maxLength": 100,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Start Event Id"
+        },
+        "allow_unreviewed": {
+          "default": false,
+          "title": "Allow Unreviewed",
+          "type": "boolean"
+        },
+        "beam_width": {
+          "default": 48,
+          "maximum": 128,
+          "minimum": 8,
+          "title": "Beam Width",
+          "type": "integer"
+        },
+        "silence_hold_s": {
+          "default": 0.6,
+          "maximum": 3,
+          "minimum": 0.2,
+          "title": "Silence Hold S",
+          "type": "number"
+        }
+      },
+      "title": "Options",
+      "type": "object"
+    },
+    "Score": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "const": 1,
+          "default": 1,
+          "title": "Schema Version",
+          "type": "integer"
+        },
+        "title": {
+          "default": "Untitled",
+          "maxLength": 200,
+          "title": "Title",
+          "type": "string"
+        },
+        "part": {
+          "default": "Solo",
+          "maxLength": 100,
+          "title": "Part",
+          "type": "string"
+        },
+        "audit_status": {
+          "default": "unreviewed",
+          "enum": [
+            "synthetic",
+            "reviewed",
+            "unreviewed"
+          ],
+          "title": "Audit Status",
+          "type": "string"
+        },
+        "provenance": {
+          "default": "user-provided",
+          "maxLength": 300,
+          "title": "Provenance",
+          "type": "string"
+        },
+        "pitch_domain": {
+          "default": "concert",
+          "enum": [
+            "written",
+            "concert"
+          ],
+          "title": "Pitch Domain",
+          "type": "string"
+        },
+        "transpose_semitones": {
+          "default": 0,
+          "maximum": 36,
+          "minimum": -36,
+          "title": "Transpose Semitones",
+          "type": "integer"
+        },
+        "tempo_bpm": {
+          "default": 100,
+          "maximum": 300,
+          "minimum": 20,
+          "title": "Tempo Bpm",
+          "type": "number"
+        },
+        "events": {
+          "items": {
+            "$ref": "#/$defs/Note"
+          },
+          "maxItems": 4096,
+          "minItems": 1,
+          "title": "Events",
+          "type": "array"
+        }
+      },
+      "required": [
+        "events"
+      ],
+      "title": "Score",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "score": {
+      "$ref": "#/$defs/Score"
+    },
+    "options": {
+      "$ref": "#/$defs/Options"
+    }
+  },
+  "required": [
+    "score"
+  ],
+  "title": "CreateSession",
+  "type": "object"
+}
