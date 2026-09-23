@@ -1,64 +1,38 @@
-# Agent-Friendly Repository Template
+# Dynamic Score Reading Catalog
 
-A repository baseline for projects developed by humans and coding agents through GitHub Issues and pull requests.
+A public catalog for score-derived reading guides. The catalog groups HTML pages and downloadable PDFs by composer, work, and instrument. Reusable validation and static-page generation live in `tools/`; work-specific Python code and note data live in `projects/<composer>/<work>/`.
 
-The template is intentionally language- and framework-neutral. It provides the operating contract, work-tracking structure, and evidence standards; each generated repository must add its own architecture, commands, and domain constraints.
+## Browse
 
-## Start a new repository
+Open [`public/index.html`](public/index.html) for the catalog, or browse the current [Dvořák Symphony No. 8 collection](public/composers/antonin-dvorak/symphony-no-8/index.html). Each guide shows whether its note reading is reviewed or draft and lists its limitations.
 
-1. Select **Use this template** on GitHub and create the repository from the default branch.
-2. Complete [`TEMPLATE_SETUP.md`](TEMPLATE_SETUP.md).
-3. Run `./scripts/bootstrap-repository.sh OWNER/REPOSITORY` after authenticating GitHub CLI.
-4. Replace the project placeholders in [`AGENTS.md`](AGENTS.md), [`docs/architecture/README.md`](docs/architecture/README.md), and [`docs/testing.md`](docs/testing.md).
-5. Create the first Issue before implementation begins.
+The site files are static. GitHub Pages is not configured in this change; the repository itself is the public publication location.
 
-GitHub template repositories copy directory structure and files. Repository settings, labels, rulesets, secrets, environments, installed apps, and existing Issues or pull requests require separate setup. The bootstrap script applies a conservative baseline for merge settings and labels; review repository rules manually for the project's risk level.
+## Validate or rebuild
 
-## Included operating model
+From the repository root, using Python 3.11 or later:
 
-```text
-Issue intake
-  -> acceptance criteria and boundaries
-  -> agent claim with identity and scope
-  -> branch or explicitly authorized direct-main change
-  -> implementation with progress updates
-  -> validation evidence
-  -> pull request and review
-  -> squash merge
-  -> Issue completion record
-  -> merged branch cleanup
+```sh
+python3 tools/build_catalog.py
+python3 tools/validate_catalog.py
+python3 -m unittest discover -s tests
 ```
 
-The templates enforce several recurring rules:
+The catalog toolchain uses only the Python standard library. Rerendering the work-specific score PDFs additionally needs the listed source inputs, Pillow, ReportLab, and local fonts; raw score PDFs, OMR archives, scans, and audio are intentionally excluded.
 
-- Work is coordinated through Issues; do not silently start overlapping work.
-- An agent declares its identity, scope, base commit, and branch before changing files.
-- One Issue should represent one reviewable outcome.
-- Validation evidence names exact commands, environments, and results.
-- Blocked or incomplete work is handed off with exact refs and remaining steps, never reported as complete.
-- Merge is permitted only when acceptance criteria, checks, review state, and authorization are satisfied.
-- Merged branches are removed to keep the base clean.
-- Destructive operations, production changes, secret handling, spending, and other high-risk actions require explicit human authorization.
+## Review labels
 
-## Repository map
+- **Reviewed** means the printed playable noteheads were visually checked in the score. It does not mean independent performance or recording verification.
+- **Draft** means some pitches, noteheads, voices, or possible cues still need checking.
 
-| Path | Purpose |
-| --- | --- |
-| `AGENTS.md` | Short, authoritative map and agent operating rules |
-| `AGENT.md` | Compatibility pointer to `AGENTS.md` |
-| `.github/copilot-instructions.md` | Concise GitHub Copilot repository instructions |
-| `.github/ISSUE_TEMPLATE/` | Structured work, bug, design, and handoff intake |
-| `.github/PULL_REQUEST_TEMPLATE.md` | Review and evidence contract |
-| `docs/repository-contract.md` | Instruction hierarchy and sources of truth |
-| `docs/issue-management.md` | Issue state machine, claim comments, progress, and closure |
-| `docs/testing.md` | Project validation matrix and evidence format |
-| `docs/exec-plans/` | Living plans for multi-step or high-risk work |
-| `docs/decisions/` | Architecture Decision Records |
-| `docs/handoffs/` | Exact continuation records for unfinished work |
-| `scripts/bootstrap-repository.sh` | Optional labels and merge-setting bootstrap |
+All slide positions are practical starting positions, not intonation guarantees. See each guide's HTML page for its specific scope and caveats.
 
-## Maintenance model
+## Repository layout
 
-Keep `AGENTS.md` compact. It should be a map, not an encyclopedia. Put durable design facts in `docs/`, executable validation in scripts or CI, and task-specific facts in Issues and pull requests.
+```text
+public/                                  Static HTML, catalog metadata, and PDFs
+projects/<composer>/<work>/              Work-specific scripts and note data
+tools/                                   Reusable catalog build and validation
+```
 
-Changes made later to this template do not automatically propagate into repositories previously generated from it. Record the originating [`TEMPLATE_VERSION`](TEMPLATE_VERSION), then port material template improvements through a normal Issue and pull request in each child repository.
+No license is declared in this repository. Public visibility does not grant reuse permission; add a license before inviting third-party reuse.

@@ -1,0 +1,164 @@
+{
+  "schema_version": 1,
+  "title": "Score Reading Catalog",
+  "items": [
+    {
+      "id": "dvorak-8-trombone-i-movement-iv",
+      "composer": "Antonín Dvořák",
+      "composer_key": "antonin-dvorak",
+      "work": "Symphony No. 8, Op. 88",
+      "work_key": "symphony-no-8",
+      "instrument": "Trombone I — movement IV",
+      "summary": "Movement IV (source pages 3–5), with 263 detected played noteheads labeled in concert pitch and with a primary slide position.",
+      "review_status": "draft",
+      "limitations": [
+        "One of the 263 detected noteheads is marked needs_review; the remaining labels are still score-derived candidates rather than an independent performance check.",
+        "The played line is read in alto clef except source page 4 systems 8–9, which use bass clef; printed orchestral cues are left unlabeled.",
+        "Timing is not aligned to a recording, and the note labels do not claim performance verification."
+      ],
+      "sources": [
+        {
+          "label": "Raw user-supplied trombone part PDF",
+          "sha256": "6c161bf1a3a10e54194fecec8b52e2bc6a6fa0de7638c21296808e5456719d8c",
+          "included": false
+        },
+        {
+          "label": "Audiveris 5.11.0 recognition project",
+          "sha256": "ddd6a3b21c832c1ba0a84f6df348d2c42a201c8aca9077474b5e5e961f57d3a9",
+          "included": false
+        }
+      ],
+      "project_readme": "projects/antonin-dvorak/symphony-no-8/README.md",
+      "html": "public/composers/antonin-dvorak/symphony-no-8/trombone-i-movement-iv.html",
+      "project_files": [
+        "projects/antonin-dvorak/symphony-no-8/README.md",
+        "projects/antonin-dvorak/symphony-no-8/trombone-i-movement-iv/render.py",
+        "projects/antonin-dvorak/symphony-no-8/trombone-i-movement-iv/transcribe.py",
+        "projects/antonin-dvorak/symphony-no-8/trombone-i-movement-iv/notes.json",
+        "projects/antonin-dvorak/symphony-no-8/trombone-i-movement-iv/notes.csv"
+      ],
+      "artifacts": [
+        {
+          "kind": "PDF",
+          "path": "public/composers/antonin-dvorak/symphony-no-8/trombone-i-movement-iv.pdf",
+          "sha256": "f6d9f9790dadc58e456d3ce2d61db56219b30511aa64fb5b2abf8ae9d2c2fae9"
+        },
+        {
+          "kind": "JSON",
+          "path": "projects/antonin-dvorak/symphony-no-8/trombone-i-movement-iv/notes.json",
+          "sha256": "3c3b27ac76070ae88edc9630da3f869e44503b46f5db7bf44a8d1119051765ba"
+        },
+        {
+          "kind": "CSV",
+          "path": "projects/antonin-dvorak/symphony-no-8/trombone-i-movement-iv/notes.csv",
+          "sha256": "48463b18e162e2e3df02e213c5c752d3f4badd832fec4978230dc9de2b849399"
+        }
+      ]
+    },
+    {
+      "id": "dvorak-8-trombone-ii",
+      "composer": "Antonín Dvořák",
+      "composer_key": "antonin-dvorak",
+      "work": "Symphony No. 8, Op. 88",
+      "work_key": "symphony-no-8",
+      "instrument": "Trombone II",
+      "summary": "Movements I and IV (source pages 6–9), with 540 playable noteheads visually checked for concert pitch and recommended 1–7 slide positions.",
+      "review_status": "reviewed",
+      "limitations": [
+        "Movements II and III are tacet; 95 detected cue noteheads are not part of the 540 visually checked playable-note set.",
+        "The guide is a score reading, not a performance transcription or recording-aligned practice track.",
+        "Slide positions are conventional starting choices; tuning, instrument setup, trigger use, and player preference may change them."
+      ],
+      "sources": [
+        {
+          "label": "Raw user-supplied trombone part PDF",
+          "sha256": "6c161bf1a3a10e54194fecec8b52e2bc6a6fa0de7638c21296808e5456719d8c",
+          "included": false
+        },
+        {
+          "label": "Audiveris 5.11.0 recognition project",
+          "sha256": "ddd6a3b21c832c1ba0a84f6df348d2c42a201c8aca9077474b5e5e961f57d3a9",
+          "included": false
+        }
+      ],
+      "project_readme": "projects/antonin-dvorak/symphony-no-8/README.md",
+      "html": "public/composers/antonin-dvorak/symphony-no-8/trombone-ii.html",
+      "project_files": [
+        "projects/antonin-dvorak/symphony-no-8/README.md",
+        "projects/antonin-dvorak/symphony-no-8/trombone-ii/render.py",
+        "projects/antonin-dvorak/symphony-no-8/trombone-ii/notes.json",
+        "projects/antonin-dvorak/symphony-no-8/trombone-ii/notes.csv"
+      ],
+      "artifacts": [
+        {
+          "kind": "PDF",
+          "path": "public/composers/antonin-dvorak/symphony-no-8/trombone-ii.pdf",
+          "sha256": "2626e1705cf821123eb59d9c434b19ea0fa16fe0a014cadabfdda2ca0396cdb3"
+        },
+        {
+          "kind": "JSON",
+          "path": "projects/antonin-dvorak/symphony-no-8/trombone-ii/notes.json",
+          "sha256": "5da3fcedd9c4e42cd5c746ef603dab8d71e3c9dcd4b8c8cf97867a791e37354b"
+        },
+        {
+          "kind": "CSV",
+          "path": "projects/antonin-dvorak/symphony-no-8/trombone-ii/notes.csv",
+          "sha256": "a271572ef9397e5917deb847b85709c3967c8bdfdb77a3791a7cbc4725597c9d"
+        }
+      ]
+    },
+    {
+      "id": "dvorak-8-trombone-iii",
+      "composer": "Antonín Dvořák",
+      "composer_key": "antonin-dvorak",
+      "work": "Symphony No. 8, Op. 88",
+      "work_key": "symphony-no-8",
+      "instrument": "Trombone III",
+      "summary": "Source pages 10–13, with 494 detected noteheads labeled in concert pitch and with a primary slide position.",
+      "review_status": "draft",
+      "limitations": [
+        "103 of 494 detected noteheads remain amber and need voice or cue confirmation before playing.",
+        "Bass clef is assumed on source page 10 because Audiveris missed the printed clef; rehearsal C is anchored as D3–G3–E3 at positions 4–4–2.",
+        "The labels are score-derived candidates; no independent listening check or recording alignment is claimed."
+      ],
+      "sources": [
+        {
+          "label": "Raw user-supplied trombone part PDF",
+          "sha256": "6c161bf1a3a10e54194fecec8b52e2bc6a6fa0de7638c21296808e5456719d8c",
+          "included": false
+        },
+        {
+          "label": "Audiveris 5.11.0 recognition project",
+          "sha256": "ddd6a3b21c832c1ba0a84f6df348d2c42a201c8aca9077474b5e5e961f57d3a9",
+          "included": false
+        }
+      ],
+      "project_readme": "projects/antonin-dvorak/symphony-no-8/README.md",
+      "html": "public/composers/antonin-dvorak/symphony-no-8/trombone-iii.html",
+      "project_files": [
+        "projects/antonin-dvorak/symphony-no-8/README.md",
+        "projects/antonin-dvorak/symphony-no-8/trombone-iii/render.py",
+        "projects/antonin-dvorak/symphony-no-8/trombone-iii/transcribe.py",
+        "projects/antonin-dvorak/symphony-no-8/trombone-iii/notes.json",
+        "projects/antonin-dvorak/symphony-no-8/trombone-iii/notes.csv"
+      ],
+      "artifacts": [
+        {
+          "kind": "PDF",
+          "path": "public/composers/antonin-dvorak/symphony-no-8/trombone-iii.pdf",
+          "sha256": "a0350de0e4a9c19c0ad6606af2f32b70562c336d00d01b9a8cb198d2bf557ae7"
+        },
+        {
+          "kind": "JSON",
+          "path": "projects/antonin-dvorak/symphony-no-8/trombone-iii/notes.json",
+          "sha256": "e4ec31a1e925c66bd84d53993f039cb7ab1db33ec331dd9c677c22afd36e8c1d"
+        },
+        {
+          "kind": "CSV",
+          "path": "projects/antonin-dvorak/symphony-no-8/trombone-iii/notes.csv",
+          "sha256": "62fc79e0a62ccc5b8af933409eb9e5c1c1fae122330b8c98b5a8e277df2184b1"
+        }
+      ]
+    }
+  ]
+}

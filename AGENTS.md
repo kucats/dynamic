@@ -1,17 +1,15 @@
 # AGENTS.md
 
-This file is the repository-wide operating map for coding agents. Keep it short and current. Put detailed architecture, decisions, plans, testing instructions, and handoffs in the linked documents.
+This file is the repository-wide operating map. Keep it short and current. Put detailed architecture, decisions, plans, testing instructions, and handoffs in the linked documents.
 
 ## Project identity
 
-- **Project:** `<PROJECT_NAME>`
-- **Purpose:** `<ONE_SENTENCE_PURPOSE>`
-- **Primary runtime:** `<RUNTIME_OR_NONE>`
-- **Deployment target:** `<TARGET_OR_NONE>`
-- **Current status:** `<EXPERIMENTAL|ACTIVE|MAINTENANCE|ARCHIVED>`
-- **Non-goals:** `<EXPLICITLY_OUT_OF_SCOPE_WORK>`
-
-Until these placeholders are replaced, do not infer a technology stack or deployment process.
+- **Project:** Dynamic Score Reading Catalog
+- **Purpose:** Publish composer-indexed score-reading HTML/PDF guides with reproducible per-work project data and reusable catalog tools.
+- **Primary runtime:** Python 3.11+ standard library for catalog tools; optional Pillow and ReportLab for score rendering.
+- **Deployment target:** Public GitHub repository; static files live in `public/`. GitHub Pages is not configured.
+- **Current status:** EXPERIMENTAL
+- **Non-goals:** Distributing raw input scores, OMR bundles, source scans, audio, or a general score-recognition service.
 
 ## Authority and sources of truth
 
@@ -121,14 +119,11 @@ When blocked or stopping with unfinished work:
 4. Mark obsolete artifacts and stale instructions explicitly.
 5. Leave the worktree or remote branch in a recoverable, documented state.
 
-## Project-specific sections to add
+## Catalog-specific rules
 
-Add nested `AGENTS.md` files only where local rules materially differ. Typical scoped content includes:
+- Treat note readings as score-derived candidates and preserve reviewed/draft labels and known limitations.
+- Keep raw source PDFs, OMR archives, rendered source scans, audio, absolute machine paths, and credentials out of public content.
+- Reusable catalog code belongs in `tools/`; work-specific scripts and data belong in `projects/<composer>/<work>/`.
+- Regenerate static HTML with `python3 tools/build_catalog.py` and validate hashes and links with `python3 tools/validate_catalog.py`.
 
-- component ownership and boundaries;
-- language and formatting conventions;
-- exact test commands;
-- migration and compatibility rules;
-- generated-file policies;
-- deployment and rollback procedures;
-- visual or hardware validation requirements.
+Add nested `AGENTS.md` files only where local rules materially differ.
