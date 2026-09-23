@@ -1,0 +1,90 @@
+name: Bug report
+description: Report a reproducible defect with impact and validation detail.
+title: "[Bug] "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Search existing Issues first. Do not include secrets, private keys, production data, or exploitable details that should be reported privately.
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: What is broken, and who or what is affected?
+      placeholder: Describe the defect and impact in a few sentences.
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Commit, version, runtime, browser, OS, hardware, region, or deployment tier.
+      placeholder: Exact environment and relevant versions.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction steps
+      description: Provide the smallest deterministic reproduction.
+      placeholder: |
+        1. Start from ...
+        2. Run ...
+        3. Observe ...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior and evidence
+      description: Include sanitized logs, screenshots, traces, or failing test names.
+    validations:
+      required: true
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity
+      options:
+        - P0 - active critical impact or data/security risk
+        - P1 - major functionality blocked
+        - P2 - degraded or limited functionality
+        - P3 - minor defect or polish
+    validations:
+      required: true
+  - type: textarea
+    id: regression
+    attributes:
+      label: Regression range
+      description: Last known good and first known bad commit/version, when known.
+  - type: textarea
+    id: boundaries
+    attributes:
+      label: Constraints and stop boundaries
+      description: State compatibility, data, security, production, or human-approval boundaries.
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      placeholder: |
+        - [ ] Reproduction fails before and passes after the fix
+        - [ ] Relevant regression checks pass
+        - [ ] Documentation or release notes are updated
+    validations:
+      required: true
+  - type: checkboxes
+    id: declarations
+    attributes:
+      label: Declaration
+      options:
+        - label: I searched existing Issues and handoffs for duplicates.
+          required: true
+        - label: I removed secrets and sensitive production data.
+          required: true

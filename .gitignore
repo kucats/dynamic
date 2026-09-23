@@ -1,0 +1,26 @@
+# Local secrets and environment
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# OS and editors
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# Logs and generated output
+*.log
+coverage/
+dist/
+build/
+tmp/
+.cache/
+
+# Common dependency and language caches
+node_modules/
+.venv/
+__pycache__/
+*.pyc

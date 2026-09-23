@@ -1,0 +1,81 @@
+name: Implementation work item
+description: Define one reviewable engineering, documentation, or maintenance outcome.
+title: "[Work] "
+labels:
+  - enhancement
+body:
+  - type: markdown
+    attributes:
+      value: |
+        One Issue should describe one reviewable outcome. Split independent work rather than creating an unbounded checklist.
+  - type: textarea
+    id: context
+    attributes:
+      label: Context and problem
+      description: What is the current state, and why should it change now?
+    validations:
+      required: true
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Intended outcome
+      description: Describe observable end state, not just implementation activity.
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: In scope
+      placeholder: |
+        - Component or behavior
+        - Documentation
+        - Tests and evidence
+    validations:
+      required: true
+  - type: textarea
+    id: non_goals
+    attributes:
+      label: Non-goals
+      description: Explicitly list adjacent work that must not be pulled into this Issue.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      placeholder: |
+        - [ ] Observable criterion
+        - [ ] Compatibility or failure-path criterion
+        - [ ] Required checks and evidence
+    validations:
+      required: true
+  - type: textarea
+    id: constraints
+    attributes:
+      label: Constraints and human-only boundaries
+      description: Include protocol, compatibility, security, data, deployment, budget, or approval boundaries.
+    validations:
+      required: true
+  - type: textarea
+    id: validation
+    attributes:
+      label: Validation plan
+      description: Name required automated, runtime, visual, hardware, or manual checks.
+    validations:
+      required: true
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencies and related work
+      description: Link Issues, pull requests, decisions, exact commits, external systems, or blocked prerequisites.
+  - type: checkboxes
+    id: ready
+    attributes:
+      label: Ready for claim
+      options:
+        - label: The outcome is bounded enough for one branch and pull request.
+          required: true
+        - label: Acceptance criteria distinguish complete from partial work.
+          required: true
+        - label: No secret or destructive instruction is embedded in this Issue.
+          required: true

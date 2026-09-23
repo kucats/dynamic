@@ -1,0 +1,67 @@
+name: Design or architecture decision
+description: Analyze a material decision before implementation broadens the contract.
+title: "[Design] "
+labels:
+  - documentation
+body:
+  - type: textarea
+    id: question
+    attributes:
+      label: Decision or question
+      description: State the exact decision that must be made.
+    validations:
+      required: true
+  - type: textarea
+    id: drivers
+    attributes:
+      label: Drivers and constraints
+      description: Include performance, compatibility, security, operability, cost, and timeline constraints.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Current state and evidence
+      description: Link code, Issues, measurements, prototypes, or external references.
+    validations:
+      required: true
+  - type: textarea
+    id: options
+    attributes:
+      label: Options considered
+      description: Include the status quo and meaningful alternatives with tradeoffs.
+    validations:
+      required: true
+  - type: textarea
+    id: recommendation
+    attributes:
+      label: Proposed decision
+      description: State the recommended choice and why it dominates the alternatives.
+    validations:
+      required: true
+  - type: textarea
+    id: consequences
+    attributes:
+      label: Consequences and risks
+      description: Record reversibility, migration cost, failure modes, and what becomes harder.
+    validations:
+      required: true
+  - type: textarea
+    id: slices
+    attributes:
+      label: Implementation slices
+      description: Break approved implementation into separately reviewable Issues.
+  - type: textarea
+    id: validation
+    attributes:
+      label: Decision validation
+      description: Define prototype, benchmark, threat model, user test, or operational evidence required.
+    validations:
+      required: true
+  - type: checkboxes
+    id: decision_record
+    attributes:
+      label: Durable record
+      options:
+        - label: An accepted decision will be recorded under `docs/decisions/`.
+          required: true

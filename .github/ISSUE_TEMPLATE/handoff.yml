@@ -1,0 +1,77 @@
+name: Agent or operator handoff
+description: Continue incomplete work from exact refs without losing constraints or evidence.
+title: "[Handoff] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Update an existing handoff Issue instead of creating a duplicate whenever possible. A handoff is not a completion report.
+  - type: textarea
+    id: state
+    attributes:
+      label: Current state
+      description: State plainly what is complete, partial, blocked, or unverified.
+    validations:
+      required: true
+  - type: textarea
+    id: refs
+    attributes:
+      label: Exact refs
+      placeholder: |
+        Repository:
+        Base SHA:
+        Head SHA:
+        Branch:
+        Pull request:
+        Related Issues:
+    validations:
+      required: true
+  - type: textarea
+    id: completed
+    attributes:
+      label: Completed work
+      description: List only work present in the reported head.
+    validations:
+      required: true
+  - type: textarea
+    id: remaining
+    attributes:
+      label: Remaining work
+      description: Ordered, concrete steps required for completion.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Validation evidence
+      description: Exact commands, environments, results, artifacts, and checks not run.
+    validations:
+      required: true
+  - type: textarea
+    id: blockers
+    attributes:
+      label: Blockers and stop boundaries
+      description: Include human approvals, hardware, credentials, production, data, or design decisions that must not be bypassed.
+    validations:
+      required: true
+  - type: textarea
+    id: next
+    attributes:
+      label: Next safe action
+      description: Give the first command or repository action the next operator should take.
+    validations:
+      required: true
+  - type: textarea
+    id: stale
+    attributes:
+      label: Stale or discard-only artifacts
+      description: Identify obsolete builds, prompts, branches, manifests, or instructions that must not be reused.
+  - type: checkboxes
+    id: declaration
+    attributes:
+      label: Declaration
+      options:
+        - label: This handoff does not describe unfinished work as complete.
+          required: true
+        - label: All refs and evidence correspond to the stated head.
+          required: true
