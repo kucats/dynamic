@@ -8,7 +8,9 @@ Run from the repository root with Python 3.11 or later. The catalog builder, val
 | --- | --- | --- |
 | Build static HTML | `python3 tools/build_catalog.py` | Regenerates the catalog index, work page, per-reading HTML pages, and stylesheet |
 | Validate catalog | `python3 tools/validate_catalog.py` | Exits zero only when required metadata, paths, links, excluded inputs, and SHA-256 values are valid |
-| Unit tests | `python3 -m unittest discover -s tests` | Path traversal and SHA-256 format checks pass |
+| Unit tests | `python3 -m unittest discover -s tests` | Catalog path/hash checks and Fuyomi wrapper forwarding tests pass |
+| Fuyomi catalog entry point | `python3 tools/fuyomi/publish.py build` | Builds and validates composer/work/reading pages and links |
+| Fuyomi CLI adapter | `python3 tools/fuyomi/score_reading.py init --help` | Forwards to the installed `vedit specialized fuyomi` CLI |
 
 ## PDF inspection
 

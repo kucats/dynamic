@@ -9,14 +9,15 @@ This repository publishes score-derived study material as a static composer-inde
 | Component | Responsibility | Interface |
 | --- | --- | --- |
 | `public/catalog.json` | Catalog source of truth: composer/work/instrument labels, review state, caveats, source hashes, artifact paths, and artifact hashes | JSON schema version 1 |
-| `public/` | Static catalog index, work page, per-reading HTML pages, stylesheet, and downloadable PDFs | Relative links; no server-side code |
+| `public/` | Static catalog index, work page, per-reading HTML guides, linked interactive reading HTML, stylesheet, and downloadable PDFs | Relative links; no server-side code |
 | `tools/build_catalog.py` | Generate static HTML and CSS from the catalog JSON | `python3 tools/build_catalog.py` |
 | `tools/validate_catalog.py` | Validate required metadata, paths, generated links, hashes, and publication exclusions | `python3 tools/validate_catalog.py` |
+| `tools/fuyomi/` | Thin vEdit score-reading CLI adapter and catalog publish entry points | `python3 tools/fuyomi/score_reading.py ...`; `python3 tools/fuyomi/publish.py build` |
 | `projects/<composer>/<work>/` | Work-specific note data, extraction/render scripts, and reproduction notes | Python CLI; requires the documented local inputs |
 
 ## Data flow
 
-A work project records the score and OMR input hashes, the resulting note JSON/CSV, and review caveats. Selected PDF artifacts are copied into `public/`. `public/catalog.json` maps those files to their composer, work, instrument, and generated HTML page. The build tool renders static pages; the validator checks that all repository-relative paths resolve, artifact hashes match, and each page links to the expected PDF.
+A work project records the score and OMR input hashes, the resulting note JSON/CSV, and review caveats. Selected PDF and interactive HTML artifacts are copied into `public/`. `public/catalog.json` maps those files to their composer, work, instrument, and generated HTML guide. The build tool renders static pages; the validator checks that all repository-relative paths resolve, artifact hashes match, and catalog/work/guide pages link to the PDF and interactive HTML artifacts.
 
 The catalog never downloads inputs or calls external services. Missing paths, invalid hashes, or stale artifact bytes fail validation. Static pages require no JavaScript or third-party assets.
 
@@ -26,6 +27,7 @@ The catalog never downloads inputs or calls external services. Missing paths, in
 - Every public reading has a visible `reviewed` or `draft` state and a non-empty list of limitations.
 - Source hashes identify excluded inputs; artifact hashes identify included output files.
 - Composer/work project code stays under `projects/`; reusable repository tools stay under `tools/`.
+- Fuyomi recognition and correction logic stays in vEdit. `tools/fuyomi/` delegates to its installed CLI and the shared catalog builder; do not fork the engine here.
 - A score-derived candidate is not represented as recording-verified unless that check is actually performed.
 
 ## Hosting

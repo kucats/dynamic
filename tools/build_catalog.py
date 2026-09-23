@@ -45,6 +45,12 @@ def entry_html(item: dict, page_path: str) -> str:
     pdfs = [artifact for artifact in item["artifacts"] if artifact["kind"] == "PDF"]
     pdf_path = pdfs[0]["path"]
     pdf_url = url_from(page_path, pdf_path)
+    interactive_html = [artifact for artifact in item["artifacts"] if artifact["kind"] == "HTML"]
+    html_links = " ".join(
+        f'<a href="{esc(url_from(page_path, artifact["path"]))}">Open interactive reading HTML</a>'
+        for artifact in interactive_html
+    )
+    html_action = f" {html_links}" if html_links else ""
     stylesheet = url_from(page_path, CSS)
     home_url = url_from(page_path, "public/index.html")
     limits = "\n".join(f"<li>{esc(value)}</li>" for value in item["limitations"])
@@ -59,7 +65,7 @@ def entry_html(item: dict, page_path: str) -> str:
   <h2>{esc(item['instrument'])}</h2>
   <p class="summary">{esc(item['summary'])}</p>
   <p class="actions"><a class="button" href="{esc(pdf_url)}" download>Download PDF</a>
-  <a href="{esc(pdf_url)}">Open PDF directly</a></p>
+  <a href="{esc(pdf_url)}">Open PDF directly</a>{html_action}</p>
   <section><h3>Limitations</h3><ul>{limits}</ul></section>
   <details><summary>Source provenance</summary><ul>{sources}</ul></details>
   <object class="pdf-viewer" data="{esc(pdf_url)}" type="application/pdf" aria-label="{esc(item['instrument'])} annotated reading PDF">
@@ -115,9 +121,15 @@ code { overflow-wrap: anywhere; }
             html_url = url_from(work_page, item["html"])
             pdf = next(a for a in item["artifacts"] if a["kind"] == "PDF")
             pdf_url = url_from(work_page, pdf["path"])
+            interactive_html = [a for a in item["artifacts"] if a["kind"] == "HTML"]
+            interactive_links = " · ".join(
+                f'<a href="{esc(url_from(work_page, artifact["path"]))}">Interactive HTML</a>'
+                for artifact in interactive_html
+            )
+            interactive_markup = f" · {interactive_links}" if interactive_links else ""
             item_links.append(
                 f'''<li><span class="status status-{esc(item['review_status'])}">{esc(item['review_status'])}</span>
-                <strong>{esc(item['instrument'])}</strong> — <a href="{esc(html_url)}">HTML guide</a> · <a href="{esc(pdf_url)}">PDF</a>
+                <strong>{esc(item['instrument'])}</strong> — <a href="{esc(html_url)}">HTML guide</a> · <a href="{esc(pdf_url)}">PDF</a>{interactive_markup}
                 <p>{esc(item['summary'])}</p></li>'''
             )
         work_body = f'''<nav class="breadcrumbs"><a href="../../../index.html">Catalog</a></nav>

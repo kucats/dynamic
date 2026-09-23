@@ -124,6 +124,8 @@ When blocked or stopping with unfinished work:
 - Treat note readings as score-derived candidates and preserve reviewed/draft labels and known limitations.
 - Keep raw source PDFs, OMR archives, rendered source scans, audio, absolute machine paths, and credentials out of public content.
 - Reusable catalog code belongs in `tools/`; work-specific scripts and data belong in `projects/<composer>/<work>/`.
+- Fuyomi recognition and correction logic is owned by vEdit. `tools/fuyomi/` may invoke its installed CLI and the shared static-catalog builder but must not duplicate the engine.
+- A catalog item may link to one generated HTML guide, one PDF, and additional interactive HTML artifacts. Keep all artifact hashes current and expose each link from the work page.
 - Regenerate static HTML with `python3 tools/build_catalog.py` and validate hashes and links with `python3 tools/validate_catalog.py`.
 
 Add nested `AGENTS.md` files only where local rules materially differ.

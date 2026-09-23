@@ -171,6 +171,15 @@ def validate_catalog(root: Path) -> list[str]:
                         errors.append(f"{prefix} must have exactly one PDF artifact")
                     elif posixpath.relpath(pdf_artifacts[0], posixpath.dirname(html_path)) not in text:
                         errors.append(f"{prefix}.html does not link to its PDF artifact")
+                    for html_artifact in [
+                        artifact.get("path")
+                        for artifact in artifacts or []
+                        if isinstance(artifact, dict) and artifact.get("kind") == "HTML"
+                        and isinstance(artifact.get("path"), str)
+                    ]:
+                        html_link = posixpath.relpath(html_artifact, posixpath.dirname(html_path))
+                        if html_link not in text:
+                            errors.append(f"{prefix}.html does not link to its interactive HTML artifact")
                     review_status = item.get("review_status")
                     if isinstance(review_status, str) and review_status.lower() not in text.lower():
                         errors.append(f"{prefix}.html does not display its review status")
@@ -220,6 +229,15 @@ def validate_catalog(root: Path) -> list[str]:
                             pdf_link = posixpath.relpath(pdfs[0], posixpath.dirname(work_relative))
                             if pdf_link not in work_text:
                                 errors.append(f"{work_relative} does not link to {pdfs[0]}")
+                        for interactive_html in [
+                            artifact.get("path")
+                            for artifact in item.get("artifacts", [])
+                            if isinstance(artifact, dict) and artifact.get("kind") == "HTML"
+                            and isinstance(artifact.get("path"), str)
+                        ]:
+                            interactive_link = posixpath.relpath(interactive_html, posixpath.dirname(work_relative))
+                            if interactive_link not in work_text:
+                                errors.append(f"{work_relative} does not link to {interactive_html}")
                 except (ValueError, OSError, UnicodeDecodeError) as exc:
                     errors.append(f"could not validate {work_relative}: {exc}")
     except (ValueError, OSError, UnicodeDecodeError) as exc:
