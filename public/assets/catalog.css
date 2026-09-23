@@ -1,0 +1,22 @@
+:root { color-scheme: light; font-family: system-ui, sans-serif; color: #172a36; background: #f5f8fa; }
+* { box-sizing: border-box; }
+body { margin: 0; line-height: 1.55; }
+a { color: #075d82; }
+.site-header { padding: 1rem max(calc((100% - 72rem) / 2), 1.25rem); background: #102f42; }
+.site-header a { color: white; text-decoration: none; font-weight: 700; }
+main { max-width: 72rem; margin: 2rem auto; padding: 0 1.25rem; }
+footer { max-width: 72rem; margin: 2rem auto; padding: 1rem 1.25rem 2rem; color: #526673; font-size: .9rem; }
+.breadcrumbs { color: #526673; font-size: .92rem; }
+h1 { margin-bottom: .4rem; line-height: 1.2; }
+h2 { margin-top: .4rem; color: #31566a; }
+.catalog-card, article { padding: 1.25rem; margin: 1rem 0; border: 1px solid #d8e2e8; border-radius: .7rem; background: white; }
+.catalog-card h2 { margin: 0 0 .4rem; }
+.status { display: inline-block; border-radius: 999px; padding: .15rem .7rem; text-transform: uppercase; font-size: .76rem; font-weight: 750; letter-spacing: .04em; }
+.status-reviewed { background: #d8f2e4; color: #145934; }
+.status-draft { background: #fff0cf; color: #784700; }
+.summary { font-size: 1.06rem; }
+.button { display: inline-block; padding: .55rem .9rem; margin-right: .7rem; border-radius: .4rem; background: #075d82; color: white; text-decoration: none; font-weight: 700; }
+.actions { margin: 1rem 0; }
+code { overflow-wrap: anywhere; }
+.pdf-viewer { width: 100%; height: min(78vh, 60rem); margin-top: 1rem; border: 1px solid #cbd7df; }
+@media (max-width: 40rem) { main { margin-top: 1rem; } .pdf-viewer { height: 65vh; } }

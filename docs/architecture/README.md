@@ -3,29 +3,25 @@
 ## Data flow
 
 ```text
-original score (external, immutable)
-  -> page-render / OMR candidates (private working state)
-  -> reviewed pitch and rhythm JSON (project data)
-  -> structural validation and artifact build (tools/fuyomi)
-  -> public HTML/PDF derivative with visible review status
+external immutable score PDF
+  -> private page render / OMR candidates
+  -> composer/work/part review data under project/
+  -> reusable validation and artifact build under tools/
+  -> static review HTML/PDF under public/
 ```
 
-`tools/fuyomi/` contains the standalone Fuyomi implementation ported from the vEdit score-reading workflow. The tool uses source hashes to bind review decisions to the exact PDF and candidate data; its workspace may contain source-page images and OMR files, so working workspaces must stay outside Git. The repository itself stores only reviewed project data and permitted derivative artifacts.
+`tools/fuyomi/` is the standalone implementation ported from the vEdit Fuyomi special mode. It binds review decisions to source hashes and can use local score images/OMR in private workspaces. Those inputs remain outside Git. No code imports vEdit.
 
-## Project organization
+## Catalogs and ownership
 
-Each project is scoped under `project/<composer>/<work>/<part>/`. Keep separate files for note readings, duration/rest/tie data, source observations, and independent review. Record physical PDF page and printed part page separately. Use concert/written pitch and transposition explicitly. Confidence never substitutes for the independent source audit.
+`public/catalog.json` indexes the existing composer/work guide collection and its project-source files. `project/catalog.json` indexes Fuyomi artifacts, source-page spans, audit status, and playback authorization. Both are generated/validated by the root catalog commands.
 
-`project/catalog.json` is the machine-readable artifact and coverage index. `public/index.html` is a static view over that catalog. Generated links must be repository-relative; absolute local paths are prohibited.
+Reusable code, schemas, validators, and tests live in `tools/`. Composer/work/part-specific readings, timing, reviews, and process receipts live under `project/<composer>/<work>/<part>/`. Static HTML/PDF derivatives live under `public/`. Raw source score PDFs, raw scans, OMR, audio, and machine-specific paths are excluded.
 
 ## Playback authority
 
-The player can sound notes only when their pitch and duration are explicit. Score-follow highlighting is driven from those same events. A movement with incomplete note or rhythm audit is marked unavailable for continuous playback; do not fill gaps with guessed durations or OMR defaults. The tone generator is a practice reference and is not aligned to any external recording unless a separately reviewed alignment is present.
+A player may sound notes only when pitch and duration are explicit. Score focus uses the same events. An incomplete note, rhythm, tie, or repeat audit blocks continuous movement playback. Synthetic audio is a practice reference; it is not aligned to an external recording unless separate reviewed timing evidence says so.
 
-## Provenance and privacy
+## Validation and provenance
 
-Record source filename as bibliographic metadata only when useful, source SHA-256, page span, software versions, and time measurements. Do not commit original PDFs, unannotated source scans, raw OMR, private audio, local file paths, or workspace bundles that contain those files. Keep temporary workspaces ignored or outside the repository.
-
-## Change records
-
-Schema changes update the schema, validator, examples, documentation, and tests together. Non-trivial coverage or audit changes are tracked in GitHub Issues and reviewed in pull requests. No publishing or deployment is configured in this repo.
+Keep candidate output, direct source observations, independent audits, and confirmed readings separate. Store source SHA-256 and physical page references, not the excluded source itself. A change to data structure must update schema, parser/validator, documentation, examples, and tests together. No deployment is configured.

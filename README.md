@@ -1,23 +1,26 @@
-# dynamic
+# dynamic · 譜読みカタログ
 
-A small, reviewable catalog for score-reading workflows. Reusable processing code lives in [`tools/`](tools/); per-composer and per-work evidence lives in [`project/`](project/); static HTML/PDF outputs live in [`public/`](public/).
+vEdit の Fuyomi 特別モードから、再利用可能な譜読みワークフローと今回の譜読みデータ・成果物をこのリポジトリへ移しました。元の vEdit 作業ツリーには依存せず、ここで再現・監査できる構成です。
 
-## Browse
+## 配置
 
-Open [`public/index.html`](public/index.html) locally for the current catalog. The index links only to artifacts stored in this repository and shows each part's audit/playback status.
+- `tools/` — Fuyomi 処理、静的カタログ生成、検証コードとテスト
+- `project/<作曲者>/<作品>/<パート>/` — 音高・長さ・ポジション、出典ハッシュ、レビュー、監査状態、処理記録
+- `public/` — 閲覧用 HTML と譜読み注釈 PDF。元譜 PDF、原ページ画像、OMR 生データ、個人録音は含みません
 
-## Reproduce
+`public/catalog.json` は従来の作曲家別ガイドを、`project/catalog.json` は Fuyomi 成果物と監査・再生状態を記録します。トップページから両方を閲覧できます。
 
-Fuyomi is a standalone tool; it does not import vEdit. Use Python 3.11+ and install `Pillow`, `pypdf`, and `reportlab` for image/PDF operations. Audiveris and Poppler are optional external tools for candidate recognition and page rendering.
+## 再現と検証
+
+Python 3.11 以降が必要です。PDF 処理には Pillow、pypdf、ReportLab を使います。Audiveris と Poppler は候補認識・ページ描画を行う場合だけ必要です。
 
 ```sh
-python -m pip install Pillow pypdf reportlab
-python -m tools.fuyomi --help
-python -m unittest discover -s tests -p 'test_fuyomi.py' -v
+python3 -m pip install Pillow pypdf reportlab
+python3 tools/build_catalog.py
+python3 tools/validate_catalog.py
+python3 -m unittest discover -s tests -v
+python3 -m tools.fuyomi --help
+node --check tools/fuyomi/player.js
 ```
 
-See [`tools/fuyomi/README.md`](tools/fuyomi/README.md) and [`docs/architecture/README.md`](docs/architecture/README.md). A passing tool test does not certify a score transcription; the project-level audit record remains authoritative.
-
-## Source policy
-
-The repo stores source hashes and bibliographic/page provenance, not source score PDFs, raw score scans, raw OMR caches, private recordings, or machine-specific paths. Annotated PDFs are derivative review aids and are kept under `public/artifacts/`.
+個々の譜読みの正確さは、該当する `project/` 内の原譜照合記録を確認してください。ツールテストの成功だけで音符監査や再生許可を意味しません。

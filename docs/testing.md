@@ -1,18 +1,15 @@
 # Validation contract
 
-## Required checks
+Run from the repository root with Python 3.11 or later. The catalog commands operate offline. PDF rendering additionally needs Pillow, pypdf, and ReportLab; Audiveris and Poppler are optional for candidate recognition and source-page rendering.
 
 | Scope | Command | Expected result |
 | --- | --- | --- |
-| CLI | `python -m tools.fuyomi --help` | Lists standalone Fuyomi commands without importing vEdit |
-| Python unit tests | `python -m unittest discover -s tests -p 'test_fuyomi.py' -v` | All available tests pass; optional dependency skips are reported |
-| Syntax | `python -m compileall -q tools/fuyomi tests` | No Python syntax errors |
-| JavaScript syntax | `node --check tools/fuyomi/player.js` | No JavaScript syntax errors |
-| Project/catalog integrity | `python tools/validate_catalog.py` | Relative paths, hashes, coverage states, and source policy pass |
+| Rebuild both static catalogs | `python3 tools/build_catalog.py` | Updates composer/work pages and Fuyomi landing page from their manifests |
+| Validate both manifests | `python3 tools/validate_catalog.py` | Checks metadata, repository paths, hashes, generated links, source exclusions, and Horn II audit gate |
+| Unit tests | `python3 -m unittest discover -s tests -v` | Catalog safety and Fuyomi workflow/player tests pass |
+| Fuyomi CLI | `python3 -m tools.fuyomi --help` | Shows standalone commands without importing vEdit |
+| Python syntax | `python3 -m compileall -q tools tests` | No syntax errors |
+| Player JavaScript | `node --check tools/fuyomi/player.js` | No syntax errors |
 | Patch hygiene | `git diff --check` | No whitespace errors |
 
-For changes to PDF/HTML generation, install `Pillow`, `pypdf`, and `reportlab` and run the full end-to-end workflow tests. Inspect generated PDF page count and a rendered page image; inspect the HTML in a browser and exercise play/pause, seeking, movement selection, and note highlighting. Any environment-based skip must be recorded in the PR.
-
-## Music review is separate
-
-Code validation proves data structure and behavior only. Each score publication needs source-bound note review, rhythm review where playback is offered, and an independent audit. Record the audit scope, note count, unresolved items, and resulting playback state in that project's `reviews/` files. Never change an unresolved audit to complete because a tool test passed.
+For changes that edit or regenerate PDFs, inspect page count/metadata, render representative pages, and visually check each changed layout. Code validation does not certify a musical reading. Each score artifact must retain its source-bound audit scope, unresolved items, and playback state. Never mark an incomplete audit complete because the software tests passed.

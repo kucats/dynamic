@@ -1,35 +1,28 @@
 # dynamic agent instructions
 
-## Project identity
+## Purpose and ownership
 
-- **Project:** `kucats/dynamic`
-- **Purpose:** Reproducible, reviewable data and static publications for music score reading.
-- **Primary runtime:** Python 3.11+ for tools; static HTML/CSS/JavaScript for public artifacts.
-- **Deployment target:** None configured; this repository publishes reviewable files only.
-- **Current status:** Experimental.
-- **Non-goals:** Hosting/deployment, source-score distribution, automatic approval of OMR, or claiming synchronized playback without reviewed timing.
+This repository holds reproducible score-reading data and static review artifacts. Reusable Fuyomi code, validators, schemas, and tests belong in `tools/`; composer/work/part-specific note data, timing, source hashes, reviews, and process receipts belong in `project/<composer>/<work>/<part>/`; static HTML/PDF derivatives belong in `public/`.
 
-## Ownership map
-
-- `tools/`: reusable score-reading utilities, schemas, validators, tests, and instructions.
-- `project/<composer>/<work>/<part>/`: composer/work/part-specific input identity, note data, timing, independent audits, and process receipts.
-- `public/`: static catalog and reviewed HTML/PDF derivatives. Every linked artifact must resolve inside this repository.
-
-The project data and generated artifacts are the source of truth for this repository. Do not require vEdit imports or write generated data back into vEdit.
+Do not import or write this repository's project data back into vEdit. The Fuyomi tool is standalone and must not depend on vEdit packages.
 
 ## Source and review boundary
 
-- Original score PDFs, raw page scans, raw OMR files, private recordings, and absolute local paths are never committed.
-- Store the original PDF SHA-256, physical source-page references, tool versions, and review method as provenance.
-- A derived annotated score may contain the limited source-page excerpts needed for its reading aid. Label it as a derivative and keep it separate from the raw source.
-- Keep OMR candidates, direct source observations, independent audit findings, and confirmed readings distinct.
-- A structural pass is not a note-level audit. An unresolved pitch, octave, accidental, cue identity, duration, repeat, or alignment must be flagged and excluded from any playback path that would assert it as verified.
-- Do not describe synthetic practice audio as a recording match. Timing/playback is enabled only for reviewed note durations, rests, ties, and repeat paths.
+- Original score PDFs, raw page scans, raw OMR bundles, private recordings, credentials, and machine-specific absolute paths are never committed.
+- Preserve source PDF SHA-256 and physical page provenance without including the source file.
+- Keep candidate detection, direct source observations, independent audit findings, and confirmed readings distinct.
+- Structural or tool validation is not a note-level audit. Unresolved pitch, octave, accidental, cue, duration, tie, repeat, or alignment must remain flagged and excluded from playback paths that imply verification.
+- Label annotated PDFs as derivatives. Do not claim synthetic practice audio is aligned to a recording without separate reviewed alignment evidence.
 
 ## Workflow
 
-1. Inspect the relevant Issue and branch before editing.
-2. Make one reviewable change on the issue branch; preserve unrelated state.
-3. Validate the exact modified scope with commands in `docs/testing.md`.
-4. Open a draft PR while review findings or acceptance items remain unresolved.
-5. Do not merge or deploy without explicit authorization.
+1. Inspect the active Issue, branch, repository state, and relevant project records before edits.
+2. Preserve unrelated work and use a reviewable issue branch. Do not force-push, merge, or deploy without authorization.
+3. Run the commands in `docs/testing.md` for the changed scope and record exact evidence.
+4. Keep incomplete score audits in a draft PR with a handoff record; do not mark an unfinished transcription complete.
+
+## Catalog and reproducibility
+
+- `public/catalog.json` retains the composer-indexed guide catalog; `project/catalog.json` indexes the Fuyomi workflow artifacts and audit states.
+- `python3 tools/build_catalog.py` builds both static catalogs. `python3 tools/validate_catalog.py` validates both catalogs, hashes, paths, source exclusions, and Fuyomi audit gates.
+- Keep links repository-relative. No GitHub Pages deployment is configured.
