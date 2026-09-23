@@ -1,0 +1,437 @@
+{
+  "review_type": "independent_source_visual_audit",
+  "reviewer": "gpt-6-sol",
+  "status": "INCOMPLETE_FAIL_CLOSED",
+  "full_playback_authorized": false,
+  "source": {
+    "path": "ホルン1～4.pdf (machine-local path omitted)",
+    "sha256": "0a29673a6ab1f0b02b89485dd0910ea100876cd4589feaced09fbad153839665",
+    "physical_page_count": 29,
+    "render_dpi": 400,
+    "pixel_coordinate_origin": "upper_left",
+    "render_dimensions_px": {
+      "page_11": [
+        3956,
+        5204
+      ],
+      "page_12": [
+        3957,
+        5206
+      ]
+    }
+  },
+  "scope": {
+    "movement": "II",
+    "instrument_header": "Corno II.",
+    "start": {
+      "physical_pdf_page": 11,
+      "position": "lower portion",
+      "evidence": [
+        "Large printed Roman numeral II after the final Movement I system",
+        "Adagio heading and a newly printed 2/4 staff at the new movement opening"
+      ]
+    },
+    "continuation": {
+      "physical_pdf_page": 12,
+      "evidence": [
+        "Continuous Corno II. staff systems and printed measure markers 45 through 170"
+      ]
+    },
+    "end": {
+      "physical_pdf_page": 12,
+      "evidence": [
+        "Final double bar after last Movement II staff",
+        "Physical PDF page 13 opens with large Roman numeral III and Allegretto grazioso"
+      ]
+    },
+    "excluded_pages_and_systems": [
+      "All upper page 11 systems above the II heading are Movement I",
+      "All page 13 systems are Movement III"
+    ]
+  },
+  "system_mapping": [
+    {
+      "id": "p11-s01",
+      "physical_pdf_page": 11,
+      "ordinal_on_page": 1,
+      "staff_top_y_px": 3531,
+      "staff_bottom_y_px": 3671,
+      "printed_measure_markers_visible": [
+        10,
+        15
+      ],
+      "all_notes_verified": false,
+      "source_pixel_frame": "400 dpi PNG, origin upper left, page dimensions approximately 3957 x 5206"
+    },
+    {
+      "id": "p11-s02",
+      "physical_pdf_page": 11,
+      "ordinal_on_page": 2,
+      "staff_top_y_px": 3916,
+      "staff_bottom_y_px": 4057,
+      "printed_measure_markers_visible": [
+        20,
+        25
+      ],
+      "all_notes_verified": false,
+      "source_pixel_frame": "400 dpi PNG, origin upper left, page dimensions approximately 3957 x 5206"
+    },
+    {
+      "id": "p11-s03",
+      "physical_pdf_page": 11,
+      "ordinal_on_page": 3,
+      "staff_top_y_px": 4303,
+      "staff_bottom_y_px": 4445,
+      "printed_measure_markers_visible": [
+        30,
+        35
+      ],
+      "all_notes_verified": false,
+      "source_pixel_frame": "400 dpi PNG, origin upper left, page dimensions approximately 3957 x 5206"
+    },
+    {
+      "id": "p11-s04",
+      "physical_pdf_page": 11,
+      "ordinal_on_page": 4,
+      "staff_top_y_px": 4695,
+      "staff_bottom_y_px": 4836,
+      "printed_measure_markers_visible": [
+        40
+      ],
+      "all_notes_verified": false,
+      "source_pixel_frame": "400 dpi PNG, origin upper left, page dimensions approximately 3957 x 5206"
+    },
+    {
+      "id": "p12-s01",
+      "physical_pdf_page": 12,
+      "ordinal_on_page": 1,
+      "staff_top_y_px": 475,
+      "staff_bottom_y_px": 617,
+      "printed_measure_markers_visible": [
+        45,
+        50,
+        55,
+        60
+      ],
+      "all_notes_verified": false,
+      "source_pixel_frame": "400 dpi PNG, origin upper left, page dimensions approximately 3957 x 5206"
+    },
+    {
+      "id": "p12-s02",
+      "physical_pdf_page": 12,
+      "ordinal_on_page": 2,
+      "staff_top_y_px": 862,
+      "staff_bottom_y_px": 998,
+      "printed_measure_markers_visible": [
+        65,
+        70
+      ],
+      "all_notes_verified": false,
+      "source_pixel_frame": "400 dpi PNG, origin upper left, page dimensions approximately 3957 x 5206"
+    },
+    {
+      "id": "p12-s03",
+      "physical_pdf_page": 12,
+      "ordinal_on_page": 3,
+      "staff_top_y_px": 1247,
+      "staff_bottom_y_px": 1387,
+      "printed_measure_markers_visible": [
+        80,
+        100
+      ],
+      "all_notes_verified": false,
+      "source_pixel_frame": "400 dpi PNG, origin upper left, page dimensions approximately 3957 x 5206"
+    },
+    {
+      "id": "p12-s04",
+      "physical_pdf_page": 12,
+      "ordinal_on_page": 4,
+      "staff_top_y_px": 1640,
+      "staff_bottom_y_px": 1780,
+      "printed_measure_markers_visible": [
+        105,
+        115
+      ],
+      "all_notes_verified": false,
+      "source_pixel_frame": "400 dpi PNG, origin upper left, page dimensions approximately 3957 x 5206"
+    },
+    {
+      "id": "p12-s05",
+      "physical_pdf_page": 12,
+      "ordinal_on_page": 5,
+      "staff_top_y_px": 2030,
+      "staff_bottom_y_px": 2170,
+      "printed_measure_markers_visible": [
+        120
+      ],
+      "all_notes_verified": false,
+      "source_pixel_frame": "400 dpi PNG, origin upper left, page dimensions approximately 3957 x 5206"
+    },
+    {
+      "id": "p12-s06",
+      "physical_pdf_page": 12,
+      "ordinal_on_page": 6,
+      "staff_top_y_px": 2417,
+      "staff_bottom_y_px": 2557,
+      "printed_measure_markers_visible": [
+        125,
+        130
+      ],
+      "all_notes_verified": false,
+      "source_pixel_frame": "400 dpi PNG, origin upper left, page dimensions approximately 3957 x 5206"
+    },
+    {
+      "id": "p12-s07",
+      "physical_pdf_page": 12,
+      "ordinal_on_page": 7,
+      "staff_top_y_px": 2801,
+      "staff_bottom_y_px": 2938,
+      "printed_measure_markers_visible": [
+        135
+      ],
+      "all_notes_verified": false,
+      "source_pixel_frame": "400 dpi PNG, origin upper left, page dimensions approximately 3957 x 5206"
+    },
+    {
+      "id": "p12-s08",
+      "physical_pdf_page": 12,
+      "ordinal_on_page": 8,
+      "staff_top_y_px": 3187,
+      "staff_bottom_y_px": 3325,
+      "printed_measure_markers_visible": [
+        140,
+        145
+      ],
+      "all_notes_verified": false,
+      "source_pixel_frame": "400 dpi PNG, origin upper left, page dimensions approximately 3957 x 5206"
+    },
+    {
+      "id": "p12-s09",
+      "physical_pdf_page": 12,
+      "ordinal_on_page": 9,
+      "staff_top_y_px": 3574,
+      "staff_bottom_y_px": 3713,
+      "printed_measure_markers_visible": [
+        150
+      ],
+      "all_notes_verified": false,
+      "source_pixel_frame": "400 dpi PNG, origin upper left, page dimensions approximately 3957 x 5206"
+    },
+    {
+      "id": "p12-s10",
+      "physical_pdf_page": 12,
+      "ordinal_on_page": 10,
+      "staff_top_y_px": 3961,
+      "staff_bottom_y_px": 4101,
+      "printed_measure_markers_visible": [
+        155,
+        160
+      ],
+      "all_notes_verified": false,
+      "source_pixel_frame": "400 dpi PNG, origin upper left, page dimensions approximately 3957 x 5206"
+    },
+    {
+      "id": "p12-s11",
+      "physical_pdf_page": 12,
+      "ordinal_on_page": 11,
+      "staff_top_y_px": 4348,
+      "staff_bottom_y_px": 4493,
+      "printed_measure_markers_visible": [
+        165
+      ],
+      "all_notes_verified": false,
+      "source_pixel_frame": "400 dpi PNG, origin upper left, page dimensions approximately 3957 x 5206"
+    },
+    {
+      "id": "p12-s12",
+      "physical_pdf_page": 12,
+      "ordinal_on_page": 12,
+      "staff_top_y_px": 4739,
+      "staff_bottom_y_px": 4881,
+      "printed_measure_markers_visible": [
+        170
+      ],
+      "all_notes_verified": false,
+      "source_pixel_frame": "400 dpi PNG, origin upper left, page dimensions approximately 3957 x 5206"
+    }
+  ],
+  "verified_note_records": [
+    {
+      "id": "M2-verified-001",
+      "page": 12,
+      "system": "p12-s11",
+      "x_px": 530,
+      "y_px": 4419,
+      "coordinate_tolerance_px": 12,
+      "role": "Horn II part",
+      "clef": "treble",
+      "written_pitch": "B4",
+      "written_fixed_do": "シ4",
+      "sounding_pitch": "E4",
+      "sounding_fixed_do": "ミ4",
+      "transposition": "F horn: sounds a perfect fifth lower",
+      "key_signature": "none visible",
+      "explicit_accidental": null,
+      "notated_duration": "half note",
+      "duration_status": "visually_verified_hollow_notehead_with_stem",
+      "tie_status": "unresolved_same_pitch_arc",
+      "rhythmic_onset": null,
+      "confidence": "high_for_pitch; moderate_for_duration",
+      "visual_basis": "Open notehead on the middle treble-staff line; no local accidental."
+    },
+    {
+      "id": "M2-verified-002",
+      "page": 12,
+      "system": "p12-s11",
+      "x_px": 1170,
+      "y_px": 4419,
+      "coordinate_tolerance_px": 12,
+      "role": "Horn II part",
+      "clef": "treble",
+      "written_pitch": "B4",
+      "written_fixed_do": "シ4",
+      "sounding_pitch": "E4",
+      "sounding_fixed_do": "ミ4",
+      "transposition": "F horn: sounds a perfect fifth lower",
+      "key_signature": "none visible",
+      "explicit_accidental": null,
+      "notated_duration": "half note",
+      "duration_status": "visually_verified_hollow_notehead_with_stem",
+      "tie_status": "unresolved_same_pitch_arc",
+      "rhythmic_onset": null,
+      "confidence": "high_for_pitch; moderate_for_duration",
+      "visual_basis": "Open notehead on the middle treble-staff line; no local accidental."
+    },
+    {
+      "id": "M2-verified-003",
+      "page": 12,
+      "system": "p12-s11",
+      "x_px": 1955,
+      "y_px": 4419,
+      "coordinate_tolerance_px": 12,
+      "role": "Horn II part",
+      "clef": "treble",
+      "written_pitch": "B4",
+      "written_fixed_do": "シ4",
+      "sounding_pitch": "E4",
+      "sounding_fixed_do": "ミ4",
+      "transposition": "F horn: sounds a perfect fifth lower",
+      "key_signature": "none visible",
+      "explicit_accidental": null,
+      "notated_duration": "half note",
+      "duration_status": "visually_verified_hollow_notehead_with_stem",
+      "tie_status": "unresolved_same_pitch_arc",
+      "rhythmic_onset": null,
+      "confidence": "high_for_pitch; moderate_for_duration",
+      "visual_basis": "Open notehead on the middle treble-staff line; no local accidental."
+    },
+    {
+      "id": "M2-verified-004",
+      "page": 12,
+      "system": "p12-s11",
+      "x_px": 2909,
+      "y_px": 4419,
+      "coordinate_tolerance_px": 12,
+      "role": "Horn II part",
+      "clef": "treble",
+      "written_pitch": "B4",
+      "written_fixed_do": "シ4",
+      "sounding_pitch": "E4",
+      "sounding_fixed_do": "ミ4",
+      "transposition": "F horn: sounds a perfect fifth lower",
+      "key_signature": "none visible",
+      "explicit_accidental": null,
+      "notated_duration": "half note",
+      "duration_status": "visually_verified_hollow_notehead_with_stem",
+      "tie_status": "unresolved_same_pitch_arc",
+      "rhythmic_onset": null,
+      "confidence": "high_for_pitch; moderate_for_duration",
+      "visual_basis": "Open notehead on the middle treble-staff line; no local accidental."
+    },
+    {
+      "id": "M2-verified-005",
+      "page": 12,
+      "system": "p12-s12",
+      "x_px": 530,
+      "y_px": 4793,
+      "coordinate_tolerance_px": 12,
+      "role": "Horn II part",
+      "clef": "treble",
+      "written_pitch": "C5",
+      "written_fixed_do": "ド5",
+      "sounding_pitch": "F4",
+      "sounding_fixed_do": "ファ4",
+      "transposition": "F horn: sounds a perfect fifth lower",
+      "key_signature": "none visible",
+      "explicit_accidental": null,
+      "notated_duration": null,
+      "duration_status": "unresolved",
+      "tie_status": "unresolved",
+      "rhythmic_onset": null,
+      "confidence": "high_for_pitch",
+      "visual_basis": "Filled notehead in the space between the treble-staff B4 and D5 lines; no local accidental."
+    }
+  ],
+  "unverified_note_coverage": {
+    "scope": "All Movement II notes other than the five explicit verified records above remain unresolved. No dense passage was inferred from image segmentation or another part.",
+    "unresolved_system_ids": [
+      "p11-s01",
+      "p11-s02",
+      "p11-s03",
+      "p11-s04",
+      "p12-s01",
+      "p12-s02",
+      "p12-s03",
+      "p12-s04",
+      "p12-s05",
+      "p12-s06",
+      "p12-s07",
+      "p12-s08",
+      "p12-s09",
+      "p12-s10",
+      "p12-s11",
+      "p12-s12"
+    ],
+    "candidate_evidence_status": "Automated blob detection was tested only as an aid and rejected as note authority because it conflated noteheads with stems, beams, clefs, rests, text and split noteheads at staff lines. No candidate was promoted without visual inspection.",
+    "cue_ambiguity": [
+      "Page 11 lower first system contains Cor. III, IV. and Fag. labels with simultaneous rest signs; the cue versus playable Horn II distinction is not fully adjudicated.",
+      "Page 11 fourth Movement II system contains Cor. I. label.",
+      "Page 12 systems contain Viol. solo, Cor. III, IV., Cor. I., and Vlc./Cb. labels; these must be adjudicated against note size, rests, clef and staff context before transcription."
+    ]
+  },
+  "verified_rest_observations": [
+    {
+      "page": 11,
+      "system": "p11-s01",
+      "observation": "Printed 9-measure rest immediately after the Movement II 2/4 opening",
+      "measure_span_status": "printed_count_verified; exact later cue transition unresolved"
+    },
+    {
+      "page": 12,
+      "system": "p12-s12",
+      "observation": "A one-measure rest marked 1 and a final rest under a fermata are visible after the last sounding passage",
+      "measure_span_status": "rest glyphs verified; exact beat timeline unresolved"
+    }
+  ],
+  "rhythm_timing_conclusions": {
+    "opening_meter": "2/4 printed",
+    "tempo": "Adagio printed; numeric tempo-note unit unresolved in this audit",
+    "per_note_onsets": "unresolved",
+    "full_measure_map": "unresolved",
+    "global_duration": "unresolved",
+    "tie_resolution": "unresolved",
+    "playback_gate": "BLOCKED: do not synthesize or time Movement II from this JSON as a complete part"
+  },
+  "count_check_summary": {
+    "movement_systems_mapped": 16,
+    "page_11_movement_systems": 4,
+    "page_12_movement_systems": 12,
+    "verified_note_records": 5,
+    "exhaustive_note_count": null,
+    "exhaustive_note_count_status": "unresolved",
+    "cue_note_count": null,
+    "rest_count": null,
+    "validation": "Source hash and printed movement bounds verified; complete pitch, cue, duration and timing validation not achieved."
+  },
+  "review_limit": "This JSON deliberately reports only directly verified anchors. It does not meet an exhaustive note-by-note transcription requirement and must not be used as a complete Movement II Horn II score."
+}

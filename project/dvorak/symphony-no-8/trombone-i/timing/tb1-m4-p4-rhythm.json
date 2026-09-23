@@ -1,0 +1,1268 @@
+{
+  "page": 4,
+  "meter_quarters": 2,
+  "systems": [
+    {
+      "system": 1,
+      "bars": [
+        {
+          "events": [
+            {
+              "kind": "note",
+              "note_id": 1,
+              "quarters": 0.5
+            },
+            {
+              "kind": "rest",
+              "quarters": 0.5
+            },
+            {
+              "kind": "note",
+              "note_id": 2,
+              "quarters": 0.5
+            },
+            {
+              "kind": "rest",
+              "quarters": 0.5
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "note",
+              "note_id": 3,
+              "quarters": 1
+            },
+            {
+              "kind": "rest",
+              "quarters": 0.5
+            },
+            {
+              "kind": "note",
+              "note_id": 4,
+              "quarters": 0.5
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "note",
+              "note_id": 5,
+              "quarters": 0.5
+            },
+            {
+              "kind": "rest",
+              "quarters": 0.5
+            },
+            {
+              "kind": "note",
+              "note_id": 6,
+              "quarters": 0.5
+            },
+            {
+              "kind": "note",
+              "note_id": 7,
+              "quarters": 0.5
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "note",
+              "note_id": 8,
+              "quarters": 0.5
+            },
+            {
+              "kind": "rest",
+              "quarters": 0.5
+            },
+            {
+              "kind": "note",
+              "note_id": 9,
+              "quarters": 0.5
+            },
+            {
+              "kind": "note",
+              "note_id": 10,
+              "quarters": 0.5
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "note",
+              "note_id": 11,
+              "quarters": 1
+            },
+            {
+              "kind": "note",
+              "note_id": 12,
+              "quarters": 1
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "note",
+              "note_id": 13,
+              "quarters": 0.5
+            },
+            {
+              "kind": "note",
+              "note_id": 14,
+              "quarters": 0.5
+            },
+            {
+              "kind": "note",
+              "note_id": 15,
+              "quarters": 0.5
+            },
+            {
+              "kind": "note",
+              "note_id": 16,
+              "quarters": 0.5
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "note",
+              "note_id": 17,
+              "quarters": 1
+            },
+            {
+              "kind": "note",
+              "note_id": 18,
+              "quarters": 0.5
+            },
+            {
+              "kind": "note",
+              "note_id": 19,
+              "quarters": 0.5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "system": 2,
+      "bars": [
+        {
+          "events": [
+            {
+              "kind": "note",
+              "note_id": 1,
+              "quarters": 0.5
+            },
+            {
+              "kind": "note",
+              "note_id": 2,
+              "quarters": 0.5
+            },
+            {
+              "kind": "note",
+              "note_id": 3,
+              "quarters": 0.5
+            },
+            {
+              "kind": "rest",
+              "quarters": 0.5
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "note",
+              "note_id": 4,
+              "quarters": 0.5
+            },
+            {
+              "kind": "rest",
+              "quarters": 0.5
+            },
+            {
+              "kind": "note",
+              "note_id": 5,
+              "quarters": 0.5
+            },
+            {
+              "kind": "rest",
+              "quarters": 0.5
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "note",
+              "note_id": 6,
+              "quarters": 1.5
+            },
+            {
+              "kind": "note",
+              "note_id": 7,
+              "quarters": 0.5
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "note",
+              "note_id": 8,
+              "quarters": 0.5
+            },
+            {
+              "kind": "rest",
+              "quarters": 0.5
+            },
+            {
+              "kind": "note",
+              "note_id": 9,
+              "quarters": 0.5
+            },
+            {
+              "kind": "note",
+              "note_id": 10,
+              "quarters": 0.5
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "note",
+              "note_id": 11,
+              "quarters": 0.5
+            },
+            {
+              "kind": "rest",
+              "quarters": 0.5
+            },
+            {
+              "kind": "note",
+              "note_id": 12,
+              "quarters": 0.5
+            },
+            {
+              "kind": "note",
+              "note_id": 13,
+              "quarters": 0.5
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "note",
+              "note_id": 14,
+              "quarters": 0.5
+            },
+            {
+              "kind": "rest",
+              "quarters": 0.5
+            },
+            {
+              "kind": "note",
+              "note_id": 15,
+              "quarters": 1
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "note",
+              "note_id": 16,
+              "quarters": 0.5
+            },
+            {
+              "kind": "rest",
+              "quarters": 0.5
+            },
+            {
+              "kind": "note",
+              "note_id": 17,
+              "quarters": 0.5
+            },
+            {
+              "kind": "rest",
+              "quarters": 0.5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "system": 3,
+      "bars": [
+        {
+          "events": [
+            {
+              "kind": "note",
+              "note_id": 1,
+              "quarters": 0.5
+            },
+            {
+              "kind": "note",
+              "note_id": 2,
+              "quarters": 0.5
+            },
+            {
+              "kind": "note",
+              "note_id": 3,
+              "quarters": 0.5
+            },
+            {
+              "kind": "note",
+              "note_id": 4,
+              "quarters": 0.5
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "note",
+              "note_id": 5,
+              "quarters": 0.5
+            },
+            {
+              "kind": "note",
+              "note_id": 6,
+              "quarters": 0.5
+            },
+            {
+              "kind": "note",
+              "note_id": 7,
+              "quarters": 0.5
+            },
+            {
+              "kind": "note",
+              "note_id": 8,
+              "quarters": 0.5
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "note",
+              "note_id": 9,
+              "quarters": 0.5
+            },
+            {
+              "kind": "note",
+              "note_id": 10,
+              "quarters": 0.5
+            },
+            {
+              "kind": "note",
+              "note_id": 11,
+              "quarters": 0.5
+            },
+            {
+              "kind": "note",
+              "note_id": 12,
+              "quarters": 0.5
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "note",
+              "note_id": 13,
+              "quarters": 0.5
+            },
+            {
+              "kind": "note",
+              "note_id": 14,
+              "quarters": 0.5
+            },
+            {
+              "kind": "note",
+              "note_id": 15,
+              "quarters": 0.5
+            },
+            {
+              "kind": "note",
+              "note_id": 16,
+              "quarters": 0.5
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "note",
+              "note_id": 17,
+              "quarters": 0.5
+            },
+            {
+              "kind": "note",
+              "note_id": 18,
+              "quarters": 0.5
+            },
+            {
+              "kind": "note",
+              "note_id": 19,
+              "quarters": 0.5
+            },
+            {
+              "kind": "note",
+              "note_id": 20,
+              "quarters": 0.5
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "note",
+              "note_id": 21,
+              "quarters": 0.5
+            },
+            {
+              "kind": "rest",
+              "quarters": 0.5
+            },
+            {
+              "kind": "rest",
+              "quarters": 1
+            }
+          ]
+        },
+        {
+          "kind": "multi_rest",
+          "count": 10
+        }
+      ]
+    },
+    {
+      "system": 4,
+      "bars": [
+        {
+          "events": [
+            {
+              "kind": "rest",
+              "quarters": 2
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "rest",
+              "quarters": 2
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "rest",
+              "quarters": 2
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "rest",
+              "quarters": 2
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "rest",
+              "quarters": 2
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "rest",
+              "quarters": 2
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "rest",
+              "quarters": 2
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "rest",
+              "quarters": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "system": 5,
+      "bars": [
+        {
+          "events": [
+            {
+              "kind": "note",
+              "note_id": 0,
+              "quarters": 1
+            },
+            {
+              "kind": "rest",
+              "quarters": 1
+            }
+          ]
+        },
+        {
+          "kind": "multi_rest",
+          "count": 11
+        },
+        {
+          "kind": "multi_rest",
+          "count": 18
+        },
+        {
+          "events": [
+            {
+              "kind": "rest",
+              "quarters": 2
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "rest",
+              "quarters": 2
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "rest",
+              "quarters": 2
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "rest",
+              "quarters": 2
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "rest",
+              "quarters": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "system": 6,
+      "bars": [
+        {
+          "events": [
+            {
+              "kind": "rest",
+              "quarters": 1
+            },
+            {
+              "kind": "rest",
+              "quarters": 0.5
+            },
+            {
+              "kind": "note",
+              "note_id": 1,
+              "quarters": 0.5
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "note",
+              "note_id": 2,
+              "quarters": 1
+            },
+            {
+              "kind": "note",
+              "note_id": 3,
+              "quarters": 1
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "note",
+              "note_id": 4,
+              "quarters": 1
+            },
+            {
+              "kind": "rest",
+              "quarters": 0.5
+            },
+            {
+              "kind": "note",
+              "note_id": 5,
+              "quarters": 0.5
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "note",
+              "note_id": 6,
+              "quarters": 0.5
+            },
+            {
+              "kind": "note",
+              "note_id": 7,
+              "quarters": 0.5
+            },
+            {
+              "kind": "note",
+              "note_id": 8,
+              "quarters": 0.5
+            },
+            {
+              "kind": "note",
+              "note_id": 9,
+              "quarters": 0.5
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "note",
+              "note_id": 10,
+              "quarters": 1
+            },
+            {
+              "kind": "rest",
+              "quarters": 0.5
+            },
+            {
+              "kind": "note",
+              "note_id": 11,
+              "quarters": 0.5
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "note",
+              "note_id": 12,
+              "quarters": 1
+            },
+            {
+              "kind": "note",
+              "note_id": 13,
+              "quarters": 1
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "note",
+              "note_id": 14,
+              "quarters": 1
+            },
+            {
+              "kind": "rest",
+              "quarters": 0.5
+            },
+            {
+              "kind": "note",
+              "note_id": 15,
+              "quarters": 0.5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "system": 7,
+      "bars": [
+        {
+          "events": [
+            {
+              "kind": "note",
+              "note_id": 1,
+              "quarters": 0.5
+            },
+            {
+              "kind": "note",
+              "note_id": 2,
+              "quarters": 0.5
+            },
+            {
+              "kind": "note",
+              "note_id": 3,
+              "quarters": 0.5
+            },
+            {
+              "kind": "note",
+              "note_id": 4,
+              "quarters": 0.5
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "note",
+              "note_id": 5,
+              "quarters": 1
+            },
+            {
+              "kind": "rest",
+              "quarters": 0.5
+            },
+            {
+              "kind": "note",
+              "note_id": 6,
+              "quarters": 0.5
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "note",
+              "note_id": 7,
+              "quarters": 1
+            },
+            {
+              "kind": "note",
+              "note_id": 8,
+              "quarters": 1
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "note",
+              "note_id": 9,
+              "quarters": 1
+            },
+            {
+              "kind": "rest",
+              "quarters": 0.5
+            },
+            {
+              "kind": "note",
+              "note_id": 10,
+              "quarters": 0.5
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "note",
+              "note_id": 11,
+              "quarters": 0.5
+            },
+            {
+              "kind": "note",
+              "note_id": 12,
+              "quarters": 0.5
+            },
+            {
+              "kind": "note",
+              "note_id": 13,
+              "quarters": 0.5
+            },
+            {
+              "kind": "note",
+              "note_id": 14,
+              "quarters": 0.5
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "note",
+              "note_id": 15,
+              "quarters": 0.5
+            },
+            {
+              "kind": "rest",
+              "quarters": 0.5
+            },
+            {
+              "kind": "rest",
+              "quarters": 1
+            }
+          ]
+        },
+        {
+          "kind": "multi_rest",
+          "count": 7
+        }
+      ]
+    },
+    {
+      "system": 8,
+      "bars": [
+        {
+          "events": [
+            {
+              "kind": "rest",
+              "quarters": 2
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "rest",
+              "quarters": 2
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "rest",
+              "quarters": 2
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "rest",
+              "quarters": 2
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "rest",
+              "quarters": 2
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "note",
+              "note_id": 3,
+              "quarters": 0.5
+            },
+            {
+              "kind": "rest",
+              "quarters": 0.5
+            },
+            {
+              "kind": "rest",
+              "quarters": 1
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "note",
+              "note_id": 4,
+              "quarters": 0.5
+            },
+            {
+              "kind": "rest",
+              "quarters": 0.5
+            },
+            {
+              "kind": "rest",
+              "quarters": 1
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "note",
+              "note_id": 5,
+              "quarters": 0.5
+            },
+            {
+              "kind": "rest",
+              "quarters": 0.5
+            },
+            {
+              "kind": "rest",
+              "quarters": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "system": 9,
+      "bars": [
+        {
+          "events": [
+            {
+              "kind": "note",
+              "note_id": 1,
+              "quarters": 0.5
+            },
+            {
+              "kind": "rest",
+              "quarters": 0.5
+            },
+            {
+              "kind": "rest",
+              "quarters": 1
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "note",
+              "note_id": 2,
+              "quarters": 0.5
+            },
+            {
+              "kind": "rest",
+              "quarters": 0.5
+            },
+            {
+              "kind": "rest",
+              "quarters": 1
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "rest",
+              "quarters": 2
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "note",
+              "note_id": 3,
+              "quarters": 0.5
+            },
+            {
+              "kind": "rest",
+              "quarters": 0.5
+            },
+            {
+              "kind": "rest",
+              "quarters": 1
+            }
+          ]
+        },
+        {
+          "kind": "multi_rest",
+          "count": 15
+        },
+        {
+          "kind": "multi_rest",
+          "count": 8
+        },
+        {
+          "events": [
+            {
+              "kind": "rest",
+              "quarters": 2
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "rest",
+              "quarters": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "system": 10,
+      "bars": [
+        {
+          "events": [
+            {
+              "kind": "rest",
+              "quarters": 2
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "rest",
+              "quarters": 2
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "rest",
+              "quarters": 2
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "rest",
+              "quarters": 2
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "rest",
+              "quarters": 2
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "rest",
+              "quarters": 1
+            },
+            {
+              "kind": "note",
+              "note_id": 1,
+              "quarters": 1
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "note",
+              "note_id": 2,
+              "quarters": 1
+            },
+            {
+              "kind": "rest",
+              "quarters": 1
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "rest",
+              "quarters": 1
+            },
+            {
+              "kind": "note",
+              "note_id": 3,
+              "quarters": 0.5
+            },
+            {
+              "kind": "note",
+              "note_id": 4,
+              "quarters": 0.5
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "note",
+              "note_id": 5,
+              "quarters": 1
+            },
+            {
+              "kind": "note",
+              "note_id": 6,
+              "quarters": 1
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "rest",
+              "quarters": 2
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "repeat_marks": [
+    {
+      "system": 10,
+      "bar": 10,
+      "printed_label": "1.–4.",
+      "type": "volta_or_iteration_ending",
+      "interpretation_status": "needs p5 continuation review"
+    }
+  ],
+  "rehearsal_marks": [
+    {
+      "system": 1,
+      "label": "E"
+    },
+    {
+      "system": 3,
+      "label": "F"
+    },
+    {
+      "system": 5,
+      "label": "G"
+    },
+    {
+      "system": 6,
+      "label": "H"
+    },
+    {
+      "system": 8,
+      "label": "J"
+    },
+    {
+      "system": 9,
+      "label": "K"
+    },
+    {
+      "system": 9,
+      "label": "L"
+    },
+    {
+      "system": 10,
+      "label": "M"
+    }
+  ],
+  "tempo_marks": [],
+  "uncertainties": [
+    {
+      "system": 1,
+      "bars": [
+        1,
+        2,
+        3
+      ],
+      "issue": "OMR omitted rests; reconstructed from visible rest glyphs and beat totals; verify exact rest order against a clean engraving before playback."
+    },
+    {
+      "system": 2,
+      "bars": [
+        1,
+        2,
+        4,
+        5,
+        6
+      ],
+      "issue": "OMR omitted/misassigned rests; note stems and flags verified visually, but bar 6 A3 duration remains tentative."
+    },
+    {
+      "system": 3,
+      "bar": 6,
+      "issue": "Single D4 eighth followed by rest glyphs; second rest may be dotted rather than quarter-plus-eighth. Total remains 2 quarters."
+    },
+    {
+      "system": 4,
+      "bars": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "issue": "Trombone II cue and main rests share the staff; represented each printed cue bar as 2-quarter Trombone I rest. Exact multibar grouping not established."
+    },
+    {
+      "system": 5,
+      "bars": [
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "issue": "Flute I cue over main rests; represented as ordinary 2-quarter rests; exact grouping under cue not established."
+    },
+    {
+      "system": 8,
+      "bars": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "issue": "Bassi cue over main rests; represented as ordinary 2-quarter rests; cue voice durations deliberately excluded."
+    },
+    {
+      "system": 9,
+      "bars": [
+        7,
+        8
+      ],
+      "issue": "Bassi cue after rehearsal L over main rests; represented as ordinary 2-quarter rests."
+    },
+    {
+      "system": 10,
+      "bars": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        10
+      ],
+      "issue": "Bassi cue and 1.–4. ending under main rests; exact volta/repeat semantics need checking at p5 continuation."
+    }
+  ],
+  "validation": {
+    "sounding_notes": 100,
+    "printed_systems": 10,
+    "bar_groups": 77,
+    "each_ordinary_bar_quarters": 2,
+    "reviewed_pitch_audit": "tb1-m4-p4-audit.json",
+    "source_pdf_sha256": "6c161bf1a3a10e54194fecec8b52e2bc6a6fa0de7638c21296808e5456719d8c",
+    "multirest_counts_not_expanded_into_2_4_bars": true
+  }
+}

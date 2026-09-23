@@ -1,0 +1,1649 @@
+{
+  "part": "Trombone I",
+  "movement": 4,
+  "original_pdf_page_1_based": 5,
+  "source_pdf_sha256": "6c161bf1a3a10e54194fecec8b52e2bc6a6fa0de7638c21296808e5456719d8c",
+  "source_scan_sha256": "fff90896be1569a8eb13e324f672296ca2a31d5494ced427bda662b32a8db137",
+  "method": "Visual inspection of original 3800x5000 raster, enlarged staff and accidental crops, matched to notes-05.json note IDs and alto-clef staff geometry. Printed violin cue and tacet spans excluded.",
+  "clef_gate": {
+    "systems_1_to_3": "Not sounding Trombone I: multi-measure rests and Vl. I violin cue in treble clef.",
+    "system_4_left": "The large G-clef-like symbol at x≈662 is a treble clef for continued cue. IDs 1-6 are outside sounding Trombone I; rehearsal R at x≈1500 marks return.",
+    "system_4_right_to_10": "Sounding Trombone I on alto staff, one sharp in key signature."
+  },
+  "coverage": {
+    "systems_checked": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "sounding_systems": [
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "all_omr_candidates": 144,
+    "accepted_sounding_notes": 118,
+    "known_false_or_cue_ids": 15,
+    "missed_sounding_notes_found": 0,
+    "caveat": "Raster/OCR audit; a second independent musician review remains advisable before labeling as performance-ready."
+  },
+  "systems": [
+    {
+      "system": 1,
+      "role": "tacet_or_violin_cue",
+      "accepted": [],
+      "excluded": [
+        {
+          "note_id": 1,
+          "x": 533.5,
+          "y": 757.0,
+          "omr_pitch": "A3",
+          "reason": "Printed tacet or Vl. I treble-clef cue; not sounding Trombone I."
+        },
+        {
+          "note_id": 2,
+          "x": 3378.0,
+          "y": 767.0,
+          "omr_pitch": "E5",
+          "reason": "Printed tacet or Vl. I treble-clef cue; not sounding Trombone I."
+        },
+        {
+          "note_id": 3,
+          "x": 3379.0,
+          "y": 797.0,
+          "omr_pitch": "C5",
+          "reason": "Printed tacet or Vl. I treble-clef cue; not sounding Trombone I."
+        },
+        {
+          "note_id": 4,
+          "x": 3379.0,
+          "y": 828.0,
+          "omr_pitch": "A4",
+          "reason": "Printed tacet or Vl. I treble-clef cue; not sounding Trombone I."
+        }
+      ],
+      "accepted_ids": []
+    },
+    {
+      "system": 2,
+      "role": "tacet_or_violin_cue",
+      "accepted": [],
+      "excluded": [
+        {
+          "note_id": 1,
+          "x": 1709.0,
+          "y": 1174.0,
+          "omr_pitch": "E5",
+          "reason": "Printed tacet or Vl. I treble-clef cue; not sounding Trombone I."
+        },
+        {
+          "note_id": 2,
+          "x": 2798.0,
+          "y": 1329.0,
+          "omr_pitch": "B3",
+          "reason": "Printed tacet or Vl. I treble-clef cue; not sounding Trombone I."
+        }
+      ],
+      "accepted_ids": []
+    },
+    {
+      "system": 3,
+      "role": "tacet_or_violin_cue",
+      "accepted": [],
+      "excluded": [
+        {
+          "note_id": 1,
+          "x": 633.5,
+          "y": 1650.0,
+          "omr_pitch": "B3",
+          "reason": "Printed tacet or Vl. I treble-clef cue; not sounding Trombone I."
+        },
+        {
+          "note_id": 2,
+          "x": 639.0,
+          "y": 1716.5,
+          "omr_pitch": "E3",
+          "reason": "Printed tacet or Vl. I treble-clef cue; not sounding Trombone I."
+        },
+        {
+          "note_id": 3,
+          "x": 1415.5,
+          "y": 1616.0,
+          "omr_pitch": "D4",
+          "reason": "Printed tacet or Vl. I treble-clef cue; not sounding Trombone I."
+        },
+        {
+          "note_id": 4,
+          "x": 2010.5,
+          "y": 1616.0,
+          "omr_pitch": "D4",
+          "reason": "Printed tacet or Vl. I treble-clef cue; not sounding Trombone I."
+        },
+        {
+          "note_id": 5,
+          "x": 2384.5,
+          "y": 1616.0,
+          "omr_pitch": "D4",
+          "reason": "Printed tacet or Vl. I treble-clef cue; not sounding Trombone I."
+        }
+      ],
+      "accepted_ids": []
+    },
+    {
+      "system": 4,
+      "role": "mixed_violin_cue_then_trombone",
+      "accepted": [
+        {
+          "note_id": 7,
+          "x": 1601.5,
+          "y": 2055.0,
+          "omr_pitch": "B3",
+          "verified_pitch": "B3",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 8,
+          "x": 1788.5,
+          "y": 2055.0,
+          "omr_pitch": "B3",
+          "verified_pitch": "B3",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 9,
+          "x": 2044.5,
+          "y": 2055.0,
+          "omr_pitch": "B3",
+          "verified_pitch": "B3",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 10,
+          "x": 2162.5,
+          "y": 2055.0,
+          "omr_pitch": "B3",
+          "verified_pitch": "B3",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 11,
+          "x": 2476.5,
+          "y": 2008.0,
+          "omr_pitch": "E4",
+          "verified_pitch": "E4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 12,
+          "x": 2569.5,
+          "y": 2039.0,
+          "omr_pitch": "C4",
+          "verified_pitch": "C4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 13,
+          "x": 2728.5,
+          "y": 2024.0,
+          "omr_pitch": "D4",
+          "verified_pitch": "D4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 14,
+          "x": 2901.5,
+          "y": 2010.0,
+          "omr_pitch": "E4",
+          "verified_pitch": "E4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 15,
+          "x": 2989.5,
+          "y": 2040.0,
+          "omr_pitch": "C4",
+          "verified_pitch": "C4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 16,
+          "x": 3147.5,
+          "y": 2026.0,
+          "omr_pitch": "D4",
+          "verified_pitch": "D4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 17,
+          "x": 3285.5,
+          "y": 2011.0,
+          "omr_pitch": "Eb4",
+          "verified_pitch": "Eb4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": "FLAT"
+        }
+      ],
+      "excluded": [
+        {
+          "note_id": 1,
+          "x": 662.5,
+          "y": 2011.0,
+          "omr_pitch": "E4",
+          "reason": "Treble clef symbol beginning the continuing violin cue, not E4."
+        },
+        {
+          "note_id": 2,
+          "x": 785.0,
+          "y": 2088.0,
+          "omr_pitch": "G3",
+          "reason": "Violin cue note; excluded from Trombone I."
+        },
+        {
+          "note_id": 3,
+          "x": 1075.5,
+          "y": 2086.0,
+          "omr_pitch": "G3",
+          "reason": "Violin cue note; excluded from Trombone I."
+        },
+        {
+          "note_id": 4,
+          "x": 1268.0,
+          "y": 1993.0,
+          "omr_pitch": "F#4",
+          "reason": "Violin-cue/beam image; excluded from Trombone I."
+        },
+        {
+          "note_id": 5,
+          "x": 1381.0,
+          "y": 1993.0,
+          "omr_pitch": "F#4",
+          "reason": "Violin-cue/beam image; excluded from Trombone I."
+        },
+        {
+          "note_id": 6,
+          "x": 1416.0,
+          "y": 2114.5,
+          "omr_pitch": "E3",
+          "reason": "Violin cue note; excluded from Trombone I."
+        }
+      ],
+      "accepted_ids": [
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17
+      ]
+    },
+    {
+      "system": 5,
+      "role": "sounding_trombone_i",
+      "accepted": [
+        {
+          "note_id": 1,
+          "x": 642.5,
+          "y": 2435.0,
+          "omr_pitch": "D4",
+          "verified_pitch": "D4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 3,
+          "x": 734.5,
+          "y": 2390.0,
+          "omr_pitch": "G4",
+          "verified_pitch": "G4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 4,
+          "x": 821.5,
+          "y": 2388.0,
+          "omr_pitch": "G4",
+          "verified_pitch": "G4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 5,
+          "x": 928.5,
+          "y": 2403.0,
+          "omr_pitch": "F#4",
+          "verified_pitch": "F#4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": "SHARP"
+        },
+        {
+          "note_id": 6,
+          "x": 1074.5,
+          "y": 2433.0,
+          "omr_pitch": "D4",
+          "verified_pitch": "D4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 7,
+          "x": 1203.5,
+          "y": 2463.0,
+          "omr_pitch": "Bb3",
+          "verified_pitch": "Bb3",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": "FLAT"
+        },
+        {
+          "note_id": 8,
+          "x": 1316.5,
+          "y": 2417.0,
+          "omr_pitch": "Eb4",
+          "verified_pitch": "Eb4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": "FLAT"
+        },
+        {
+          "note_id": 9,
+          "x": 1475.5,
+          "y": 2432.0,
+          "omr_pitch": "D4",
+          "verified_pitch": "D4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 10,
+          "x": 1569.5,
+          "y": 2431.0,
+          "omr_pitch": "D4",
+          "verified_pitch": "D4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 11,
+          "x": 1660.5,
+          "y": 2431.0,
+          "omr_pitch": "D4",
+          "verified_pitch": "D4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 12,
+          "x": 1907.5,
+          "y": 2462.0,
+          "omr_pitch": "B3",
+          "verified_pitch": "B3",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 13,
+          "x": 2095.5,
+          "y": 2462.0,
+          "omr_pitch": "B3",
+          "verified_pitch": "B3",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 14,
+          "x": 2347.5,
+          "y": 2462.0,
+          "omr_pitch": "B3",
+          "verified_pitch": "B3",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 15,
+          "x": 2478.5,
+          "y": 2462.0,
+          "omr_pitch": "B3",
+          "verified_pitch": "B3",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 16,
+          "x": 2635.5,
+          "y": 2430.0,
+          "omr_pitch": "D4",
+          "verified_pitch": "D4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 17,
+          "x": 2824.5,
+          "y": 2416.0,
+          "omr_pitch": "E4",
+          "verified_pitch": "E4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 18,
+          "x": 2905.5,
+          "y": 2447.0,
+          "omr_pitch": "C4",
+          "verified_pitch": "C4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 19,
+          "x": 3057.0,
+          "y": 2431.0,
+          "omr_pitch": "D4",
+          "verified_pitch": "D4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 20,
+          "x": 3226.5,
+          "y": 2417.0,
+          "omr_pitch": "E4",
+          "verified_pitch": "E4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 21,
+          "x": 3317.5,
+          "y": 2448.0,
+          "omr_pitch": "C4",
+          "verified_pitch": "C4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        }
+      ],
+      "excluded": [
+        {
+          "note_id": 2,
+          "x": 643.0,
+          "y": 2525.0,
+          "omr_pitch": "E3",
+          "reason": "Lower stem/beam tip of the first D4, no E3 notehead."
+        }
+      ],
+      "accepted_ids": [
+        1,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21
+      ]
+    },
+    {
+      "system": 6,
+      "role": "sounding_trombone_i",
+      "accepted": [
+        {
+          "note_id": 1,
+          "x": 646.5,
+          "y": 2841.0,
+          "omr_pitch": "D4",
+          "verified_pitch": "D4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 2,
+          "x": 834.5,
+          "y": 2888.0,
+          "omr_pitch": "A3",
+          "verified_pitch": "A3",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 3,
+          "x": 1074.5,
+          "y": 2872.0,
+          "omr_pitch": "B3",
+          "verified_pitch": "B3",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 4,
+          "x": 1251.5,
+          "y": 2856.0,
+          "omr_pitch": "C4",
+          "verified_pitch": "C4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 5,
+          "x": 1496.5,
+          "y": 2872.0,
+          "omr_pitch": "B3",
+          "verified_pitch": "B3",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 6,
+          "x": 1585.5,
+          "y": 2840.0,
+          "omr_pitch": "D4",
+          "verified_pitch": "D4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 7,
+          "x": 1686.5,
+          "y": 2855.0,
+          "omr_pitch": "C4",
+          "verified_pitch": "C4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 8,
+          "x": 1780.5,
+          "y": 2887.0,
+          "omr_pitch": "A3",
+          "verified_pitch": "A3",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 10,
+          "x": 1948.5,
+          "y": 2871.0,
+          "omr_pitch": "B3",
+          "verified_pitch": "B3",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 11,
+          "x": 2031.5,
+          "y": 2856.0,
+          "omr_pitch": "C4",
+          "verified_pitch": "C4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 12,
+          "x": 2130.5,
+          "y": 2871.0,
+          "omr_pitch": "B3",
+          "verified_pitch": "B3",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 13,
+          "x": 2214.5,
+          "y": 2856.0,
+          "omr_pitch": "C4",
+          "verified_pitch": "C4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 14,
+          "x": 2383.0,
+          "y": 2872.0,
+          "omr_pitch": "B3",
+          "verified_pitch": "B3",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 15,
+          "x": 2475.5,
+          "y": 2857.0,
+          "omr_pitch": "C4",
+          "verified_pitch": "C4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 16,
+          "x": 2562.0,
+          "y": 2873.0,
+          "omr_pitch": "B3",
+          "verified_pitch": "B3",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 17,
+          "x": 2646.5,
+          "y": 2857.0,
+          "omr_pitch": "C4",
+          "verified_pitch": "C4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        }
+      ],
+      "excluded": [
+        {
+          "note_id": 9,
+          "x": 1781.5,
+          "y": 2781.0,
+          "omr_pitch": "A4",
+          "reason": "Upper beam/stem endpoint next to ID8 A3, no A4 notehead."
+        }
+      ],
+      "accepted_ids": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17
+      ]
+    },
+    {
+      "system": 7,
+      "role": "sounding_trombone_i",
+      "accepted": [
+        {
+          "note_id": 1,
+          "x": 641.5,
+          "y": 3309.0,
+          "omr_pitch": "G3",
+          "verified_pitch": "G3",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 3,
+          "x": 747.5,
+          "y": 3278.0,
+          "omr_pitch": "B3",
+          "verified_pitch": "B3",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 4,
+          "x": 835.5,
+          "y": 3248.0,
+          "omr_pitch": "D4",
+          "verified_pitch": "D4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 5,
+          "x": 925.5,
+          "y": 3247.0,
+          "omr_pitch": "D4",
+          "verified_pitch": "D4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 6,
+          "x": 1074.5,
+          "y": 3248.0,
+          "omr_pitch": "D4",
+          "verified_pitch": "D4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 7,
+          "x": 1185.5,
+          "y": 3233.0,
+          "omr_pitch": "E4",
+          "verified_pitch": "E4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 8,
+          "x": 1275.5,
+          "y": 3248.0,
+          "omr_pitch": "D4",
+          "verified_pitch": "D4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 9,
+          "x": 1428.5,
+          "y": 3247.0,
+          "omr_pitch": "D4",
+          "verified_pitch": "D4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 10,
+          "x": 1552.5,
+          "y": 3233.0,
+          "omr_pitch": "E4",
+          "verified_pitch": "E4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 11,
+          "x": 1645.5,
+          "y": 3249.0,
+          "omr_pitch": "D4",
+          "verified_pitch": "D4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 12,
+          "x": 1809.5,
+          "y": 3249.0,
+          "omr_pitch": "D4",
+          "verified_pitch": "D4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 13,
+          "x": 1893.5,
+          "y": 3263.0,
+          "omr_pitch": "C4",
+          "verified_pitch": "C4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 14,
+          "x": 1976.5,
+          "y": 3279.0,
+          "omr_pitch": "B3",
+          "verified_pitch": "B3",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 15,
+          "x": 2054.5,
+          "y": 3295.0,
+          "omr_pitch": "A3",
+          "verified_pitch": "A3",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 16,
+          "x": 2138.5,
+          "y": 3311.0,
+          "omr_pitch": "G3",
+          "verified_pitch": "G3",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 17,
+          "x": 2217.5,
+          "y": 3326.0,
+          "omr_pitch": "F#3",
+          "verified_pitch": "F#3",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 18,
+          "x": 2303.0,
+          "y": 3343.0,
+          "omr_pitch": "E3",
+          "verified_pitch": "E3",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 19,
+          "x": 2392.5,
+          "y": 3355.0,
+          "omr_pitch": "D3",
+          "verified_pitch": "D3",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 20,
+          "x": 2583.5,
+          "y": 3280.0,
+          "omr_pitch": "B3",
+          "verified_pitch": "B3",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 21,
+          "x": 2792.5,
+          "y": 3281.0,
+          "omr_pitch": "Bb3",
+          "verified_pitch": "Bb3",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": "FLAT"
+        },
+        {
+          "note_id": 22,
+          "x": 3050.5,
+          "y": 3268.0,
+          "omr_pitch": "C4",
+          "verified_pitch": "C4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 23,
+          "x": 3233.5,
+          "y": 3268.0,
+          "omr_pitch": "C4",
+          "verified_pitch": "C4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        }
+      ],
+      "excluded": [
+        {
+          "note_id": 2,
+          "x": 746.5,
+          "y": 3186.0,
+          "omr_pitch": "A4",
+          "reason": "Upper beam/stem endpoint next to ID3 B3, no A4 notehead."
+        }
+      ],
+      "accepted_ids": [
+        1,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23
+      ]
+    },
+    {
+      "system": 8,
+      "role": "sounding_trombone_i",
+      "accepted": [
+        {
+          "note_id": 1,
+          "x": 670.5,
+          "y": 3685.0,
+          "omr_pitch": "B3",
+          "verified_pitch": "B3",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": "NATURAL"
+        },
+        {
+          "note_id": 2,
+          "x": 857.5,
+          "y": 3687.0,
+          "omr_pitch": "Bb3",
+          "verified_pitch": "Bb3",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": "FLAT"
+        },
+        {
+          "note_id": 3,
+          "x": 1077.5,
+          "y": 3672.0,
+          "omr_pitch": "C4",
+          "verified_pitch": "C4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 4,
+          "x": 1226.5,
+          "y": 3672.0,
+          "omr_pitch": "C4",
+          "verified_pitch": "C4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 5,
+          "x": 1431.5,
+          "y": 3612.0,
+          "omr_pitch": "G4",
+          "verified_pitch": "G4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 6,
+          "x": 1506.5,
+          "y": 3628.0,
+          "omr_pitch": "F#4",
+          "verified_pitch": "F#4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 7,
+          "x": 1606.5,
+          "y": 3627.0,
+          "omr_pitch": "F4",
+          "verified_pitch": "F4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": "NATURAL"
+        },
+        {
+          "note_id": 8,
+          "x": 1681.5,
+          "y": 3642.0,
+          "omr_pitch": "E4",
+          "verified_pitch": "E4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 9,
+          "x": 1830.5,
+          "y": 3643.0,
+          "omr_pitch": "Eb4",
+          "verified_pitch": "Eb4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": "FLAT"
+        },
+        {
+          "note_id": 10,
+          "x": 1933.5,
+          "y": 3643.0,
+          "omr_pitch": "E4",
+          "verified_pitch": "E4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": "NATURAL"
+        },
+        {
+          "note_id": 11,
+          "x": 2027.5,
+          "y": 3629.0,
+          "omr_pitch": "F4",
+          "verified_pitch": "F4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": "NATURAL"
+        },
+        {
+          "note_id": 14,
+          "x": 2124.0,
+          "y": 3629.0,
+          "omr_pitch": "F4",
+          "verified_pitch": "F4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 15,
+          "x": 2249.5,
+          "y": 3615.0,
+          "omr_pitch": "G4",
+          "verified_pitch": "G4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 16,
+          "x": 2339.5,
+          "y": 3631.0,
+          "omr_pitch": "F#4",
+          "verified_pitch": "F#4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 17,
+          "x": 2447.5,
+          "y": 3630.0,
+          "omr_pitch": "F4",
+          "verified_pitch": "F4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": "NATURAL"
+        },
+        {
+          "note_id": 18,
+          "x": 2529.5,
+          "y": 3645.0,
+          "omr_pitch": "E4",
+          "verified_pitch": "E4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 19,
+          "x": 2705.5,
+          "y": 3647.0,
+          "omr_pitch": "Eb4",
+          "verified_pitch": "Eb4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": "FLAT"
+        },
+        {
+          "note_id": 20,
+          "x": 2811.5,
+          "y": 3647.0,
+          "omr_pitch": "E4",
+          "verified_pitch": "E4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": "NATURAL"
+        },
+        {
+          "note_id": 21,
+          "x": 2917.5,
+          "y": 3632.0,
+          "omr_pitch": "F4",
+          "verified_pitch": "F4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": "NATURAL"
+        },
+        {
+          "note_id": 22,
+          "x": 3028.5,
+          "y": 3631.0,
+          "omr_pitch": "F#4",
+          "verified_pitch": "F#4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": "SHARP"
+        },
+        {
+          "note_id": 23,
+          "x": 3172.5,
+          "y": 3618.0,
+          "omr_pitch": "G4",
+          "verified_pitch": "G4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 24,
+          "x": 3317.0,
+          "y": 3634.0,
+          "omr_pitch": "F#4",
+          "verified_pitch": "F#4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": "SHARP"
+        }
+      ],
+      "excluded": [
+        {
+          "note_id": 12,
+          "x": 2081.5,
+          "y": 3613.0,
+          "omr_pitch": "G4",
+          "reason": "Accidental/notation mark between F4 notes; no G4 notehead."
+        },
+        {
+          "note_id": 13,
+          "x": 2081.5,
+          "y": 3645.0,
+          "omr_pitch": "E4",
+          "reason": "Same notation mark as ID12; no E4 notehead."
+        }
+      ],
+      "accepted_ids": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24
+      ]
+    },
+    {
+      "system": 9,
+      "role": "sounding_trombone_i",
+      "accepted": [
+        {
+          "note_id": 1,
+          "x": 675.5,
+          "y": 4025.0,
+          "omr_pitch": "F4",
+          "verified_pitch": "F4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": "NATURAL"
+        },
+        {
+          "note_id": 2,
+          "x": 816.5,
+          "y": 4044.0,
+          "omr_pitch": "E4",
+          "verified_pitch": "E4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 3,
+          "x": 996.5,
+          "y": 4042.0,
+          "omr_pitch": "Eb4",
+          "verified_pitch": "Eb4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": "FLAT"
+        },
+        {
+          "note_id": 4,
+          "x": 1132.5,
+          "y": 4045.0,
+          "omr_pitch": "E4",
+          "verified_pitch": "E4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": "NATURAL"
+        },
+        {
+          "note_id": 5,
+          "x": 1342.5,
+          "y": 4031.0,
+          "omr_pitch": "F4",
+          "verified_pitch": "F4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": "NATURAL"
+        },
+        {
+          "note_id": 6,
+          "x": 1498.5,
+          "y": 4034.0,
+          "omr_pitch": "F#4",
+          "verified_pitch": "F#4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": "SHARP"
+        },
+        {
+          "note_id": 7,
+          "x": 1670.5,
+          "y": 4017.0,
+          "omr_pitch": "G4",
+          "verified_pitch": "G4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 8,
+          "x": 1802.5,
+          "y": 4094.0,
+          "omr_pitch": "B3",
+          "verified_pitch": "B3",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 9,
+          "x": 2007.5,
+          "y": 4064.0,
+          "omr_pitch": "D4",
+          "verified_pitch": "D4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 10,
+          "x": 2163.5,
+          "y": 4065.0,
+          "omr_pitch": "D4",
+          "verified_pitch": "D4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 11,
+          "x": 2339.5,
+          "y": 4066.0,
+          "omr_pitch": "D4",
+          "verified_pitch": "D4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 12,
+          "x": 2462.5,
+          "y": 4096.0,
+          "omr_pitch": "B3",
+          "verified_pitch": "B3",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 13,
+          "x": 2574.5,
+          "y": 4066.0,
+          "omr_pitch": "D4",
+          "verified_pitch": "D4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 14,
+          "x": 2755.5,
+          "y": 4051.0,
+          "omr_pitch": "E4",
+          "verified_pitch": "E4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 15,
+          "x": 2881.5,
+          "y": 4098.0,
+          "omr_pitch": "B3",
+          "verified_pitch": "B3",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 16,
+          "x": 3076.5,
+          "y": 4069.0,
+          "omr_pitch": "D4",
+          "verified_pitch": "D4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        }
+      ],
+      "excluded": [],
+      "accepted_ids": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ]
+    },
+    {
+      "system": 10,
+      "role": "sounding_trombone_i",
+      "accepted": [
+        {
+          "note_id": 1,
+          "x": 643.5,
+          "y": 4457.0,
+          "omr_pitch": "D4",
+          "verified_pitch": "D4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 2,
+          "x": 997.5,
+          "y": 4461.0,
+          "omr_pitch": "D4",
+          "verified_pitch": "D4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 3,
+          "x": 1336.5,
+          "y": 4464.0,
+          "omr_pitch": "D4",
+          "verified_pitch": "D4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 4,
+          "x": 1688.5,
+          "y": 4467.0,
+          "omr_pitch": "D4",
+          "verified_pitch": "D4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 5,
+          "x": 1811.5,
+          "y": 4468.0,
+          "omr_pitch": "D4",
+          "verified_pitch": "D4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 6,
+          "x": 1959.5,
+          "y": 4469.0,
+          "omr_pitch": "D4",
+          "verified_pitch": "D4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 8,
+          "x": 2252.5,
+          "y": 4470.0,
+          "omr_pitch": "D4",
+          "verified_pitch": "D4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 9,
+          "x": 2506.5,
+          "y": 4470.0,
+          "omr_pitch": "D4",
+          "verified_pitch": "D4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 10,
+          "x": 2740.5,
+          "y": 4471.0,
+          "omr_pitch": "D4",
+          "verified_pitch": "D4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 11,
+          "x": 2910.5,
+          "y": 4471.0,
+          "omr_pitch": "D4",
+          "verified_pitch": "D4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        },
+        {
+          "note_id": 12,
+          "x": 3085.5,
+          "y": 4473.0,
+          "omr_pitch": "D4",
+          "verified_pitch": "D4",
+          "status": "visually_matched_to_notehead_and_alto_staff",
+          "printed_accidental": null
+        }
+      ],
+      "excluded": [
+        {
+          "note_id": 7,
+          "x": 2087.0,
+          "y": 4529.0,
+          "omr_pitch": "G3",
+          "reason": "Stem foot below the D4 eighth note, no G3 notehead."
+        },
+        {
+          "note_id": 13,
+          "x": 3394.5,
+          "y": 4474.0,
+          "omr_pitch": "D4",
+          "reason": "Thick final barline, no D4 notehead."
+        },
+        {
+          "note_id": 14,
+          "x": 3394.5,
+          "y": 4507.0,
+          "omr_pitch": "B3",
+          "reason": "Thick final barline, no B3 notehead."
+        },
+        {
+          "note_id": 15,
+          "x": 3394.5,
+          "y": 4536.0,
+          "omr_pitch": "G3",
+          "reason": "Thick final barline, no G3 notehead."
+        }
+      ],
+      "accepted_ids": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        8,
+        9,
+        10,
+        11,
+        12
+      ]
+    }
+  ],
+  "deletions": [
+    {
+      "system": 1,
+      "note_id": 1,
+      "reason": "Printed tacet or Vl. I treble-clef cue; not sounding Trombone I."
+    },
+    {
+      "system": 1,
+      "note_id": 2,
+      "reason": "Printed tacet or Vl. I treble-clef cue; not sounding Trombone I."
+    },
+    {
+      "system": 1,
+      "note_id": 3,
+      "reason": "Printed tacet or Vl. I treble-clef cue; not sounding Trombone I."
+    },
+    {
+      "system": 1,
+      "note_id": 4,
+      "reason": "Printed tacet or Vl. I treble-clef cue; not sounding Trombone I."
+    },
+    {
+      "system": 2,
+      "note_id": 1,
+      "reason": "Printed tacet or Vl. I treble-clef cue; not sounding Trombone I."
+    },
+    {
+      "system": 2,
+      "note_id": 2,
+      "reason": "Printed tacet or Vl. I treble-clef cue; not sounding Trombone I."
+    },
+    {
+      "system": 3,
+      "note_id": 1,
+      "reason": "Printed tacet or Vl. I treble-clef cue; not sounding Trombone I."
+    },
+    {
+      "system": 3,
+      "note_id": 2,
+      "reason": "Printed tacet or Vl. I treble-clef cue; not sounding Trombone I."
+    },
+    {
+      "system": 3,
+      "note_id": 3,
+      "reason": "Printed tacet or Vl. I treble-clef cue; not sounding Trombone I."
+    },
+    {
+      "system": 3,
+      "note_id": 4,
+      "reason": "Printed tacet or Vl. I treble-clef cue; not sounding Trombone I."
+    },
+    {
+      "system": 3,
+      "note_id": 5,
+      "reason": "Printed tacet or Vl. I treble-clef cue; not sounding Trombone I."
+    },
+    {
+      "system": 4,
+      "note_id": 1,
+      "reason": "Treble clef symbol beginning the continuing violin cue, not E4."
+    },
+    {
+      "system": 4,
+      "note_id": 2,
+      "reason": "Violin cue note; excluded from Trombone I."
+    },
+    {
+      "system": 4,
+      "note_id": 3,
+      "reason": "Violin cue note; excluded from Trombone I."
+    },
+    {
+      "system": 4,
+      "note_id": 4,
+      "reason": "Violin-cue/beam image; excluded from Trombone I."
+    },
+    {
+      "system": 4,
+      "note_id": 5,
+      "reason": "Violin-cue/beam image; excluded from Trombone I."
+    },
+    {
+      "system": 4,
+      "note_id": 6,
+      "reason": "Violin cue note; excluded from Trombone I."
+    },
+    {
+      "system": 5,
+      "note_id": 2,
+      "reason": "Lower stem/beam tip of the first D4, no E3 notehead."
+    },
+    {
+      "system": 6,
+      "note_id": 9,
+      "reason": "Upper beam/stem endpoint next to ID8 A3, no A4 notehead."
+    },
+    {
+      "system": 7,
+      "note_id": 2,
+      "reason": "Upper beam/stem endpoint next to ID3 B3, no A4 notehead."
+    },
+    {
+      "system": 8,
+      "note_id": 12,
+      "reason": "Accidental/notation mark between F4 notes; no G4 notehead."
+    },
+    {
+      "system": 8,
+      "note_id": 13,
+      "reason": "Same notation mark as ID12; no E4 notehead."
+    },
+    {
+      "system": 10,
+      "note_id": 7,
+      "reason": "Stem foot below the D4 eighth note, no G3 notehead."
+    },
+    {
+      "system": 10,
+      "note_id": 13,
+      "reason": "Thick final barline, no D4 notehead."
+    },
+    {
+      "system": 10,
+      "note_id": 14,
+      "reason": "Thick final barline, no B3 notehead."
+    },
+    {
+      "system": 10,
+      "note_id": 15,
+      "reason": "Thick final barline, no G3 notehead."
+    }
+  ],
+  "additions": [],
+  "pitch_corrections": [],
+  "current_pdf_false_positives": [
+    {
+      "system": 8,
+      "note_id": 12,
+      "reason": "Accidental/notation mark between F4 notes; no G4 notehead."
+    },
+    {
+      "system": 10,
+      "note_id": 7,
+      "reason": "Stem foot below the D4 eighth note, no G3 notehead."
+    },
+    {
+      "system": 10,
+      "note_id": 13,
+      "reason": "Thick final barline, no D4 notehead."
+    }
+  ]
+}

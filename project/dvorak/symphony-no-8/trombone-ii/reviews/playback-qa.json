@@ -1,0 +1,50 @@
+{
+  "checked_at": "2026-09-22T18:02:43.358027+09:00",
+  "environment": "Codex in-app browser, localhost:8768",
+  "synthesis": "Web Audio OfflineAudioContext; sine wave; 22050 Hz; 12 seconds; quarter=120",
+  "note_count": 540,
+  "unique_ids": 540,
+  "missing_durations": 0,
+  "movement_note_counts": {
+    "1": 273,
+    "4": 267
+  },
+  "timeline_contiguity": "pass, both movements with repeats on and off",
+  "movement1_sounding_spans": 258,
+  "movement4_sounding_spans": 266,
+  "frequency_checks_hz": [
+    {
+      "expected": 195.997718,
+      "measured": 195.99770478010257
+    },
+    {
+      "expected": 233.081881,
+      "measured": 233.0818683714415
+    },
+    {
+      "expected": 220,
+      "measured": 219.9999935471502
+    },
+    {
+      "expected": 184.997211,
+      "measured": 184.9972020485199
+    },
+    {
+      "expected": 174.614116,
+      "measured": 174.61412454055187
+    }
+  ],
+  "rest_window_11_1_to_11_9_seconds_rms": 0,
+  "tie_boundary_5_99_to_6_01_seconds_rms": 0.14279678301729298,
+  "offline_audio_pass": true,
+  "ui_checks": [
+    "Play changed button to Pause and advanced score/time",
+    "Pause retained score position",
+    "Movement IV selection entered its initial rest",
+    "Next entrance jumped from initial rest to D3 at source p8 system2",
+    "Tempo Home key changed quarter=120 to quarter=40 and rescaled time",
+    "Repeat off reset the cursor and shortened movement IV",
+    "SVG active note border visually inspected: source notehead remains visible"
+  ],
+  "limitations": "This verifies rendered waveform and browser state; it is not an independent musician listening review."
+}

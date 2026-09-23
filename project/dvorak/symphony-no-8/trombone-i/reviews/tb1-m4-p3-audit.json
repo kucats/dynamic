@@ -1,0 +1,622 @@
+{
+  "scope": "Dvorak Symphony No.8, Trombone I, movement IV, original PDF p3 systems 6–10",
+  "source_pdf_sha256": "6c161bf1a3a10e54194fecec8b52e2bc6a6fa0de7638c21296808e5456719d8c",
+  "source_scan": "work/dvorak8-reading/tmp/pdfs/source-03.png",
+  "source_scan_sha256": "91026a5198e04cfbe330b02ac8e30107352bf8183d8999c230e73ed6902c32cc",
+  "staff_gate": {
+    "main_clef": "ALTO",
+    "key_signature": "one sharp (F#)",
+    "cue_clef": "ALTO but small printed Vl. I. cue notes; excluded by region"
+  },
+  "method": "Read original 3800x5000 page raster at original pixel size, with 2x/3x close crops around accidentals. Cross-checked every emitted main-part candidate id with source notehead height, local staff lines, alto clef, key signature, and explicit accidental marks. Compared visually against the OMR list; source material is not modified.",
+  "reviewed_label_count": 43,
+  "reviewed_notes": [
+    {
+      "source_page": 3,
+      "system": 7,
+      "source_note_id": 11,
+      "source_x_px": 2407.5,
+      "source_y_px": 3372.0,
+      "verified_pitch": "B3",
+      "verified_octave": 3,
+      "explicit_accidental": null,
+      "verdict": "correct",
+      "evidence": "Visually compared notehead height and accidental on the alto-clef source staff; one F-sharp in key signature."
+    },
+    {
+      "source_page": 3,
+      "system": 7,
+      "source_note_id": 12,
+      "source_x_px": 2576.5,
+      "source_y_px": 3372.0,
+      "verified_pitch": "B3",
+      "verified_octave": 3,
+      "explicit_accidental": null,
+      "verdict": "correct",
+      "evidence": "Visually compared notehead height and accidental on the alto-clef source staff; one F-sharp in key signature."
+    },
+    {
+      "source_page": 3,
+      "system": 7,
+      "source_note_id": 13,
+      "source_x_px": 2806.5,
+      "source_y_px": 3372.0,
+      "verified_pitch": "B3",
+      "verified_octave": 3,
+      "explicit_accidental": null,
+      "verdict": "correct",
+      "evidence": "Visually compared notehead height and accidental on the alto-clef source staff; one F-sharp in key signature."
+    },
+    {
+      "source_page": 3,
+      "system": 7,
+      "source_note_id": 14,
+      "source_x_px": 2928.5,
+      "source_y_px": 3372.0,
+      "verified_pitch": "B3",
+      "verified_octave": 3,
+      "explicit_accidental": null,
+      "verdict": "correct",
+      "evidence": "Visually compared notehead height and accidental on the alto-clef source staff; one F-sharp in key signature."
+    },
+    {
+      "source_page": 3,
+      "system": 7,
+      "source_note_id": 15,
+      "source_x_px": 3075.5,
+      "source_y_px": 3342.0,
+      "verified_pitch": "D4",
+      "verified_octave": 4,
+      "explicit_accidental": null,
+      "verdict": "correct",
+      "evidence": "Visually compared notehead height and accidental on the alto-clef source staff; one F-sharp in key signature."
+    },
+    {
+      "source_page": 3,
+      "system": 7,
+      "source_note_id": 16,
+      "source_x_px": 3244.5,
+      "source_y_px": 3325.0,
+      "verified_pitch": "E4",
+      "verified_octave": 4,
+      "explicit_accidental": null,
+      "verdict": "correct",
+      "evidence": "Visually compared notehead height and accidental on the alto-clef source staff; one F-sharp in key signature."
+    },
+    {
+      "source_page": 3,
+      "system": 7,
+      "source_note_id": 0,
+      "source_x_px": 3325.0,
+      "source_y_px": 3357.0,
+      "verified_pitch": "C4",
+      "verified_octave": 4,
+      "explicit_accidental": null,
+      "verdict": "correct_manual_addition",
+      "evidence": "Distinct printed second beamed notehead centered approximately x3325,y3357 on alto-clef middle line C4, after E4 id16; missed by Audiveris. Raw id17 at x3294,y3431 is the beam/stem artifact, not this notehead."
+    },
+    {
+      "source_page": 3,
+      "system": 8,
+      "source_note_id": 1,
+      "source_x_px": 612.5,
+      "source_y_px": 3702.0,
+      "verified_pitch": "D4",
+      "verified_octave": 4,
+      "explicit_accidental": null,
+      "verdict": "correct",
+      "evidence": "Visually compared notehead height and accidental on the alto-clef source staff; one F-sharp in key signature."
+    },
+    {
+      "source_page": 3,
+      "system": 8,
+      "source_note_id": 2,
+      "source_x_px": 775.5,
+      "source_y_px": 3687.0,
+      "verified_pitch": "E4",
+      "verified_octave": 4,
+      "explicit_accidental": null,
+      "verdict": "correct",
+      "evidence": "Visually compared notehead height and accidental on the alto-clef source staff; one F-sharp in key signature."
+    },
+    {
+      "source_page": 3,
+      "system": 8,
+      "source_note_id": 4,
+      "source_x_px": 859.5,
+      "source_y_px": 3717.0,
+      "verified_pitch": "C4",
+      "verified_octave": 4,
+      "explicit_accidental": null,
+      "verdict": "correct",
+      "evidence": "Visually compared notehead height and accidental on the alto-clef source staff; one F-sharp in key signature."
+    },
+    {
+      "source_page": 3,
+      "system": 8,
+      "source_note_id": 5,
+      "source_x_px": 984.5,
+      "source_y_px": 3700.0,
+      "verified_pitch": "D4",
+      "verified_octave": 4,
+      "explicit_accidental": null,
+      "verdict": "correct",
+      "evidence": "Visually compared notehead height and accidental on the alto-clef source staff; one F-sharp in key signature."
+    },
+    {
+      "source_page": 3,
+      "system": 8,
+      "source_note_id": 6,
+      "source_x_px": 1117.5,
+      "source_y_px": 3687.0,
+      "verified_pitch": "Eb4",
+      "verified_octave": 4,
+      "explicit_accidental": "FLAT",
+      "verdict": "correct",
+      "evidence": "Visually compared notehead height and accidental on the alto-clef source staff; one F-sharp in key signature."
+    },
+    {
+      "source_page": 3,
+      "system": 8,
+      "source_note_id": 7,
+      "source_x_px": 1264.5,
+      "source_y_px": 3702.0,
+      "verified_pitch": "D4",
+      "verified_octave": 4,
+      "explicit_accidental": null,
+      "verdict": "correct",
+      "evidence": "Visually compared notehead height and accidental on the alto-clef source staff; one F-sharp in key signature."
+    },
+    {
+      "source_page": 3,
+      "system": 8,
+      "source_note_id": 9,
+      "source_x_px": 1342.5,
+      "source_y_px": 3657.0,
+      "verified_pitch": "G4",
+      "verified_octave": 4,
+      "explicit_accidental": null,
+      "verdict": "correct",
+      "evidence": "Visually compared notehead height and accidental on the alto-clef source staff; one F-sharp in key signature."
+    },
+    {
+      "source_page": 3,
+      "system": 8,
+      "source_note_id": 10,
+      "source_x_px": 1424.5,
+      "source_y_px": 3658.0,
+      "verified_pitch": "G4",
+      "verified_octave": 4,
+      "explicit_accidental": null,
+      "verdict": "correct",
+      "evidence": "Visually compared notehead height and accidental on the alto-clef source staff; one F-sharp in key signature."
+    },
+    {
+      "source_page": 3,
+      "system": 8,
+      "source_note_id": 11,
+      "source_x_px": 1529.0,
+      "source_y_px": 3673.0,
+      "verified_pitch": "F#4",
+      "verified_octave": 4,
+      "explicit_accidental": "SHARP",
+      "verdict": "correct",
+      "evidence": "Visually compared notehead height and accidental on the alto-clef source staff; one F-sharp in key signature."
+    },
+    {
+      "source_page": 3,
+      "system": 8,
+      "source_note_id": 12,
+      "source_x_px": 1654.5,
+      "source_y_px": 3703.0,
+      "verified_pitch": "D4",
+      "verified_octave": 4,
+      "explicit_accidental": null,
+      "verdict": "correct",
+      "evidence": "Visually compared notehead height and accidental on the alto-clef source staff; one F-sharp in key signature."
+    },
+    {
+      "source_page": 3,
+      "system": 8,
+      "source_note_id": 13,
+      "source_x_px": 1775.5,
+      "source_y_px": 3733.0,
+      "verified_pitch": "Bb3",
+      "verified_octave": 3,
+      "explicit_accidental": "FLAT",
+      "verdict": "correct",
+      "evidence": "Visually compared notehead height and accidental on the alto-clef source staff; one F-sharp in key signature."
+    },
+    {
+      "source_page": 3,
+      "system": 8,
+      "source_note_id": 14,
+      "source_x_px": 1876.5,
+      "source_y_px": 3687.0,
+      "verified_pitch": "Eb4",
+      "verified_octave": 4,
+      "explicit_accidental": "FLAT",
+      "verdict": "correct",
+      "evidence": "Visually compared notehead height and accidental on the alto-clef source staff; one F-sharp in key signature."
+    },
+    {
+      "source_page": 3,
+      "system": 8,
+      "source_note_id": 15,
+      "source_x_px": 2012.5,
+      "source_y_px": 3703.0,
+      "verified_pitch": "D4",
+      "verified_octave": 4,
+      "explicit_accidental": null,
+      "verdict": "correct",
+      "evidence": "Visually compared notehead height and accidental on the alto-clef source staff; one F-sharp in key signature."
+    },
+    {
+      "source_page": 3,
+      "system": 8,
+      "source_note_id": 16,
+      "source_x_px": 2091.5,
+      "source_y_px": 3703.0,
+      "verified_pitch": "D4",
+      "verified_octave": 4,
+      "explicit_accidental": null,
+      "verdict": "correct",
+      "evidence": "Visually compared notehead height and accidental on the alto-clef source staff; one F-sharp in key signature."
+    },
+    {
+      "source_page": 3,
+      "system": 8,
+      "source_note_id": 17,
+      "source_x_px": 2174.5,
+      "source_y_px": 3703.0,
+      "verified_pitch": "D4",
+      "verified_octave": 4,
+      "explicit_accidental": null,
+      "verdict": "correct",
+      "evidence": "Visually compared notehead height and accidental on the alto-clef source staff; one F-sharp in key signature."
+    },
+    {
+      "source_page": 3,
+      "system": 8,
+      "source_note_id": 18,
+      "source_x_px": 2406.5,
+      "source_y_px": 3734.0,
+      "verified_pitch": "B3",
+      "verified_octave": 3,
+      "explicit_accidental": "NATURAL",
+      "verdict": "correct",
+      "evidence": "Visually compared notehead height and accidental on the alto-clef source staff; one F-sharp in key signature."
+    },
+    {
+      "source_page": 3,
+      "system": 8,
+      "source_note_id": 19,
+      "source_x_px": 2565.5,
+      "source_y_px": 3734.0,
+      "verified_pitch": "B3",
+      "verified_octave": 3,
+      "explicit_accidental": null,
+      "verdict": "correct",
+      "evidence": "Visually compared notehead height and accidental on the alto-clef source staff; one F-sharp in key signature."
+    },
+    {
+      "source_page": 3,
+      "system": 8,
+      "source_note_id": 20,
+      "source_x_px": 2782.5,
+      "source_y_px": 3734.0,
+      "verified_pitch": "B3",
+      "verified_octave": 3,
+      "explicit_accidental": null,
+      "verdict": "correct",
+      "evidence": "Visually compared notehead height and accidental on the alto-clef source staff; one F-sharp in key signature."
+    },
+    {
+      "source_page": 3,
+      "system": 8,
+      "source_note_id": 21,
+      "source_x_px": 2907.5,
+      "source_y_px": 3734.0,
+      "verified_pitch": "B3",
+      "verified_octave": 3,
+      "explicit_accidental": null,
+      "verdict": "correct",
+      "evidence": "Visually compared notehead height and accidental on the alto-clef source staff; one F-sharp in key signature."
+    },
+    {
+      "source_page": 3,
+      "system": 8,
+      "source_note_id": 22,
+      "source_x_px": 3064.5,
+      "source_y_px": 3734.0,
+      "verified_pitch": "B3",
+      "verified_octave": 3,
+      "explicit_accidental": null,
+      "verdict": "correct",
+      "evidence": "Visually compared notehead height and accidental on the alto-clef source staff; one F-sharp in key signature."
+    },
+    {
+      "source_page": 3,
+      "system": 8,
+      "source_note_id": 23,
+      "source_x_px": 3244.5,
+      "source_y_px": 3686.0,
+      "verified_pitch": "E4",
+      "verified_octave": 4,
+      "explicit_accidental": null,
+      "verdict": "correct",
+      "evidence": "Visually compared notehead height and accidental on the alto-clef source staff; one F-sharp in key signature."
+    },
+    {
+      "source_page": 3,
+      "system": 8,
+      "source_note_id": 24,
+      "source_x_px": 3329.5,
+      "source_y_px": 3716.0,
+      "verified_pitch": "C4",
+      "verified_octave": 4,
+      "explicit_accidental": null,
+      "verdict": "correct",
+      "evidence": "Visually compared notehead height and accidental on the alto-clef source staff; one F-sharp in key signature."
+    },
+    {
+      "source_page": 3,
+      "system": 9,
+      "source_note_id": 1,
+      "source_x_px": 608.5,
+      "source_y_px": 4059.0,
+      "verified_pitch": "D4",
+      "verified_octave": 4,
+      "explicit_accidental": null,
+      "verdict": "correct",
+      "evidence": "Visually compared notehead height and accidental on the alto-clef source staff; one F-sharp in key signature."
+    },
+    {
+      "source_page": 3,
+      "system": 9,
+      "source_note_id": 2,
+      "source_x_px": 760.5,
+      "source_y_px": 4043.0,
+      "verified_pitch": "E4",
+      "verified_octave": 4,
+      "explicit_accidental": null,
+      "verdict": "correct",
+      "evidence": "Visually compared notehead height and accidental on the alto-clef source staff; one F-sharp in key signature."
+    },
+    {
+      "source_page": 3,
+      "system": 9,
+      "source_note_id": 3,
+      "source_x_px": 840.5,
+      "source_y_px": 4074.0,
+      "verified_pitch": "C4",
+      "verified_octave": 4,
+      "explicit_accidental": null,
+      "verdict": "correct",
+      "evidence": "Visually compared notehead height and accidental on the alto-clef source staff; one F-sharp in key signature."
+    },
+    {
+      "source_page": 3,
+      "system": 9,
+      "source_note_id": 4,
+      "source_x_px": 969.5,
+      "source_y_px": 4060.0,
+      "verified_pitch": "D4",
+      "verified_octave": 4,
+      "explicit_accidental": null,
+      "verdict": "correct",
+      "evidence": "Visually compared notehead height and accidental on the alto-clef source staff; one F-sharp in key signature."
+    },
+    {
+      "source_page": 3,
+      "system": 9,
+      "source_note_id": 5,
+      "source_x_px": 1118.5,
+      "source_y_px": 4102.0,
+      "verified_pitch": "A3",
+      "verified_octave": 3,
+      "explicit_accidental": null,
+      "verdict": "correct",
+      "evidence": "Visually compared notehead height and accidental on the alto-clef source staff; one F-sharp in key signature."
+    },
+    {
+      "source_page": 3,
+      "system": 9,
+      "source_note_id": 6,
+      "source_x_px": 1323.5,
+      "source_y_px": 4093.0,
+      "verified_pitch": "B3",
+      "verified_octave": 3,
+      "explicit_accidental": null,
+      "verdict": "correct",
+      "evidence": "Visually compared notehead height and accidental on the alto-clef source staff; one F-sharp in key signature."
+    },
+    {
+      "source_page": 3,
+      "system": 9,
+      "source_note_id": 7,
+      "source_x_px": 1497.5,
+      "source_y_px": 4077.0,
+      "verified_pitch": "C4",
+      "verified_octave": 4,
+      "explicit_accidental": null,
+      "verdict": "correct",
+      "evidence": "Visually compared notehead height and accidental on the alto-clef source staff; one F-sharp in key signature."
+    },
+    {
+      "source_page": 3,
+      "system": 9,
+      "source_note_id": 8,
+      "source_x_px": 1693.5,
+      "source_y_px": 4094.0,
+      "verified_pitch": "B3",
+      "verified_octave": 3,
+      "explicit_accidental": null,
+      "verdict": "correct",
+      "evidence": "Visually compared notehead height and accidental on the alto-clef source staff; one F-sharp in key signature."
+    },
+    {
+      "source_page": 3,
+      "system": 9,
+      "source_note_id": 9,
+      "source_x_px": 1778.5,
+      "source_y_px": 4063.0,
+      "verified_pitch": "D4",
+      "verified_octave": 4,
+      "explicit_accidental": null,
+      "verdict": "correct",
+      "evidence": "Visually compared notehead height and accidental on the alto-clef source staff; one F-sharp in key signature."
+    },
+    {
+      "source_page": 3,
+      "system": 9,
+      "source_note_id": 10,
+      "source_x_px": 1856.5,
+      "source_y_px": 4079.0,
+      "verified_pitch": "C4",
+      "verified_octave": 4,
+      "explicit_accidental": null,
+      "verdict": "correct",
+      "evidence": "Visually compared notehead height and accidental on the alto-clef source staff; one F-sharp in key signature."
+    },
+    {
+      "source_page": 3,
+      "system": 9,
+      "source_note_id": 12,
+      "source_x_px": 1935.5,
+      "source_y_px": 4109.0,
+      "verified_pitch": "A3",
+      "verified_octave": 3,
+      "explicit_accidental": null,
+      "verdict": "correct",
+      "evidence": "Visually compared notehead height and accidental on the alto-clef source staff; one F-sharp in key signature."
+    },
+    {
+      "source_page": 3,
+      "system": 9,
+      "source_note_id": 13,
+      "source_x_px": 2049.5,
+      "source_y_px": 4094.0,
+      "verified_pitch": "B3",
+      "verified_octave": 3,
+      "explicit_accidental": null,
+      "verdict": "correct",
+      "evidence": "Visually compared notehead height and accidental on the alto-clef source staff; one F-sharp in key signature."
+    },
+    {
+      "source_page": 3,
+      "system": 9,
+      "source_note_id": 14,
+      "source_x_px": 2133.5,
+      "source_y_px": 4079.0,
+      "verified_pitch": "C4",
+      "verified_octave": 4,
+      "explicit_accidental": null,
+      "verdict": "correct",
+      "evidence": "Visually compared notehead height and accidental on the alto-clef source staff; one F-sharp in key signature."
+    },
+    {
+      "source_page": 3,
+      "system": 9,
+      "source_note_id": 15,
+      "source_x_px": 2213.5,
+      "source_y_px": 4095.0,
+      "verified_pitch": "B3",
+      "verified_octave": 3,
+      "explicit_accidental": null,
+      "verdict": "correct",
+      "evidence": "Visually compared notehead height and accidental on the alto-clef source staff; one F-sharp in key signature."
+    }
+  ],
+  "corrections": [],
+  "deletions_from_emitted_labels": [],
+  "additions": [
+    {
+      "source_page": 3,
+      "system": 7,
+      "source_note_id": 0,
+      "x": 3325.0,
+      "y": 3357.0,
+      "pitch": "C4",
+      "reason": "Printed beamed eighth-note head omitted by Audiveris; verified from 3800x5000 source scan."
+    }
+  ],
+  "raw_omr_non_notes_already_excluded": [
+    {
+      "system": 7,
+      "source_note_id": 17,
+      "reason": "Stem foot of E4 at id16, not an independent E3 note."
+    },
+    {
+      "system": 8,
+      "source_note_id": 3,
+      "reason": "Stem foot of E4 at id2, not an independent E3 note."
+    },
+    {
+      "system": 8,
+      "source_note_id": 8,
+      "reason": "Stem foot of D4 at id7, not an independent E3 note."
+    },
+    {
+      "system": 9,
+      "source_note_id": 11,
+      "reason": "Stem tip of A3 at id12, not an independent A4 note."
+    }
+  ],
+  "non_sounding_regions_already_excluded": [
+    {
+      "system": 6,
+      "range": "entire staff",
+      "reason": "Rest-only opening of movement IV; OMR heads are rests/numerals/bar graphics."
+    },
+    {
+      "system": 7,
+      "range": "x<2300",
+      "reason": "Printed Vl. I. cue passage; main Trombone I entrance begins around x2407."
+    },
+    {
+      "system": 9,
+      "range": "x>=2300",
+      "reason": "Printed Vl. I. cue after main Trombone I passage ends at x2213."
+    },
+    {
+      "system": 10,
+      "range": "entire staff",
+      "reason": "Continued Vl. I. cue over Trombone I tacet/rest notation."
+    }
+  ],
+  "accidental_spot_checks": [
+    {
+      "system": 8,
+      "source_note_id": 6,
+      "pitch": "Eb4",
+      "glyph": "FLAT"
+    },
+    {
+      "system": 8,
+      "source_note_id": 11,
+      "pitch": "F#4",
+      "glyph": "SHARP"
+    },
+    {
+      "system": 8,
+      "source_note_id": 13,
+      "pitch": "Bb3",
+      "glyph": "FLAT"
+    },
+    {
+      "system": 8,
+      "source_note_id": 14,
+      "pitch": "Eb4",
+      "glyph": "FLAT"
+    },
+    {
+      "system": 8,
+      "source_note_id": 18,
+      "pitch": "B3",
+      "glyph": "NATURAL"
+    }
+  ],
+  "summary": "43 sounding noteheads on p3 s7–s9 visually agree with the alto-clef source after adding the missed beamed C4 in s7 final bar. Raw OMR stem artefacts and cue/tacet regions remain excluded.",
+  "limitations": "This report audits pitch, octave, accidental, inclusion, and cue distinction only on original p3 systems 6–10. A later rhythm pass found the missed s7 beamed C4; earlier 42-note count is superseded. Rhythm/duration audit is recorded separately."
+}

@@ -1,0 +1,192 @@
+{
+  "schema_version": 1,
+  "title": "Fuyomi score-reading catalog",
+  "artifacts": [
+    {
+      "id": "dvorak8-trombones-combined",
+      "composer": "Antonín Dvořák",
+      "work": "Symphony No. 8, Op. 88",
+      "part": "Trombones I–III",
+      "status": "previously-built-player-review-scope-limited",
+      "source_sha256": "6c161bf1a3a10e54194fecec8b52e2bc6a6fa0de7638c21296808e5456719d8c",
+      "source_pages": [
+        6,
+        9
+      ],
+      "playback": {
+        "present": true,
+        "full_movement_authorized": false,
+        "recording_alignment": "not_aligned"
+      },
+      "summary": "Combined HTML player carried forward from the prior Trombone I–III workflow. Per-part confidence and audit scope remain controlling; it is not verified against the linked recording.",
+      "links": [
+        {
+          "format": "html",
+          "path": "public/artifacts/dvorak/symphony-no-8/trombones/Dvorak8_All_Trombones_reading.html",
+          "label": "All trombones: switchable HTML player",
+          "sha256": "1459500291ac55c610b8960445a50124932c416ab7753e63158e2b5fcbb88d50"
+        }
+      ]
+    },
+    {
+      "id": "dvorak8-trombone-ii",
+      "composer": "Antonín Dvořák",
+      "work": "Symphony No. 8, Op. 88",
+      "part": "Trombone II",
+      "status": "previously-reviewed-practice-artifact",
+      "source_sha256": "6c161bf1a3a10e54194fecec8b52e2bc6a6fa0de7638c21296808e5456719d8c",
+      "source_pages": [
+        6,
+        7,
+        8,
+        9
+      ],
+      "playback": {
+        "present": true,
+        "full_movement_authorized": true,
+        "recording_alignment": "not_aligned"
+      },
+      "summary": "540-note concert-pitch reading with continuous synthesized playback, score focus, and a large-label PDF. Original notes remain visible; audio is not aligned to the reference recording. A four-page same-page overlay excerpt keeps the original Trombone II page count.",
+      "links": [
+        {
+          "format": "html",
+          "path": "public/artifacts/dvorak/symphony-no-8/trombone-ii/Dvorak8_Trombone2_reading.html",
+          "label": "Trombone II HTML player",
+          "sha256": "d34836159e99dbf326be462f2b02e610e48d75e1dcdd5e220b843e4e981b4095"
+        },
+        {
+          "format": "pdf",
+          "path": "public/artifacts/dvorak/symphony-no-8/trombone-ii/Dvorak8_Trombone2_annotated_large_labels.pdf",
+          "label": "Trombone II large-label PDF",
+          "sha256": "d19e052002c4f6d25ff80550b9aa3bdf71bca4f2b5b4d2f8f39242376e868c36",
+          "derivative": true
+        },
+        {
+          "format": "pdf",
+          "path": "public/artifacts/dvorak/symphony-no-8/trombone-ii/Dvorak8_Trombone2_overlay_same_pages_excerpt.pdf",
+          "label": "Trombone II same-page enlarged overlay PDF (4 pages)",
+          "sha256": "03796b209b7e814a04a0a2aa8624cf9e9e20e9e32a63b472cfc90d5e6f4282e9",
+          "derivative": true
+        }
+      ]
+    },
+    {
+      "id": "dvorak8-trombone-i-movement-iv",
+      "composer": "Antonín Dvořák",
+      "work": "Symphony No. 8, Op. 88",
+      "part": "Trombone I, Movement IV",
+      "status": "previously-built-part-reading",
+      "source_sha256": "6c161bf1a3a10e54194fecec8b52e2bc6a6fa0de7638c21296808e5456719d8c",
+      "source_pages": [
+        3,
+        5
+      ],
+      "playback": {
+        "present": true,
+        "full_movement_authorized": false,
+        "recording_alignment": "not_aligned"
+      },
+      "summary": "Large-label HTML from the existing Trombone I Movement IV work. Timing JSON in project data remains marked provisional.",
+      "links": [
+        {
+          "format": "html",
+          "path": "public/artifacts/dvorak/symphony-no-8/trombone-i/Dvorak8_Trombone1_Movement4_reading_large_labels.html",
+          "label": "Trombone I, Movement IV HTML",
+          "sha256": "5fd88bac524421656c367de41a453d95ad82454cb0847051240da9f1c7a70214"
+        }
+      ]
+    },
+    {
+      "id": "dvorak8-trombone-iii-movement-iv",
+      "composer": "Antonín Dvořák",
+      "work": "Symphony No. 8, Op. 88",
+      "part": "Trombone III, Movement IV",
+      "status": "trial-reading-recheck-low-confidence",
+      "source_sha256": "6c161bf1a3a10e54194fecec8b52e2bc6a6fa0de7638c21296808e5456719d8c",
+      "source_pages": [
+        12,
+        13
+      ],
+      "playback": {
+        "present": false,
+        "full_movement_authorized": false,
+        "recording_alignment": "not_aligned"
+      },
+      "summary": "The prior note review labels the reading as a trial and calls for manual rechecking of low-confidence and unusual candidates.",
+      "links": [
+        {
+          "format": "pdf",
+          "path": "public/artifacts/dvorak/symphony-no-8/trombone-iii/Dvorak8_Trombone3_Movement4_annotated_large_labels.pdf",
+          "label": "Trombone III, Movement IV PDF",
+          "sha256": "e4c624d791d0d598639db308e654e3378e7de8a08c9ec76f1e1484330bdd6794",
+          "derivative": true
+        }
+      ]
+    },
+    {
+      "id": "verdi-nabucco-sinfonia-trombone-ii",
+      "composer": "Giuseppe Verdi",
+      "work": "Nabucco, Sinfonia",
+      "part": "Trombone II (tenor trombone; printed bass clef)",
+      "status": "provisional-omr-candidate-reading",
+      "source_sha256": "75433f6fab0ea26ad4a0bd94ca6e2022b4007c12643fb007ed0f1744bbac8465",
+      "source_pages": [
+        2,
+        3,
+        4
+      ],
+      "playback": {
+        "present": true,
+        "full_movement_authorized": false,
+        "recording_alignment": "not_aligned"
+      },
+      "summary": "Interim candidate HTML/PDF only. Manual note-by-note review, especially B and sharps, is still required; do not use as verified reading.",
+      "links": [
+        {
+          "format": "html",
+          "path": "public/artifacts/verdi/nabucco/trombone-ii/Sinfonia_Trombone2_p2-4_途中版.html",
+          "label": "Nabucco Trombone II provisional HTML",
+          "sha256": "2e67e5cafd77427041bbc909cb9761bb4313bfb80045eb9ec614db31577c3d24"
+        },
+        {
+          "format": "pdf",
+          "path": "public/artifacts/verdi/nabucco/trombone-ii/Sinfonia_Trombone2_p2-4_途中版.pdf",
+          "label": "Nabucco Trombone II provisional PDF",
+          "sha256": "80ab9f012169d37674ee614c8e11ee2fa90f9fe8584a7db7f1844f5b5fdaff94",
+          "derivative": true
+        }
+      ]
+    },
+    {
+      "id": "dvorak8-horn-ii-audit-status",
+      "composer": "Antonín Dvořák",
+      "work": "Symphony No. 8, Op. 88",
+      "part": "Corno II / Horn II in F",
+      "status": "four-movement-source-audits-incomplete",
+      "source_sha256": "0a29673a6ab1f0b02b89485dd0910ea100876cd4589feaced09fbad153839665",
+      "source_pages": [
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "playback": {
+        "present": false,
+        "full_movement_authorized": false,
+        "recording_alignment": "not_aligned"
+      },
+      "summary": "Four-movement audit status and confirmed corrections. No full movement transcription or continuous playback is authorized yet.",
+      "links": [
+        {
+          "format": "html",
+          "path": "public/artifacts/dvorak/symphony-no-8/horn-ii/audit-status.html",
+          "label": "Horn II four-movement audit status",
+          "sha256": "174d74f9588134d80816ed30c6f9f012cd15eb2dbbbaec7403e4f06e5074dffe"
+        }
+      ]
+    }
+  ]
+}

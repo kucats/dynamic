@@ -1,0 +1,117 @@
+{
+  "review_kind": "independent_fail_closed_visual_score_audit",
+  "source": {
+    "file": "ホルン1～4.pdf (machine-local path omitted)",
+    "sha256_expected": "0a29673a6ab1f0b02b89485dd0910ea100876cd4589feaced09fbad153839665",
+    "sha256_observed": "0a29673a6ab1f0b02b89485dd0910ea100876cd4589feaced09fbad153839665",
+    "hash_match": true,
+    "pdf_physical_pages_reviewed": [
+      14,
+      15
+    ],
+    "printed_page_numbers": [
+      6,
+      7
+    ],
+    "visual_render_dpi": 180,
+    "coordinate_convention": "Top-left pixel coordinates of the 180 dpi rendered physical PDF page; approximate notehead centers."
+  },
+  "scope": {
+    "printed_part_heading": "Corno II.",
+    "movement": "IV",
+    "page_14": "Movement IV begins below its large IV heading; 11 single-staff systems were visually inspected, including the initial multi-measure rests, labeled cue passages, and the material through the printed 190-area rehearsal/measure markings.",
+    "page_15": "Continuation and end of the same part; 12 single-staff systems were visually inspected, from the printed 195-area marking to the closing double bar after the printed 390-area marking.",
+    "scope_limit": "System presence and layout were inspected; this is not a measure-by-measure or note-by-note transcription. Printed numeric marks have not been normalized into an authoritative measure map."
+  },
+  "notation_observations": {
+    "clef": "Treble clef is printed at the start of the movement on physical page 14 and at the continuation on physical page 15; no clef change was identified in these two pages.",
+    "key_signature": "No key-signature sharps or flats are printed after the clef at the inspected system starts. This observation does not establish concert key or horn transposition.",
+    "local_accidentals": "Explicit sharps, flats, and naturals are visible within the part. Their complete measure-by-measure effects and carry rules were not audited.",
+    "time_signature": "The movement opening appears to print 2/4. Meter continuity and every bar's rhythmic contents have not been independently verified.",
+    "pitch_domain": "Pitch samples below are written treble-clef pitches only. Sounding pitch is not asserted from these pages."
+  },
+  "printed_cues_excluded_from_horn_ii_pitch_samples": [
+    {
+      "page": 14,
+      "location": "first system, right-hand run after an initial multi-measure-rest passage",
+      "printed_source_label": "Viol. I.",
+      "handling": "Treat as a printed first-violin cue, not verified Horn II notes."
+    },
+    {
+      "page": 14,
+      "location": "fourth system near the printed 80-area marking",
+      "printed_source_label": "Fag. I.",
+      "handling": "Treat as a printed bassoon cue, not verified Horn II notes."
+    },
+    {
+      "page": 14,
+      "location": "eighth system near the printed 160-area marking",
+      "printed_source_label": "Fl.",
+      "handling": "Treat as a printed flute cue, not verified Horn II notes."
+    },
+    {
+      "page": 15,
+      "location": "fifth system, right side",
+      "printed_source_label": "Viol. I.",
+      "handling": "Treat as a printed first-violin cue, not verified Horn II notes."
+    }
+  ],
+  "directly_checked_written_pitch_samples": [
+    {
+      "page": 14,
+      "system_from_top": 2,
+      "context": "First low Horn II note after rehearsal C and the Un poco piu mosso marking",
+      "notehead_center_px": {
+        "x": 693,
+        "y": 615
+      },
+      "staff_reference_px": {
+        "bottom_E4_line_y": 607
+      },
+      "written_pitch": "D4",
+      "basis": "Notehead is approximately one staff step below the bottom E4 line of the treble staff.",
+      "duration_verified": false
+    },
+    {
+      "page": 14,
+      "system_from_top": 3,
+      "context": "Open notehead in the bar under the printed 65-area marking",
+      "notehead_center_px": {
+        "x": 392,
+        "y": 733
+      },
+      "staff_reference_px": {
+        "second_D5_line_y": 733
+      },
+      "written_pitch": "D5",
+      "basis": "Notehead is centered on the second line from the top of the treble staff.",
+      "duration_verified": false
+    },
+    {
+      "page": 15,
+      "system_from_top": 2,
+      "context": "First Horn II note under the printed 225-area marking",
+      "notehead_center_px": {
+        "x": 748,
+        "y": 421
+      },
+      "staff_reference_px": {
+        "middle_B4_line_y": 413,
+        "G4_line_y": 429
+      },
+      "written_pitch": "A4",
+      "basis": "Notehead lies in the space between the B4 and G4 lines of the treble staff.",
+      "duration_verified": false
+    }
+  ],
+  "uncertainties_and_limits": [
+    "Only three isolated written pitches were directly cross-checked; the remaining Horn II notes, rests, ties, articulations, tuplets, dynamics, and durations were not independently verified.",
+    "Multi-measure rests and repeat/ending structures occur on both pages. Their expansion and exact temporal alignment were not verified.",
+    "The apparent opening 2/4 meter and subsequent rhythmic interpretation require a complete bar-by-bar audit before any timing claim.",
+    "Printed cue notes and part notes require complete source-by-source separation before transcription or playback.",
+    "No sounding-pitch conversion or tempo map was verified from these two pages alone."
+  ],
+  "full_transcription_independently_verified": false,
+  "every_note_and_duration_independently_verified": false,
+  "playback_authorized": false
+}

@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "work": "Dvořák Symphony No. 8, Op. 88",
+  "part": "Trombone II",
+  "source_sha256": "6c161bf1a3a10e54194fecec8b52e2bc6a6fa0de7638c21296808e5456719d8c",
+  "source_pages": [
+    6,
+    7,
+    8,
+    9
+  ],
+  "note_count": 540,
+  "rest_count": 310,
+  "tie_count": 16,
+  "pitch_convention": "Concert pitch, scientific octave C4=middle C, display H for B-natural and Bb for B-flat.",
+  "position_convention": "B-flat trombone basic open-tube positions; no alternate positions, valves, or intonation offsets.",
+  "timing_status": "reviewed_and_structurally_verified",
+  "playback_authorized": true,
+  "recording_alignment": "not_aligned",
+  "source_pdf_committed": false
+}

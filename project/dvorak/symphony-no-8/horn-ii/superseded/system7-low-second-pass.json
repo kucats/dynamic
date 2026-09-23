@@ -1,0 +1,266 @@
+{
+  "schema_version": 1,
+  "source_pdf": "ホルン1～4.pdf",
+  "source_pdf_sha256": "0a29673a6ab1f0b02b89485dd0910ea100876cd4589feaced09fbad153839665",
+  "source_page": 13,
+  "source_system": 7,
+  "part": "Corno II / Horn II in F",
+  "review_range": "The 12 notes marked low confidence in audit-second-final.json, system 7 only.",
+  "review_render_dpi": 600,
+  "audit_input": "audit-second-final.json",
+  "audit_input_sha256": "7cd54d8be0a0ba19ac295c0918bb768c4ec888c6cd747a322da438eeb5d7934e",
+  "staff_line_centers_180dpi_px": [
+    1401,
+    1417,
+    1433,
+    1450,
+    1467
+  ],
+  "clef": "treble G clef, independently confirmed at system 7 left edge",
+  "pitch_mapping": "Top line F5; adjacent line/space steps mapped diatonically; C4=middle C.",
+  "reviewed_note_count": 12,
+  "corrections": [],
+  "notes": [
+    {
+      "id": "p13-s7-n001",
+      "source_head_id": "3962",
+      "source_head_center_180dpi_px": {
+        "x": 243.5,
+        "y": 1442.8
+      },
+      "source_head_center_600dpi_px": {
+        "x": 811.7,
+        "y": 4809.3
+      },
+      "existing_written_pitch": "A4",
+      "reviewed_written_pitch": "A4",
+      "staff_position": "treble G clef; top staff line F5; nearest diatonic line/space agrees with pitch",
+      "expected_center_y_180dpi_px": 1441.5,
+      "observed_minus_expected_y_px_180dpi": 1.3,
+      "correction": null,
+      "confidence": "medium",
+      "review_note": "600-dpi source crop: the identified notehead center falls on the expected treble-staff diatonic slot. Pitch and octave retained; low original OMR grade is reflected by medium confidence."
+    },
+    {
+      "id": "p13-s7-n002",
+      "source_head_id": "3951",
+      "source_head_center_180dpi_px": {
+        "x": 245.0,
+        "y": 1425.2
+      },
+      "source_head_center_600dpi_px": {
+        "x": 816.7,
+        "y": 4750.7
+      },
+      "existing_written_pitch": "C5",
+      "reviewed_written_pitch": "C5",
+      "staff_position": "treble G clef; top staff line F5; nearest diatonic line/space agrees with pitch",
+      "expected_center_y_180dpi_px": 1425.0,
+      "observed_minus_expected_y_px_180dpi": 0.2,
+      "correction": null,
+      "confidence": "medium",
+      "review_note": "600-dpi source crop: the identified notehead center falls on the expected treble-staff diatonic slot. Pitch and octave retained; low original OMR grade is reflected by medium confidence."
+    },
+    {
+      "id": "p13-s7-n003",
+      "source_head_id": "3967",
+      "source_head_center_180dpi_px": {
+        "x": 267.5,
+        "y": 1442.2
+      },
+      "source_head_center_600dpi_px": {
+        "x": 891.7,
+        "y": 4807.3
+      },
+      "existing_written_pitch": "A4",
+      "reviewed_written_pitch": "A4",
+      "staff_position": "treble G clef; top staff line F5; nearest diatonic line/space agrees with pitch",
+      "expected_center_y_180dpi_px": 1441.5,
+      "observed_minus_expected_y_px_180dpi": 0.7,
+      "correction": null,
+      "confidence": "medium",
+      "review_note": "600-dpi source crop: the identified notehead center falls on the expected treble-staff diatonic slot. Pitch and octave retained; low original OMR grade is reflected by medium confidence."
+    },
+    {
+      "id": "p13-s7-n004",
+      "source_head_id": "3948",
+      "source_head_center_180dpi_px": {
+        "x": 268.0,
+        "y": 1425.2
+      },
+      "source_head_center_600dpi_px": {
+        "x": 893.3,
+        "y": 4750.7
+      },
+      "existing_written_pitch": "C5",
+      "reviewed_written_pitch": "C5",
+      "staff_position": "treble G clef; top staff line F5; nearest diatonic line/space agrees with pitch",
+      "expected_center_y_180dpi_px": 1425.0,
+      "observed_minus_expected_y_px_180dpi": 0.2,
+      "correction": null,
+      "confidence": "medium",
+      "review_note": "600-dpi source crop: the identified notehead center falls on the expected treble-staff diatonic slot. Pitch and octave retained; low original OMR grade is reflected by medium confidence."
+    },
+    {
+      "id": "p13-s7-n005",
+      "source_head_id": "3883",
+      "source_head_center_180dpi_px": {
+        "x": 316.8,
+        "y": 1457.8
+      },
+      "source_head_center_600dpi_px": {
+        "x": 1056.0,
+        "y": 4859.3
+      },
+      "existing_written_pitch": "F4",
+      "reviewed_written_pitch": "F4",
+      "staff_position": "treble G clef; top staff line F5; nearest diatonic line/space agrees with pitch",
+      "expected_center_y_180dpi_px": 1458.5,
+      "observed_minus_expected_y_px_180dpi": -0.7,
+      "correction": null,
+      "confidence": "medium",
+      "review_note": "600-dpi source crop: the identified notehead center falls on the expected treble-staff diatonic slot. Pitch and octave retained; low original OMR grade is reflected by medium confidence."
+    },
+    {
+      "id": "p13-s7-n006",
+      "source_head_id": "3923",
+      "source_head_center_180dpi_px": {
+        "x": 318.5,
+        "y": 1393.8
+      },
+      "source_head_center_600dpi_px": {
+        "x": 1061.7,
+        "y": 4646.0
+      },
+      "existing_written_pitch": "G5",
+      "reviewed_written_pitch": "G5",
+      "staff_position": "treble G clef; top staff line F5; nearest diatonic line/space agrees with pitch",
+      "expected_center_y_180dpi_px": 1393.0,
+      "observed_minus_expected_y_px_180dpi": 0.8,
+      "correction": null,
+      "confidence": "medium",
+      "review_note": "600-dpi source crop: the identified notehead center falls on the expected treble-staff diatonic slot. Pitch and octave retained; low original OMR grade is reflected by medium confidence."
+    },
+    {
+      "id": "p13-s7-n007",
+      "source_head_id": "3949",
+      "source_head_center_180dpi_px": {
+        "x": 775.2,
+        "y": 1425.8
+      },
+      "source_head_center_600dpi_px": {
+        "x": 2584.0,
+        "y": 4752.7
+      },
+      "existing_written_pitch": "C5",
+      "reviewed_written_pitch": "C5",
+      "staff_position": "treble G clef; top staff line F5; nearest diatonic line/space agrees with pitch",
+      "expected_center_y_180dpi_px": 1425.0,
+      "observed_minus_expected_y_px_180dpi": 0.8,
+      "correction": null,
+      "confidence": "medium",
+      "review_note": "600-dpi source crop: the identified notehead center falls on the expected treble-staff diatonic slot. Pitch and octave retained; low original OMR grade is reflected by medium confidence."
+    },
+    {
+      "id": "p13-s7-n008",
+      "source_head_id": "3971",
+      "source_head_center_180dpi_px": {
+        "x": 775.8,
+        "y": 1442.8
+      },
+      "source_head_center_600dpi_px": {
+        "x": 2586.0,
+        "y": 4809.3
+      },
+      "existing_written_pitch": "A4",
+      "reviewed_written_pitch": "A4",
+      "staff_position": "treble G clef; top staff line F5; nearest diatonic line/space agrees with pitch",
+      "expected_center_y_180dpi_px": 1441.5,
+      "observed_minus_expected_y_px_180dpi": 1.3,
+      "correction": null,
+      "confidence": "medium",
+      "review_note": "600-dpi source crop: the identified notehead center falls on the expected treble-staff diatonic slot. Pitch and octave retained; low original OMR grade is reflected by medium confidence."
+    },
+    {
+      "id": "p13-s7-n009",
+      "source_head_id": "3937",
+      "source_head_center_180dpi_px": {
+        "x": 994.8,
+        "y": 1409.8
+      },
+      "source_head_center_600dpi_px": {
+        "x": 3316.0,
+        "y": 4699.3
+      },
+      "existing_written_pitch": "E5",
+      "reviewed_written_pitch": "E5",
+      "staff_position": "treble G clef; top staff line F5; nearest diatonic line/space agrees with pitch",
+      "expected_center_y_180dpi_px": 1409.0,
+      "observed_minus_expected_y_px_180dpi": 0.8,
+      "correction": null,
+      "confidence": "medium",
+      "review_note": "600-dpi source crop: the identified notehead center falls on the expected treble-staff diatonic slot. Pitch and octave retained; low original OMR grade is reflected by medium confidence."
+    },
+    {
+      "id": "p13-s7-n010",
+      "source_head_id": "3921",
+      "source_head_center_180dpi_px": {
+        "x": 1106.2,
+        "y": 1395.2
+      },
+      "source_head_center_600dpi_px": {
+        "x": 3687.3,
+        "y": 4650.7
+      },
+      "existing_written_pitch": "G5",
+      "reviewed_written_pitch": "G5",
+      "staff_position": "treble G clef; top staff line F5; nearest diatonic line/space agrees with pitch",
+      "expected_center_y_180dpi_px": 1393.0,
+      "observed_minus_expected_y_px_180dpi": 2.2,
+      "correction": null,
+      "confidence": "medium",
+      "review_note": "600-dpi source crop: the identified notehead center falls on the expected treble-staff diatonic slot. Pitch and octave retained; low original OMR grade is reflected by medium confidence."
+    },
+    {
+      "id": "p13-s7-n011",
+      "source_head_id": "3950",
+      "source_head_center_180dpi_px": {
+        "x": 1187.0,
+        "y": 1425.8
+      },
+      "source_head_center_600dpi_px": {
+        "x": 3956.7,
+        "y": 4752.7
+      },
+      "existing_written_pitch": "C5",
+      "reviewed_written_pitch": "C5",
+      "staff_position": "treble G clef; top staff line F5; nearest diatonic line/space agrees with pitch",
+      "expected_center_y_180dpi_px": 1425.0,
+      "observed_minus_expected_y_px_180dpi": 0.8,
+      "correction": null,
+      "confidence": "medium",
+      "review_note": "600-dpi source crop: the identified notehead center falls on the expected treble-staff diatonic slot. Pitch and octave retained; low original OMR grade is reflected by medium confidence."
+    },
+    {
+      "id": "p13-s7-n012",
+      "source_head_id": "3964",
+      "source_head_center_180dpi_px": {
+        "x": 1239.0,
+        "y": 1442.2
+      },
+      "source_head_center_600dpi_px": {
+        "x": 4130.0,
+        "y": 4807.3
+      },
+      "existing_written_pitch": "A4",
+      "reviewed_written_pitch": "A4",
+      "staff_position": "treble G clef; top staff line F5; nearest diatonic line/space agrees with pitch",
+      "expected_center_y_180dpi_px": 1441.5,
+      "observed_minus_expected_y_px_180dpi": 0.7,
+      "correction": null,
+      "confidence": "medium",
+      "review_note": "600-dpi source crop: the identified notehead center falls on the expected treble-staff diatonic slot. Pitch and octave retained; low original OMR grade is reflected by medium confidence."
+    }
+  ],
+  "summary": "All 12 pitches and octaves are retained. Their 600-dpi source positions align with the expected treble-staff slots; confidence is medium because the source raster and original OMR head grades remain weak. No B notes occur among these 12."
+}

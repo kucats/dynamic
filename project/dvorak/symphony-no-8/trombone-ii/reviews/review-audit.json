@@ -1,0 +1,541 @@
+{
+  "source_sha256": "6c161bf1a3a10e54194fecec8b52e2bc6a6fa0de7638c21296808e5456719d8c",
+  "structural_checks": {
+    "540_noteheads": true,
+    "540_unique_ids": true,
+    "all_pitches_and_positions": true,
+    "no_geometry_flags": true,
+    "every_note_has_duration": true,
+    "one_timing_event_per_note": true,
+    "tie_pitch_and_adjacency": true,
+    "timeline_contiguous": true,
+    "html_has_540_interactive_noteheads": true,
+    "pdf_has_16_pages": true,
+    "no_pdf_text_comment_icons": true
+  },
+  "structural_pass": true,
+  "notes": 540,
+  "rests": 310,
+  "ties": 16,
+  "pages_reviewed": [
+    6,
+    7,
+    8,
+    9
+  ],
+  "manual_added": 30,
+  "pitch_overrides": 32,
+  "raw_heads": 589,
+  "excluded_cue_or_false_heads": 79,
+  "corrections": [
+    {
+      "note_id": "tb2-p06-s02-n002",
+      "raw_id": 2,
+      "raw_pitch": "A3",
+      "pitch": "Ab3",
+      "manual_addition": null,
+      "correction_reason": "Tie from the preceding Ab3 whole note carries its flat across the barline."
+    },
+    {
+      "note_id": "tb2-p06-s05-n001",
+      "raw_id": null,
+      "raw_pitch": null,
+      "pitch": "A#3",
+      "manual_addition": true,
+      "correction_reason": "Entry after the small Trombone I cues was missed; sharp was split from the C#4 notehead."
+    },
+    {
+      "note_id": "tb2-p06-s05-n004",
+      "raw_id": 4,
+      "raw_pitch": "C4",
+      "pitch": "C#4",
+      "manual_addition": null,
+      "correction_reason": "Entry after the small Trombone I cues was missed; sharp was split from the C#4 notehead."
+    },
+    {
+      "note_id": "tb2-p06-s06-n006",
+      "raw_id": null,
+      "raw_pitch": null,
+      "pitch": "E4",
+      "manual_addition": true,
+      "correction_reason": "Sharp fragments mistaken for noteheads; one E4 omitted."
+    },
+    {
+      "note_id": "tb2-p06-s06-n007",
+      "raw_id": 7,
+      "raw_pitch": "C4",
+      "pitch": "C#4",
+      "manual_addition": null,
+      "correction_reason": "Sharp fragments mistaken for noteheads; one E4 omitted."
+    },
+    {
+      "note_id": "tb2-p06-s06-n017",
+      "raw_id": 18,
+      "raw_pitch": "C4",
+      "pitch": "C#4",
+      "manual_addition": null,
+      "correction_reason": "Sharp fragments mistaken for noteheads; one E4 omitted."
+    },
+    {
+      "note_id": "tb2-p06-s06-n025",
+      "raw_id": 27,
+      "raw_pitch": "G3",
+      "pitch": "G#3",
+      "manual_addition": null,
+      "correction_reason": "Sharp fragments mistaken for noteheads; one E4 omitted."
+    },
+    {
+      "note_id": "tb2-p06-s06-n027",
+      "raw_id": 30,
+      "raw_pitch": "C4",
+      "pitch": "C#4",
+      "manual_addition": null,
+      "correction_reason": "Sharp fragments mistaken for noteheads; one E4 omitted."
+    },
+    {
+      "note_id": "tb2-p06-s07-n004",
+      "raw_id": null,
+      "raw_pitch": null,
+      "pitch": "A#3",
+      "manual_addition": true,
+      "correction_reason": "Repeated A#3 notes missed, and D#4 accidental was interpreted as a note. D# carries within its bar."
+    },
+    {
+      "note_id": "tb2-p06-s07-n006",
+      "raw_id": null,
+      "raw_pitch": null,
+      "pitch": "A#3",
+      "manual_addition": true,
+      "correction_reason": "Repeated A#3 notes missed, and D#4 accidental was interpreted as a note. D# carries within its bar."
+    },
+    {
+      "note_id": "tb2-p06-s07-n007",
+      "raw_id": 5,
+      "raw_pitch": "B#3",
+      "pitch": "B3",
+      "manual_addition": null,
+      "correction_reason": "Repeated A#3 notes missed, and D#4 accidental was interpreted as a note. D# carries within its bar."
+    },
+    {
+      "note_id": "tb2-p06-s07-n008",
+      "raw_id": null,
+      "raw_pitch": null,
+      "pitch": "A#3",
+      "manual_addition": true,
+      "correction_reason": "Repeated A#3 notes missed, and D#4 accidental was interpreted as a note. D# carries within its bar."
+    },
+    {
+      "note_id": "tb2-p06-s07-n009",
+      "raw_id": null,
+      "raw_pitch": null,
+      "pitch": "D#4",
+      "manual_addition": true,
+      "correction_reason": "Repeated A#3 notes missed, and D#4 accidental was interpreted as a note. D# carries within its bar."
+    },
+    {
+      "note_id": "tb2-p06-s07-n010",
+      "raw_id": 7,
+      "raw_pitch": "D4",
+      "pitch": "D#4",
+      "manual_addition": null,
+      "correction_reason": "Repeated A#3 notes missed, and D#4 accidental was interpreted as a note. D# carries within its bar."
+    },
+    {
+      "note_id": "tb2-p06-s08-n015",
+      "raw_id": 15,
+      "raw_pitch": "A3",
+      "pitch": "Ab3",
+      "manual_addition": null,
+      "correction_reason": "Tie from the preceding Ab3 whole note carries its flat across the barline."
+    },
+    {
+      "note_id": "tb2-p07-s01-n002",
+      "raw_id": 2,
+      "raw_pitch": "Cb4",
+      "pitch": "C4",
+      "manual_addition": null,
+      "correction_reason": "Cue accidental was incorrectly promoted to a key signature; main notes at K are C naturals."
+    },
+    {
+      "note_id": "tb2-p07-s01-n003",
+      "raw_id": 3,
+      "raw_pitch": "Cb4",
+      "pitch": "C4",
+      "manual_addition": null,
+      "correction_reason": "Cue accidental was incorrectly promoted to a key signature; main notes at K are C naturals."
+    },
+    {
+      "note_id": "tb2-p07-s01-n004",
+      "raw_id": 4,
+      "raw_pitch": "Cb4",
+      "pitch": "C4",
+      "manual_addition": null,
+      "correction_reason": "Cue accidental was incorrectly promoted to a key signature; main notes at K are C naturals."
+    },
+    {
+      "note_id": "tb2-p07-s01-n005",
+      "raw_id": 5,
+      "raw_pitch": "Cb4",
+      "pitch": "C4",
+      "manual_addition": null,
+      "correction_reason": "Cue accidental was incorrectly promoted to a key signature; main notes at K are C naturals."
+    },
+    {
+      "note_id": "tb2-p07-s04-n011",
+      "raw_id": null,
+      "raw_pitch": null,
+      "pitch": "C4",
+      "manual_addition": true,
+      "correction_reason": "Quarter-note C4 before L was missed."
+    },
+    {
+      "note_id": "tb2-p07-s05-n003",
+      "raw_id": 4,
+      "raw_pitch": "F#3",
+      "pitch": "F3",
+      "manual_addition": null,
+      "correction_reason": "Natural sign false positive; F natural cancels the signature. Later bassoon notes are cues."
+    },
+    {
+      "note_id": "tb2-p07-s09-n015",
+      "raw_id": null,
+      "raw_pitch": null,
+      "pitch": "Ab3",
+      "manual_addition": true,
+      "correction_reason": "Ab3 notes were missed and flats did not carry through their bars."
+    },
+    {
+      "note_id": "tb2-p07-s09-n017",
+      "raw_id": null,
+      "raw_pitch": null,
+      "pitch": "Ab3",
+      "manual_addition": true,
+      "correction_reason": "Ab3 notes were missed and flats did not carry through their bars."
+    },
+    {
+      "note_id": "tb2-p07-s09-n018",
+      "raw_id": 16,
+      "raw_pitch": "A3",
+      "pitch": "Ab3",
+      "manual_addition": null,
+      "correction_reason": "Ab3 notes were missed and flats did not carry through their bars."
+    },
+    {
+      "note_id": "tb2-p07-s10-n005",
+      "raw_id": null,
+      "raw_pitch": null,
+      "pitch": "A3",
+      "manual_addition": true,
+      "correction_reason": "Quarter-note A3 before the whole notes was missed."
+    },
+    {
+      "note_id": "tb2-p07-s11-n001",
+      "raw_id": 1,
+      "raw_pitch": "A2",
+      "pitch": "G3",
+      "manual_addition": null,
+      "correction_reason": "Alto clef misclassified as bass clef; all nine printed notes are G3."
+    },
+    {
+      "note_id": "tb2-p07-s11-n002",
+      "raw_id": 2,
+      "raw_pitch": "A2",
+      "pitch": "G3",
+      "manual_addition": null,
+      "correction_reason": "Alto clef misclassified as bass clef; all nine printed notes are G3."
+    },
+    {
+      "note_id": "tb2-p07-s11-n003",
+      "raw_id": 3,
+      "raw_pitch": "A2",
+      "pitch": "G3",
+      "manual_addition": null,
+      "correction_reason": "Alto clef misclassified as bass clef; all nine printed notes are G3."
+    },
+    {
+      "note_id": "tb2-p07-s11-n004",
+      "raw_id": 4,
+      "raw_pitch": "A2",
+      "pitch": "G3",
+      "manual_addition": null,
+      "correction_reason": "Alto clef misclassified as bass clef; all nine printed notes are G3."
+    },
+    {
+      "note_id": "tb2-p07-s11-n005",
+      "raw_id": 5,
+      "raw_pitch": "A2",
+      "pitch": "G3",
+      "manual_addition": null,
+      "correction_reason": "Alto clef misclassified as bass clef; all nine printed notes are G3."
+    },
+    {
+      "note_id": "tb2-p07-s11-n006",
+      "raw_id": 6,
+      "raw_pitch": "A2",
+      "pitch": "G3",
+      "manual_addition": null,
+      "correction_reason": "Alto clef misclassified as bass clef; all nine printed notes are G3."
+    },
+    {
+      "note_id": "tb2-p07-s11-n007",
+      "raw_id": 7,
+      "raw_pitch": "A2",
+      "pitch": "G3",
+      "manual_addition": null,
+      "correction_reason": "Alto clef misclassified as bass clef; all nine printed notes are G3."
+    },
+    {
+      "note_id": "tb2-p07-s11-n008",
+      "raw_id": 8,
+      "raw_pitch": "A2",
+      "pitch": "G3",
+      "manual_addition": null,
+      "correction_reason": "Alto clef misclassified as bass clef; all nine printed notes are G3."
+    },
+    {
+      "note_id": "tb2-p07-s11-n009",
+      "raw_id": 9,
+      "raw_pitch": "A2",
+      "pitch": "G3",
+      "manual_addition": null,
+      "correction_reason": "Alto clef misclassified as bass clef; all nine printed notes are G3."
+    },
+    {
+      "note_id": "tb2-p08-s02-n001",
+      "raw_id": null,
+      "raw_pitch": null,
+      "pitch": "D3",
+      "manual_addition": true,
+      "correction_reason": "All detected heads are violin cues or beam/clef fragments. Four real D3 entries at C were omitted."
+    },
+    {
+      "note_id": "tb2-p08-s02-n002",
+      "raw_id": null,
+      "raw_pitch": null,
+      "pitch": "D3",
+      "manual_addition": true,
+      "correction_reason": "All detected heads are violin cues or beam/clef fragments. Four real D3 entries at C were omitted."
+    },
+    {
+      "note_id": "tb2-p08-s02-n003",
+      "raw_id": null,
+      "raw_pitch": null,
+      "pitch": "D3",
+      "manual_addition": true,
+      "correction_reason": "All detected heads are violin cues or beam/clef fragments. Four real D3 entries at C were omitted."
+    },
+    {
+      "note_id": "tb2-p08-s02-n004",
+      "raw_id": null,
+      "raw_pitch": null,
+      "pitch": "D3",
+      "manual_addition": true,
+      "correction_reason": "All detected heads are violin cues or beam/clef fragments. Four real D3 entries at C were omitted."
+    },
+    {
+      "note_id": "tb2-p08-s03-n009",
+      "raw_id": 9,
+      "raw_pitch": "F#3",
+      "pitch": "F3",
+      "manual_addition": null,
+      "correction_reason": "F natural cancels the signature; two D3 noteheads were missed."
+    },
+    {
+      "note_id": "tb2-p08-s03-n019",
+      "raw_id": null,
+      "raw_pitch": null,
+      "pitch": "D3",
+      "manual_addition": true,
+      "correction_reason": "F natural cancels the signature; two D3 noteheads were missed."
+    },
+    {
+      "note_id": "tb2-p08-s03-n021",
+      "raw_id": null,
+      "raw_pitch": null,
+      "pitch": "D3",
+      "manual_addition": true,
+      "correction_reason": "F natural cancels the signature; two D3 noteheads were missed."
+    },
+    {
+      "note_id": "tb2-p08-s04-n004",
+      "raw_id": null,
+      "raw_pitch": null,
+      "pitch": "B3",
+      "manual_addition": true,
+      "correction_reason": "Two notes omitted; G natural misread as flat; repeat-bar fragments are false notes."
+    },
+    {
+      "note_id": "tb2-p08-s04-n015",
+      "raw_id": 14,
+      "raw_pitch": "Gb3",
+      "pitch": "G3",
+      "manual_addition": null,
+      "correction_reason": "Two notes omitted; G natural misread as flat; repeat-bar fragments are false notes."
+    },
+    {
+      "note_id": "tb2-p08-s04-n017",
+      "raw_id": null,
+      "raw_pitch": null,
+      "pitch": "G3",
+      "manual_addition": true,
+      "correction_reason": "Two notes omitted; G natural misread as flat; repeat-bar fragments are false notes."
+    },
+    {
+      "note_id": "tb2-p08-s06-n001",
+      "raw_id": null,
+      "raw_pitch": null,
+      "pitch": "D3",
+      "manual_addition": true,
+      "correction_reason": "Opening notes are cues; low D3 ledger caused pitch error and missing heads; B3 omitted."
+    },
+    {
+      "note_id": "tb2-p08-s06-n002",
+      "raw_id": 6,
+      "raw_pitch": "E3",
+      "pitch": "D3",
+      "manual_addition": null,
+      "correction_reason": "Opening notes are cues; low D3 ledger caused pitch error and missing heads; B3 omitted."
+    },
+    {
+      "note_id": "tb2-p08-s06-n004",
+      "raw_id": null,
+      "raw_pitch": null,
+      "pitch": "D3",
+      "manual_addition": true,
+      "correction_reason": "Opening notes are cues; low D3 ledger caused pitch error and missing heads; B3 omitted."
+    },
+    {
+      "note_id": "tb2-p08-s06-n008",
+      "raw_id": null,
+      "raw_pitch": null,
+      "pitch": "B3",
+      "manual_addition": true,
+      "correction_reason": "Opening notes are cues; low D3 ledger caused pitch error and missing heads; B3 omitted."
+    },
+    {
+      "note_id": "tb2-p08-s07-n005",
+      "raw_id": null,
+      "raw_pitch": null,
+      "pitch": "Bb3",
+      "manual_addition": true,
+      "correction_reason": "Low D3 ledger pitch error; Bb3 and G3 omitted."
+    },
+    {
+      "note_id": "tb2-p08-s07-n013",
+      "raw_id": 12,
+      "raw_pitch": "E3",
+      "pitch": "D3",
+      "manual_addition": null,
+      "correction_reason": "Low D3 ledger pitch error; Bb3 and G3 omitted."
+    },
+    {
+      "note_id": "tb2-p08-s07-n015",
+      "raw_id": null,
+      "raw_pitch": null,
+      "pitch": "G3",
+      "manual_addition": true,
+      "correction_reason": "Low D3 ledger pitch error; Bb3 and G3 omitted."
+    },
+    {
+      "note_id": "tb2-p08-s09-n002",
+      "raw_id": 2,
+      "raw_pitch": "E3",
+      "pitch": "Eb3",
+      "manual_addition": null,
+      "correction_reason": "New three-flat signature after F; E notes are E flats."
+    },
+    {
+      "note_id": "tb2-p08-s09-n003",
+      "raw_id": 3,
+      "raw_pitch": "E3",
+      "pitch": "Eb3",
+      "manual_addition": null,
+      "correction_reason": "New three-flat signature after F; E notes are E flats."
+    },
+    {
+      "note_id": "tb2-p08-s09-n004",
+      "raw_id": 4,
+      "raw_pitch": "E3",
+      "pitch": "Eb3",
+      "manual_addition": null,
+      "correction_reason": "New three-flat signature after F; E notes are E flats."
+    },
+    {
+      "note_id": "tb2-p09-s01-n012",
+      "raw_id": 12,
+      "raw_pitch": "Bb3",
+      "pitch": "B3",
+      "manual_addition": null,
+      "correction_reason": "Explicit natural on B overrides the three-flat signature."
+    },
+    {
+      "note_id": "tb2-p09-s11-n003",
+      "raw_id": null,
+      "raw_pitch": null,
+      "pitch": "Ab3",
+      "manual_addition": true,
+      "correction_reason": "Three eighth-note heads omitted near accidentals."
+    },
+    {
+      "note_id": "tb2-p09-s11-n010",
+      "raw_id": null,
+      "raw_pitch": null,
+      "pitch": "Bb3",
+      "manual_addition": true,
+      "correction_reason": "Three eighth-note heads omitted near accidentals."
+    },
+    {
+      "note_id": "tb2-p09-s11-n013",
+      "raw_id": null,
+      "raw_pitch": null,
+      "pitch": "B3",
+      "manual_addition": true,
+      "correction_reason": "Three eighth-note heads omitted near accidentals."
+    },
+    {
+      "note_id": "tb2-p09-s12-n012",
+      "raw_id": null,
+      "raw_pitch": null,
+      "pitch": "D4",
+      "manual_addition": true,
+      "correction_reason": "D4 eighth note after the dotted quarter omitted."
+    },
+    {
+      "note_id": "tb2-p09-s13-n002",
+      "raw_id": null,
+      "raw_pitch": null,
+      "pitch": "B3",
+      "manual_addition": true,
+      "correction_reason": "Beam false positive and three omitted B3 eighth-note heads."
+    },
+    {
+      "note_id": "tb2-p09-s13-n008",
+      "raw_id": null,
+      "raw_pitch": null,
+      "pitch": "B3",
+      "manual_addition": true,
+      "correction_reason": "Beam false positive and three omitted B3 eighth-note heads."
+    },
+    {
+      "note_id": "tb2-p09-s13-n012",
+      "raw_id": null,
+      "raw_pitch": null,
+      "pitch": "B3",
+      "manual_addition": true,
+      "correction_reason": "Beam false positive and three omitted B3 eighth-note heads."
+    }
+  ],
+  "open_reviews": [
+    {
+      "id": "IV-GLOBAL-BAR-COUNT",
+      "severity": "review",
+      "description": "Source-derived written index 387 (includes both alternative endings) differs from the external IMSLP total 389. No missing time is inserted to force agreement. Score-wide measure numbers and recording alignment are not certified.",
+      "affects": "Global navigation and future audio alignment. Individual note durations are retained and locally bar-validated."
+    }
+  ],
+  "limits": [
+    "Fixed-tempo synthesized isolated tones; no recorded trombone timbre or video synchronization.",
+    "Expressive duration changes (fermata, ritardando) and articulations are not performed.",
+    "Musical review performed by the same agent against source images; no independent human verification."
+  ]
+}

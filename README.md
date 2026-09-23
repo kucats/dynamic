@@ -1,64 +1,23 @@
-# Agent-Friendly Repository Template
+# dynamic
 
-A repository baseline for projects developed by humans and coding agents through GitHub Issues and pull requests.
+A small, reviewable catalog for score-reading workflows. Reusable processing code lives in [`tools/`](tools/); per-composer and per-work evidence lives in [`project/`](project/); static HTML/PDF outputs live in [`public/`](public/).
 
-The template is intentionally language- and framework-neutral. It provides the operating contract, work-tracking structure, and evidence standards; each generated repository must add its own architecture, commands, and domain constraints.
+## Browse
 
-## Start a new repository
+Open [`public/index.html`](public/index.html) locally for the current catalog. The index links only to artifacts stored in this repository and shows each part's audit/playback status.
 
-1. Select **Use this template** on GitHub and create the repository from the default branch.
-2. Complete [`TEMPLATE_SETUP.md`](TEMPLATE_SETUP.md).
-3. Run `./scripts/bootstrap-repository.sh OWNER/REPOSITORY` after authenticating GitHub CLI.
-4. Replace the project placeholders in [`AGENTS.md`](AGENTS.md), [`docs/architecture/README.md`](docs/architecture/README.md), and [`docs/testing.md`](docs/testing.md).
-5. Create the first Issue before implementation begins.
+## Reproduce
 
-GitHub template repositories copy directory structure and files. Repository settings, labels, rulesets, secrets, environments, installed apps, and existing Issues or pull requests require separate setup. The bootstrap script applies a conservative baseline for merge settings and labels; review repository rules manually for the project's risk level.
+Fuyomi is a standalone tool; it does not import vEdit. Use Python 3.11+ and install `Pillow`, `pypdf`, and `reportlab` for image/PDF operations. Audiveris and Poppler are optional external tools for candidate recognition and page rendering.
 
-## Included operating model
-
-```text
-Issue intake
-  -> acceptance criteria and boundaries
-  -> agent claim with identity and scope
-  -> branch or explicitly authorized direct-main change
-  -> implementation with progress updates
-  -> validation evidence
-  -> pull request and review
-  -> squash merge
-  -> Issue completion record
-  -> merged branch cleanup
+```sh
+python -m pip install Pillow pypdf reportlab
+python -m tools.fuyomi --help
+python -m unittest discover -s tests -p 'test_fuyomi.py' -v
 ```
 
-The templates enforce several recurring rules:
+See [`tools/fuyomi/README.md`](tools/fuyomi/README.md) and [`docs/architecture/README.md`](docs/architecture/README.md). A passing tool test does not certify a score transcription; the project-level audit record remains authoritative.
 
-- Work is coordinated through Issues; do not silently start overlapping work.
-- An agent declares its identity, scope, base commit, and branch before changing files.
-- One Issue should represent one reviewable outcome.
-- Validation evidence names exact commands, environments, and results.
-- Blocked or incomplete work is handed off with exact refs and remaining steps, never reported as complete.
-- Merge is permitted only when acceptance criteria, checks, review state, and authorization are satisfied.
-- Merged branches are removed to keep the base clean.
-- Destructive operations, production changes, secret handling, spending, and other high-risk actions require explicit human authorization.
+## Source policy
 
-## Repository map
-
-| Path | Purpose |
-| --- | --- |
-| `AGENTS.md` | Short, authoritative map and agent operating rules |
-| `AGENT.md` | Compatibility pointer to `AGENTS.md` |
-| `.github/copilot-instructions.md` | Concise GitHub Copilot repository instructions |
-| `.github/ISSUE_TEMPLATE/` | Structured work, bug, design, and handoff intake |
-| `.github/PULL_REQUEST_TEMPLATE.md` | Review and evidence contract |
-| `docs/repository-contract.md` | Instruction hierarchy and sources of truth |
-| `docs/issue-management.md` | Issue state machine, claim comments, progress, and closure |
-| `docs/testing.md` | Project validation matrix and evidence format |
-| `docs/exec-plans/` | Living plans for multi-step or high-risk work |
-| `docs/decisions/` | Architecture Decision Records |
-| `docs/handoffs/` | Exact continuation records for unfinished work |
-| `scripts/bootstrap-repository.sh` | Optional labels and merge-setting bootstrap |
-
-## Maintenance model
-
-Keep `AGENTS.md` compact. It should be a map, not an encyclopedia. Put durable design facts in `docs/`, executable validation in scripts or CI, and task-specific facts in Issues and pull requests.
-
-Changes made later to this template do not automatically propagate into repositories previously generated from it. Record the originating [`TEMPLATE_VERSION`](TEMPLATE_VERSION), then port material template improvements through a normal Issue and pull request in each child repository.
+The repo stores source hashes and bibliographic/page provenance, not source score PDFs, raw score scans, raw OMR caches, private recordings, or machine-specific paths. Annotated PDFs are derivative review aids and are kept under `public/artifacts/`.

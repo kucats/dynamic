@@ -1,0 +1,10 @@
+{
+  "work_files_started_at": "2026-09-22T16:52:23.213665+09:00",
+  "packaged_at": "2026-09-22T18:02:43.358027+09:00",
+  "wall_minutes": 70.3,
+  "scope": "Preparation, OMR setup and experiments, Trombone II transcription, manual source review, rhythm transcription, PDF/player implementation and QA. Not pure CPU time.",
+  "omr_four_pages_wall_seconds": 193.56,
+  "cached_rebuild_wall_seconds": 2.614,
+  "cached_rebuild_identical_note_json": true,
+  "notes_json_sha256": "d7ddf4c08fd3d70320ae611339205795e30a57751caa39be08e17d414c3d8356"
+}

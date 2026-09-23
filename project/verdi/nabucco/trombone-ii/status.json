@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "composer": "Giuseppe Verdi",
+  "work": "Nabucco, Sinfonia",
+  "part": "Trombone II (tenor trombone part, read in printed bass clef)",
+  "source": {
+    "filename": "トロンボーン2.pdf",
+    "sha256": "75433f6fab0ea26ad4a0bd94ca6e2022b4007c12643fb007ed0f1744bbac8465",
+    "physical_pages": [
+      2,
+      3,
+      4
+    ],
+    "original_pdf_committed": false
+  },
+  "status": "provisional_omr_candidate_reading_manual_check_in_progress",
+  "omr_candidates": 455,
+  "verified_note_count": null,
+  "playback_authorized": false,
+  "limitations": [
+    "The existing HTML/PDF is an interim candidate reading, not a verified transcription.",
+    "The source notes, accidentals (including B and sharps), clef, and durations require manual review."
+  ]
+}

@@ -1,0 +1,940 @@
+{
+  "page": 3,
+  "meter_quarters": 2,
+  "meter": "2/4",
+  "part": 1,
+  "movement": 4,
+  "source_pdf_sha256": "6c161bf1a3a10e54194fecec8b52e2bc6a6fa0de7638c21296808e5456719d8c",
+  "source_scan_sha256": "91026a5198e04cfbe330b02ac8e30107352bf8183d8999c230e73ed6902c32cc",
+  "method": "Manual read of original 3800x5000 raster (including 2x-8x local crops), cross-checked note ids/pitches against p3 pitch audit and Audiveris MusicXML only as a fallible candidate. Printed beam, flag, dot, rest, barline, cue/tacet, repeat and volta glyphs take precedence.",
+  "tempo_text": [
+    {
+      "system": 6,
+      "text": "Allegro non troppo.",
+      "x_approx": 700
+    }
+  ],
+  "systems": [
+    {
+      "system": 6,
+      "bars": [
+        {
+          "x_range_px": [
+            780,
+            1438
+          ],
+          "kind": "multi_rest",
+          "count": 16,
+          "bar_in_system": 1
+        },
+        {
+          "x_range_px": [
+            1438,
+            1635
+          ],
+          "events": [
+            {
+              "kind": "rest",
+              "quarters": 2
+            }
+          ],
+          "fermata": true,
+          "bar_in_system": 2
+        },
+        {
+          "x_range_px": [
+            1635,
+            1928
+          ],
+          "kind": "multi_rest",
+          "count": 8,
+          "bar_in_system": 3
+        },
+        {
+          "x_range_px": [
+            1928,
+            2298
+          ],
+          "kind": "multi_rest",
+          "count": 8,
+          "bar_in_system": 4
+        },
+        {
+          "x_range_px": [
+            2298,
+            2677
+          ],
+          "kind": "multi_rest",
+          "count": 8,
+          "bar_in_system": 5
+        },
+        {
+          "x_range_px": [
+            2677,
+            3078
+          ],
+          "kind": "multi_rest",
+          "count": 8,
+          "bar_in_system": 6
+        },
+        {
+          "x_range_px": [
+            3078,
+            3407
+          ],
+          "kind": "multi_rest",
+          "count": 4,
+          "bar_in_system": 7
+        }
+      ],
+      "source_staff_clef": "ALTO",
+      "printed_barlines_px": [
+        780,
+        1438,
+        1635,
+        1928,
+        2298,
+        2677,
+        3078,
+        3407
+      ]
+    },
+    {
+      "system": 7,
+      "bars": [
+        {
+          "x_range_px": [
+            397,
+            1170
+          ],
+          "events": [
+            {
+              "kind": "rest",
+              "quarters": 2,
+              "source_note": "Trombone rest under Violin I cue"
+            }
+          ],
+          "cue": "Vl. I.",
+          "bar_in_system": 1
+        },
+        {
+          "x_range_px": [
+            1170,
+            1478
+          ],
+          "events": [
+            {
+              "kind": "rest",
+              "quarters": 2,
+              "source_note": "Trombone rest under Violin I cue"
+            }
+          ],
+          "cue": "Vl. I.",
+          "bar_in_system": 2
+        },
+        {
+          "x_range_px": [
+            1478,
+            1803
+          ],
+          "events": [
+            {
+              "kind": "rest",
+              "quarters": 2,
+              "source_note": "Trombone rest under Violin I cue"
+            }
+          ],
+          "cue": "Vl. I.",
+          "bar_in_system": 3
+        },
+        {
+          "x_range_px": [
+            1803,
+            2235
+          ],
+          "events": [
+            {
+              "kind": "rest",
+              "quarters": 2,
+              "source_note": "Trombone rest under Violin I cue"
+            }
+          ],
+          "cue": "Vl. I.",
+          "bar_in_system": 4
+        },
+        {
+          "x_range_px": [
+            2235,
+            2730
+          ],
+          "events": [
+            {
+              "kind": "rest",
+              "quarters": 1
+            },
+            {
+              "kind": "note",
+              "note_id": 11,
+              "quarters": 0.5,
+              "tie_to_next": false
+            },
+            {
+              "kind": "note",
+              "note_id": 12,
+              "quarters": 0.5,
+              "tie_to_next": false
+            }
+          ],
+          "rehearsal": "C",
+          "bar_in_system": 5
+        },
+        {
+          "x_range_px": [
+            2730,
+            3006
+          ],
+          "events": [
+            {
+              "kind": "note",
+              "note_id": 13,
+              "quarters": 1.5,
+              "tie_to_next": false
+            },
+            {
+              "kind": "note",
+              "note_id": 14,
+              "quarters": 0.5,
+              "tie_to_next": false
+            }
+          ],
+          "bar_in_system": 6
+        },
+        {
+          "x_range_px": [
+            3006,
+            3405
+          ],
+          "events": [
+            {
+              "kind": "note",
+              "note_id": 15,
+              "quarters": 0.5,
+              "tie_to_next": false
+            },
+            {
+              "kind": "rest",
+              "quarters": 0.5
+            },
+            {
+              "kind": "note",
+              "note_id": 16,
+              "quarters": 0.5,
+              "tie_to_next": false
+            },
+            {
+              "kind": "note",
+              "note_id": 0,
+              "quarters": 0.5,
+              "tie_to_next": false
+            }
+          ],
+          "manual_note_id_0": true,
+          "bar_in_system": 7
+        }
+      ],
+      "source_staff_clef": "ALTO",
+      "printed_barlines_px": [
+        397,
+        1170,
+        1478,
+        1803,
+        2235,
+        2730,
+        3006,
+        3405
+      ]
+    },
+    {
+      "system": 8,
+      "bars": [
+        {
+          "x_range_px": [
+            394,
+            922
+          ],
+          "events": [
+            {
+              "kind": "note",
+              "note_id": 1,
+              "quarters": 0.5,
+              "tie_to_next": false
+            },
+            {
+              "kind": "rest",
+              "quarters": 0.5
+            },
+            {
+              "kind": "note",
+              "note_id": 2,
+              "quarters": 0.5,
+              "tie_to_next": false
+            },
+            {
+              "kind": "note",
+              "note_id": 4,
+              "quarters": 0.5,
+              "tie_to_next": false
+            }
+          ],
+          "bar_in_system": 1
+        },
+        {
+          "x_range_px": [
+            922,
+            1200
+          ],
+          "events": [
+            {
+              "kind": "note",
+              "note_id": 5,
+              "quarters": 1,
+              "tie_to_next": false
+            },
+            {
+              "kind": "note",
+              "note_id": 6,
+              "quarters": 1,
+              "tie_to_next": false
+            }
+          ],
+          "bar_in_system": 2
+        },
+        {
+          "x_range_px": [
+            1200,
+            1596
+          ],
+          "events": [
+            {
+              "kind": "note",
+              "note_id": 7,
+              "quarters": 0.5,
+              "tie_to_next": false
+            },
+            {
+              "kind": "note",
+              "note_id": 9,
+              "quarters": 0.5,
+              "tie_to_next": false
+            },
+            {
+              "kind": "note",
+              "note_id": 10,
+              "quarters": 0.5,
+              "tie_to_next": false
+            },
+            {
+              "kind": "note",
+              "note_id": 11,
+              "quarters": 0.5,
+              "tie_to_next": false
+            }
+          ],
+          "bar_in_system": 3
+        },
+        {
+          "x_range_px": [
+            1596,
+            1942
+          ],
+          "events": [
+            {
+              "kind": "note",
+              "note_id": 12,
+              "quarters": 1,
+              "tie_to_next": false
+            },
+            {
+              "kind": "note",
+              "note_id": 13,
+              "quarters": 0.5,
+              "tie_to_next": false
+            },
+            {
+              "kind": "note",
+              "note_id": 14,
+              "quarters": 0.5,
+              "tie_to_next": false
+            }
+          ],
+          "bar_in_system": 4
+        },
+        {
+          "x_range_px": [
+            1942,
+            2326
+          ],
+          "events": [
+            {
+              "kind": "note",
+              "note_id": 15,
+              "quarters": 0.5,
+              "tie_to_next": false
+            },
+            {
+              "kind": "note",
+              "note_id": 16,
+              "quarters": 0.5,
+              "tie_to_next": false
+            },
+            {
+              "kind": "note",
+              "note_id": 17,
+              "quarters": 1,
+              "tie_to_next": false
+            }
+          ],
+          "bar_in_system": 5
+        },
+        {
+          "x_range_px": [
+            2326,
+            2716
+          ],
+          "events": [
+            {
+              "kind": "note",
+              "note_id": 18,
+              "quarters": 0.5,
+              "tie_to_next": false
+            },
+            {
+              "kind": "rest",
+              "quarters": 0.5
+            },
+            {
+              "kind": "note",
+              "note_id": 19,
+              "quarters": 0.5,
+              "tie_to_next": false
+            },
+            {
+              "kind": "rest",
+              "quarters": 0.5
+            }
+          ],
+          "bar_in_system": 6
+        },
+        {
+          "x_range_px": [
+            2716,
+            2984
+          ],
+          "events": [
+            {
+              "kind": "note",
+              "note_id": 20,
+              "quarters": 1.5,
+              "tie_to_next": false
+            },
+            {
+              "kind": "note",
+              "note_id": 21,
+              "quarters": 0.5,
+              "tie_to_next": false
+            }
+          ],
+          "bar_in_system": 7
+        },
+        {
+          "x_range_px": [
+            2984,
+            3405
+          ],
+          "events": [
+            {
+              "kind": "note",
+              "note_id": 22,
+              "quarters": 0.5,
+              "tie_to_next": false
+            },
+            {
+              "kind": "rest",
+              "quarters": 0.5
+            },
+            {
+              "kind": "note",
+              "note_id": 23,
+              "quarters": 0.5,
+              "tie_to_next": false
+            },
+            {
+              "kind": "note",
+              "note_id": 24,
+              "quarters": 0.5,
+              "tie_to_next": false
+            }
+          ],
+          "bar_in_system": 8
+        }
+      ],
+      "source_staff_clef": "ALTO",
+      "printed_barlines_px": [
+        394,
+        922,
+        1200,
+        1596,
+        1942,
+        2326,
+        2716,
+        2984,
+        3405
+      ]
+    },
+    {
+      "system": 9,
+      "bars": [
+        {
+          "x_range_px": [
+            396,
+            898
+          ],
+          "events": [
+            {
+              "kind": "note",
+              "note_id": 1,
+              "quarters": 0.5,
+              "tie_to_next": false
+            },
+            {
+              "kind": "rest",
+              "quarters": 0.5
+            },
+            {
+              "kind": "note",
+              "note_id": 2,
+              "quarters": 0.5,
+              "tie_to_next": false
+            },
+            {
+              "kind": "note",
+              "note_id": 3,
+              "quarters": 0.5,
+              "tie_to_next": false
+            }
+          ],
+          "bar_in_system": 1
+        },
+        {
+          "x_range_px": [
+            898,
+            1274
+          ],
+          "events": [
+            {
+              "kind": "note",
+              "note_id": 4,
+              "quarters": 0.5,
+              "tie_to_next": false
+            },
+            {
+              "kind": "rest",
+              "quarters": 0.5
+            },
+            {
+              "kind": "note",
+              "note_id": 5,
+              "quarters": 0.5,
+              "tie_to_next": false
+            },
+            {
+              "kind": "rest",
+              "quarters": 0.5
+            }
+          ],
+          "bar_in_system": 2
+        },
+        {
+          "x_range_px": [
+            1274,
+            1630
+          ],
+          "events": [
+            {
+              "kind": "note",
+              "note_id": 6,
+              "quarters": 0.5,
+              "tie_to_next": false
+            },
+            {
+              "kind": "rest",
+              "quarters": 1
+            },
+            {
+              "kind": "note",
+              "note_id": 7,
+              "quarters": 0.5,
+              "tie_to_next": false
+            }
+          ],
+          "bar_in_system": 3
+        },
+        {
+          "x_range_px": [
+            1630,
+            2000
+          ],
+          "events": [
+            {
+              "kind": "note",
+              "note_id": 8,
+              "quarters": 0.5,
+              "tie_to_next": false
+            },
+            {
+              "kind": "note",
+              "note_id": 9,
+              "quarters": 0.5,
+              "tie_to_next": false
+            },
+            {
+              "kind": "note",
+              "note_id": 10,
+              "quarters": 0.5,
+              "tie_to_next": false
+            },
+            {
+              "kind": "note",
+              "note_id": 12,
+              "quarters": 0.5,
+              "tie_to_next": false
+            }
+          ],
+          "bar_in_system": 4
+        },
+        {
+          "x_range_px": [
+            2000,
+            2378
+          ],
+          "events": [
+            {
+              "kind": "note",
+              "note_id": 13,
+              "quarters": 0.5,
+              "tie_to_next": false
+            },
+            {
+              "kind": "note",
+              "note_id": 14,
+              "quarters": 0.5,
+              "tie_to_next": false
+            },
+            {
+              "kind": "note",
+              "note_id": 15,
+              "quarters": 0.5,
+              "tie_to_next": false
+            },
+            {
+              "kind": "rest",
+              "quarters": 0.5
+            }
+          ],
+          "bar_in_system": 5
+        },
+        {
+          "x_range_px": [
+            2378,
+            2670
+          ],
+          "kind": "multi_rest",
+          "count": 8,
+          "rehearsal": "D",
+          "bar_in_system": 6
+        },
+        {
+          "x_range_px": [
+            2670,
+            3031
+          ],
+          "events": [
+            {
+              "kind": "rest",
+              "quarters": 2,
+              "source_note": "Trombone rest under Vl. I. cue"
+            }
+          ],
+          "cue": "Vl. I.",
+          "bar_in_system": 7
+        },
+        {
+          "x_range_px": [
+            3031,
+            3402
+          ],
+          "events": [
+            {
+              "kind": "rest",
+              "quarters": 2,
+              "source_note": "Trombone rest under Vl. I. cue"
+            }
+          ],
+          "cue": "Vl. I.",
+          "bar_in_system": 8
+        }
+      ],
+      "source_staff_clef": "ALTO",
+      "printed_barlines_px": [
+        396,
+        898,
+        1274,
+        1630,
+        2000,
+        2378,
+        2670,
+        3031,
+        3402
+      ]
+    },
+    {
+      "system": 10,
+      "bars": [
+        {
+          "x_range_px": [
+            388,
+            992
+          ],
+          "events": [
+            {
+              "kind": "rest",
+              "quarters": 2,
+              "source_note": "Trombone rest under Violin I cue"
+            }
+          ],
+          "cue": "Vl. I.",
+          "bar_in_system": 1
+        },
+        {
+          "x_range_px": [
+            992,
+            1206
+          ],
+          "events": [
+            {
+              "kind": "rest",
+              "quarters": 2,
+              "source_note": "Trombone rest under Violin I cue"
+            }
+          ],
+          "cue": "Vl. I.",
+          "bar_in_system": 2
+        },
+        {
+          "x_range_px": [
+            1206,
+            1637
+          ],
+          "events": [
+            {
+              "kind": "rest",
+              "quarters": 2,
+              "source_note": "Trombone rest under Violin I cue"
+            }
+          ],
+          "cue": "Vl. I.",
+          "bar_in_system": 3
+        },
+        {
+          "x_range_px": [
+            1637,
+            2073
+          ],
+          "events": [
+            {
+              "kind": "rest",
+              "quarters": 2,
+              "source_note": "Trombone rest under Violin I cue"
+            }
+          ],
+          "cue": "Vl. I.",
+          "bar_in_system": 4
+        },
+        {
+          "x_range_px": [
+            2073,
+            2474
+          ],
+          "events": [
+            {
+              "kind": "rest",
+              "quarters": 2,
+              "source_note": "Trombone rest under Violin I cue"
+            }
+          ],
+          "cue": "Vl. I.",
+          "bar_in_system": 5
+        },
+        {
+          "x_range_px": [
+            2474,
+            2961
+          ],
+          "events": [
+            {
+              "kind": "rest",
+              "quarters": 2,
+              "source_note": "Trombone rest under Violin I cue"
+            }
+          ],
+          "cue": "Vl. I.",
+          "volta": 1,
+          "bar_in_system": 6
+        },
+        {
+          "x_range_px": [
+            2961,
+            3401
+          ],
+          "events": [
+            {
+              "kind": "rest",
+              "quarters": 2,
+              "source_note": "Trombone rest under Violin I cue"
+            }
+          ],
+          "cue": "Vl. I.",
+          "volta": 2,
+          "bar_in_system": 7
+        }
+      ],
+      "source_staff_clef": "ALTO",
+      "printed_barlines_px": [
+        388,
+        992,
+        1206,
+        1637,
+        2073,
+        2474,
+        2961,
+        3401
+      ]
+    }
+  ],
+  "repeat_marks": [
+    {
+      "system": 6,
+      "x_approx": 1928,
+      "kind": "compound_repeat_boundary",
+      "confidence": "medium",
+      "raw": "double-thick barline with repeat dots; verify forward/back direction from full score"
+    },
+    {
+      "system": 6,
+      "x_approx": 2298,
+      "kind": "compound_repeat_boundary",
+      "confidence": "medium",
+      "raw": "double-thick barline with repeat dots"
+    },
+    {
+      "system": 6,
+      "x_approx": 2677,
+      "kind": "compound_repeat_boundary",
+      "confidence": "medium",
+      "raw": "double-thick barline with repeat dots; barline omitted by OMR list"
+    },
+    {
+      "system": 6,
+      "x_approx": 3078,
+      "kind": "compound_repeat_boundary",
+      "confidence": "medium",
+      "raw": "double-thick barline with repeat dots"
+    },
+    {
+      "system": 7,
+      "x_approx": 2235,
+      "kind": "repeat_end",
+      "confidence": "medium",
+      "raw": "double barline with left-side dots immediately before rehearsal C"
+    },
+    {
+      "system": 9,
+      "x_approx": 2378,
+      "kind": "repeat_end",
+      "confidence": "high",
+      "raw": "double barline with left-side dots before rehearsal D; omitted by OMR barline list"
+    },
+    {
+      "system": 10,
+      "x_approx": 2961,
+      "kind": "repeat_end_first_ending",
+      "confidence": "high",
+      "raw": "repeat end at 1st-ending closure; 2nd ending starts to its right"
+    }
+  ],
+  "volta_marks": [
+    {
+      "system": 10,
+      "bar_in_system": 6,
+      "number": 1,
+      "x_range_px": [
+        2474,
+        2961
+      ]
+    },
+    {
+      "system": 10,
+      "bar_in_system": 7,
+      "number": 2,
+      "x_range_px": [
+        2961,
+        3401
+      ]
+    }
+  ],
+  "ties": [],
+  "rehearsal_marks": [
+    {
+      "system": 6,
+      "text": "A",
+      "x_approx": 1928,
+      "confidence": "medium"
+    },
+    {
+      "system": 7,
+      "text": "C",
+      "x_approx": 2280,
+      "confidence": "high"
+    },
+    {
+      "system": 9,
+      "text": "D",
+      "x_approx": 2380,
+      "confidence": "high"
+    }
+  ],
+  "uncertainties": [
+    {
+      "system": 6,
+      "subject": "repeat semantics",
+      "detail": "Dense nested/compound repeat barlines across multi-measure rests need full-score cross-check before unrolling; raw marker positions preserved."
+    },
+    {
+      "system": 9,
+      "subject": "cue transition",
+      "detail": "x2378 and x2670 barlines were omitted from OMR barline list but visually present; x2378-2670 is eight-bar multirest and later bars are Trombone rests under Violin I cues."
+    },
+    {
+      "system": 10,
+      "subject": "volta playback",
+      "detail": "First and second endings are transcribed, but repeat path before them must be reconciled with earlier-page markers before whole movement playback."
+    }
+  ],
+  "validation": {
+    "ordinary_bars": 30,
+    "all_ordinary_bars_sum_to_two_quarters": true,
+    "reviewed_sounding_noteheads": 43,
+    "unique_note_ids_match_pitch_audit": true,
+    "total_expanded_bars": 90
+  }
+}

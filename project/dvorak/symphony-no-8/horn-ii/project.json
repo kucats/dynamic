@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "composer": "Antonín Dvořák",
+  "work": "Symphony No. 8, Op. 88",
+  "part": "Corno II / Horn II in F",
+  "source": {
+    "filename": "ホルン1～4.pdf",
+    "sha256": "0a29673a6ab1f0b02b89485dd0910ea100876cd4589feaced09fbad153839665",
+    "physical_pages_by_movement": {
+      "1": [
+        9,
+        10,
+        11
+      ],
+      "2": [
+        11,
+        12
+      ],
+      "3": [
+        13
+      ],
+      "4": [
+        14,
+        15
+      ]
+    },
+    "original_pdf_committed": false,
+    "raw_page_images_committed": false,
+    "raw_omr_committed": false
+  },
+  "pitch_convention": "Written pitch is read in printed clef with scientific octave C4=middle C. F horn concert pitch is a perfect fifth below written pitch with interval spelling preserved.",
+  "coverage": [
+    {
+      "movement": 1,
+      "status": "independent_review_complete_playback_blocked",
+      "review": "reviews/movement-1-gpt6sol-independent.json",
+      "public_artifact": null
+    },
+    {
+      "movement": 2,
+      "status": "partial_independent_audit_playback_blocked",
+      "review": "reviews/movement-2-gpt6sol-independent.json",
+      "public_artifact": null
+    },
+    {
+      "movement": 3,
+      "status": "independent_review_complete_playback_blocked",
+      "review": "reviews/movement-3-gpt6sol-independent.json",
+      "public_artifact": null
+    },
+    {
+      "movement": 4,
+      "status": "independent_source_sample_complete_playback_blocked",
+      "review": "reviews/movement-4-gpt6sol-independent.json",
+      "public_artifact": null
+    }
+  ],
+  "superseded_prior_readings": {
+    "status": "do_not_use_for_rehearsal",
+    "reason": "The 6-Sol independent audits found notehead-role and clef errors in the prior Movement I and III readings. They are retained only for traceability until corrected readings are rebuilt.",
+    "files": [
+      "superseded/Dvorak8_HornII_Movement1_p9-p11_reading.html",
+      "superseded/Dvorak8_HornII_Movement1_p9-p11_annotated.pdf",
+      "superseded/Dvorak8_HornII_Movement3_p13_reading.html",
+      "superseded/Dvorak8_HornII_Movement3_p13_annotated.pdf"
+    ]
+  },
+  "playback": {
+    "full_movements_authorized": false,
+    "reason": "No movement has independently verified every note, rest, tie, and duration."
+  }
+}

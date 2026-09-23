@@ -1,0 +1,22 @@
+<!doctype html><html lang="ja"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>__TITLE__ / __PART__ — 譜読み・試聴</title><style>__STYLE__</style>
+<header><div class="eyebrow">DYNAMIC / FUYOMI</div><h1>__TITLE__ / __PART__</h1>
+<p>青：実音＋オクターブ　橙：基本ポジション。中央のド = C4、H = シ、Bb = シ♭。</p>
+<span class="badge">__NOTES__音符</span><span class="badge">音価・休符・タイを保持</span><span class="badge">__REVIEW__</span>
+<p>再生ボタンで試聴。音符をクリックして1音を確認し、その位置から続けて再生できます。</p>
+<details><summary>再生とレビューの範囲・未解決項目</summary>
+<p>一定テンポの合成単音です。音価・休符・タイ・明示した反復を再現します。強弱、アーティキュレーション、フェルマータの延長、テンポ変化は自動再現していません。反復を切ると1番括弧を飛ばして2番括弧へ進みます。</p>
+<p>原譜の音符は覆わず、透明な枠で再生位置を表示します。小節番号は内部番号です。録音・YouTubeの時刻同期は未設定です。</p>
+<p>構造検証と原譜レビューは別の確認です。source_checked は入力された目視照合記録を表し、人間の実聴確認を意味しません。</p><ul>__ISSUES__</ul></details></header>
+<nav><div class="controls"><span id="current">—</span><span id="duration"></span><select id="movement" aria-label="楽章">__MOVEMENTS__</select>
+<button id="play" class="primary">▶ 再生</button><button id="stop">停止・先頭</button><button id="nextEntry">次の出番へ</button>
+<button id="prev">← 前の音</button><button id="single">1音試聴</button><button id="next">次の音 →</button></div>
+<div class="controls settings"><span id="counter"></span><input id="seek" type="range" min="0" step="1" value="0" aria-label="再生位置"><span id="time"></span></div>
+<div class="controls settings"><label>♩ = <b id="bpm">120</b> <input id="tempo" type="range" min="40" max="240" value="120" aria-label="四分音符のBPM"></label>
+<label><input id="repeats" type="checkbox" checked>反復する</label><label><input id="showLabels" type="checkbox" checked>音名・ポジション</label>
+<label>音色 <select id="timbre"><option value="sine">正弦波の単音</option><option value="triangle">柔らかい単音</option></select></label>
+<label>音量 <input id="volume" type="range" min="0" max="0.3" step="0.01" value="0.12" aria-label="音量"></label><span id="status" role="status"></span></div></nav>
+<main>__ROWS__</main><footer>基本ポジション：B♭管・バルブなし。替えポジションと音程の微調整は別途。
+<a href="https://www.yamaha.com/en/musical_instrument_guide/common/images/trombone/fingering.pdf">Yamaha基本ポジション表</a>。
+操作：音符クリック＝1音試聴／スペース＝再生・一時停止／左右キー＝前後の音。</footer>
+<script>__SCRIPT__</script></html>

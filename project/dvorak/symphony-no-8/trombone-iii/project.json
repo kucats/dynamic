@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "work": "Dvořák Symphony No. 8, Op. 88",
+  "part": "Trombone III",
+  "source_sha256": "6c161bf1a3a10e54194fecec8b52e2bc6a6fa0de7638c21296808e5456719d8c",
+  "movement": 4,
+  "source_pages": [
+    12,
+    13
+  ],
+  "note_count": 269,
+  "review_status": "trial; recheck 38 low-confidence or unusual candidates and three unassigned positions",
+  "playback_authorized": false,
+  "source_pdf_committed": false
+}
