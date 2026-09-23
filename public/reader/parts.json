@@ -1,0 +1,58 @@
+{
+ "schema": 1,
+ "parts": [
+  {
+   "id": "dvorak8-horn2",
+   "title": "ドヴォルザーク 交響曲第8番 ホルン2番",
+   "subtitle": "第1〜4楽章 · 記譜ドレミ",
+   "part": "Corno II (in F)",
+   "work": "Symphony No. 8 in G major, Op. 88",
+   "composer": "Antonín Dvořák",
+   "status": "Claudeのサブエージェントが1ページずつ原譜と照合した転記（自己チェック済み）。第三者による独立監査は未実施。",
+   "pdf": "reader/pdf/Dvorak8_Horn2_reading.pdf",
+   "movements": [
+    {
+     "key": "I",
+     "title": "第1楽章 Allegro con brio",
+     "notes": 384
+    },
+    {
+     "key": "II",
+     "title": "第2楽章 Adagio",
+     "notes": 124
+    },
+    {
+     "key": "III",
+     "title": "第3楽章 Allegretto grazioso",
+     "notes": 56
+    },
+    {
+     "key": "IV",
+     "title": "第4楽章 Allegro ma non troppo",
+     "notes": 357
+    }
+   ],
+   "notes": 921,
+   "data": "reader/data/dvorak8-horn2.json"
+  },
+  {
+   "id": "dvorak8-horn3-mvt3",
+   "title": "ドヴォルザーク 交響曲第8番 ホルン3番",
+   "subtitle": "第3楽章 · 記譜ドレミ／F管読み／実音",
+   "part": "Corno III (in D / in C)",
+   "work": "Symphony No. 8 in G major, Op. 88",
+   "composer": "Antonín Dvořák",
+   "status": "Claudeが原譜と1音ずつ照合した転記。サブエージェントによる再照合で207〜215小節をキューとして除外済み。第三者による独立監査は未実施。",
+   "pdf": "reader/pdf/Dvorak8_Horn3_Movement3_reading.pdf",
+   "movements": [
+    {
+     "key": "III",
+     "title": "第3楽章 Allegretto grazioso",
+     "notes": 57
+    }
+   ],
+   "notes": 57,
+   "data": "reader/data/dvorak8-horn3-mvt3.json"
+  }
+ ]
+}

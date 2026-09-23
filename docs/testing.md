@@ -10,6 +10,9 @@ Run from the repository root with Python 3.11 or later. Catalog commands operate
 | Fuyomi CLI | `python3 -m tools.fuyomi --help` | Shows standalone commands without importing vEdit |
 | Python syntax | `python3 -m compileall -q tools tests` | No syntax errors |
 | Player JavaScript | `node --check tools/fuyomi/player.js` | No syntax errors |
+| DYNAMIC reader data | `python3 tools/dynamic/validate_reader.py` | Notes sit in numbered bars, timelines cover all notes, no path leaks |
+| DYNAMIC reader JavaScript | `node --check public/reader/app.js && node --check public/sw.js` | No syntax errors |
+| DYNAMIC print PDFs | serve `public/`, then `python3 tools/dynamic/render_pdfs.py` | A3 PDFs regenerated; inspect representative pages |
 | Patch hygiene | `git diff --check` | No whitespace errors |
 
 For changed PDFs, inspect page count/metadata, render representative pages, and visually check changed layouts. Code validation does not certify a musical reading. Each artifact retains its source-bound audit scope, unresolved items, and playback state. Never mark an incomplete audit complete because software tests passed.
