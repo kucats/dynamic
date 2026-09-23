@@ -1,0 +1,1305 @@
+{
+  "page": 5,
+  "meter_quarters": 2,
+  "systems": [
+    {
+      "system": 1,
+      "bars": [
+        {
+          "kind": "multi_rest",
+          "count": 2
+        },
+        {
+          "kind": "multi_rest",
+          "count": 8
+        },
+        {
+          "kind": "multi_rest",
+          "count": 10
+        },
+        {
+          "kind": "multi_rest",
+          "count": 8
+        },
+        {
+          "kind": "multi_rest",
+          "count": 16
+        },
+        {
+          "kind": "multi_rest",
+          "count": 8
+        },
+        {
+          "kind": "multi_rest",
+          "count": 8
+        }
+      ]
+    },
+    {
+      "system": 2,
+      "bars": [
+        {
+          "events": [
+            {
+              "kind": "rest",
+              "quarters": 2
+            }
+          ],
+          "printed_violin_cue": true
+        },
+        {
+          "events": [
+            {
+              "kind": "rest",
+              "quarters": 2
+            }
+          ],
+          "printed_violin_cue": true
+        },
+        {
+          "events": [
+            {
+              "kind": "rest",
+              "quarters": 2
+            }
+          ],
+          "printed_violin_cue": true
+        },
+        {
+          "events": [
+            {
+              "kind": "rest",
+              "quarters": 2
+            }
+          ],
+          "printed_violin_cue": true
+        },
+        {
+          "events": [
+            {
+              "kind": "rest",
+              "quarters": 2
+            }
+          ],
+          "printed_violin_cue": true
+        },
+        {
+          "events": [
+            {
+              "kind": "rest",
+              "quarters": 2
+            }
+          ],
+          "printed_violin_cue": true
+        },
+        {
+          "events": [
+            {
+              "kind": "rest",
+              "quarters": 2
+            }
+          ],
+          "printed_violin_cue": true
+        },
+        {
+          "events": [
+            {
+              "kind": "rest",
+              "quarters": 2
+            }
+          ],
+          "printed_violin_cue": true
+        },
+        {
+          "events": [
+            {
+              "kind": "rest",
+              "quarters": 2
+            }
+          ],
+          "printed_violin_cue": true
+        }
+      ]
+    },
+    {
+      "system": 3,
+      "bars": [
+        {
+          "events": [
+            {
+              "kind": "rest",
+              "quarters": 2
+            }
+          ],
+          "printed_violin_cue": true
+        },
+        {
+          "events": [
+            {
+              "kind": "rest",
+              "quarters": 2
+            }
+          ],
+          "printed_violin_cue": true
+        },
+        {
+          "events": [
+            {
+              "kind": "rest",
+              "quarters": 2
+            }
+          ],
+          "printed_violin_cue": true
+        },
+        {
+          "events": [
+            {
+              "kind": "rest",
+              "quarters": 2
+            }
+          ],
+          "printed_violin_cue": true
+        },
+        {
+          "events": [
+            {
+              "kind": "rest",
+              "quarters": 2
+            }
+          ],
+          "printed_violin_cue": true
+        },
+        {
+          "events": [
+            {
+              "kind": "rest",
+              "quarters": 2
+            }
+          ],
+          "printed_violin_cue": true
+        },
+        {
+          "events": [
+            {
+              "kind": "rest",
+              "quarters": 2
+            }
+          ],
+          "printed_violin_cue": true
+        },
+        {
+          "events": [
+            {
+              "kind": "rest",
+              "quarters": 2
+            }
+          ],
+          "printed_violin_cue": true
+        },
+        {
+          "events": [
+            {
+              "kind": "rest",
+              "quarters": 2
+            }
+          ],
+          "printed_violin_cue": true
+        },
+        {
+          "events": [
+            {
+              "kind": "rest",
+              "quarters": 2
+            }
+          ],
+          "printed_violin_cue": true
+        }
+      ]
+    },
+    {
+      "system": 4,
+      "bars": [
+        {
+          "events": [
+            {
+              "kind": "rest",
+              "quarters": 2
+            }
+          ],
+          "printed_violin_cue": true
+        },
+        {
+          "events": [
+            {
+              "kind": "rest",
+              "quarters": 2
+            }
+          ],
+          "printed_violin_cue": true
+        },
+        {
+          "events": [
+            {
+              "kind": "rest",
+              "quarters": 2
+            }
+          ],
+          "printed_violin_cue": true
+        },
+        {
+          "events": [
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 7
+            },
+            {
+              "kind": "rest",
+              "quarters": 0.5
+            },
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 8
+            },
+            {
+              "kind": "rest",
+              "quarters": 0.5
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "note",
+              "quarters": 1,
+              "note_id": 9
+            },
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 10
+            },
+            {
+              "kind": "rest",
+              "quarters": 0.5
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "rest",
+              "quarters": 1
+            },
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 11
+            },
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 12
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 13
+            },
+            {
+              "kind": "rest",
+              "quarters": 0.5
+            },
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 14
+            },
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 15
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "note",
+              "quarters": 1,
+              "note_id": 16
+            },
+            {
+              "kind": "note",
+              "quarters": 1,
+              "note_id": 17
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "system": 5,
+      "bars": [
+        {
+          "events": [
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 1
+            },
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 3
+            },
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 4
+            },
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 5
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "note",
+              "quarters": 1,
+              "note_id": 6
+            },
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 7
+            },
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 8
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 9
+            },
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 10
+            },
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 11
+            },
+            {
+              "kind": "rest",
+              "quarters": 0.5
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 12
+            },
+            {
+              "kind": "rest",
+              "quarters": 0.5
+            },
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 13
+            },
+            {
+              "kind": "rest",
+              "quarters": 0.5
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "note",
+              "quarters": 1,
+              "note_id": 14
+            },
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 15
+            },
+            {
+              "kind": "rest",
+              "quarters": 0.5
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 16
+            },
+            {
+              "kind": "rest",
+              "quarters": 0.5
+            },
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 17
+            },
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 18
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 19
+            },
+            {
+              "kind": "rest",
+              "quarters": 0.5
+            },
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 20
+            },
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 21
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "system": 6,
+      "bars": [
+        {
+          "events": [
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 1
+            },
+            {
+              "kind": "rest",
+              "quarters": 0.5
+            },
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 2
+            },
+            {
+              "kind": "rest",
+              "quarters": 0.5
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 3
+            },
+            {
+              "kind": "rest",
+              "quarters": 0.5
+            },
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 4
+            },
+            {
+              "kind": "rest",
+              "quarters": 0.5
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 5
+            },
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 6
+            },
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 7
+            },
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 8
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 10
+            },
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 11
+            },
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 12
+            },
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 13
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 14
+            },
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 15
+            },
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 16
+            },
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 17
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "rest",
+              "quarters": 2
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "rest",
+              "quarters": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "system": 7,
+      "bars": [
+        {
+          "events": [
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 1
+            },
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 3
+            },
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 4
+            },
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 5
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "note",
+              "quarters": 1,
+              "note_id": 6
+            },
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 7
+            },
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 8
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "note",
+              "quarters": 1,
+              "note_id": 9
+            },
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 10
+            },
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 11
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "note",
+              "quarters": 0.25,
+              "note_id": 12
+            },
+            {
+              "kind": "note",
+              "quarters": 0.25,
+              "note_id": 13
+            },
+            {
+              "kind": "note",
+              "quarters": 0.25,
+              "note_id": 14
+            },
+            {
+              "kind": "note",
+              "quarters": 0.25,
+              "note_id": 15
+            },
+            {
+              "kind": "note",
+              "quarters": 0.25,
+              "note_id": 16
+            },
+            {
+              "kind": "note",
+              "quarters": 0.25,
+              "note_id": 17
+            },
+            {
+              "kind": "note",
+              "quarters": 0.25,
+              "note_id": 18
+            },
+            {
+              "kind": "note",
+              "quarters": 0.25,
+              "note_id": 19
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 20
+            },
+            {
+              "kind": "rest",
+              "quarters": 0.5
+            },
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 21
+            },
+            {
+              "kind": "rest",
+              "quarters": 0.5
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 22
+            },
+            {
+              "kind": "rest",
+              "quarters": 0.5
+            },
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 23
+            },
+            {
+              "kind": "rest",
+              "quarters": 0.5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "system": 8,
+      "bars": [
+        {
+          "events": [
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 1
+            },
+            {
+              "kind": "rest",
+              "quarters": 0.5
+            },
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 2
+            },
+            {
+              "kind": "rest",
+              "quarters": 0.5
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 3
+            },
+            {
+              "kind": "rest",
+              "quarters": 0.5
+            },
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 4
+            },
+            {
+              "kind": "rest",
+              "quarters": 0.5
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 5
+            },
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 6
+            },
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 7
+            },
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 8
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 9
+            },
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 10
+            },
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 11
+            },
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 14
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 15
+            },
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 16
+            },
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 17
+            },
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 18
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 19
+            },
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 20
+            },
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 21
+            },
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 22
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "note",
+              "quarters": 1,
+              "note_id": 23
+            },
+            {
+              "kind": "note",
+              "quarters": 1,
+              "note_id": 24
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "system": 9,
+      "bars": [
+        {
+          "events": [
+            {
+              "kind": "note",
+              "quarters": 1.5,
+              "note_id": 1
+            },
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 2
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "note",
+              "quarters": 1,
+              "note_id": 3
+            },
+            {
+              "kind": "note",
+              "quarters": 1,
+              "note_id": 4
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "note",
+              "quarters": 1,
+              "note_id": 5
+            },
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 6
+            },
+            {
+              "kind": "rest",
+              "quarters": 0.5
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "note",
+              "quarters": 1,
+              "note_id": 7
+            },
+            {
+              "kind": "note",
+              "quarters": 1,
+              "note_id": 8
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "note",
+              "quarters": 1,
+              "note_id": 9
+            },
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 10
+            },
+            {
+              "kind": "rest",
+              "quarters": 0.5
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "note",
+              "quarters": 1,
+              "note_id": 11
+            },
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 12
+            },
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 13
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "note",
+              "quarters": 1,
+              "note_id": 14
+            },
+            {
+              "kind": "note",
+              "quarters": 1,
+              "note_id": 15
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 16
+            },
+            {
+              "kind": "rest",
+              "quarters": 0.5
+            },
+            {
+              "kind": "rest",
+              "quarters": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "system": 10,
+      "bars": [
+        {
+          "events": [
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 1
+            },
+            {
+              "kind": "rest",
+              "quarters": 0.5
+            },
+            {
+              "kind": "rest",
+              "quarters": 1
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 2
+            },
+            {
+              "kind": "rest",
+              "quarters": 0.5
+            },
+            {
+              "kind": "rest",
+              "quarters": 1
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 3
+            },
+            {
+              "kind": "rest",
+              "quarters": 0.5
+            },
+            {
+              "kind": "rest",
+              "quarters": 1
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "note",
+              "quarters": 1,
+              "note_id": 4
+            },
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 5
+            },
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 6
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "rest",
+              "quarters": 1
+            },
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 8
+            },
+            {
+              "kind": "rest",
+              "quarters": 0.5
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "note",
+              "quarters": 2,
+              "note_id": 9,
+              "tie_to_next": true
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "note",
+              "quarters": 2,
+              "note_id": 10,
+              "tie_from_previous": true
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 11
+            },
+            {
+              "kind": "rest",
+              "quarters": 0.5
+            },
+            {
+              "kind": "note",
+              "quarters": 0.5,
+              "note_id": 12
+            },
+            {
+              "kind": "rest",
+              "quarters": 0.5
+            }
+          ]
+        },
+        {
+          "events": [
+            {
+              "kind": "rest",
+              "quarters": 2
+            }
+          ],
+          "first_ending": 1,
+          "repeat_backward": true
+        }
+      ]
+    }
+  ],
+  "repeat_marks": [
+    {
+      "system": 10,
+      "bar_index_1_based": 9,
+      "kind": "first_ending",
+      "label": "1"
+    },
+    {
+      "system": 10,
+      "bar_index_1_based": 9,
+      "kind": "repeat_backward"
+    }
+  ],
+  "tempo_marks": [
+    {
+      "system": 1,
+      "text": "Tempo I."
+    },
+    {
+      "system": 3,
+      "text": "Tempo I."
+    },
+    {
+      "system": 4,
+      "text": "Andante."
+    },
+    {
+      "system": 4,
+      "bar_index_1_based": 4,
+      "text": "Tempo I."
+    },
+    {
+      "system": 6,
+      "text": "Più animato."
+    },
+    {
+      "system": 9,
+      "text": "Più animato."
+    }
+  ],
+  "uncertainties": [
+    {
+      "system": 1,
+      "kind": "multi_rest_counts",
+      "detail": "Counts transcribed visually as 2,8,10,8,16,8,8; confirm last two 8-count groups at higher resolution before temporal alignment."
+    },
+    {
+      "system": 2,
+      "kind": "cue_rhythm_omitted",
+      "detail": "Printed Vl. I cue excluded; bars encoded as two-quarter Trombone I silence."
+    },
+    {
+      "system": 3,
+      "kind": "cue_rhythm_omitted",
+      "detail": "Continuation of printed Vl. I cue excluded; bars encoded as two-quarter Trombone I silence."
+    },
+    {
+      "system": 8,
+      "kind": "omr_misread",
+      "detail": "Audiveris MusicXML falsely detects 3/4 and misses beams; raster supports 2/4."
+    },
+    {
+      "system": 10,
+      "kind": "omr_misread",
+      "detail": "Audiveris misses beaming of IDs 5-6 and therefore falsely reports three quarter notes in bar 4."
+    }
+  ],
+  "validation": {
+    "sounding_note_count": 118,
+    "sounding_note_ids_covered_exactly_once": true,
+    "all_explicit_bars_sum_to_meter": true,
+    "quarters_per_meter": 2
+  }
+}

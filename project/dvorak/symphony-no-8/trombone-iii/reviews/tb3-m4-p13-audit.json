@@ -1,0 +1,1823 @@
+{
+  "scope": "Dvorak Symphony No. 8, Trombone III, movement IV, original PDF page 13 systems 1-12",
+  "source_pdf_sha256": "6c161bf1a3a10e54194fecec8b52e2bc6a6fa0de7638c21296808e5456719d8c",
+  "source_scan": "tmp/pdfs/source-13.png",
+  "source_scan_sha256": "b9f9c3562b572170fccfe38b2033a811d2f7911e173408a4ec29c38983a7de6b",
+  "staff_gate": {
+    "main_clef": "BASS",
+    "main_key_signature": "one sharp (F#), inherited at page start and printed at later systems",
+    "cue_clef": "TREBLE for the printed Vl. I. cue; all cue heads excluded"
+  },
+  "method": "Visually inspected every p13 system of the original 3800x5000 scan at original pixels, enlarging accidentals and ambiguous heads. Matched candidate IDs and note heights to sloping bass staff lines, distinguished the Vl. I. treble cue and trombone rests, and located unrecognized printed heads. Source PDF and scan are unchanged.",
+  "coverage": {
+    "systems_checked": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "raw_omr_candidates": 148,
+    "reviewed_sounding_notes": 128,
+    "excluded_omr_candidates": 27,
+    "manual_additions": 7,
+    "tacet_or_cue_only_systems": [
+      3,
+      4,
+      5
+    ],
+    "partial_cue_system": 6
+  },
+  "reviewed_notes": [
+    {
+      "source_page": 13,
+      "system": 1,
+      "source_note_id": 1,
+      "source_x_px": 624.0,
+      "source_y_px": 792.5,
+      "verified_pitch": "F#3",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 1,
+      "source_note_id": 2,
+      "source_x_px": 989.5,
+      "source_y_px": 809.5,
+      "verified_pitch": "E3",
+      "explicit_accidental": {
+        "shape": "NATURAL",
+        "id": "9966"
+      },
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 1,
+      "source_note_id": 3,
+      "source_x_px": 1730.0,
+      "source_y_px": 828.5,
+      "verified_pitch": "D3",
+      "explicit_accidental": {
+        "shape": "NATURAL",
+        "id": "9984"
+      },
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 1,
+      "source_note_id": 0,
+      "source_x_px": 2090.0,
+      "source_y_px": 850.0,
+      "verified_pitch": "C#3",
+      "explicit_accidental": {
+        "shape": "SHARP"
+      },
+      "verdict": "manual_addition",
+      "evidence": "Printed C-sharp eighth note between reviewed ids 3 and 4; OMR omitted its head."
+    },
+    {
+      "source_page": 13,
+      "system": 1,
+      "source_note_id": 4,
+      "source_x_px": 2474.0,
+      "source_y_px": 866.5,
+      "verified_pitch": "B2",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 1,
+      "source_note_id": 5,
+      "source_x_px": 2655.0,
+      "source_y_px": 822.5,
+      "verified_pitch": "E3",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 1,
+      "source_note_id": 6,
+      "source_x_px": 2912.0,
+      "source_y_px": 884.5,
+      "verified_pitch": "A2",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 1,
+      "source_note_id": 7,
+      "source_x_px": 3091.0,
+      "source_y_px": 886.5,
+      "verified_pitch": "A2",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 1,
+      "source_note_id": 8,
+      "source_x_px": 3295.0,
+      "source_y_px": 874.5,
+      "verified_pitch": "Bb2",
+      "explicit_accidental": {
+        "shape": "FLAT",
+        "id": "10034"
+      },
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 2,
+      "source_note_id": 2,
+      "source_x_px": 621.0,
+      "source_y_px": 1176.5,
+      "verified_pitch": "B2",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 2,
+      "source_note_id": 3,
+      "source_x_px": 863.0,
+      "source_y_px": 1191.5,
+      "verified_pitch": "A2",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 2,
+      "source_note_id": 4,
+      "source_x_px": 1103.0,
+      "source_y_px": 1192.5,
+      "verified_pitch": "A2",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 2,
+      "source_note_id": 5,
+      "source_x_px": 1305.0,
+      "source_y_px": 1146.5,
+      "verified_pitch": "D3",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 6,
+      "source_note_id": 6,
+      "source_x_px": 2977.0,
+      "source_y_px": 2583.5,
+      "verified_pitch": "G2",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 6,
+      "source_note_id": 0,
+      "source_x_px": 3180.0,
+      "source_y_px": 2584.0,
+      "verified_pitch": "G2",
+      "explicit_accidental": null,
+      "verdict": "manual_addition",
+      "evidence": "Second low G eighth after rehearsal R; OMR kept only the first at id6."
+    },
+    {
+      "source_page": 13,
+      "system": 7,
+      "source_note_id": 0,
+      "source_x_px": 680.0,
+      "source_y_px": 2910.0,
+      "verified_pitch": "G2",
+      "explicit_accidental": null,
+      "verdict": "manual_addition",
+      "evidence": "First sounding low G of the system, before id2; OMR omitted its head."
+    },
+    {
+      "source_page": 13,
+      "system": 7,
+      "source_note_id": 2,
+      "source_x_px": 850.0,
+      "source_y_px": 2910.5,
+      "verified_pitch": "G2",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 7,
+      "source_note_id": 3,
+      "source_x_px": 1001.0,
+      "source_y_px": 2910.5,
+      "verified_pitch": "G2",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 7,
+      "source_note_id": 4,
+      "source_x_px": 1186.0,
+      "source_y_px": 2864.5,
+      "verified_pitch": "C3",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 7,
+      "source_note_id": 5,
+      "source_x_px": 1274.5,
+      "source_y_px": 2864.5,
+      "verified_pitch": "C3",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 7,
+      "source_note_id": 6,
+      "source_x_px": 1433.0,
+      "source_y_px": 2909.5,
+      "verified_pitch": "G2",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 7,
+      "source_note_id": 7,
+      "source_x_px": 1620.0,
+      "source_y_px": 2863.5,
+      "verified_pitch": "C3",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 7,
+      "source_note_id": 8,
+      "source_x_px": 1720.5,
+      "source_y_px": 2863.5,
+      "verified_pitch": "C3",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 7,
+      "source_note_id": 9,
+      "source_x_px": 1880.0,
+      "source_y_px": 2801.5,
+      "verified_pitch": "G3",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 7,
+      "source_note_id": 10,
+      "source_x_px": 2004.0,
+      "source_y_px": 2818.5,
+      "verified_pitch": "F#3",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 7,
+      "source_note_id": 11,
+      "source_x_px": 2182.0,
+      "source_y_px": 2879.5,
+      "verified_pitch": "Bb2",
+      "explicit_accidental": {
+        "shape": "FLAT",
+        "id": "10833"
+      },
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 7,
+      "source_note_id": 12,
+      "source_x_px": 2274.0,
+      "source_y_px": 2863.5,
+      "verified_pitch": "C3",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 7,
+      "source_note_id": 13,
+      "source_x_px": 2376.0,
+      "source_y_px": 2849.5,
+      "verified_pitch": "D3",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 7,
+      "source_note_id": 14,
+      "source_x_px": 2470.0,
+      "source_y_px": 2850.5,
+      "verified_pitch": "D3",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 7,
+      "source_note_id": 15,
+      "source_x_px": 2639.0,
+      "source_y_px": 2804.5,
+      "verified_pitch": "G3",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 7,
+      "source_note_id": 16,
+      "source_x_px": 2780.5,
+      "source_y_px": 2835.5,
+      "verified_pitch": "Eb3",
+      "explicit_accidental": {
+        "shape": "FLAT",
+        "id": "10834"
+      },
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 7,
+      "source_note_id": 17,
+      "source_x_px": 2870.0,
+      "source_y_px": 2895.5,
+      "verified_pitch": "A2",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 7,
+      "source_note_id": 18,
+      "source_x_px": 3040.0,
+      "source_y_px": 2850.5,
+      "verified_pitch": "D3",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 7,
+      "source_note_id": 19,
+      "source_x_px": 3128.0,
+      "source_y_px": 2851.5,
+      "verified_pitch": "D3",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 7,
+      "source_note_id": 20,
+      "source_x_px": 3219.0,
+      "source_y_px": 2851.5,
+      "verified_pitch": "D3",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 8,
+      "source_note_id": 0,
+      "source_x_px": 680.0,
+      "source_y_px": 3236.0,
+      "verified_pitch": "G2",
+      "explicit_accidental": null,
+      "verdict": "manual_addition",
+      "evidence": "First sounding low G of the system, before id1; OMR omitted its head."
+    },
+    {
+      "source_page": 13,
+      "system": 8,
+      "source_note_id": 1,
+      "source_x_px": 877.0,
+      "source_y_px": 3236.5,
+      "verified_pitch": "G2",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 8,
+      "source_note_id": 2,
+      "source_x_px": 1134.0,
+      "source_y_px": 3234.5,
+      "verified_pitch": "G2",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 8,
+      "source_note_id": 3,
+      "source_x_px": 1424.0,
+      "source_y_px": 3129.5,
+      "verified_pitch": "G3",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 8,
+      "source_note_id": 4,
+      "source_x_px": 1600.0,
+      "source_y_px": 3189.5,
+      "verified_pitch": "C3",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 8,
+      "source_note_id": 5,
+      "source_x_px": 1694.0,
+      "source_y_px": 3188.5,
+      "verified_pitch": "C3",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 8,
+      "source_note_id": 6,
+      "source_x_px": 1845.0,
+      "source_y_px": 3128.5,
+      "verified_pitch": "G3",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 8,
+      "source_note_id": 7,
+      "source_x_px": 2025.0,
+      "source_y_px": 3189.5,
+      "verified_pitch": "C3",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 8,
+      "source_note_id": 8,
+      "source_x_px": 2125.0,
+      "source_y_px": 3189.5,
+      "verified_pitch": "C3",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 8,
+      "source_note_id": 9,
+      "source_x_px": 2266.0,
+      "source_y_px": 3233.5,
+      "verified_pitch": "G2",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 8,
+      "source_note_id": 10,
+      "source_x_px": 2427.0,
+      "source_y_px": 3203.5,
+      "verified_pitch": "B2",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 8,
+      "source_note_id": 11,
+      "source_x_px": 2649.0,
+      "source_y_px": 3158.5,
+      "verified_pitch": "E3",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 8,
+      "source_note_id": 12,
+      "source_x_px": 2821.0,
+      "source_y_px": 3189.5,
+      "verified_pitch": "C3",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 8,
+      "source_note_id": 13,
+      "source_x_px": 3051.0,
+      "source_y_px": 3205.5,
+      "verified_pitch": "B2",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 8,
+      "source_note_id": 14,
+      "source_x_px": 3145.0,
+      "source_y_px": 3158.5,
+      "verified_pitch": "E3",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 8,
+      "source_note_id": 15,
+      "source_x_px": 3223.0,
+      "source_y_px": 3219.5,
+      "verified_pitch": "A2",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 8,
+      "source_note_id": 16,
+      "source_x_px": 3304.0,
+      "source_y_px": 3173.5,
+      "verified_pitch": "D3",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 9,
+      "source_note_id": 1,
+      "source_x_px": 692.0,
+      "source_y_px": 3457.5,
+      "verified_pitch": "G3",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 9,
+      "source_note_id": 2,
+      "source_x_px": 778.0,
+      "source_y_px": 3504.5,
+      "verified_pitch": "D3",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 9,
+      "source_note_id": 3,
+      "source_x_px": 862.0,
+      "source_y_px": 3456.5,
+      "verified_pitch": "G3",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 9,
+      "source_note_id": 4,
+      "source_x_px": 952.0,
+      "source_y_px": 3502.5,
+      "verified_pitch": "D3",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 9,
+      "source_note_id": 5,
+      "source_x_px": 1086.5,
+      "source_y_px": 3456.5,
+      "verified_pitch": "G3",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 9,
+      "source_note_id": 6,
+      "source_x_px": 1176.0,
+      "source_y_px": 3503.5,
+      "verified_pitch": "D3",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 9,
+      "source_note_id": 7,
+      "source_x_px": 1260.0,
+      "source_y_px": 3455.5,
+      "verified_pitch": "G3",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 9,
+      "source_note_id": 8,
+      "source_x_px": 1343.0,
+      "source_y_px": 3502.5,
+      "verified_pitch": "D3",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 9,
+      "source_note_id": 9,
+      "source_x_px": 1477.0,
+      "source_y_px": 3562.5,
+      "verified_pitch": "G2",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 9,
+      "source_note_id": 10,
+      "source_x_px": 1593.0,
+      "source_y_px": 3560.5,
+      "verified_pitch": "G#2",
+      "explicit_accidental": {
+        "shape": "SHARP",
+        "id": "10927"
+      },
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 9,
+      "source_note_id": 11,
+      "source_x_px": 1767.0,
+      "source_y_px": 3546.5,
+      "verified_pitch": "A2",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 9,
+      "source_note_id": 12,
+      "source_x_px": 1895.0,
+      "source_y_px": 3545.5,
+      "verified_pitch": "A#2",
+      "explicit_accidental": {
+        "shape": "SHARP",
+        "id": "10935"
+      },
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 9,
+      "source_note_id": 13,
+      "source_x_px": 2059.0,
+      "source_y_px": 3529.5,
+      "verified_pitch": "B2",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 9,
+      "source_note_id": 14,
+      "source_x_px": 2159.5,
+      "source_y_px": 3514.5,
+      "verified_pitch": "C3",
+      "explicit_accidental": {
+        "shape": "NATURAL",
+        "id": "10941"
+      },
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 9,
+      "source_note_id": 15,
+      "source_x_px": 2259.5,
+      "source_y_px": 3514.5,
+      "verified_pitch": "C#3",
+      "explicit_accidental": {
+        "shape": "SHARP",
+        "id": "10945"
+      },
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 9,
+      "source_note_id": 16,
+      "source_x_px": 2343.0,
+      "source_y_px": 3497.5,
+      "verified_pitch": "D3",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 9,
+      "source_note_id": 17,
+      "source_x_px": 2453.0,
+      "source_y_px": 3483.5,
+      "verified_pitch": "E3",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 9,
+      "source_note_id": 18,
+      "source_x_px": 2495.0,
+      "source_y_px": 3498.5,
+      "verified_pitch": "D3",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 9,
+      "source_note_id": 19,
+      "source_x_px": 2572.0,
+      "source_y_px": 3483.5,
+      "verified_pitch": "E3",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 9,
+      "source_note_id": 20,
+      "source_x_px": 2676.0,
+      "source_y_px": 3467.5,
+      "verified_pitch": "F3",
+      "explicit_accidental": {
+        "shape": "NATURAL",
+        "id": "10964"
+      },
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 9,
+      "source_note_id": 21,
+      "source_x_px": 2763.0,
+      "source_y_px": 3467.5,
+      "verified_pitch": "F#3",
+      "explicit_accidental": {
+        "shape": "SHARP",
+        "id": "10966"
+      },
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 10,
+      "source_note_id": 1,
+      "source_x_px": 686.0,
+      "source_y_px": 3892.5,
+      "verified_pitch": "G2",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 10,
+      "source_note_id": 0,
+      "source_x_px": 865.0,
+      "source_y_px": 3861.0,
+      "verified_pitch": "Bb2",
+      "explicit_accidental": {
+        "shape": "FLAT"
+      },
+      "verdict": "manual_addition",
+      "evidence": "Printed B-flat after id1; its flat was misclassified as a key-signature symbol by OMR."
+    },
+    {
+      "source_page": 13,
+      "system": 10,
+      "source_note_id": 2,
+      "source_x_px": 1096.0,
+      "source_y_px": 3845.5,
+      "verified_pitch": "C3",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 10,
+      "source_note_id": 3,
+      "source_x_px": 1272.0,
+      "source_y_px": 3875.5,
+      "verified_pitch": "A2",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 10,
+      "source_note_id": 4,
+      "source_x_px": 1474.0,
+      "source_y_px": 3889.5,
+      "verified_pitch": "G2",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 10,
+      "source_note_id": -1,
+      "source_x_px": 1657.0,
+      "source_y_px": 3858.0,
+      "verified_pitch": "Bb2",
+      "explicit_accidental": {
+        "shape": "FLAT"
+      },
+      "verdict": "manual_addition",
+      "evidence": "Second printed B-flat after id4; its flat was misclassified as a key-signature symbol by OMR."
+    },
+    {
+      "source_page": 13,
+      "system": 10,
+      "source_note_id": 5,
+      "source_x_px": 1878.0,
+      "source_y_px": 3843.5,
+      "verified_pitch": "C3",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 10,
+      "source_note_id": 6,
+      "source_x_px": 2049.0,
+      "source_y_px": 3873.5,
+      "verified_pitch": "A2",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 10,
+      "source_note_id": 7,
+      "source_x_px": 2276.0,
+      "source_y_px": 3780.5,
+      "verified_pitch": "G3",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 10,
+      "source_note_id": 8,
+      "source_x_px": 2360.0,
+      "source_y_px": 3796.5,
+      "verified_pitch": "F3",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 10,
+      "source_note_id": 9,
+      "source_x_px": 2452.0,
+      "source_y_px": 3795.5,
+      "verified_pitch": "F3",
+      "explicit_accidental": {
+        "shape": "NATURAL",
+        "id": "11137"
+      },
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 10,
+      "source_note_id": 10,
+      "source_x_px": 2534.0,
+      "source_y_px": 3811.5,
+      "verified_pitch": "E3",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 10,
+      "source_note_id": 12,
+      "source_x_px": 2674.0,
+      "source_y_px": 3827.5,
+      "verified_pitch": "D#3",
+      "explicit_accidental": {
+        "shape": "SHARP",
+        "id": "11140"
+      },
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 10,
+      "source_note_id": 13,
+      "source_x_px": 2753.0,
+      "source_y_px": 3811.5,
+      "verified_pitch": "E3",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 10,
+      "source_note_id": 14,
+      "source_x_px": 2857.0,
+      "source_y_px": 3796.5,
+      "verified_pitch": "F3",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 10,
+      "source_note_id": 15,
+      "source_x_px": 2962.0,
+      "source_y_px": 3794.5,
+      "verified_pitch": "F#3",
+      "explicit_accidental": {
+        "shape": "SHARP",
+        "id": "11151"
+      },
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 10,
+      "source_note_id": 16,
+      "source_x_px": 3079.0,
+      "source_y_px": 3779.5,
+      "verified_pitch": "G3",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 10,
+      "source_note_id": 17,
+      "source_x_px": 3158.0,
+      "source_y_px": 3794.5,
+      "verified_pitch": "F3",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 10,
+      "source_note_id": 18,
+      "source_x_px": 3253.0,
+      "source_y_px": 3793.5,
+      "verified_pitch": "F3",
+      "explicit_accidental": {
+        "shape": "NATURAL",
+        "id": "11153"
+      },
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 10,
+      "source_note_id": 19,
+      "source_x_px": 3323.0,
+      "source_y_px": 3809.5,
+      "verified_pitch": "E3",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 11,
+      "source_note_id": 1,
+      "source_x_px": 689.0,
+      "source_y_px": 4156.5,
+      "verified_pitch": "D#3",
+      "explicit_accidental": {
+        "shape": "SHARP",
+        "id": "11171"
+      },
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 11,
+      "source_note_id": 2,
+      "source_x_px": 763.0,
+      "source_y_px": 4141.5,
+      "verified_pitch": "E3",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 11,
+      "source_note_id": 3,
+      "source_x_px": 854.0,
+      "source_y_px": 4125.5,
+      "verified_pitch": "F3",
+      "explicit_accidental": {
+        "shape": "NATURAL",
+        "id": "11176"
+      },
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 11,
+      "source_note_id": 4,
+      "source_x_px": 1077.0,
+      "source_y_px": 4109.5,
+      "verified_pitch": "G3",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 11,
+      "source_note_id": 5,
+      "source_x_px": 1196.0,
+      "source_y_px": 4125.5,
+      "verified_pitch": "F#3",
+      "explicit_accidental": {
+        "shape": "SHARP",
+        "id": "11184"
+      },
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 11,
+      "source_note_id": 6,
+      "source_x_px": 1341.0,
+      "source_y_px": 4124.5,
+      "verified_pitch": "F3",
+      "explicit_accidental": {
+        "shape": "NATURAL",
+        "id": "11188"
+      },
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 11,
+      "source_note_id": 8,
+      "source_x_px": 1470.0,
+      "source_y_px": 4138.5,
+      "verified_pitch": "E3",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 11,
+      "source_note_id": 9,
+      "source_x_px": 1593.0,
+      "source_y_px": 4137.5,
+      "verified_pitch": "Eb3",
+      "explicit_accidental": {
+        "shape": "FLAT",
+        "id": "11197"
+      },
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 11,
+      "source_note_id": 10,
+      "source_x_px": 1993.0,
+      "source_y_px": 4120.5,
+      "verified_pitch": "F#3",
+      "explicit_accidental": {
+        "shape": "SHARP",
+        "id": "11211"
+      },
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 11,
+      "source_note_id": 11,
+      "source_x_px": 2102.0,
+      "source_y_px": 4104.5,
+      "verified_pitch": "G3",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 11,
+      "source_note_id": 12,
+      "source_x_px": 2166.0,
+      "source_y_px": 4104.5,
+      "verified_pitch": "G3",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 11,
+      "source_note_id": 13,
+      "source_x_px": 2233.0,
+      "source_y_px": 4104.5,
+      "verified_pitch": "G3",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 11,
+      "source_note_id": 14,
+      "source_x_px": 2304.0,
+      "source_y_px": 4103.5,
+      "verified_pitch": "G3",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 11,
+      "source_note_id": 15,
+      "source_x_px": 2417.0,
+      "source_y_px": 4104.5,
+      "verified_pitch": "G3",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 11,
+      "source_note_id": 16,
+      "source_x_px": 2480.0,
+      "source_y_px": 4103.5,
+      "verified_pitch": "G3",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 11,
+      "source_note_id": 17,
+      "source_x_px": 2553.0,
+      "source_y_px": 4104.5,
+      "verified_pitch": "G3",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 11,
+      "source_note_id": 18,
+      "source_x_px": 2624.0,
+      "source_y_px": 4103.5,
+      "verified_pitch": "G3",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 11,
+      "source_note_id": 19,
+      "source_x_px": 2755.0,
+      "source_y_px": 4102.5,
+      "verified_pitch": "G3",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 11,
+      "source_note_id": 20,
+      "source_x_px": 2824.0,
+      "source_y_px": 4101.5,
+      "verified_pitch": "G3",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 11,
+      "source_note_id": 21,
+      "source_x_px": 2964.0,
+      "source_y_px": 4099.5,
+      "verified_pitch": "G3",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 11,
+      "source_note_id": 22,
+      "source_x_px": 3091.0,
+      "source_y_px": 4099.5,
+      "verified_pitch": "G3",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 11,
+      "source_note_id": 23,
+      "source_x_px": 3161.0,
+      "source_y_px": 4098.5,
+      "verified_pitch": "G3",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 11,
+      "source_note_id": 24,
+      "source_x_px": 3225.0,
+      "source_y_px": 4100.5,
+      "verified_pitch": "G3",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 11,
+      "source_note_id": 25,
+      "source_x_px": 3297.0,
+      "source_y_px": 4100.5,
+      "verified_pitch": "G3",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 12,
+      "source_note_id": 0,
+      "source_x_px": 680.0,
+      "source_y_px": 4438.0,
+      "verified_pitch": "G3",
+      "explicit_accidental": null,
+      "verdict": "manual_addition",
+      "evidence": "First sounding G of the system before id2; OMR omitted its head."
+    },
+    {
+      "source_page": 13,
+      "system": 12,
+      "source_note_id": 2,
+      "source_x_px": 980.0,
+      "source_y_px": 4435.5,
+      "verified_pitch": "G3",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 12,
+      "source_note_id": 3,
+      "source_x_px": 1270.0,
+      "source_y_px": 4432.5,
+      "verified_pitch": "G3",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 12,
+      "source_note_id": 4,
+      "source_x_px": 1558.0,
+      "source_y_px": 4432.5,
+      "verified_pitch": "G3",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 12,
+      "source_note_id": 5,
+      "source_x_px": 1856.0,
+      "source_y_px": 4430.5,
+      "verified_pitch": "G3",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 12,
+      "source_note_id": 6,
+      "source_x_px": 1950.0,
+      "source_y_px": 4430.5,
+      "verified_pitch": "G3",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 12,
+      "source_note_id": 7,
+      "source_x_px": 2087.0,
+      "source_y_px": 4429.5,
+      "verified_pitch": "G3",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 12,
+      "source_note_id": 8,
+      "source_x_px": 2200.0,
+      "source_y_px": 4428.5,
+      "verified_pitch": "G3",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 12,
+      "source_note_id": 9,
+      "source_x_px": 2340.0,
+      "source_y_px": 4427.5,
+      "verified_pitch": "G3",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 12,
+      "source_note_id": 10,
+      "source_x_px": 2589.0,
+      "source_y_px": 4426.5,
+      "verified_pitch": "G3",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    },
+    {
+      "source_page": 13,
+      "system": 12,
+      "source_note_id": 11,
+      "source_x_px": 2779.0,
+      "source_y_px": 4425.5,
+      "verified_pitch": "G3",
+      "explicit_accidental": null,
+      "verdict": "visually_matched",
+      "evidence": "Matched visible bass-clef notehead to local staff lines and printed accidental; F-sharp key signature continues unless cancelled."
+    }
+  ],
+  "exclusions": [
+    {
+      "system": 2,
+      "source_note_id": 1,
+      "x": 469.0,
+      "y": 1098.5,
+      "omr_pitch": "G3",
+      "reason": "Bass clef graphic at system start, not a notehead."
+    },
+    {
+      "system": 3,
+      "source_note_id": 1,
+      "x": 2108.0,
+      "y": 1559.5,
+      "omr_pitch": "C3",
+      "reason": "Treble clef graphic at start of Vl. I. cue, not a played note."
+    },
+    {
+      "system": 4,
+      "source_note_id": 1,
+      "x": 884.0,
+      "y": 1912.5,
+      "omr_pitch": "A2",
+      "reason": "Vl. I. treble-clef cue or clef graphic over Trombone III rest."
+    },
+    {
+      "system": 4,
+      "source_note_id": 2,
+      "x": 1166.0,
+      "y": 1882.5,
+      "omr_pitch": "C3",
+      "reason": "Vl. I. treble-clef cue or clef graphic over Trombone III rest."
+    },
+    {
+      "system": 4,
+      "source_note_id": 3,
+      "x": 1306.0,
+      "y": 1882.5,
+      "omr_pitch": "C3",
+      "reason": "Vl. I. treble-clef cue or clef graphic over Trombone III rest."
+    },
+    {
+      "system": 4,
+      "source_note_id": 4,
+      "x": 1771.5,
+      "y": 1820.5,
+      "omr_pitch": "G3",
+      "reason": "Vl. I. treble-clef cue or clef graphic over Trombone III rest."
+    },
+    {
+      "system": 4,
+      "source_note_id": 5,
+      "x": 1771.5,
+      "y": 1851.5,
+      "omr_pitch": "E3",
+      "reason": "Vl. I. treble-clef cue or clef graphic over Trombone III rest."
+    },
+    {
+      "system": 4,
+      "source_note_id": 6,
+      "x": 1771.5,
+      "y": 1882.5,
+      "omr_pitch": "C3",
+      "reason": "Vl. I. treble-clef cue or clef graphic over Trombone III rest."
+    },
+    {
+      "system": 4,
+      "source_note_id": 7,
+      "x": 1771.5,
+      "y": 1912.5,
+      "omr_pitch": "A2",
+      "reason": "Vl. I. treble-clef cue or clef graphic over Trombone III rest."
+    },
+    {
+      "system": 4,
+      "source_note_id": 8,
+      "x": 2732.0,
+      "y": 1826.5,
+      "omr_pitch": "G3",
+      "reason": "Vl. I. treble-clef cue or clef graphic over Trombone III rest."
+    },
+    {
+      "system": 4,
+      "source_note_id": 9,
+      "x": 2732.0,
+      "y": 1873.5,
+      "omr_pitch": "D3",
+      "reason": "Vl. I. treble-clef cue or clef graphic over Trombone III rest."
+    },
+    {
+      "system": 4,
+      "source_note_id": 10,
+      "x": 3347.0,
+      "y": 1889.5,
+      "omr_pitch": "C3",
+      "reason": "Vl. I. treble-clef cue or clef graphic over Trombone III rest."
+    },
+    {
+      "system": 5,
+      "source_note_id": 1,
+      "x": 666.0,
+      "y": 2209.5,
+      "omr_pitch": "C3",
+      "reason": "Vl. I. treble-clef cue or clef graphic over Trombone III rest."
+    },
+    {
+      "system": 5,
+      "source_note_id": 2,
+      "x": 1418.5,
+      "y": 2147.5,
+      "omr_pitch": "G3",
+      "reason": "Vl. I. treble-clef cue or clef graphic over Trombone III rest."
+    },
+    {
+      "system": 5,
+      "source_note_id": 3,
+      "x": 1491.0,
+      "y": 2178.5,
+      "omr_pitch": "E3",
+      "reason": "Vl. I. treble-clef cue or clef graphic over Trombone III rest."
+    },
+    {
+      "system": 5,
+      "source_note_id": 4,
+      "x": 1854.5,
+      "y": 2269.5,
+      "omr_pitch": "F#2",
+      "reason": "Vl. I. treble-clef cue or clef graphic over Trombone III rest."
+    },
+    {
+      "system": 5,
+      "source_note_id": 5,
+      "x": 2445.5,
+      "y": 2244.5,
+      "omr_pitch": "A2",
+      "reason": "Vl. I. treble-clef cue or clef graphic over Trombone III rest."
+    },
+    {
+      "system": 5,
+      "source_note_id": 6,
+      "x": 3214.0,
+      "y": 2184.5,
+      "omr_pitch": "E3",
+      "reason": "Vl. I. treble-clef cue or clef graphic over Trombone III rest."
+    },
+    {
+      "system": 6,
+      "source_note_id": 1,
+      "x": 668.0,
+      "y": 2536.5,
+      "omr_pitch": "C3",
+      "reason": "Continued Vl. I. treble-clef cue; Trombone III enters after rehearsal R."
+    },
+    {
+      "system": 6,
+      "source_note_id": 2,
+      "x": 1219.0,
+      "y": 2503.5,
+      "omr_pitch": "E3",
+      "reason": "Continued Vl. I. treble-clef cue; Trombone III enters after rehearsal R."
+    },
+    {
+      "system": 6,
+      "source_note_id": 3,
+      "x": 2380.0,
+      "y": 2505.5,
+      "omr_pitch": "E3",
+      "reason": "Continued Vl. I. treble-clef cue; Trombone III enters after rehearsal R."
+    },
+    {
+      "system": 6,
+      "source_note_id": 4,
+      "x": 2573.0,
+      "y": 2476.5,
+      "omr_pitch": "G3",
+      "reason": "Continued Vl. I. treble-clef cue; Trombone III enters after rehearsal R."
+    },
+    {
+      "system": 6,
+      "source_note_id": 5,
+      "x": 2643.0,
+      "y": 2477.5,
+      "omr_pitch": "G3",
+      "reason": "Continued Vl. I. treble-clef cue; Trombone III enters after rehearsal R."
+    },
+    {
+      "system": 7,
+      "source_note_id": 1,
+      "x": 452.0,
+      "y": 2805.5,
+      "omr_pitch": "G3",
+      "reason": "Bass clef graphic at system start, not a notehead."
+    },
+    {
+      "system": 10,
+      "source_note_id": 11,
+      "x": 2671.0,
+      "y": 3911.5,
+      "omr_pitch": "E2",
+      "reason": "Beam/stem foot below the D#3 at id12, not an E2 notehead."
+    },
+    {
+      "system": 11,
+      "source_note_id": 7,
+      "x": 1467.5,
+      "y": 4197.5,
+      "omr_pitch": "A2",
+      "reason": "Stem foot below the E3 at id8, not an A2 notehead."
+    },
+    {
+      "system": 12,
+      "source_note_id": 1,
+      "x": 441.0,
+      "y": 4439.5,
+      "omr_pitch": "G3",
+      "reason": "Bass clef graphic at system start, not a notehead."
+    }
+  ],
+  "additions": [
+    {
+      "source_page": 13,
+      "system": 1,
+      "source_note_id": 0,
+      "source_x_px": 2090.0,
+      "source_y_px": 850.0,
+      "verified_pitch": "C#3",
+      "explicit_accidental": {
+        "shape": "SHARP"
+      },
+      "verdict": "manual_addition",
+      "evidence": "Printed C-sharp eighth note between reviewed ids 3 and 4; OMR omitted its head."
+    },
+    {
+      "source_page": 13,
+      "system": 6,
+      "source_note_id": 0,
+      "source_x_px": 3180.0,
+      "source_y_px": 2584.0,
+      "verified_pitch": "G2",
+      "explicit_accidental": null,
+      "verdict": "manual_addition",
+      "evidence": "Second low G eighth after rehearsal R; OMR kept only the first at id6."
+    },
+    {
+      "source_page": 13,
+      "system": 7,
+      "source_note_id": 0,
+      "source_x_px": 680.0,
+      "source_y_px": 2910.0,
+      "verified_pitch": "G2",
+      "explicit_accidental": null,
+      "verdict": "manual_addition",
+      "evidence": "First sounding low G of the system, before id2; OMR omitted its head."
+    },
+    {
+      "source_page": 13,
+      "system": 8,
+      "source_note_id": 0,
+      "source_x_px": 680.0,
+      "source_y_px": 3236.0,
+      "verified_pitch": "G2",
+      "explicit_accidental": null,
+      "verdict": "manual_addition",
+      "evidence": "First sounding low G of the system, before id1; OMR omitted its head."
+    },
+    {
+      "source_page": 13,
+      "system": 10,
+      "source_note_id": 0,
+      "source_x_px": 865.0,
+      "source_y_px": 3861.0,
+      "verified_pitch": "Bb2",
+      "explicit_accidental": {
+        "shape": "FLAT"
+      },
+      "verdict": "manual_addition",
+      "evidence": "Printed B-flat after id1; its flat was misclassified as a key-signature symbol by OMR."
+    },
+    {
+      "source_page": 13,
+      "system": 10,
+      "source_note_id": -1,
+      "source_x_px": 1657.0,
+      "source_y_px": 3858.0,
+      "verified_pitch": "Bb2",
+      "explicit_accidental": {
+        "shape": "FLAT"
+      },
+      "verdict": "manual_addition",
+      "evidence": "Second printed B-flat after id4; its flat was misclassified as a key-signature symbol by OMR."
+    },
+    {
+      "source_page": 13,
+      "system": 12,
+      "source_note_id": 0,
+      "source_x_px": 680.0,
+      "source_y_px": 4438.0,
+      "verified_pitch": "G3",
+      "explicit_accidental": null,
+      "verdict": "manual_addition",
+      "evidence": "First sounding G of the system before id2; OMR omitted its head."
+    }
+  ],
+  "pitch_corrections": [],
+  "uncertainties": [],
+  "limitations": "Pitch, octave, accidental, note inclusion and cue distinction were checked. Printed rhythms, ties, repeats and tempo are a separate audit. Added x/y centers are approximate to a few scan pixels; a second musician review is useful before performance use."
+}

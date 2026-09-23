@@ -1,64 +1,26 @@
-# Agent-Friendly Repository Template
+# dynamic · 譜読みカタログ
 
-A repository baseline for projects developed by humans and coding agents through GitHub Issues and pull requests.
+vEdit の Fuyomi 特別モードから、再利用可能な譜読み処理と今回の譜読みデータ・監査記録・成果物をこのリポジトリへ移しました。実行エンジンも `tools/fuyomi/` にあり、vEdit パッケージに依存しません。
 
-The template is intentionally language- and framework-neutral. It provides the operating contract, work-tracking structure, and evidence standards; each generated repository must add its own architecture, commands, and domain constraints.
+## 配置
 
-## Start a new repository
+- `tools/` — Fuyomi処理、静的カタログ生成、検証コードとテスト
+- `project/<作曲者>/<作品>/<パート>/` — 音高・長さ・ポジション、出典ハッシュ、レビュー、監査状態、処理記録
+- `public/` — 閲覧用HTMLと譜読み注釈PDF。元譜PDF、原ページ画像、OMR生データ、個人録音は含みません
 
-1. Select **Use this template** on GitHub and create the repository from the default branch.
-2. Complete [`TEMPLATE_SETUP.md`](TEMPLATE_SETUP.md).
-3. Run `./scripts/bootstrap-repository.sh OWNER/REPOSITORY` after authenticating GitHub CLI.
-4. Replace the project placeholders in [`AGENTS.md`](AGENTS.md), [`docs/architecture/README.md`](docs/architecture/README.md), and [`docs/testing.md`](docs/testing.md).
-5. Create the first Issue before implementation begins.
+`public/catalog.json` は作曲家別の譜読みガイドを、`project/catalog.json` はFuyomi成果物と再生・監査状態を記録します。トップページからDvořákのトロンボーン各パート、Horn II、VerdiのNabuccoを閲覧できます。
 
-GitHub template repositories copy directory structure and files. Repository settings, labels, rulesets, secrets, environments, installed apps, and existing Issues or pull requests require separate setup. The bootstrap script applies a conservative baseline for merge settings and labels; review repository rules manually for the project's risk level.
+## 再現と検証
 
-## Included operating model
+Python 3.11以降が必要です。PDF処理にはPillow、pypdf、ReportLabを使います。AudiverisとPopplerは候補認識・ページ描画を行う場合だけ必要です。
 
-```text
-Issue intake
-  -> acceptance criteria and boundaries
-  -> agent claim with identity and scope
-  -> branch or explicitly authorized direct-main change
-  -> implementation with progress updates
-  -> validation evidence
-  -> pull request and review
-  -> squash merge
-  -> Issue completion record
-  -> merged branch cleanup
+```sh
+python3 -m pip install Pillow pypdf reportlab
+python3 tools/build_catalog.py
+python3 tools/validate_catalog.py
+python3 -m unittest discover -s tests -v
+python3 -m tools.fuyomi --help
+node --check tools/fuyomi/player.js
 ```
 
-The templates enforce several recurring rules:
-
-- Work is coordinated through Issues; do not silently start overlapping work.
-- An agent declares its identity, scope, base commit, and branch before changing files.
-- One Issue should represent one reviewable outcome.
-- Validation evidence names exact commands, environments, and results.
-- Blocked or incomplete work is handed off with exact refs and remaining steps, never reported as complete.
-- Merge is permitted only when acceptance criteria, checks, review state, and authorization are satisfied.
-- Merged branches are removed to keep the base clean.
-- Destructive operations, production changes, secret handling, spending, and other high-risk actions require explicit human authorization.
-
-## Repository map
-
-| Path | Purpose |
-| --- | --- |
-| `AGENTS.md` | Short, authoritative map and agent operating rules |
-| `AGENT.md` | Compatibility pointer to `AGENTS.md` |
-| `.github/copilot-instructions.md` | Concise GitHub Copilot repository instructions |
-| `.github/ISSUE_TEMPLATE/` | Structured work, bug, design, and handoff intake |
-| `.github/PULL_REQUEST_TEMPLATE.md` | Review and evidence contract |
-| `docs/repository-contract.md` | Instruction hierarchy and sources of truth |
-| `docs/issue-management.md` | Issue state machine, claim comments, progress, and closure |
-| `docs/testing.md` | Project validation matrix and evidence format |
-| `docs/exec-plans/` | Living plans for multi-step or high-risk work |
-| `docs/decisions/` | Architecture Decision Records |
-| `docs/handoffs/` | Exact continuation records for unfinished work |
-| `scripts/bootstrap-repository.sh` | Optional labels and merge-setting bootstrap |
-
-## Maintenance model
-
-Keep `AGENTS.md` compact. It should be a map, not an encyclopedia. Put durable design facts in `docs/`, executable validation in scripts or CI, and task-specific facts in Issues and pull requests.
-
-Changes made later to this template do not automatically propagate into repositories previously generated from it. Record the originating [`TEMPLATE_VERSION`](TEMPLATE_VERSION), then port material template improvements through a normal Issue and pull request in each child repository.
+個々の譜読みの正確さは、該当する `project/` の原譜照合記録を確認してください。ツールテストの成功だけで音符監査や再生許可を意味しません。

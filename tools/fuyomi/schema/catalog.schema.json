@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Fuyomi artifact catalog",
+  "type": "object",
+  "required": ["schema_version", "title", "artifacts"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "title": {"type": "string", "minLength": 1},
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "composer", "work", "part", "status", "source_sha256", "source_pages", "playback", "summary", "links"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$"},
+          "composer": {"type": "string"},
+          "work": {"type": "string"},
+          "part": {"type": "string"},
+          "status": {"type": "string"},
+          "source_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+          "source_pages": {"type": "array", "items": {"type": "integer", "minimum": 1}},
+          "playback": {
+            "type": "object",
+            "required": ["present", "full_movement_authorized", "recording_alignment"],
+            "properties": {
+              "present": {"type": "boolean"},
+              "full_movement_authorized": {"type": "boolean"},
+              "recording_alignment": {"enum": ["not_aligned", "reviewed"]}
+            },
+            "additionalProperties": false
+          },
+          "summary": {"type": "string"},
+          "links": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["format", "path", "label"],
+              "properties": {
+                "format": {"enum": ["html", "pdf"]},
+                "path": {"type": "string", "pattern": "^public/"},
+                "label": {"type": "string"},
+                "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+                "derivative": {"type": "boolean"}
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

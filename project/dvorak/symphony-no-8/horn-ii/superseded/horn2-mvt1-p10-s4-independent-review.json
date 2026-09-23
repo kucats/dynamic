@@ -1,0 +1,254 @@
+{
+  "schema_version": "1.0",
+  "report_type": "independent_source_image_pitch_review",
+  "source_pdf": "ホルン1～4.pdf (machine-local path omitted)",
+  "source_pdf_sha256": "0a29673a6ab1f0b02b89485dd0910ea100876cd4589feaced09fbad153839665",
+  "source_pdf_page": 10,
+  "part": "Corno II / Horn II in F",
+  "movement": "Dvořák Symphony No. 8, movement I",
+  "scope": {
+    "printed_system": 4,
+    "source_measure_candidates": [
+      25,
+      26
+    ],
+    "note_ids": [
+      "p10-s04-n001",
+      "p10-s04-n004",
+      "p10-s04-n005",
+      "p10-s04-n006",
+      "p10-s04-n007",
+      "p10-s04-n008",
+      "p10-s04-n009",
+      "p10-s04-n010"
+    ]
+  },
+  "comparison_source_record": "horn2-mvt1-p10-reviewed.json (machine-local path omitted)",
+  "source_rasters": [
+    {
+      "path": "source-page-10-380dpi.png (machine-local path omitted)",
+      "dpi": 380,
+      "dimensions_px": [
+        3758,
+        4944
+      ],
+      "sha256": "727c660c8a1c53f9233b04fcfb3c3deffac8c86c19aa7973acda4b0a0adf2bcc",
+      "coordinate_frame": "all listed notehead coordinates and staff lines use this raster"
+    },
+    {
+      "render": "original source PDF page 10 rendered directly at 600 dpi for visual cross-check",
+      "dpi": 600,
+      "dimensions_px": [
+        5933,
+        7805
+      ]
+    }
+  ],
+  "staff_geometry": {
+    "clef": "treble G clef",
+    "staff_line_y_px_380dpi": [
+      1523.8,
+      1556.0,
+      1588.1,
+      1619.9,
+      1652.2
+    ],
+    "line_order_top_to_bottom": [
+      "F5",
+      "D5",
+      "B4",
+      "G4",
+      "E4"
+    ],
+    "bottom_line_reference": "E4 at y=1652.2 px",
+    "mean_half_space_px": 16.05,
+    "key_signature": "None printed at the system start; no local accidental was visible for these target noteheads."
+  },
+  "method": "Independently reopened the source PDF page 10, rendered it directly at 600 dpi, and compared the eight target notehead locations with the supplied 380 dpi source-page raster. Read pitch from vertical notehead-center position against the printed treble G staff (bottom line E4); checked nearby glyphs for local accidentals. MusicXML was treated only as the comparison candidate.",
+  "results": [
+    {
+      "id": "p10-s04-n001",
+      "source_measure_candidate": 25,
+      "visually_confirmed_notehead_center_px_380dpi": [
+        484.6,
+        1704.2
+      ],
+      "source_head_bbox_px_380dpi": [
+        463.8,
+        1686.9,
+        41.5,
+        34.6
+      ],
+      "bottom_line_relative_staff_step_nearest": -3,
+      "clef_based_staff_position": "below staff: B3, space below first ledger C4",
+      "observed_written_pitch": "B3",
+      "accidental_observation": "No local accidental glyph at this note; no key signature at the system start. Natural pitch.",
+      "musicxml_pitch_candidate": "A4",
+      "source_vs_musicxml": "disagree",
+      "independent_conclusion": "Source notehead vertical center falls nearest the stated treble-staff position in the original PDF and 380 dpi raster.",
+      "confidence": "medium-high"
+    },
+    {
+      "id": "p10-s04-n004",
+      "source_measure_candidate": 25,
+      "visually_confirmed_notehead_center_px_380dpi": [
+        622.0,
+        1702.7
+      ],
+      "source_head_bbox_px_380dpi": [
+        601.3,
+        1686.9,
+        41.5,
+        31.6
+      ],
+      "bottom_line_relative_staff_step_nearest": -3,
+      "clef_based_staff_position": "below staff: B3, space below first ledger C4",
+      "observed_written_pitch": "B3",
+      "accidental_observation": "No local accidental glyph at this note; no key signature at the system start. Natural pitch.",
+      "musicxml_pitch_candidate": "A4",
+      "source_vs_musicxml": "disagree",
+      "independent_conclusion": "Source notehead vertical center falls nearest the stated treble-staff position in the original PDF and 380 dpi raster.",
+      "confidence": "medium-high"
+    },
+    {
+      "id": "p10-s04-n005",
+      "source_measure_candidate": 25,
+      "visually_confirmed_notehead_center_px_380dpi": [
+        677.9,
+        1601.4
+      ],
+      "source_head_bbox_px_380dpi": [
+        658.6,
+        1584.1,
+        38.6,
+        34.6
+      ],
+      "bottom_line_relative_staff_step_nearest": 3,
+      "clef_based_staff_position": "above bottom line: A4, second space from bottom (space above G4 line)",
+      "observed_written_pitch": "A4",
+      "accidental_observation": "No local accidental glyph at this note; no key signature at the system start. Natural pitch.",
+      "musicxml_pitch_candidate": "A3",
+      "source_vs_musicxml": "disagree",
+      "independent_conclusion": "Source notehead vertical center falls nearest the stated treble-staff position in the original PDF and 380 dpi raster.",
+      "confidence": "medium-high"
+    },
+    {
+      "id": "p10-s04-n006",
+      "source_measure_candidate": 25,
+      "visually_confirmed_notehead_center_px_380dpi": [
+        679.9,
+        1702.7
+      ],
+      "source_head_bbox_px_380dpi": [
+        659.6,
+        1686.9,
+        40.5,
+        31.6
+      ],
+      "bottom_line_relative_staff_step_nearest": -3,
+      "clef_based_staff_position": "below staff: B3, space below first ledger C4",
+      "observed_written_pitch": "B3",
+      "accidental_observation": "No local accidental glyph at this note; no key signature at the system start. Natural pitch.",
+      "musicxml_pitch_candidate": "A3",
+      "source_vs_musicxml": "disagree",
+      "independent_conclusion": "Source notehead vertical center falls nearest the stated treble-staff position in the original PDF and 380 dpi raster.",
+      "confidence": "medium-high"
+    },
+    {
+      "id": "p10-s04-n007",
+      "source_measure_candidate": 26,
+      "visually_confirmed_notehead_center_px_380dpi": [
+        764.5,
+        1703.2
+      ],
+      "source_head_bbox_px_380dpi": [
+        743.7,
+        1685.9,
+        41.5,
+        34.6
+      ],
+      "bottom_line_relative_staff_step_nearest": -3,
+      "clef_based_staff_position": "below staff: B3, space below first ledger C4",
+      "observed_written_pitch": "B3",
+      "accidental_observation": "No local accidental glyph at this note; no key signature at the system start. Natural pitch.",
+      "musicxml_pitch_candidate": "A3",
+      "source_vs_musicxml": "disagree",
+      "independent_conclusion": "Source notehead vertical center falls nearest the stated treble-staff position in the original PDF and 380 dpi raster.",
+      "confidence": "medium-high"
+    },
+    {
+      "id": "p10-s04-n008",
+      "source_measure_candidate": 26,
+      "visually_confirmed_notehead_center_px_380dpi": [
+        866.3,
+        1602.4
+      ],
+      "source_head_bbox_px_380dpi": [
+        847.5,
+        1585.0,
+        37.6,
+        34.6
+      ],
+      "bottom_line_relative_staff_step_nearest": 3,
+      "clef_based_staff_position": "above bottom line: A4, second space from bottom (space above G4 line)",
+      "observed_written_pitch": "A4",
+      "accidental_observation": "No local accidental glyph at this note; no key signature at the system start. Natural pitch.",
+      "musicxml_pitch_candidate": "A3",
+      "source_vs_musicxml": "disagree",
+      "independent_conclusion": "Source notehead vertical center falls nearest the stated treble-staff position in the original PDF and 380 dpi raster.",
+      "confidence": "medium-high"
+    },
+    {
+      "id": "p10-s04-n009",
+      "source_measure_candidate": 26,
+      "visually_confirmed_notehead_center_px_380dpi": [
+        867.3,
+        1704.2
+      ],
+      "source_head_bbox_px_380dpi": [
+        846.5,
+        1687.9,
+        41.5,
+        32.6
+      ],
+      "bottom_line_relative_staff_step_nearest": -3,
+      "clef_based_staff_position": "below staff: B3, space below first ledger C4",
+      "observed_written_pitch": "B3",
+      "accidental_observation": "No local accidental glyph at this note; no key signature at the system start. Natural pitch.",
+      "musicxml_pitch_candidate": "A3",
+      "source_vs_musicxml": "disagree",
+      "independent_conclusion": "Source notehead vertical center falls nearest the stated treble-staff position in the original PDF and 380 dpi raster.",
+      "confidence": "medium-high"
+    },
+    {
+      "id": "p10-s04-n010",
+      "source_measure_candidate": 26,
+      "visually_confirmed_notehead_center_px_380dpi": [
+        915.3,
+        1689.4
+      ],
+      "source_head_bbox_px_380dpi": [
+        898.0,
+        1672.1,
+        34.6,
+        34.6
+      ],
+      "bottom_line_relative_staff_step_nearest": -2,
+      "clef_based_staff_position": "below staff: C4, first ledger below the treble staff",
+      "observed_written_pitch": "C4",
+      "accidental_observation": "No local accidental glyph at this note; no key signature at the system start. Natural pitch.",
+      "musicxml_pitch_candidate": "B3",
+      "source_vs_musicxml": "disagree",
+      "independent_conclusion": "Source notehead vertical center falls nearest the stated treble-staff position in the original PDF and 380 dpi raster.",
+      "confidence": "medium-high"
+    }
+  ],
+  "summary": {
+    "notes_reviewed": 8,
+    "source_geometry_agrees_with_existing_written_pitch": 8,
+    "source_geometry_confirms_disagreement_with_musicxml": 8,
+    "accidentals_confirmed_for_target_notes": 0,
+    "notes_requiring_further_staff_position_review": 0,
+    "caveat": "This is a targeted pitch-position sanity check. Rhythm, articulation, and exact onset/duration were not audited."
+  }
+}

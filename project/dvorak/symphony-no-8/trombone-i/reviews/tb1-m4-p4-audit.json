@@ -1,0 +1,1025 @@
+{
+  "source_pdf": "Trombone 1, 2,3,Tuba.pdf (machine-local path omitted)",
+  "source_pdf_sha256": "6c161bf1a3a10e54194fecec8b52e2bc6a6fa0de7638c21296808e5456719d8c",
+  "source_page": 4,
+  "part": "Trombone I",
+  "movement": 4,
+  "primary_clef": "ALTO",
+  "audit_scope": "Printed source page 4 systems 1-10, every OMR candidate and cue/rest boundary, plus manually added C4 in system 5.",
+  "key_signature_boundaries": [
+    {
+      "systems": [
+        1,
+        2,
+        3
+      ],
+      "key": "1 sharp (F#)",
+      "evidence": "Visible F-sharp at system 1; carried through system 3."
+    },
+    {
+      "system": 4,
+      "key": "3 flats (cue only)",
+      "evidence": "Printed Trombone II cue; main Trombone I rests."
+    },
+    {
+      "system": 5,
+      "key": "returning main part, opening C4",
+      "evidence": "Single sounding C4 at x≈610, then Flute I cue/tacet."
+    },
+    {
+      "systems": [
+        6,
+        7,
+        8
+      ],
+      "key": "2 flats (Bb,Eb)",
+      "evidence": "Printed two-flat signature at s6 and repeated at later system starts; explicit B naturals and D flats distinguish accidental scope."
+    },
+    {
+      "system": 9,
+      "key": "2 flats through rehearsal K, then 1 sharp (F#) at rehearsal L",
+      "evidence": "Printed key change after the long multimeasure rest at the L double bar."
+    },
+    {
+      "system": 10,
+      "key": "1 sharp (F#)",
+      "evidence": "Printed one-sharp signature at left margin after L."
+    }
+  ],
+  "notes": [
+    {
+      "system": 1,
+      "source_note_id": 1,
+      "x": 639.0,
+      "omr_pitch": "B3",
+      "status": "confirmed",
+      "verified_pitch": "B3",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 1,
+      "source_note_id": 2,
+      "x": 842.0,
+      "omr_pitch": "B3",
+      "status": "confirmed",
+      "verified_pitch": "B3",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 1,
+      "source_note_id": 3,
+      "x": 1106.5,
+      "omr_pitch": "B3",
+      "status": "confirmed",
+      "verified_pitch": "B3",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 1,
+      "source_note_id": 4,
+      "x": 1238.5,
+      "omr_pitch": "B3",
+      "status": "confirmed",
+      "verified_pitch": "B3",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 1,
+      "source_note_id": 5,
+      "x": 1412.0,
+      "omr_pitch": "D4",
+      "status": "confirmed",
+      "verified_pitch": "D4",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 1,
+      "source_note_id": 6,
+      "x": 1596.5,
+      "omr_pitch": "E4",
+      "status": "confirmed",
+      "verified_pitch": "E4",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 1,
+      "source_note_id": 7,
+      "x": 1680.5,
+      "omr_pitch": "C4",
+      "status": "confirmed",
+      "verified_pitch": "C4",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 1,
+      "source_note_id": 8,
+      "x": 1841.5,
+      "omr_pitch": "D4",
+      "status": "confirmed",
+      "verified_pitch": "D4",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 1,
+      "source_note_id": 9,
+      "x": 2029.0,
+      "omr_pitch": "E4",
+      "status": "confirmed",
+      "verified_pitch": "E4",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 1,
+      "source_note_id": 10,
+      "x": 2120.0,
+      "omr_pitch": "C4",
+      "status": "confirmed",
+      "verified_pitch": "C4",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 1,
+      "source_note_id": 11,
+      "x": 2274.0,
+      "omr_pitch": "D4",
+      "status": "confirmed",
+      "verified_pitch": "D4",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 1,
+      "source_note_id": 12,
+      "x": 2415.5,
+      "omr_pitch": "Eb4",
+      "status": "confirmed",
+      "verified_pitch": "Eb4",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 1,
+      "source_note_id": 13,
+      "x": 2608.0,
+      "omr_pitch": "D4",
+      "status": "confirmed",
+      "verified_pitch": "D4",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 1,
+      "source_note_id": 14,
+      "x": 2698.0,
+      "omr_pitch": "G4",
+      "status": "confirmed",
+      "verified_pitch": "G4",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 1,
+      "source_note_id": 15,
+      "x": 2825.0,
+      "omr_pitch": "Bb3",
+      "status": "confirmed",
+      "verified_pitch": "Bb3",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 1,
+      "source_note_id": 16,
+      "x": 2917.0,
+      "omr_pitch": "A3",
+      "status": "confirmed",
+      "verified_pitch": "A3",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 1,
+      "source_note_id": 17,
+      "x": 3086.5,
+      "omr_pitch": "D4",
+      "status": "confirmed",
+      "verified_pitch": "D4",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 1,
+      "source_note_id": 18,
+      "x": 3239.5,
+      "omr_pitch": "Bb3",
+      "status": "confirmed",
+      "verified_pitch": "Bb3",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 1,
+      "source_note_id": 19,
+      "x": 3345.0,
+      "omr_pitch": "Eb4",
+      "status": "confirmed",
+      "verified_pitch": "Eb4",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 2,
+      "source_note_id": 1,
+      "x": 634.0,
+      "omr_pitch": "D4",
+      "status": "confirmed",
+      "verified_pitch": "D4",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 2,
+      "source_note_id": 2,
+      "x": 733.0,
+      "omr_pitch": "D4",
+      "status": "confirmed",
+      "verified_pitch": "D4",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 2,
+      "source_note_id": 3,
+      "x": 835.0,
+      "omr_pitch": "D4",
+      "status": "confirmed",
+      "verified_pitch": "D4",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 2,
+      "source_note_id": 4,
+      "x": 1078.0,
+      "omr_pitch": "B3",
+      "status": "confirmed",
+      "verified_pitch": "B3",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 2,
+      "source_note_id": 5,
+      "x": 1273.0,
+      "omr_pitch": "B3",
+      "status": "confirmed",
+      "verified_pitch": "B3",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 2,
+      "source_note_id": 6,
+      "x": 1524.0,
+      "omr_pitch": "B3",
+      "status": "confirmed",
+      "verified_pitch": "B3",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 2,
+      "source_note_id": 7,
+      "x": 1653.0,
+      "omr_pitch": "B3",
+      "status": "confirmed",
+      "verified_pitch": "B3",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 2,
+      "source_note_id": 8,
+      "x": 1820.5,
+      "omr_pitch": "B3",
+      "status": "confirmed",
+      "verified_pitch": "B3",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 2,
+      "source_note_id": 9,
+      "x": 2000.5,
+      "omr_pitch": "E4",
+      "status": "confirmed",
+      "verified_pitch": "E4",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 2,
+      "source_note_id": 10,
+      "x": 2093.5,
+      "omr_pitch": "C4",
+      "status": "confirmed",
+      "verified_pitch": "C4",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 2,
+      "source_note_id": 11,
+      "x": 2246.0,
+      "omr_pitch": "D4",
+      "status": "confirmed",
+      "verified_pitch": "D4",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 2,
+      "source_note_id": 12,
+      "x": 2429.0,
+      "omr_pitch": "E4",
+      "status": "confirmed",
+      "verified_pitch": "E4",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 2,
+      "source_note_id": 13,
+      "x": 2511.0,
+      "omr_pitch": "C4",
+      "status": "confirmed",
+      "verified_pitch": "C4",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 2,
+      "source_note_id": 14,
+      "x": 2660.0,
+      "omr_pitch": "D4",
+      "status": "confirmed",
+      "verified_pitch": "D4",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 2,
+      "source_note_id": 15,
+      "x": 2844.0,
+      "omr_pitch": "A3",
+      "status": "confirmed",
+      "verified_pitch": "A3",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 2,
+      "source_note_id": 16,
+      "x": 3092.5,
+      "omr_pitch": "B3",
+      "status": "confirmed",
+      "verified_pitch": "B3",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 2,
+      "source_note_id": 17,
+      "x": 3270.0,
+      "omr_pitch": "C4",
+      "status": "confirmed",
+      "verified_pitch": "C4",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 3,
+      "source_note_id": 1,
+      "x": 639.0,
+      "omr_pitch": "D4",
+      "status": "confirmed",
+      "verified_pitch": "D4",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 3,
+      "source_note_id": 2,
+      "x": 724.5,
+      "omr_pitch": "D4",
+      "status": "confirmed",
+      "verified_pitch": "D4",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 3,
+      "source_note_id": 3,
+      "x": 819.0,
+      "omr_pitch": "C4",
+      "status": "confirmed",
+      "verified_pitch": "C4",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 3,
+      "source_note_id": 4,
+      "x": 903.5,
+      "omr_pitch": "A3",
+      "status": "confirmed",
+      "verified_pitch": "A3",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 3,
+      "source_note_id": 5,
+      "x": 1060.5,
+      "omr_pitch": "B3",
+      "status": "confirmed",
+      "verified_pitch": "B3",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 3,
+      "source_note_id": 6,
+      "x": 1141.5,
+      "omr_pitch": "D4",
+      "status": "confirmed",
+      "verified_pitch": "D4",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 3,
+      "source_note_id": 7,
+      "x": 1225.0,
+      "omr_pitch": "D4",
+      "status": "confirmed",
+      "verified_pitch": "D4",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 3,
+      "source_note_id": 8,
+      "x": 1314.5,
+      "omr_pitch": "D4",
+      "status": "confirmed",
+      "verified_pitch": "D4",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 3,
+      "source_note_id": 9,
+      "x": 1456.0,
+      "omr_pitch": "D4",
+      "status": "confirmed",
+      "verified_pitch": "D4",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 3,
+      "source_note_id": 10,
+      "x": 1542.0,
+      "omr_pitch": "D4",
+      "status": "confirmed",
+      "verified_pitch": "D4",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 3,
+      "source_note_id": 11,
+      "x": 1625.5,
+      "omr_pitch": "D4",
+      "status": "confirmed",
+      "verified_pitch": "D4",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 3,
+      "source_note_id": 12,
+      "x": 1705.0,
+      "omr_pitch": "D4",
+      "status": "confirmed",
+      "verified_pitch": "D4",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 3,
+      "source_note_id": 13,
+      "x": 1859.5,
+      "omr_pitch": "D4",
+      "status": "confirmed",
+      "verified_pitch": "D4",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 3,
+      "source_note_id": 14,
+      "x": 1940.0,
+      "omr_pitch": "D4",
+      "status": "confirmed",
+      "verified_pitch": "D4",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 3,
+      "source_note_id": 15,
+      "x": 2024.5,
+      "omr_pitch": "D4",
+      "status": "confirmed",
+      "verified_pitch": "D4",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 3,
+      "source_note_id": 16,
+      "x": 2112.5,
+      "omr_pitch": "D4",
+      "status": "confirmed",
+      "verified_pitch": "D4",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 3,
+      "source_note_id": 17,
+      "x": 2249.5,
+      "omr_pitch": "D4",
+      "status": "confirmed",
+      "verified_pitch": "D4",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 3,
+      "source_note_id": 18,
+      "x": 2334.0,
+      "omr_pitch": "D4",
+      "status": "confirmed",
+      "verified_pitch": "D4",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 3,
+      "source_note_id": 19,
+      "x": 2416.5,
+      "omr_pitch": "D4",
+      "status": "confirmed",
+      "verified_pitch": "D4",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 3,
+      "source_note_id": 20,
+      "x": 2500.5,
+      "omr_pitch": "D4",
+      "status": "confirmed",
+      "verified_pitch": "D4",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 3,
+      "source_note_id": 21,
+      "x": 2638.5,
+      "omr_pitch": "D4",
+      "status": "confirmed",
+      "verified_pitch": "D4",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 4,
+      "source_note_id": 1,
+      "x": 1617.5,
+      "omr_pitch": "Eb3",
+      "status": "exclude_existing_cue",
+      "verified_pitch": null,
+      "evidence": "The system explicitly labels Trombone II cue; Trombone I has separate rests."
+    },
+    {
+      "system": 4,
+      "source_note_id": 2,
+      "x": 1818.5,
+      "omr_pitch": "Eb3",
+      "status": "exclude_existing_cue",
+      "verified_pitch": null,
+      "evidence": "The system explicitly labels Trombone II cue; Trombone I has separate rests."
+    },
+    {
+      "system": 4,
+      "source_note_id": 3,
+      "x": 2103.5,
+      "omr_pitch": "Eb3",
+      "status": "exclude_existing_cue",
+      "verified_pitch": null,
+      "evidence": "The system explicitly labels Trombone II cue; Trombone I has separate rests."
+    },
+    {
+      "system": 5,
+      "source_note_id": 1,
+      "x": 1742.0,
+      "omr_pitch": "B3",
+      "status": "exclude_existing_cue",
+      "verified_pitch": null,
+      "evidence": "Flute I cue; Trombone I rests after the opening C4."
+    },
+    {
+      "system": 6,
+      "source_note_id": 1,
+      "x": 945.5,
+      "omr_pitch": "C4",
+      "status": "confirmed",
+      "verified_pitch": "C4",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 6,
+      "source_note_id": 2,
+      "x": 1122.0,
+      "omr_pitch": "C4",
+      "status": "confirmed",
+      "verified_pitch": "C4",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 6,
+      "source_note_id": 3,
+      "x": 1257.0,
+      "omr_pitch": "E4",
+      "status": "correct_pitch",
+      "verified_pitch": "Eb4",
+      "evidence": "The printed two-flat key signature changes E to Eb or B to Bb, and F is natural."
+    },
+    {
+      "system": 6,
+      "source_note_id": 4,
+      "x": 1458.0,
+      "omr_pitch": "C4",
+      "status": "confirmed",
+      "verified_pitch": "C4",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 6,
+      "source_note_id": 5,
+      "x": 1697.5,
+      "omr_pitch": "E4",
+      "status": "correct_pitch",
+      "verified_pitch": "Eb4",
+      "evidence": "The printed two-flat key signature changes E to Eb or B to Bb, and F is natural."
+    },
+    {
+      "system": 6,
+      "source_note_id": 6,
+      "x": 1874.0,
+      "omr_pitch": "C4",
+      "status": "confirmed",
+      "verified_pitch": "C4",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 6,
+      "source_note_id": 7,
+      "x": 1966.5,
+      "omr_pitch": "C4",
+      "status": "confirmed",
+      "verified_pitch": "C4",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 6,
+      "source_note_id": 8,
+      "x": 2076.0,
+      "omr_pitch": "E4",
+      "status": "correct_pitch",
+      "verified_pitch": "Eb4",
+      "evidence": "The printed two-flat key signature changes E to Eb or B to Bb, and F is natural."
+    },
+    {
+      "system": 6,
+      "source_note_id": 9,
+      "x": 2172.0,
+      "omr_pitch": "E4",
+      "status": "correct_pitch",
+      "verified_pitch": "Eb4",
+      "evidence": "The printed two-flat key signature changes E to Eb or B to Bb, and F is natural."
+    },
+    {
+      "system": 6,
+      "source_note_id": 10,
+      "x": 2358.0,
+      "omr_pitch": "B3",
+      "status": "confirmed",
+      "verified_pitch": "B3",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 6,
+      "source_note_id": 11,
+      "x": 2585.0,
+      "omr_pitch": "D4",
+      "status": "confirmed",
+      "verified_pitch": "D4",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 6,
+      "source_note_id": 12,
+      "x": 2776.5,
+      "omr_pitch": "B3",
+      "status": "confirmed",
+      "verified_pitch": "B3",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 6,
+      "source_note_id": 13,
+      "x": 2907.0,
+      "omr_pitch": "D4",
+      "status": "confirmed",
+      "verified_pitch": "D4",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 6,
+      "source_note_id": 14,
+      "x": 3123.0,
+      "omr_pitch": "B3",
+      "status": "confirmed",
+      "verified_pitch": "B3",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 6,
+      "source_note_id": 15,
+      "x": 3352.0,
+      "omr_pitch": "D4",
+      "status": "confirmed",
+      "verified_pitch": "D4",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 7,
+      "source_note_id": 1,
+      "x": 719.5,
+      "omr_pitch": "B3",
+      "status": "confirmed",
+      "verified_pitch": "B3",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 7,
+      "source_note_id": 2,
+      "x": 812.0,
+      "omr_pitch": "B3",
+      "status": "confirmed",
+      "verified_pitch": "B3",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 7,
+      "source_note_id": 3,
+      "x": 906.5,
+      "omr_pitch": "D4",
+      "status": "confirmed",
+      "verified_pitch": "D4",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 7,
+      "source_note_id": 4,
+      "x": 1005.0,
+      "omr_pitch": "D4",
+      "status": "confirmed",
+      "verified_pitch": "D4",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 7,
+      "source_note_id": 5,
+      "x": 1173.5,
+      "omr_pitch": "Bb3",
+      "status": "confirmed",
+      "verified_pitch": "Bb3",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 7,
+      "source_note_id": 6,
+      "x": 1404.5,
+      "omr_pitch": "Db4",
+      "status": "confirmed",
+      "verified_pitch": "Db4",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 7,
+      "source_note_id": 7,
+      "x": 1552.5,
+      "omr_pitch": "B3",
+      "status": "correct_pitch",
+      "verified_pitch": "Bb3",
+      "evidence": "The printed two-flat key signature changes E to Eb or B to Bb, and F is natural."
+    },
+    {
+      "system": 7,
+      "source_note_id": 8,
+      "x": 1699.0,
+      "omr_pitch": "Db4",
+      "status": "confirmed",
+      "verified_pitch": "Db4",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 7,
+      "source_note_id": 9,
+      "x": 1871.5,
+      "omr_pitch": "B3",
+      "status": "correct_pitch",
+      "verified_pitch": "Bb3",
+      "evidence": "The printed two-flat key signature changes E to Eb or B to Bb, and F is natural."
+    },
+    {
+      "system": 7,
+      "source_note_id": 10,
+      "x": 2112.5,
+      "omr_pitch": "Db4",
+      "status": "confirmed",
+      "verified_pitch": "Db4",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 7,
+      "source_note_id": 11,
+      "x": 2263.5,
+      "omr_pitch": "B3",
+      "status": "correct_pitch",
+      "verified_pitch": "Bb3",
+      "evidence": "The printed two-flat key signature changes E to Eb or B to Bb, and F is natural."
+    },
+    {
+      "system": 7,
+      "source_note_id": 12,
+      "x": 2356.0,
+      "omr_pitch": "B3",
+      "status": "correct_pitch",
+      "verified_pitch": "Bb3",
+      "evidence": "The printed two-flat key signature changes E to Eb or B to Bb, and F is natural."
+    },
+    {
+      "system": 7,
+      "source_note_id": 13,
+      "x": 2476.0,
+      "omr_pitch": "Db4",
+      "status": "confirmed",
+      "verified_pitch": "Db4",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 7,
+      "source_note_id": 14,
+      "x": 2561.5,
+      "omr_pitch": "Db4",
+      "status": "confirmed",
+      "verified_pitch": "Db4",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 7,
+      "source_note_id": 15,
+      "x": 2710.0,
+      "omr_pitch": "F#3",
+      "status": "correct_pitch",
+      "verified_pitch": "F3",
+      "evidence": "The printed two-flat key signature changes E to Eb or B to Bb, and F is natural."
+    },
+    {
+      "system": 8,
+      "source_note_id": 1,
+      "x": 1391.0,
+      "omr_pitch": "G3",
+      "status": "delete_cue",
+      "verified_pitch": null,
+      "evidence": "Visible Bassi cue over main-part rest."
+    },
+    {
+      "system": 8,
+      "source_note_id": 2,
+      "x": 1455.0,
+      "omr_pitch": "G3",
+      "status": "delete_cue",
+      "verified_pitch": null,
+      "evidence": "Visible Bassi cue over main-part rest."
+    },
+    {
+      "system": 8,
+      "source_note_id": 3,
+      "x": 2276.0,
+      "omr_pitch": "C4",
+      "status": "confirmed",
+      "verified_pitch": "C4",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 8,
+      "source_note_id": 4,
+      "x": 2688.5,
+      "omr_pitch": "C#4",
+      "status": "confirmed",
+      "verified_pitch": "C#4",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 8,
+      "source_note_id": 5,
+      "x": 3095.0,
+      "omr_pitch": "B3",
+      "status": "correct_pitch",
+      "verified_pitch": "Bb3",
+      "evidence": "The printed two-flat key signature changes E to Eb or B to Bb, and F is natural."
+    },
+    {
+      "system": 9,
+      "source_note_id": 1,
+      "x": 588.0,
+      "omr_pitch": "B3",
+      "status": "correct_pitch",
+      "verified_pitch": "Bb3",
+      "evidence": "The printed two-flat key signature changes E to Eb or B to Bb, and F is natural."
+    },
+    {
+      "system": 9,
+      "source_note_id": 2,
+      "x": 967.0,
+      "omr_pitch": "C#4",
+      "status": "confirmed",
+      "verified_pitch": "C#4",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 9,
+      "source_note_id": 3,
+      "x": 1737.0,
+      "omr_pitch": "C#4",
+      "status": "confirmed",
+      "verified_pitch": "C#4",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 9,
+      "source_note_id": 4,
+      "x": 3350.0,
+      "omr_pitch": "E4",
+      "status": "delete_cue",
+      "verified_pitch": null,
+      "evidence": "Visible Bassi cue over main-part rest."
+    },
+    {
+      "system": 10,
+      "source_note_id": 1,
+      "x": 2119.5,
+      "omr_pitch": "D4",
+      "status": "confirmed",
+      "verified_pitch": "D4",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 10,
+      "source_note_id": 2,
+      "x": 2285.0,
+      "omr_pitch": "D4",
+      "status": "confirmed",
+      "verified_pitch": "D4",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 10,
+      "source_note_id": 3,
+      "x": 2681.0,
+      "omr_pitch": "C4",
+      "status": "confirmed",
+      "verified_pitch": "C4",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 10,
+      "source_note_id": 4,
+      "x": 2758.5,
+      "omr_pitch": "D4",
+      "status": "confirmed",
+      "verified_pitch": "D4",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 10,
+      "source_note_id": 5,
+      "x": 2908.0,
+      "omr_pitch": "E4",
+      "status": "confirmed",
+      "verified_pitch": "E4",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    },
+    {
+      "system": 10,
+      "source_note_id": 6,
+      "x": 3023.0,
+      "omr_pitch": "C4",
+      "status": "confirmed",
+      "verified_pitch": "C4",
+      "evidence": "Visually checked notehead staff position and local accidental against source page scan."
+    }
+  ],
+  "manual_additions": [
+    {
+      "system": 5,
+      "source_note_id": 0,
+      "x": 610,
+      "pitch": "C4",
+      "status": "confirmed",
+      "evidence": "Opening notehead lies on middle line of alto clef; separate from subsequent Flute I cue."
+    }
+  ],
+  "summary": {
+    "candidate_count": 106,
+    "confirmed_unchanged": 88,
+    "pitch_corrections": 11,
+    "cue_deletions": 3,
+    "already_excluded_cue_candidates": 4,
+    "manual_additions_confirmed": 1,
+    "additional_missed_main_noteheads": 0,
+    "confidence_note": "The key-signature correction is material: OMR incorrectly carried 1 sharp across the printed 2-flat passage. All main noteheads were visually cross-checked at system level; cue boundary s8 was assessed from the Bassi label, printed main rests, and the f main-entry mark."
+  }
+}

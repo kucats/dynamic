@@ -1,0 +1,230 @@
+{
+  "schema": 1,
+  "units": "quarter notes; numeric token consumes next played notehead; rN is a rest; RN is N whole bars; ~ ties into the next notehead; | is a printed barline",
+  "playback_order": "written order, repeat signs retained as separate metadata; do not silently discard repeat policy",
+  "pages": {
+    "6": {
+      "1": "4 | 2 2 | 4~ | 2 2 | 2 2 | 2 r2 | 2 2 | 2 2 | 4",
+      "2": "4~ | 2 r2 | 2 2 | 2 2 | 2 2 | 4~ | 2 2 | 4~ | 1 r1 r2 | R9",
+      "3": "R11 | R15 | R2 | r2 r1 r.5 .5 | 2 2",
+      "4": ".5 r.5 .5 r.25 .25 .5 r.5 .5 r.25 .25 | .5 r.5 .5 r.5 r1 .5 r.5 | .5 r.5 r1 r2 | R16 | R12 | R2",
+      "5": "R4 | .5 r.5 r1 r2 | R1 | R4 | 1 r1 1 r1 | 1 r1 1 r1",
+      "6": "1 1 1 1 | 1 1 1 1 | 1 .5 .5 .5 .5 1 | 1 1 1 1 | 1 .5 .5 .5 .5 1 | 1 1 1 1",
+      "7": "1 r.5 .5 1 r.5 .5 | 1 r.5 .5 1 r.5 .5 | 2 2 | 3 .5 .5 | 1 1 1 1 | 4 | R12 | 4",
+      "8": "2 2 | 4~ | 2 2 | 2 2 | 2 r2 | 2 2 | 2 2 | 4 | 4~ | 2 r2",
+      "9": "2 2 | 2 2 | 2 2 | 4~ | 2 2 | 4~ | 1 r1 r2 | R11 | 4 | R8"
+    },
+    "7": {
+      "1": ".5 r.5 r1 r2 | R8 | R14 | R10 | R4 | .5 .5 .5 .5 r2",
+      "2": ".5 .5 .5 .5 r2 | .5 .5 .5 .5 r2 | 4~ | 4 | R12 | 2~ .5 r.5 r1 | r1 .5 r.5 r1 .5 r.5 | r1 .5 r.5 1 r1",
+      "3": "r1 1 r1 1 | r1 1 r1 1 | r1 1 r2 | r1 1 r1 1 | r1 1 r1 1 | r1 1 r1 1 | r1 1 r1 1 | r1 1 r2",
+      "4": "r1 1 r1 1 | r1 1 r1 1 | 1 r1 1 r.5 .5 | 4 | 2 1 1 | 4~ | 4~ | 1 r1 r2 | R1",
+      "5": "R6 | 4 | R1 | 4 | R1 | 4 | R1 | R4 | R20 | R3",
+      "6": "R1 | 1 r1 1 r1 | 1 r1 1 r1 | 1 1 1 1 | 1 1 1 1 | 1 .5 .5 .5 .5 1 | 1 1 1 1",
+      "7": "1 .5 .5 .5 .5 1 | 1 1 1 1 | 1 r.5 .5 1 r.5 .5 | 1 r.5 .5 1 r.5 .5 | 1 1 .5 r.25 .25 .5 r.25 .25",
+      "8": "1 1 .5 r.25 .25 .5 r.25 .25 | .5 r.5 r1 .5 r.5 r1 | .5 r.5 r1 .5 r.5 r1 | 1 r.75 .25 2 | .5 r.5 r.75 .25 2 | .5 r.5 r.75 .25 2",
+      "9": ".5 r.5 r.75 .25 2 | 4 | 4 | 2 2 | 1 1 1 1 | .5 r.5 .5 .5 2 | .5 r.5 1 2 | .5 r.5 r1 r2 | R1",
+      "10": "r2 r1 1 | 1 r1 r2 | R1 | r2 r1 1 | r2 r1 1 | r2 r1 1 | 4~ | 4 | 4~ | 4~",
+      "11": ".5 r.5 r1 .5 r.5 r1 | .5 r.5 r1 .5 r.5 r1 | .5 r.5 .5 r.5 .5 r.5 .5 r.5 | .5 r.5 r1 r2"
+    },
+    "8": {
+      "1": "R16 | R1 | R8 | R8 | R8 | R8",
+      "2": "R4 | R4 | .5 r.5 .5 r.5 | 1.5 .5",
+      "3": ".5 r.5 .5 .5 | .5 r.5 .5 .5 | 1 1 | .5 .5 .5 .5 | 1 .5 .5 | .5 .5 .5 r.5 | .5 r.5 .5 r.5 | 1.5 .5",
+      "4": ".5 r.5 .5 .5 | .5 r.5 .5 .5 | .5 r.5 .5 r.5 | .5 r.5 .5 r.5 | .5 .5 .5 .5 | .5 .5 .5 r.5 | R8",
+      "5": "R7",
+      "6": "R1 | R1 | .5 r.5 .5 r.5 | 1.5 .5 | .5 r.5 .5 .5 | .5 r.5 .5 .5 | 1 1",
+      "7": ".5 .5 .5 .5 | 1 .5 .5 | .5 .5 .5 r.5 | .5 r.5 .5 r.5 | 1.5 .5 | .5 r.5 .5 .5 | .5 r.5 .5 .5",
+      "8": ".5 r.5 .5 r.5 | .5 r.5 .5 r.5 | .5 .5 .5 .5 | .5 .5 .5 .5 | .5 .5 .5 .5 | .5 .5 .5 .5 | .5 .5 .5 .5",
+      "9": ".5 r.5 r1 | R10 | R4 | R2 | .5 r.5 .5 r.5 | .5 r.5 r1 | .5 r.5 .5 r.5 | 1 r1",
+      "10": ".5 r.5 .5 r.5 | .5 r.5 r1 | R11 | R1 | R4",
+      "11": "R1 | R10 | R7"
+    },
+    "9": {
+      "1": "r1 r.5 .5 | 1 1 | 1 r.5 .5 | .5 .5 .5 .5 | 1 r.5 .5 | 1 1 | 1 r.5 .5 | .5 .5 .5 .5 | 1 r.5 .5",
+      "2": "1 1 | 1 r.5 .5 | .5 .5 .5 .5 | .5 r.5 r1 | R7 | R4 | R2",
+      "3": "R2 | .5 r.5 r1 | .5 r.5 r1 | .5 r.5 r1 | .5 r.5 r1 | .5 r.5 r1 | .5 r.5 .5 r.5 | .5 r.5 r1",
+      "4": "R5 | R10 | R6 | R8 | r1 1",
+      "5": "1.5 .5 | r1 .5 .5 | 1 1 | R14 | R2 | R8 | R10 | R8 | R16 | R8",
+      "6": "R8 | R6 | R6 | R6",
+      "7": "R10",
+      "8": ".5 r.5 .5 r.5 | 1.5 .5 | .5 r.5 .5 .5 | .5 r.5 .5 .5 | 1 1 | .5 .5 .5 .5 | 1 .5 .5 | .5 .5 .5 r.5",
+      "9": ".5 r.5 .5 r.5 | 1.5 .5 | .5 r.5 .5 .5 | .5 r.5 .5 .5 | .5 r.5 .5 r.5 | .5 r.5 .5 r.5 | .5 .5 .5 .5 | .5 .5 .5 .5",
+      "10": ".5 .5 .5 .5 | .5 r.5 r1 | R3 | .75 .25 .5 .5 | 1 .5 .5 | 1 .5 .5 | .25 .25 .25 .25 .25 .25 .25 .25",
+      "11": ".5 r.5 .5 r.5 | .5 r.5 .5 r.5 | .5 r.5 .5 r.5 | .5 r.5 .5 r.5 | .5 r.5 .5 r.5 | .5 r.5 .5 r.5 | .5 r.5 .5 r.5 | .5 r.5 .5 r.5",
+      "12": "1 1 | 1.5 .5 | 1 1 | 1.5 .5 | 1 1 | 1.5 .5 | 1 .5 .5 | 1 1 | .5 r.5 r1",
+      "13": ".5 r.5 r1 | .5 r.5 r1 | .5 r.5 r1 | 1 .5 r.25 .25 | .5 r.5 .5 r.5 | 2~ | 2 | .5 r.5 .5 r.5 | R1"
+    }
+  },
+  "performance_notes": [
+    {
+      "page": 8,
+      "system": 1,
+      "kind": "fermata",
+      "bar_group": 2,
+      "handling": "notation retained; practice playback uses written rest duration unless user pauses"
+    },
+    {
+      "page": 8,
+      "system": 6,
+      "kind": "volta",
+      "bar_groups": [
+        1,
+        2
+      ],
+      "labels": [
+        "1",
+        "2"
+      ],
+      "handling": "cue-rest endings; repeat expansion requires explicit playback policy"
+    }
+  ],
+  "repeat_regions": [
+    {
+      "start": [
+        8,
+        1,
+        4
+      ],
+      "end": [
+        8,
+        1,
+        4
+      ]
+    },
+    {
+      "start": [
+        8,
+        1,
+        5
+      ],
+      "end": [
+        8,
+        1,
+        5
+      ]
+    },
+    {
+      "start": [
+        8,
+        1,
+        6
+      ],
+      "end": [
+        8,
+        1,
+        6
+      ]
+    },
+    {
+      "start": [
+        8,
+        2,
+        1
+      ],
+      "end": [
+        8,
+        2,
+        2
+      ]
+    },
+    {
+      "start": [
+        8,
+        4,
+        7
+      ],
+      "end": [
+        8,
+        4,
+        7
+      ]
+    },
+    {
+      "start": [
+        8,
+        5,
+        1
+      ],
+      "end": [
+        8,
+        6,
+        1
+      ],
+      "first_ending": [
+        8,
+        6,
+        1
+      ],
+      "second_ending": [
+        8,
+        6,
+        2
+      ]
+    },
+    {
+      "start": [
+        9,
+        5,
+        6
+      ],
+      "end": [
+        9,
+        5,
+        6
+      ]
+    },
+    {
+      "start": [
+        9,
+        5,
+        7
+      ],
+      "end": [
+        9,
+        5,
+        7
+      ]
+    },
+    {
+      "start": [
+        9,
+        5,
+        8
+      ],
+      "end": [
+        9,
+        5,
+        8
+      ]
+    },
+    {
+      "start": [
+        9,
+        5,
+        10
+      ],
+      "end": [
+        9,
+        5,
+        10
+      ]
+    },
+    {
+      "start": [
+        9,
+        6,
+        1
+      ],
+      "end": [
+        9,
+        6,
+        1
+      ]
+    }
+  ],
+  "review_notes": [
+    "p8 system2 initial multimeasure rest corrected from 1 to 4 bars by checking the printed 4 and breve-rest sign.",
+    "Internal written bar indices are derived from this part, include both alternate endings, and are not authoritative score measure numbers. IMSLP lists 389 bars for movement IV; the current source-derived 387 indices differ. Global score numbering/recording alignment remains unverified."
+  ]
+}

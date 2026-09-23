@@ -1,45 +1,27 @@
-# Architecture
+# Architecture and invariants
 
-Replace this template with a navigable description of the actual system.
+## Data flow
 
-## System context
+```text
+external immutable score PDF
+  -> private page render / OMR candidates
+  -> composer/work/part review data under project/
+  -> reusable validation and artifact build under tools/
+  -> static review HTML/PDF under public/
+```
 
-- Users and external actors:
-- Primary use cases:
-- External systems:
-- Trust boundaries:
-- Data classifications:
+`tools/fuyomi/` is the standalone implementation ported from the vEdit Fuyomi special mode. It binds review decisions to source hashes and may use local score images/OMR in private workspaces. Those inputs remain outside Git. The workflow does not import or execute vEdit.
 
-## Components
+## Catalogs and ownership
 
-| Component | Responsibility | Interface | Owner/source |
-| --- | --- | --- | --- |
-| `<NAME>` | `<RESPONSIBILITY>` | `<API/PROTOCOL>` | `<PATH/TEAM>` |
+`public/catalog.json` indexes composer/work guides, limitations, source hashes, and public HTML/PDF files. `project/catalog.json` indexes Fuyomi artifacts, source-page spans, audit status, and playback authorization. Root build/validate commands operate on both catalogs.
 
-## Data and control flow
+Reusable code, schemas, validators, and tests live in `tools/`. Composer/work/part readings, timing, reviews, and process receipts live under `project/<composer>/<work>/<part>/`. Static HTML/PDF derivatives live under `public/`. Raw source PDFs, raw scans, OMR, audio, and machine-specific paths are excluded.
 
-Document normal flow, failure flow, retries, idempotency, ordering, persistence, and recovery.
+## Playback authority
 
-## Invariants
+A player may sound notes only when pitch and duration are explicit. Score focus uses the same events. An incomplete note, rhythm, tie, or repeat audit blocks continuous movement playback. Synthetic audio is a practice reference; it is not aligned to an external recording without separate reviewed timing evidence.
 
-List properties that changes must preserve, for example:
+## Validation and provenance
 
-- authorization is checked at a named boundary;
-- data has a single authoritative owner;
-- protocol messages remain backward compatible;
-- retries cannot duplicate irreversible effects;
-- generated artifacts are reproducible from tracked inputs.
-
-## Deployment and operations
-
-- Environments:
-- Configuration sources:
-- Secret boundaries:
-- Deployment procedure:
-- Rollback procedure:
-- Observability:
-- Capacity and failure assumptions:
-
-## Local maps
-
-For a large repository, add component-level documents and nested `AGENTS.md` files rather than expanding the root instruction file indefinitely.
+Keep candidate output, direct source observations, independent audits, and confirmed readings separate. Store source SHA-256 and physical page references, not the excluded source itself. A data-structure change updates schema, parser/validator, documentation, examples, and tests together. No deployment is configured.

@@ -1,0 +1,254 @@
+{
+  "schema_version": 1,
+  "task": "Independent visual cue-note audit for Corno II, Dvorak Symphony No. 8, movement 3",
+  "source_pdf": "ホルン1～4.pdf (machine-local path omitted)",
+  "source_sha256": "0a29673a6ab1f0b02b89485dd0910ea100876cd4589feaced09fbad153839665",
+  "source_page": 13,
+  "coordinate_frame": {
+    "render_dpi": 300,
+    "page_image_width_px": 2968,
+    "page_image_height_px": 3905,
+    "origin": "top-left",
+    "units": "rendered pixels; approximate bounding boxes, not notehead centroids",
+    "bbox_order": [
+      "x_min",
+      "y_min",
+      "x_max",
+      "y_max"
+    ]
+  },
+  "method": "Rendered source page at 300 dpi and visually inspected all 11 Corno II systems. Used printed source labels and reduced cue-note appearance; ranges are deliberately approximate. No source PDF, HTML, or score data was edited.",
+  "systems": [
+    {
+      "system": 1,
+      "staff_y_px": [
+        594,
+        701
+      ],
+      "cue_groups": [
+        {
+          "source_label": "Viol. I.",
+          "label_bbox_px": [
+            1130,
+            535,
+            1280,
+            585
+          ],
+          "notehead_bbox_px": [
+            1250,
+            500,
+            2110,
+            615
+          ],
+          "confidence": "high",
+          "reason": "Small high-register cue run sits immediately after the printed Viol. I. label; heads are visibly reduced and separate from the regular Horn II staff line.",
+          "exclude_from_horn2_playback": true
+        }
+      ]
+    },
+    {
+      "system": 2,
+      "staff_y_px": [
+        885,
+        986
+      ],
+      "cue_groups": [],
+      "note": "No separate instrument cue label or clearly reduced cue-note group observed."
+    },
+    {
+      "system": 3,
+      "staff_y_px": [
+        1170,
+        1279
+      ],
+      "cue_groups": [
+        {
+          "source_label": "Vc., Cb.",
+          "label_bbox_px": [
+            830,
+            1090,
+            1000,
+            1145
+          ],
+          "notehead_bbox_px": [
+            940,
+            1085,
+            1160,
+            1190
+          ],
+          "confidence": "high",
+          "reason": "Short, ledgered small-note cue group immediately follows Vc., Cb.; visually distinct from the larger staff notation.",
+          "exclude_from_horn2_playback": true
+        },
+        {
+          "source_label": "Tbe (D)",
+          "label_bbox_px": [
+            1930,
+            1090,
+            2140,
+            1145
+          ],
+          "notehead_bbox_px": [
+            2010,
+            1175,
+            2520,
+            1270
+          ],
+          "confidence": "medium",
+          "reason": "A second labeled cue is printed over the right-hand part of the system. Several small-looking heads align with this label, but the reduced heads merge with the staff and the Horn II line at this scan quality; verify against source before excluding any continuation beyond this box.",
+          "exclude_from_horn2_playback": true
+        }
+      ]
+    },
+    {
+      "system": 4,
+      "staff_y_px": [
+        1463,
+        1572
+      ],
+      "cue_groups": [
+        {
+          "source_label": "Tbe (D)",
+          "label_bbox_px": [
+            1870,
+            1405,
+            2100,
+            1460
+          ],
+          "notehead_bbox_px": [
+            1990,
+            1460,
+            2540,
+            1555
+          ],
+          "confidence": "medium-low",
+          "reason": "The repeated Tbe (D) label sits above a short right-side cue-like group. Heads are close to the main staff size in the scan, so the boundary is approximate; preserve as an audit candidate, not an unreviewed deletion.",
+          "exclude_from_horn2_playback": "review_before_excluding"
+        }
+      ]
+    },
+    {
+      "system": 5,
+      "staff_y_px": [
+        1752,
+        1862
+      ],
+      "cue_groups": [],
+      "note": "No instrument-source cue label or clearly reduced cue-note group observed."
+    },
+    {
+      "system": 6,
+      "staff_y_px": [
+        2041,
+        2155
+      ],
+      "cue_groups": [
+        {
+          "source_label": "Ob. I.",
+          "label_bbox_px": [
+            1010,
+            2160,
+            1125,
+            2215
+          ],
+          "notehead_bbox_px": [
+            740,
+            2040,
+            1460,
+            2155
+          ],
+          "confidence": "low",
+          "reason": "Ob. I. is printed beneath the staff near a note group. In this scan the noteheads do not separate cleanly by size from the Horn II notation, and the cue start/end cannot be established confidently.",
+          "exclude_from_horn2_playback": "review_before_excluding"
+        }
+      ]
+    },
+    {
+      "system": 7,
+      "staff_y_px": [
+        2335,
+        2445
+      ],
+      "cue_groups": [
+        {
+          "source_label": "Ob.",
+          "label_bbox_px": [
+            530,
+            2290,
+            635,
+            2340
+          ],
+          "notehead_bbox_px": [
+            380,
+            2330,
+            900,
+            2445
+          ],
+          "confidence": "low",
+          "reason": "Ob. appears over the opening note group; adjacent notes look close to normal size and the exact cue endpoint is not visually separable. Do not drop the full system as a cue based on this label alone.",
+          "exclude_from_horn2_playback": "review_before_excluding"
+        }
+      ]
+    },
+    {
+      "system": 8,
+      "staff_y_px": [
+        2627,
+        2733
+      ],
+      "cue_groups": [],
+      "note": "No instrument-source cue label or clearly reduced cue-note group observed."
+    },
+    {
+      "system": 9,
+      "staff_y_px": [
+        2917,
+        3025
+      ],
+      "cue_groups": [
+        {
+          "source_label": "Viol. I.",
+          "label_bbox_px": [
+            900,
+            2865,
+            1055,
+            2920
+          ],
+          "notehead_bbox_px": [
+            930,
+            2910,
+            1570,
+            3025
+          ],
+          "confidence": "low",
+          "reason": "Viol. I. is printed above a rightward run of notes, but noteheads continue across the system and their size does not yield a reliable cue/main-part boundary at this scan quality. The box captures the immediate labeled candidate only.",
+          "exclude_from_horn2_playback": "review_before_excluding"
+        }
+      ]
+    },
+    {
+      "system": 10,
+      "staff_y_px": [
+        3207,
+        3314
+      ],
+      "cue_groups": [],
+      "note": "No instrument-source cue label or clearly reduced cue-note group observed."
+    },
+    {
+      "system": 11,
+      "staff_y_px": [
+        3497,
+        3604
+      ],
+      "cue_groups": [],
+      "note": "No instrument-source cue label or clearly reduced cue-note group observed."
+    }
+  ],
+  "use_guidance": "Cue groups marked true can be excluded from Horn II playback. Groups marked review_before_excluding are cue-source candidates only; keep them out of generated audio only after checking notehead size/continuity against the original page, since their boundaries are uncertain.",
+  "audit_limitations": [
+    "Coordinates are approximate page-image pixel bounds.",
+    "The scanned engraving blurs cue-size versus normal-size noteheads around Tbe (D), Ob. I., Ob., and the later Viol. I. label.",
+    "This audit identifies cue-source regions only; it does not transcribe pitch or duration."
+  ]
+}

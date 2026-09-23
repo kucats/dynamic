@@ -1,0 +1,1646 @@
+{
+  "schema_version": "1.0",
+  "audit_type": "independent visual challenge review",
+  "status": "incomplete_do_not_publish_as_full_transcription",
+  "source": {
+    "pdf": "ホルン1～4.pdf (machine-local path omitted)",
+    "sha256": "0a29673a6ab1f0b02b89485dd0910ea100876cd4589feaced09fbad153839665",
+    "physical_page_one_based": 13,
+    "printed_page_number": "5",
+    "printed_part": "Corno II",
+    "printed_movement": "III",
+    "raster_review_dpi": 480,
+    "raster_dimensions_px": [
+      4749,
+      6248
+    ]
+  },
+  "reading_convention": {
+    "instrument": "Horn in F",
+    "written_to_concert": "down a perfect fifth, seven semitones",
+    "clef": "Read printed clef locally: bass clef in system 6 before Ob. I. treble change; bass-clef Vc., Cb. and Timp. cues elsewhere; treble for coda systems 7-11.",
+    "key_signature": "no signature at starts of coda systems; system 3 contains local one-flat/clef changes requiring separate treatment",
+    "pitch_spelling": "concert notes use common enharmonic spelling; chromatic spelling may be revised after full key review"
+  },
+  "system_count": 11,
+  "systems": [
+    {
+      "system": 1,
+      "notes": [],
+      "verified_pitch_entries": 0,
+      "source_observation": "Opening multimeasure rests and Viol. I. cue passage; previous point set lands partly on stems and cannot be accepted as notehead inventory.",
+      "unresolved_pitch_region": true,
+      "rests": "multiple full-measure or numbered multimeasure rests visible; exact expansion not assigned"
+    },
+    {
+      "system": 2,
+      "notes": [
+        {
+          "id": "p13-s02-h001",
+          "source_xy_px_480dpi": [
+            709,
+            1552
+          ],
+          "source_coordinate_is_estimate": true,
+          "clef": "treble",
+          "written_pitch": "F4",
+          "concert_pitch": "Bb3",
+          "source_role": "horn_part",
+          "pitch_confidence": "medium",
+          "explicit_accidental": null,
+          "accidental_basis": "no local sign seen; no key signature visible on this system",
+          "duration_quarters": null,
+          "tie": null,
+          "rest_context": null,
+          "inspection": "center checked against 480 dpi source raster; rhythm and cue boundary require separate validation",
+          "source_measure_candidate": 7
+        },
+        {
+          "id": "p13-s02-h002",
+          "source_xy_px_480dpi": [
+            1112,
+            1555
+          ],
+          "source_coordinate_is_estimate": true,
+          "clef": "treble",
+          "written_pitch": "F4",
+          "concert_pitch": "Bb3",
+          "source_role": "horn_part",
+          "pitch_confidence": "medium",
+          "explicit_accidental": null,
+          "accidental_basis": "no local sign seen; no key signature visible on this system",
+          "duration_quarters": null,
+          "tie": null,
+          "rest_context": null,
+          "inspection": "center checked against 480 dpi source raster; rhythm and cue boundary require separate validation",
+          "source_measure_candidate": 8
+        },
+        {
+          "id": "p13-s02-h003",
+          "source_xy_px_480dpi": [
+            1547,
+            1555
+          ],
+          "source_coordinate_is_estimate": true,
+          "clef": "treble",
+          "written_pitch": "F4",
+          "concert_pitch": "Bb3",
+          "source_role": "horn_part",
+          "pitch_confidence": "medium",
+          "explicit_accidental": null,
+          "accidental_basis": "no local sign seen; no key signature visible on this system",
+          "duration_quarters": null,
+          "tie": null,
+          "rest_context": null,
+          "inspection": "center checked against 480 dpi source raster; rhythm and cue boundary require separate validation",
+          "source_measure_candidate": 9
+        },
+        {
+          "id": "p13-s02-h004",
+          "source_xy_px_480dpi": [
+            2013,
+            1539
+          ],
+          "source_coordinate_is_estimate": true,
+          "clef": "treble",
+          "written_pitch": "G4",
+          "concert_pitch": "C4",
+          "source_role": "horn_part",
+          "pitch_confidence": "medium",
+          "explicit_accidental": null,
+          "accidental_basis": "no local sign seen; no key signature visible on this system",
+          "duration_quarters": null,
+          "tie": null,
+          "rest_context": null,
+          "inspection": "center checked against 480 dpi source raster; rhythm and cue boundary require separate validation",
+          "source_measure_candidate": 10
+        },
+        {
+          "id": "p13-s02-h005",
+          "source_xy_px_480dpi": [
+            2461,
+            1539
+          ],
+          "source_coordinate_is_estimate": true,
+          "clef": "treble",
+          "written_pitch": "G4",
+          "concert_pitch": "C4",
+          "source_role": "horn_part",
+          "pitch_confidence": "medium",
+          "explicit_accidental": null,
+          "accidental_basis": "no local sign seen; no key signature visible on this system",
+          "duration_quarters": null,
+          "tie": null,
+          "rest_context": null,
+          "inspection": "center checked against 480 dpi source raster; rhythm and cue boundary require separate validation",
+          "source_measure_candidate": 11
+        },
+        {
+          "id": "p13-s02-h006",
+          "source_xy_px_480dpi": [
+            2618,
+            1558
+          ],
+          "source_coordinate_is_estimate": true,
+          "clef": "treble",
+          "written_pitch": "F4",
+          "concert_pitch": "Bb3",
+          "source_role": "horn_part",
+          "pitch_confidence": "medium",
+          "explicit_accidental": null,
+          "accidental_basis": "no local sign seen; no key signature visible on this system",
+          "duration_quarters": null,
+          "tie": null,
+          "rest_context": null,
+          "inspection": "center checked against 480 dpi source raster; rhythm and cue boundary require separate validation",
+          "source_measure_candidate": 11
+        },
+        {
+          "id": "p13-s02-h007",
+          "source_xy_px_480dpi": [
+            2925,
+            1562
+          ],
+          "source_coordinate_is_estimate": true,
+          "clef": "treble",
+          "written_pitch": "F4",
+          "concert_pitch": "Bb3",
+          "source_role": "horn_part",
+          "pitch_confidence": "medium",
+          "explicit_accidental": null,
+          "accidental_basis": "no local sign seen; no key signature visible on this system",
+          "duration_quarters": null,
+          "tie": null,
+          "rest_context": null,
+          "inspection": "center checked against 480 dpi source raster; rhythm and cue boundary require separate validation",
+          "source_measure_candidate": 12
+        },
+        {
+          "id": "p13-s02-h008",
+          "source_xy_px_480dpi": [
+            3203,
+            1658
+          ],
+          "source_coordinate_is_estimate": true,
+          "clef": "treble",
+          "written_pitch": "A3",
+          "concert_pitch": "D3",
+          "source_role": "horn_part",
+          "pitch_confidence": "medium",
+          "explicit_accidental": null,
+          "accidental_basis": "no local sign seen; no key signature visible on this system",
+          "duration_quarters": null,
+          "tie": null,
+          "rest_context": null,
+          "inspection": "center checked against 480 dpi source raster; rhythm and cue boundary require separate validation",
+          "source_measure_candidate": 13
+        },
+        {
+          "id": "p13-s02-h009",
+          "source_xy_px_480dpi": [
+            3485,
+            1661
+          ],
+          "source_coordinate_is_estimate": true,
+          "clef": "treble",
+          "written_pitch": "A3",
+          "concert_pitch": "D3",
+          "source_role": "horn_part",
+          "pitch_confidence": "medium",
+          "explicit_accidental": null,
+          "accidental_basis": "no local sign seen; no key signature visible on this system",
+          "duration_quarters": null,
+          "tie": null,
+          "rest_context": null,
+          "inspection": "center checked against 480 dpi source raster; rhythm and cue boundary require separate validation",
+          "source_measure_candidate": 14
+        },
+        {
+          "id": "p13-s02-h010",
+          "source_xy_px_480dpi": [
+            3843,
+            1664
+          ],
+          "source_coordinate_is_estimate": true,
+          "clef": "treble",
+          "written_pitch": "A3",
+          "concert_pitch": "D3",
+          "source_role": "horn_part",
+          "pitch_confidence": "medium",
+          "explicit_accidental": null,
+          "accidental_basis": "no local sign seen; no key signature visible on this system",
+          "duration_quarters": null,
+          "tie": null,
+          "rest_context": null,
+          "inspection": "center checked against 480 dpi source raster; rhythm and cue boundary require separate validation",
+          "source_measure_candidate": 15
+        }
+      ],
+      "verified_pitch_entries": 10,
+      "source_observation": "Treble staff with short part notes followed by tied low A3 passage; candidate point centers visually checked.",
+      "unresolved_pitch_region": false,
+      "rests": "local rests visible; count/duration not fully resolved"
+    },
+    {
+      "system": 3,
+      "notes": [],
+      "verified_pitch_entries": 0,
+      "source_observation": "Bass-clef Vc., Cb. cue at left, then clef change; Tbe (D) cue at right. Prior blanket treble reading is invalid.",
+      "unresolved_pitch_region": true,
+      "rests": "multiple full-measure or numbered multimeasure rests visible; exact expansion not assigned"
+    },
+    {
+      "system": 4,
+      "notes": [],
+      "verified_pitch_entries": 0,
+      "source_observation": "Interspersed rests, low notes and Tbe (D) candidate cue; prior seven-point list incomplete.",
+      "unresolved_pitch_region": true,
+      "rests": "multiple full-measure or numbered multimeasure rests visible; exact expansion not assigned"
+    },
+    {
+      "system": 5,
+      "notes": [],
+      "verified_pitch_entries": 0,
+      "source_observation": "Timp. figure in bass clef is a cue; later treble part notes visible but not completely transcribed here.",
+      "unresolved_pitch_region": true,
+      "rests": "multiple full-measure or numbered multimeasure rests visible; exact expansion not assigned"
+    },
+    {
+      "system": 6,
+      "notes": [
+        {
+          "id": "p13-s06-h001",
+          "source_xy_px_480dpi": [
+            742,
+            3421
+          ],
+          "source_coordinate_is_estimate": true,
+          "clef": "bass",
+          "written_pitch": "A2",
+          "concert_pitch": "D2",
+          "source_role": "horn_part",
+          "pitch_confidence": "high",
+          "explicit_accidental": null,
+          "accidental_basis": "no local sign seen; no key signature visible on this system",
+          "duration_quarters": null,
+          "tie": null,
+          "rest_context": null,
+          "inspection": "Printed bass clef immediately precedes these heads. Staff bottom G2 at 480 dpi y about 3443; heads sit one diatonic step above at y about 3421."
+        },
+        {
+          "id": "p13-s06-h002",
+          "source_xy_px_480dpi": [
+            1090,
+            3421
+          ],
+          "source_coordinate_is_estimate": true,
+          "clef": "bass",
+          "written_pitch": "A2",
+          "concert_pitch": "D2",
+          "source_role": "horn_part",
+          "pitch_confidence": "high",
+          "explicit_accidental": null,
+          "accidental_basis": "no local sign seen; no key signature visible on this system",
+          "duration_quarters": null,
+          "tie": null,
+          "rest_context": null,
+          "inspection": "Printed bass clef immediately precedes these heads. Staff bottom G2 at 480 dpi y about 3443; heads sit one diatonic step above at y about 3421."
+        },
+        {
+          "id": "p13-s06-h003",
+          "source_xy_px_480dpi": [
+            1963,
+            3382
+          ],
+          "source_coordinate_is_estimate": true,
+          "clef": "treble",
+          "written_pitch": "A4",
+          "concert_pitch": "D4",
+          "source_role": "oboe_i_cue_candidate",
+          "pitch_confidence": "low",
+          "explicit_accidental": null,
+          "accidental_basis": "no local sign seen; no key signature visible on this system",
+          "duration_quarters": null,
+          "tie": null,
+          "rest_context": null,
+          "inspection": "center checked against 480 dpi source raster; rhythm and cue boundary require separate validation"
+        }
+      ],
+      "verified_pitch_entries": 3,
+      "source_observation": "Treble clef at far left followed by printed bass clef; two A2 heads follow bass clef. A later treble clef precedes the Ob. I. labeled cue candidate. The earlier report wrongly read the first two heads as treble F4.",
+      "unresolved_pitch_region": false,
+      "rests": "multiple full-measure or numbered multimeasure rests visible; exact expansion not assigned"
+    },
+    {
+      "system": 7,
+      "notes": [
+        {
+          "id": "p13-s07-h001",
+          "source_xy_px_480dpi": [
+            649,
+            3847
+          ],
+          "source_coordinate_is_estimate": true,
+          "clef": "treble",
+          "written_pitch": "A4",
+          "concert_pitch": "D4",
+          "source_role": "oboe_cue_candidate",
+          "pitch_confidence": "low",
+          "explicit_accidental": null,
+          "accidental_basis": "no local sign seen; no key signature visible on this system",
+          "duration_quarters": null,
+          "tie": null,
+          "rest_context": null,
+          "inspection": "center checked against 480 dpi source raster; rhythm and cue boundary require separate validation"
+        },
+        {
+          "id": "p13-s07-h002",
+          "source_xy_px_480dpi": [
+            653,
+            3801
+          ],
+          "source_coordinate_is_estimate": true,
+          "clef": "treble",
+          "written_pitch": "C5",
+          "concert_pitch": "F4",
+          "source_role": "oboe_cue_candidate",
+          "pitch_confidence": "low",
+          "explicit_accidental": null,
+          "accidental_basis": "no local sign seen; no key signature visible on this system",
+          "duration_quarters": null,
+          "tie": null,
+          "rest_context": null,
+          "inspection": "center checked against 480 dpi source raster; rhythm and cue boundary require separate validation"
+        },
+        {
+          "id": "p13-s07-h003",
+          "source_xy_px_480dpi": [
+            713,
+            3846
+          ],
+          "source_coordinate_is_estimate": true,
+          "clef": "treble",
+          "written_pitch": "A4",
+          "concert_pitch": "D4",
+          "source_role": "oboe_cue_candidate",
+          "pitch_confidence": "low",
+          "explicit_accidental": null,
+          "accidental_basis": "no local sign seen; no key signature visible on this system",
+          "duration_quarters": null,
+          "tie": null,
+          "rest_context": null,
+          "inspection": "center checked against 480 dpi source raster; rhythm and cue boundary require separate validation"
+        },
+        {
+          "id": "p13-s07-h004",
+          "source_xy_px_480dpi": [
+            715,
+            3801
+          ],
+          "source_coordinate_is_estimate": true,
+          "clef": "treble",
+          "written_pitch": "C5",
+          "concert_pitch": "F4",
+          "source_role": "oboe_cue_candidate",
+          "pitch_confidence": "low",
+          "explicit_accidental": null,
+          "accidental_basis": "no local sign seen; no key signature visible on this system",
+          "duration_quarters": null,
+          "tie": null,
+          "rest_context": null,
+          "inspection": "center checked against 480 dpi source raster; rhythm and cue boundary require separate validation"
+        },
+        {
+          "id": "p13-s07-h005",
+          "source_xy_px_480dpi": [
+            845,
+            3887
+          ],
+          "source_coordinate_is_estimate": true,
+          "clef": "treble",
+          "written_pitch": "F4",
+          "concert_pitch": "Bb3",
+          "source_role": "oboe_cue_candidate",
+          "pitch_confidence": "low",
+          "explicit_accidental": null,
+          "accidental_basis": "no local sign seen; no key signature visible on this system",
+          "duration_quarters": null,
+          "tie": null,
+          "rest_context": null,
+          "inspection": "center checked against 480 dpi source raster; rhythm and cue boundary require separate validation"
+        },
+        {
+          "id": "p13-s07-h006",
+          "source_xy_px_480dpi": [
+            849,
+            3717
+          ],
+          "source_coordinate_is_estimate": true,
+          "clef": "treble",
+          "written_pitch": "G5",
+          "concert_pitch": "C5",
+          "source_role": "oboe_cue_candidate",
+          "pitch_confidence": "low",
+          "explicit_accidental": null,
+          "accidental_basis": "no local sign seen; no key signature visible on this system",
+          "duration_quarters": null,
+          "tie": null,
+          "rest_context": null,
+          "inspection": "center checked against 480 dpi source raster; rhythm and cue boundary require separate validation"
+        },
+        {
+          "id": "p13-s07-h007",
+          "source_xy_px_480dpi": [
+            2067,
+            3802
+          ],
+          "source_coordinate_is_estimate": true,
+          "clef": "treble",
+          "written_pitch": "C5",
+          "concert_pitch": "F4",
+          "source_role": "horn_part",
+          "pitch_confidence": "medium",
+          "explicit_accidental": null,
+          "accidental_basis": "no local sign seen; no key signature visible on this system",
+          "duration_quarters": null,
+          "tie": null,
+          "rest_context": null,
+          "inspection": "center checked against 480 dpi source raster; rhythm and cue boundary require separate validation"
+        },
+        {
+          "id": "p13-s07-h008",
+          "source_xy_px_480dpi": [
+            2069,
+            3847
+          ],
+          "source_coordinate_is_estimate": true,
+          "clef": "treble",
+          "written_pitch": "A4",
+          "concert_pitch": "D4",
+          "source_role": "horn_part",
+          "pitch_confidence": "medium",
+          "explicit_accidental": null,
+          "accidental_basis": "no local sign seen; no key signature visible on this system",
+          "duration_quarters": null,
+          "tie": null,
+          "rest_context": null,
+          "inspection": "center checked against 480 dpi source raster; rhythm and cue boundary require separate validation"
+        },
+        {
+          "id": "p13-s07-h009",
+          "source_xy_px_480dpi": [
+            2653,
+            3759
+          ],
+          "source_coordinate_is_estimate": true,
+          "clef": "treble",
+          "written_pitch": "E5",
+          "concert_pitch": "A4",
+          "source_role": "horn_part",
+          "pitch_confidence": "medium",
+          "explicit_accidental": null,
+          "accidental_basis": "no local sign seen; no key signature visible on this system",
+          "duration_quarters": null,
+          "tie": null,
+          "rest_context": null,
+          "inspection": "center checked against 480 dpi source raster; rhythm and cue boundary require separate validation"
+        },
+        {
+          "id": "p13-s07-h010",
+          "source_xy_px_480dpi": [
+            2950,
+            3721
+          ],
+          "source_coordinate_is_estimate": true,
+          "clef": "treble",
+          "written_pitch": "G5",
+          "concert_pitch": "C5",
+          "source_role": "horn_part",
+          "pitch_confidence": "medium",
+          "explicit_accidental": null,
+          "accidental_basis": "no local sign seen; no key signature visible on this system",
+          "duration_quarters": null,
+          "tie": null,
+          "rest_context": null,
+          "inspection": "center checked against 480 dpi source raster; rhythm and cue boundary require separate validation"
+        },
+        {
+          "id": "p13-s07-h011",
+          "source_xy_px_480dpi": [
+            3165,
+            3802
+          ],
+          "source_coordinate_is_estimate": true,
+          "clef": "treble",
+          "written_pitch": "C5",
+          "concert_pitch": "F4",
+          "source_role": "horn_part",
+          "pitch_confidence": "medium",
+          "explicit_accidental": null,
+          "accidental_basis": "no local sign seen; no key signature visible on this system",
+          "duration_quarters": null,
+          "tie": null,
+          "rest_context": null,
+          "inspection": "center checked against 480 dpi source raster; rhythm and cue boundary require separate validation"
+        },
+        {
+          "id": "p13-s07-h012",
+          "source_xy_px_480dpi": [
+            3304,
+            3846
+          ],
+          "source_coordinate_is_estimate": true,
+          "clef": "treble",
+          "written_pitch": "A4",
+          "concert_pitch": "D4",
+          "source_role": "horn_part",
+          "pitch_confidence": "medium",
+          "explicit_accidental": null,
+          "accidental_basis": "no local sign seen; no key signature visible on this system",
+          "duration_quarters": null,
+          "tie": null,
+          "rest_context": null,
+          "inspection": "center checked against 480 dpi source raster; rhythm and cue boundary require separate validation"
+        },
+        {
+          "id": "p13-s07-h013",
+          "source_xy_px_480dpi": [
+            3619,
+            3889
+          ],
+          "source_coordinate_is_estimate": true,
+          "clef": "treble",
+          "written_pitch": "F#4",
+          "concert_pitch": "B3",
+          "source_role": "horn_part",
+          "pitch_confidence": "medium",
+          "explicit_accidental": "♯",
+          "accidental_basis": "printed local sign",
+          "duration_quarters": null,
+          "tie": null,
+          "rest_context": null,
+          "inspection": "center checked against 480 dpi source raster; rhythm and cue boundary require separate validation"
+        },
+        {
+          "id": "p13-s07-h014",
+          "source_xy_px_480dpi": [
+            3886,
+            3890
+          ],
+          "source_coordinate_is_estimate": true,
+          "clef": "treble",
+          "written_pitch": "F#4",
+          "concert_pitch": "B3",
+          "source_role": "horn_part",
+          "pitch_confidence": "medium",
+          "explicit_accidental": null,
+          "accidental_basis": "no local sign seen; no key signature visible on this system",
+          "duration_quarters": null,
+          "tie": null,
+          "rest_context": null,
+          "inspection": "center checked against 480 dpi source raster; rhythm and cue boundary require separate validation"
+        }
+      ],
+      "verified_pitch_entries": 14,
+      "source_observation": "CODA opening labeled Ob. cue, followed by Horn II chords; cue boundary uncertain.",
+      "unresolved_pitch_region": false,
+      "rests": "local rests visible; count/duration not fully resolved"
+    },
+    {
+      "system": 8,
+      "notes": [
+        {
+          "id": "p13-s08-h001",
+          "source_xy_px_480dpi": [
+            702,
+            4349
+          ],
+          "source_coordinate_is_estimate": true,
+          "clef": "treble",
+          "written_pitch": "F#4",
+          "concert_pitch": "B3",
+          "source_role": "horn_part",
+          "pitch_confidence": "high",
+          "explicit_accidental": "♯",
+          "accidental_basis": "printed local sign",
+          "duration_quarters": null,
+          "tie": null,
+          "rest_context": null,
+          "inspection": "center checked against 480 dpi source raster; rhythm and cue boundary require separate validation"
+        },
+        {
+          "id": "p13-s08-h002",
+          "source_xy_px_480dpi": [
+            879,
+            4350
+          ],
+          "source_coordinate_is_estimate": true,
+          "clef": "treble",
+          "written_pitch": "F#4",
+          "concert_pitch": "B3",
+          "source_role": "horn_part",
+          "pitch_confidence": "high",
+          "explicit_accidental": null,
+          "accidental_basis": "no local sign seen; no key signature visible on this system",
+          "duration_quarters": null,
+          "tie": null,
+          "rest_context": null,
+          "inspection": "center checked against 480 dpi source raster; rhythm and cue boundary require separate validation"
+        },
+        {
+          "id": "p13-s08-h003",
+          "source_xy_px_480dpi": [
+            1131,
+            4289
+          ],
+          "source_coordinate_is_estimate": true,
+          "clef": "treble",
+          "written_pitch": "B4",
+          "concert_pitch": "E4",
+          "source_role": "horn_part",
+          "pitch_confidence": "high",
+          "explicit_accidental": null,
+          "accidental_basis": "no local sign seen; no key signature visible on this system",
+          "duration_quarters": null,
+          "tie": null,
+          "rest_context": null,
+          "inspection": "center checked against 480 dpi source raster; rhythm and cue boundary require separate validation"
+        },
+        {
+          "id": "p13-s08-h004",
+          "source_xy_px_480dpi": [
+            1302,
+            4310
+          ],
+          "source_coordinate_is_estimate": true,
+          "clef": "treble",
+          "written_pitch": "A4",
+          "concert_pitch": "D4",
+          "source_role": "horn_part",
+          "pitch_confidence": "high",
+          "explicit_accidental": null,
+          "accidental_basis": "no local sign seen; no key signature visible on this system",
+          "duration_quarters": null,
+          "tie": null,
+          "rest_context": null,
+          "inspection": "center checked against 480 dpi source raster; rhythm and cue boundary require separate validation"
+        },
+        {
+          "id": "p13-s08-h005",
+          "source_xy_px_480dpi": [
+            1555,
+            4309
+          ],
+          "source_coordinate_is_estimate": true,
+          "clef": "treble",
+          "written_pitch": "A4",
+          "concert_pitch": "D4",
+          "source_role": "horn_part",
+          "pitch_confidence": "high",
+          "explicit_accidental": null,
+          "accidental_basis": "no local sign seen; no key signature visible on this system",
+          "duration_quarters": null,
+          "tie": null,
+          "rest_context": null,
+          "inspection": "center checked against 480 dpi source raster; rhythm and cue boundary require separate validation"
+        },
+        {
+          "id": "p13-s08-h006",
+          "source_xy_px_480dpi": [
+            1809,
+            4351
+          ],
+          "source_coordinate_is_estimate": true,
+          "clef": "treble",
+          "written_pitch": "F#4",
+          "concert_pitch": "B3",
+          "source_role": "horn_part",
+          "pitch_confidence": "high",
+          "explicit_accidental": "♯",
+          "accidental_basis": "printed local sign",
+          "duration_quarters": null,
+          "tie": null,
+          "rest_context": null,
+          "inspection": "center checked against 480 dpi source raster; rhythm and cue boundary require separate validation"
+        },
+        {
+          "id": "p13-s08-h007",
+          "source_xy_px_480dpi": [
+            2094,
+            4351
+          ],
+          "source_coordinate_is_estimate": true,
+          "clef": "treble",
+          "written_pitch": "F#4",
+          "concert_pitch": "B3",
+          "source_role": "horn_part",
+          "pitch_confidence": "high",
+          "explicit_accidental": "♯",
+          "accidental_basis": "printed local sign",
+          "duration_quarters": null,
+          "tie": null,
+          "rest_context": null,
+          "inspection": "center checked against 480 dpi source raster; rhythm and cue boundary require separate validation"
+        },
+        {
+          "id": "p13-s08-h008",
+          "source_xy_px_480dpi": [
+            2263,
+            4350
+          ],
+          "source_coordinate_is_estimate": true,
+          "clef": "treble",
+          "written_pitch": "F#4",
+          "concert_pitch": "B3",
+          "source_role": "horn_part",
+          "pitch_confidence": "high",
+          "explicit_accidental": null,
+          "accidental_basis": "no local sign seen; no key signature visible on this system",
+          "duration_quarters": null,
+          "tie": null,
+          "rest_context": null,
+          "inspection": "center checked against 480 dpi source raster; rhythm and cue boundary require separate validation"
+        },
+        {
+          "id": "p13-s08-h009",
+          "source_xy_px_480dpi": [
+            2529,
+            4289
+          ],
+          "source_coordinate_is_estimate": true,
+          "clef": "treble",
+          "written_pitch": "B4",
+          "concert_pitch": "E4",
+          "source_role": "horn_part",
+          "pitch_confidence": "high",
+          "explicit_accidental": null,
+          "accidental_basis": "no local sign seen; no key signature visible on this system",
+          "duration_quarters": null,
+          "tie": null,
+          "rest_context": null,
+          "inspection": "center checked against 480 dpi source raster; rhythm and cue boundary require separate validation"
+        },
+        {
+          "id": "p13-s08-h010",
+          "source_xy_px_480dpi": [
+            2690,
+            4310
+          ],
+          "source_coordinate_is_estimate": true,
+          "clef": "treble",
+          "written_pitch": "A4",
+          "concert_pitch": "D4",
+          "source_role": "horn_part",
+          "pitch_confidence": "high",
+          "explicit_accidental": null,
+          "accidental_basis": "no local sign seen; no key signature visible on this system",
+          "duration_quarters": null,
+          "tie": null,
+          "rest_context": null,
+          "inspection": "center checked against 480 dpi source raster; rhythm and cue boundary require separate validation"
+        },
+        {
+          "id": "p13-s08-h011",
+          "source_xy_px_480dpi": [
+            2979,
+            4329
+          ],
+          "source_coordinate_is_estimate": true,
+          "clef": "treble",
+          "written_pitch": "G4",
+          "concert_pitch": "C4",
+          "source_role": "horn_part",
+          "pitch_confidence": "high",
+          "explicit_accidental": null,
+          "accidental_basis": "no local sign seen; no key signature visible on this system",
+          "duration_quarters": null,
+          "tie": null,
+          "rest_context": null,
+          "inspection": "center checked against 480 dpi source raster; rhythm and cue boundary require separate validation"
+        },
+        {
+          "id": "p13-s08-h012",
+          "source_xy_px_480dpi": [
+            3162,
+            4310
+          ],
+          "source_coordinate_is_estimate": true,
+          "clef": "treble",
+          "written_pitch": "A4",
+          "concert_pitch": "D4",
+          "source_role": "horn_part",
+          "pitch_confidence": "high",
+          "explicit_accidental": null,
+          "accidental_basis": "no local sign seen; no key signature visible on this system",
+          "duration_quarters": null,
+          "tie": null,
+          "rest_context": null,
+          "inspection": "center checked against 480 dpi source raster; rhythm and cue boundary require separate validation"
+        },
+        {
+          "id": "p13-s08-h013",
+          "source_xy_px_480dpi": [
+            3413,
+            4329
+          ],
+          "source_coordinate_is_estimate": true,
+          "clef": "treble",
+          "written_pitch": "G4",
+          "concert_pitch": "C4",
+          "source_role": "horn_part",
+          "pitch_confidence": "high",
+          "explicit_accidental": null,
+          "accidental_basis": "no local sign seen; no key signature visible on this system",
+          "duration_quarters": null,
+          "tie": null,
+          "rest_context": null,
+          "inspection": "center checked against 480 dpi source raster; rhythm and cue boundary require separate validation"
+        },
+        {
+          "id": "p13-s08-h014",
+          "source_xy_px_480dpi": [
+            3563,
+            4455
+          ],
+          "source_coordinate_is_estimate": true,
+          "clef": "treble",
+          "written_pitch": "A3",
+          "concert_pitch": "D3",
+          "source_role": "horn_part",
+          "pitch_confidence": "high",
+          "explicit_accidental": null,
+          "accidental_basis": "no local sign seen; no key signature visible on this system",
+          "duration_quarters": null,
+          "tie": null,
+          "rest_context": null,
+          "inspection": "center checked against 480 dpi source raster; rhythm and cue boundary require separate validation"
+        },
+        {
+          "id": "p13-s08-h015",
+          "source_xy_px_480dpi": [
+            3669,
+            4457
+          ],
+          "source_coordinate_is_estimate": true,
+          "clef": "treble",
+          "written_pitch": "A3",
+          "concert_pitch": "D3",
+          "source_role": "horn_part",
+          "pitch_confidence": "high",
+          "explicit_accidental": null,
+          "accidental_basis": "no local sign seen; no key signature visible on this system",
+          "duration_quarters": null,
+          "tie": null,
+          "rest_context": null,
+          "inspection": "center checked against 480 dpi source raster; rhythm and cue boundary require separate validation"
+        },
+        {
+          "id": "p13-s08-h016",
+          "source_xy_px_480dpi": [
+            3859,
+            4458
+          ],
+          "source_coordinate_is_estimate": true,
+          "clef": "treble",
+          "written_pitch": "A3",
+          "concert_pitch": "D3",
+          "source_role": "horn_part",
+          "pitch_confidence": "high",
+          "explicit_accidental": null,
+          "accidental_basis": "no local sign seen; no key signature visible on this system",
+          "duration_quarters": null,
+          "tie": null,
+          "rest_context": null,
+          "inspection": "center checked against 480 dpi source raster; rhythm and cue boundary require separate validation"
+        },
+        {
+          "id": "p13-s08-h017",
+          "source_xy_px_480dpi": [
+            3974,
+            4459
+          ],
+          "source_coordinate_is_estimate": true,
+          "clef": "treble",
+          "written_pitch": "A3",
+          "concert_pitch": "D3",
+          "source_role": "horn_part",
+          "pitch_confidence": "high",
+          "explicit_accidental": null,
+          "accidental_basis": "no local sign seen; no key signature visible on this system",
+          "duration_quarters": null,
+          "tie": null,
+          "rest_context": null,
+          "inspection": "center checked against 480 dpi source raster; rhythm and cue boundary require separate validation"
+        },
+        {
+          "id": "p13-s08-h018",
+          "source_xy_px_480dpi": [
+            4083,
+            4399
+          ],
+          "source_coordinate_is_estimate": true,
+          "clef": "treble",
+          "written_pitch": "D4",
+          "concert_pitch": "G3",
+          "source_role": "horn_part",
+          "pitch_confidence": "high",
+          "explicit_accidental": null,
+          "accidental_basis": "no local sign seen; no key signature visible on this system",
+          "duration_quarters": null,
+          "tie": null,
+          "rest_context": null,
+          "inspection": "center checked against 480 dpi source raster; rhythm and cue boundary require separate validation"
+        }
+      ],
+      "verified_pitch_entries": 18,
+      "source_observation": "Unlabeled coda pattern; explicit sharps visible.",
+      "unresolved_pitch_region": false,
+      "rests": "local rests visible; count/duration not fully resolved"
+    },
+    {
+      "system": 9,
+      "notes": [
+        {
+          "id": "p13-s09-h001",
+          "source_xy_px_480dpi": [
+            1563,
+            4714
+          ],
+          "source_coordinate_is_estimate": true,
+          "clef": "treble",
+          "written_pitch": "D5",
+          "concert_pitch": "G4",
+          "source_role": "violin_i_cue_candidate",
+          "pitch_confidence": "low",
+          "explicit_accidental": null,
+          "accidental_basis": "no local sign seen; no key signature visible on this system",
+          "duration_quarters": null,
+          "tie": null,
+          "rest_context": null,
+          "inspection": "center checked against 480 dpi source raster; rhythm and cue boundary require separate validation"
+        },
+        {
+          "id": "p13-s09-h002",
+          "source_xy_px_480dpi": [
+            1825,
+            4795
+          ],
+          "source_coordinate_is_estimate": true,
+          "clef": "treble",
+          "written_pitch": "G4",
+          "concert_pitch": "C4",
+          "source_role": "violin_i_cue_candidate",
+          "pitch_confidence": "low",
+          "explicit_accidental": null,
+          "accidental_basis": "no local sign seen; no key signature visible on this system",
+          "duration_quarters": null,
+          "tie": null,
+          "rest_context": null,
+          "inspection": "center checked against 480 dpi source raster; rhythm and cue boundary require separate validation"
+        },
+        {
+          "id": "p13-s09-h003",
+          "source_xy_px_480dpi": [
+            2365,
+            4713
+          ],
+          "source_coordinate_is_estimate": true,
+          "clef": "treble",
+          "written_pitch": "D5",
+          "concert_pitch": "G4",
+          "source_role": "violin_i_cue_candidate",
+          "pitch_confidence": "low",
+          "explicit_accidental": null,
+          "accidental_basis": "no local sign seen; no key signature visible on this system",
+          "duration_quarters": null,
+          "tie": null,
+          "rest_context": null,
+          "inspection": "center checked against 480 dpi source raster; rhythm and cue boundary require separate validation"
+        },
+        {
+          "id": "p13-s09-h004",
+          "source_xy_px_480dpi": [
+            2603,
+            4713
+          ],
+          "source_coordinate_is_estimate": true,
+          "clef": "treble",
+          "written_pitch": "D5",
+          "concert_pitch": "G4",
+          "source_role": "horn_part",
+          "pitch_confidence": "medium",
+          "explicit_accidental": null,
+          "accidental_basis": "no local sign seen; no key signature visible on this system",
+          "duration_quarters": null,
+          "tie": null,
+          "rest_context": null,
+          "inspection": "center checked against 480 dpi source raster; rhythm and cue boundary require separate validation"
+        },
+        {
+          "id": "p13-s09-h005",
+          "source_xy_px_480dpi": [
+            2869,
+            4754
+          ],
+          "source_coordinate_is_estimate": true,
+          "clef": "treble",
+          "written_pitch": "B4",
+          "concert_pitch": "E4",
+          "source_role": "horn_part",
+          "pitch_confidence": "medium",
+          "explicit_accidental": null,
+          "accidental_basis": "no local sign seen; no key signature visible on this system",
+          "duration_quarters": null,
+          "tie": null,
+          "rest_context": null,
+          "inspection": "center checked against 480 dpi source raster; rhythm and cue boundary require separate validation"
+        },
+        {
+          "id": "p13-s09-h006",
+          "source_xy_px_480dpi": [
+            3148,
+            4733
+          ],
+          "source_coordinate_is_estimate": true,
+          "clef": "treble",
+          "written_pitch": "C5",
+          "concert_pitch": "F4",
+          "source_role": "horn_part",
+          "pitch_confidence": "medium",
+          "explicit_accidental": null,
+          "accidental_basis": "no local sign seen; no key signature visible on this system",
+          "duration_quarters": null,
+          "tie": null,
+          "rest_context": null,
+          "inspection": "center checked against 480 dpi source raster; rhythm and cue boundary require separate validation"
+        },
+        {
+          "id": "p13-s09-h007",
+          "source_xy_px_480dpi": [
+            3761,
+            4713
+          ],
+          "source_coordinate_is_estimate": true,
+          "clef": "treble",
+          "written_pitch": "D5",
+          "concert_pitch": "G4",
+          "source_role": "horn_part",
+          "pitch_confidence": "medium",
+          "explicit_accidental": null,
+          "accidental_basis": "no local sign seen; no key signature visible on this system",
+          "duration_quarters": null,
+          "tie": null,
+          "rest_context": null,
+          "inspection": "center checked against 480 dpi source raster; rhythm and cue boundary require separate validation"
+        },
+        {
+          "id": "p13-s09-h008",
+          "source_xy_px_480dpi": [
+            4004,
+            4819
+          ],
+          "source_coordinate_is_estimate": true,
+          "clef": "treble",
+          "written_pitch": "F#4",
+          "concert_pitch": "B3",
+          "source_role": "horn_part",
+          "pitch_confidence": "medium",
+          "explicit_accidental": "♯",
+          "accidental_basis": "printed local sign",
+          "duration_quarters": null,
+          "tie": null,
+          "rest_context": null,
+          "inspection": "center checked against 480 dpi source raster; rhythm and cue boundary require separate validation"
+        },
+        {
+          "id": "p13-s09-h009",
+          "source_xy_px_480dpi": [
+            4134,
+            4821
+          ],
+          "source_coordinate_is_estimate": true,
+          "clef": "treble",
+          "written_pitch": "F#4",
+          "concert_pitch": "B3",
+          "source_role": "horn_part",
+          "pitch_confidence": "medium",
+          "explicit_accidental": null,
+          "accidental_basis": "no local sign seen; no key signature visible on this system",
+          "duration_quarters": null,
+          "tie": null,
+          "rest_context": null,
+          "inspection": "center checked against 480 dpi source raster; rhythm and cue boundary require separate validation"
+        }
+      ],
+      "verified_pitch_entries": 9,
+      "source_observation": "Opening multimeasure rests, Viol. I. label, sustained/tied notes; cue boundary uncertain.",
+      "unresolved_pitch_region": false,
+      "rests": "multiple full-measure or numbered multimeasure rests visible; exact expansion not assigned"
+    },
+    {
+      "system": 10,
+      "notes": [
+        {
+          "id": "p13-s10-h001",
+          "source_xy_px_480dpi": [
+            707,
+            5279
+          ],
+          "source_coordinate_is_estimate": true,
+          "clef": "treble",
+          "written_pitch": "F#4",
+          "concert_pitch": "B3",
+          "source_role": "horn_part",
+          "pitch_confidence": "high",
+          "explicit_accidental": "♯",
+          "accidental_basis": "printed local sign",
+          "duration_quarters": null,
+          "tie": null,
+          "rest_context": null,
+          "inspection": "center checked against 480 dpi source raster; rhythm and cue boundary require separate validation"
+        },
+        {
+          "id": "p13-s10-h002",
+          "source_xy_px_480dpi": [
+            899,
+            5281
+          ],
+          "source_coordinate_is_estimate": true,
+          "clef": "treble",
+          "written_pitch": "F#4",
+          "concert_pitch": "B3",
+          "source_role": "horn_part",
+          "pitch_confidence": "high",
+          "explicit_accidental": null,
+          "accidental_basis": "no local sign seen; no key signature visible on this system",
+          "duration_quarters": null,
+          "tie": null,
+          "rest_context": null,
+          "inspection": "center checked against 480 dpi source raster; rhythm and cue boundary require separate validation"
+        },
+        {
+          "id": "p13-s10-h003",
+          "source_xy_px_480dpi": [
+            1159,
+            5217
+          ],
+          "source_coordinate_is_estimate": true,
+          "clef": "treble",
+          "written_pitch": "B4",
+          "concert_pitch": "E4",
+          "source_role": "horn_part",
+          "pitch_confidence": "high",
+          "explicit_accidental": null,
+          "accidental_basis": "no local sign seen; no key signature visible on this system",
+          "duration_quarters": null,
+          "tie": null,
+          "rest_context": null,
+          "inspection": "center checked against 480 dpi source raster; rhythm and cue boundary require separate validation"
+        },
+        {
+          "id": "p13-s10-h004",
+          "source_xy_px_480dpi": [
+            1322,
+            5238
+          ],
+          "source_coordinate_is_estimate": true,
+          "clef": "treble",
+          "written_pitch": "A4",
+          "concert_pitch": "D4",
+          "source_role": "horn_part",
+          "pitch_confidence": "high",
+          "explicit_accidental": null,
+          "accidental_basis": "no local sign seen; no key signature visible on this system",
+          "duration_quarters": null,
+          "tie": null,
+          "rest_context": null,
+          "inspection": "center checked against 480 dpi source raster; rhythm and cue boundary require separate validation"
+        },
+        {
+          "id": "p13-s10-h005",
+          "source_xy_px_480dpi": [
+            1610,
+            5238
+          ],
+          "source_coordinate_is_estimate": true,
+          "clef": "treble",
+          "written_pitch": "A4",
+          "concert_pitch": "D4",
+          "source_role": "horn_part",
+          "pitch_confidence": "high",
+          "explicit_accidental": null,
+          "accidental_basis": "no local sign seen; no key signature visible on this system",
+          "duration_quarters": null,
+          "tie": null,
+          "rest_context": null,
+          "inspection": "center checked against 480 dpi source raster; rhythm and cue boundary require separate validation"
+        },
+        {
+          "id": "p13-s10-h006",
+          "source_xy_px_480dpi": [
+            1867,
+            5281
+          ],
+          "source_coordinate_is_estimate": true,
+          "clef": "treble",
+          "written_pitch": "F#4",
+          "concert_pitch": "B3",
+          "source_role": "horn_part",
+          "pitch_confidence": "high",
+          "explicit_accidental": "♯",
+          "accidental_basis": "printed local sign",
+          "duration_quarters": null,
+          "tie": null,
+          "rest_context": null,
+          "inspection": "center checked against 480 dpi source raster; rhythm and cue boundary require separate validation"
+        },
+        {
+          "id": "p13-s10-h007",
+          "source_xy_px_480dpi": [
+            2211,
+            5282
+          ],
+          "source_coordinate_is_estimate": true,
+          "clef": "treble",
+          "written_pitch": "F#4",
+          "concert_pitch": "B3",
+          "source_role": "horn_part",
+          "pitch_confidence": "high",
+          "explicit_accidental": "♯",
+          "accidental_basis": "printed local sign",
+          "duration_quarters": null,
+          "tie": null,
+          "rest_context": null,
+          "inspection": "center checked against 480 dpi source raster; rhythm and cue boundary require separate validation"
+        },
+        {
+          "id": "p13-s10-h008",
+          "source_xy_px_480dpi": [
+            2407,
+            5282
+          ],
+          "source_coordinate_is_estimate": true,
+          "clef": "treble",
+          "written_pitch": "F#4",
+          "concert_pitch": "B3",
+          "source_role": "horn_part",
+          "pitch_confidence": "high",
+          "explicit_accidental": null,
+          "accidental_basis": "no local sign seen; no key signature visible on this system",
+          "duration_quarters": null,
+          "tie": null,
+          "rest_context": null,
+          "inspection": "center checked against 480 dpi source raster; rhythm and cue boundary require separate validation"
+        },
+        {
+          "id": "p13-s10-h009",
+          "source_xy_px_480dpi": [
+            2701,
+            5215
+          ],
+          "source_coordinate_is_estimate": true,
+          "clef": "treble",
+          "written_pitch": "B4",
+          "concert_pitch": "E4",
+          "source_role": "horn_part",
+          "pitch_confidence": "high",
+          "explicit_accidental": null,
+          "accidental_basis": "no local sign seen; no key signature visible on this system",
+          "duration_quarters": null,
+          "tie": null,
+          "rest_context": null,
+          "inspection": "center checked against 480 dpi source raster; rhythm and cue boundary require separate validation"
+        },
+        {
+          "id": "p13-s10-h010",
+          "source_xy_px_480dpi": [
+            2897,
+            5238
+          ],
+          "source_coordinate_is_estimate": true,
+          "clef": "treble",
+          "written_pitch": "A4",
+          "concert_pitch": "D4",
+          "source_role": "horn_part",
+          "pitch_confidence": "high",
+          "explicit_accidental": null,
+          "accidental_basis": "no local sign seen; no key signature visible on this system",
+          "duration_quarters": null,
+          "tie": null,
+          "rest_context": null,
+          "inspection": "center checked against 480 dpi source raster; rhythm and cue boundary require separate validation"
+        },
+        {
+          "id": "p13-s10-h011",
+          "source_xy_px_480dpi": [
+            3223,
+            5259
+          ],
+          "source_coordinate_is_estimate": true,
+          "clef": "treble",
+          "written_pitch": "G4",
+          "concert_pitch": "C4",
+          "source_role": "horn_part",
+          "pitch_confidence": "high",
+          "explicit_accidental": null,
+          "accidental_basis": "no local sign seen; no key signature visible on this system",
+          "duration_quarters": null,
+          "tie": null,
+          "rest_context": null,
+          "inspection": "center checked against 480 dpi source raster; rhythm and cue boundary require separate validation"
+        },
+        {
+          "id": "p13-s10-h012",
+          "source_xy_px_480dpi": [
+            3446,
+            5238
+          ],
+          "source_coordinate_is_estimate": true,
+          "clef": "treble",
+          "written_pitch": "A4",
+          "concert_pitch": "D4",
+          "source_role": "horn_part",
+          "pitch_confidence": "high",
+          "explicit_accidental": null,
+          "accidental_basis": "no local sign seen; no key signature visible on this system",
+          "duration_quarters": null,
+          "tie": null,
+          "rest_context": null,
+          "inspection": "center checked against 480 dpi source raster; rhythm and cue boundary require separate validation"
+        },
+        {
+          "id": "p13-s10-h013",
+          "source_xy_px_480dpi": [
+            3754,
+            5259
+          ],
+          "source_coordinate_is_estimate": true,
+          "clef": "treble",
+          "written_pitch": "G4",
+          "concert_pitch": "C4",
+          "source_role": "horn_part",
+          "pitch_confidence": "high",
+          "explicit_accidental": null,
+          "accidental_basis": "no local sign seen; no key signature visible on this system",
+          "duration_quarters": null,
+          "tie": null,
+          "rest_context": null,
+          "inspection": "center checked against 480 dpi source raster; rhythm and cue boundary require separate validation"
+        },
+        {
+          "id": "p13-s10-h014",
+          "source_xy_px_480dpi": [
+            3986,
+            5385
+          ],
+          "source_coordinate_is_estimate": true,
+          "clef": "treble",
+          "written_pitch": "A3",
+          "concert_pitch": "D3",
+          "source_role": "horn_part",
+          "pitch_confidence": "high",
+          "explicit_accidental": null,
+          "accidental_basis": "no local sign seen; no key signature visible on this system",
+          "duration_quarters": null,
+          "tie": null,
+          "rest_context": null,
+          "inspection": "center checked against 480 dpi source raster; rhythm and cue boundary require separate validation"
+        },
+        {
+          "id": "p13-s10-h015",
+          "source_xy_px_480dpi": [
+            4126,
+            5382
+          ],
+          "source_coordinate_is_estimate": true,
+          "clef": "treble",
+          "written_pitch": "A3",
+          "concert_pitch": "D3",
+          "source_role": "horn_part",
+          "pitch_confidence": "high",
+          "explicit_accidental": null,
+          "accidental_basis": "no local sign seen; no key signature visible on this system",
+          "duration_quarters": null,
+          "tie": null,
+          "rest_context": null,
+          "inspection": "center checked against 480 dpi source raster; rhythm and cue boundary require separate validation"
+        }
+      ],
+      "verified_pitch_entries": 15,
+      "source_observation": "Repeated coda pattern with explicit F sharps.",
+      "unresolved_pitch_region": false,
+      "rests": "local rests visible; count/duration not fully resolved"
+    },
+    {
+      "system": 11,
+      "notes": [
+        {
+          "id": "p13-s11-h001",
+          "source_xy_px_480dpi": [
+            769,
+            5842
+          ],
+          "source_coordinate_is_estimate": true,
+          "clef": "treble",
+          "written_pitch": "A3",
+          "concert_pitch": "D3",
+          "source_role": "horn_part",
+          "pitch_confidence": "medium",
+          "explicit_accidental": null,
+          "accidental_basis": "no local sign seen; no key signature visible on this system",
+          "duration_quarters": null,
+          "tie": null,
+          "rest_context": null,
+          "inspection": "center checked against 480 dpi source raster; rhythm and cue boundary require separate validation"
+        },
+        {
+          "id": "p13-s11-h002",
+          "source_xy_px_480dpi": [
+            909,
+            5783
+          ],
+          "source_coordinate_is_estimate": true,
+          "clef": "treble",
+          "written_pitch": "D4",
+          "concert_pitch": "G3",
+          "source_role": "horn_part",
+          "pitch_confidence": "medium",
+          "explicit_accidental": null,
+          "accidental_basis": "no local sign seen; no key signature visible on this system",
+          "duration_quarters": null,
+          "tie": null,
+          "rest_context": null,
+          "inspection": "center checked against 480 dpi source raster; rhythm and cue boundary require separate validation"
+        },
+        {
+          "id": "p13-s11-h003",
+          "source_xy_px_480dpi": [
+            1191,
+            5701
+          ],
+          "source_coordinate_is_estimate": true,
+          "clef": "treble",
+          "written_pitch": "A4",
+          "concert_pitch": "D4",
+          "source_role": "horn_part",
+          "pitch_confidence": "medium",
+          "explicit_accidental": null,
+          "accidental_basis": "no local sign seen; no key signature visible on this system",
+          "duration_quarters": null,
+          "tie": null,
+          "rest_context": null,
+          "inspection": "center checked against 480 dpi source raster; rhythm and cue boundary require separate validation"
+        },
+        {
+          "id": "p13-s11-h004",
+          "source_xy_px_480dpi": [
+            1383,
+            5702
+          ],
+          "source_coordinate_is_estimate": true,
+          "clef": "treble",
+          "written_pitch": "A4",
+          "concert_pitch": "D4",
+          "source_role": "horn_part",
+          "pitch_confidence": "medium",
+          "explicit_accidental": null,
+          "accidental_basis": "no local sign seen; no key signature visible on this system",
+          "duration_quarters": null,
+          "tie": null,
+          "rest_context": null,
+          "inspection": "center checked against 480 dpi source raster; rhythm and cue boundary require separate validation"
+        },
+        {
+          "id": "p13-s11-h005",
+          "source_xy_px_480dpi": [
+            1665,
+            5789
+          ],
+          "source_coordinate_is_estimate": true,
+          "clef": "treble",
+          "written_pitch": "D4",
+          "concert_pitch": "G3",
+          "source_role": "horn_part",
+          "pitch_confidence": "medium",
+          "explicit_accidental": null,
+          "accidental_basis": "no local sign seen; no key signature visible on this system",
+          "duration_quarters": null,
+          "tie": null,
+          "rest_context": null,
+          "inspection": "center checked against 480 dpi source raster; rhythm and cue boundary require separate validation"
+        },
+        {
+          "id": "p13-s11-h006",
+          "source_xy_px_480dpi": [
+            2491,
+            5702
+          ],
+          "source_coordinate_is_estimate": true,
+          "clef": "treble",
+          "written_pitch": "A4",
+          "concert_pitch": "D4",
+          "source_role": "horn_part",
+          "pitch_confidence": "medium",
+          "explicit_accidental": null,
+          "accidental_basis": "no local sign seen; no key signature visible on this system",
+          "duration_quarters": null,
+          "tie": null,
+          "rest_context": null,
+          "inspection": "center checked against 480 dpi source raster; rhythm and cue boundary require separate validation"
+        },
+        {
+          "id": "p13-s11-h007",
+          "source_xy_px_480dpi": [
+            2955,
+            5786
+          ],
+          "source_coordinate_is_estimate": true,
+          "clef": "treble",
+          "written_pitch": "D4",
+          "concert_pitch": "G3",
+          "source_role": "horn_part",
+          "pitch_confidence": "medium",
+          "explicit_accidental": null,
+          "accidental_basis": "no local sign seen; no key signature visible on this system",
+          "duration_quarters": null,
+          "tie": null,
+          "rest_context": null,
+          "inspection": "center checked against 480 dpi source raster; rhythm and cue boundary require separate validation"
+        }
+      ],
+      "verified_pitch_entries": 7,
+      "source_observation": "Closing notes and final multimeasure rest with fermata.",
+      "unresolved_pitch_region": false,
+      "rests": "multiple full-measure or numbered multimeasure rests visible; exact expansion not assigned"
+    }
+  ],
+  "totals": {
+    "candidate_pitch_entries_with_source_center_review": 76,
+    "candidate_horn_part_entries": 66,
+    "candidate_cue_entries": 10,
+    "systems_with_unresolved_pitch_inventory": [
+      1,
+      3,
+      4,
+      5
+    ],
+    "whole_page_note_total": null,
+    "whole_page_horn_part_total": null,
+    "complete": false,
+    "source_page_complete": false,
+    "verified_full_systems": [],
+    "candidate_entries_not_equivalent_to_complete_transcription": true
+  },
+  "critical_discrepancies": [
+    {
+      "finding": "Second-reviewed system 6 n001/n002 are written A2 in the printed bass clef, concert D2. Its F4/Bb3 reading assumes treble clef across a visible bass-clef change.",
+      "severity": "blocker",
+      "example_ids": [
+        "p13-s6-n001",
+        "p13-s6-n002"
+      ]
+    },
+    {
+      "finding": "First reviewed systems 1 and 3-5 cannot be accepted as a complete note transcription. Overlaying their x/y on a 480 dpi direct render puts multiple asserted notes on stems, beams, rests, or empty staff positions.",
+      "severity": "blocker",
+      "example_ids": [
+        "p13-s1-n07",
+        "p13-s1-n08",
+        "p13-s4-n01"
+      ]
+    },
+    {
+      "finding": "The Vc., Cb. cue in system 3 is visibly preceded by a bass clef, contrary to the first-reviewed report's blanket treble-clef claim. Its cue pitches therefore need re-reading.",
+      "severity": "blocker"
+    },
+    {
+      "finding": "The first reviewed report classifies system-1 points n07-n10 as Horn part although they sit within the labeled Viol. I. cue passage and do not mark independent Horn heads.",
+      "severity": "blocker"
+    },
+    {
+      "finding": "The second reviewed report lists systems 6-11 noteheads but does not separate Ob. and Viol. I. labeled cue candidates from Horn part notes; this audit flags these groups.",
+      "severity": "major"
+    },
+    {
+      "finding": "Blanket eighth-note durations and ties from OMR were not accepted without rhythmic check against source.",
+      "severity": "major"
+    }
+  ],
+  "uncertainties": [
+    "The source image is legible for much of the coda but the first five systems need a fresh complete notehead inventory. Four systems remain unresolved; no whole-page count is claimed.",
+    "Cue boundaries in systems 6, 7, and 9 are tentative where labeled source notes are close in size to Horn notes.",
+    "Printed bass clef and one-flat change in system 3 require phrase-level pitch and accidental review; no pitch entries from this system are certified.",
+    "Duration, tie, and rest expansion fields are null where not independently verified."
+  ],
+  "method": "Rendered the supplied PDF page directly at 240 and 480 dpi, inspected full page and system/half-system crops, overlaid prior candidate coordinates on the 480 dpi raster, used staff positions and printed local signs to challenge pitches and roles. Existing reports were comparison candidates, never sole authority.",
+  "compared_reports": [
+    "horn2-mvt3-p13-audit-first-reviewed.json (machine-local path omitted)",
+    "horn2-mvt3-p13-audit-second-reviewed.json (machine-local path omitted)",
+    "horn2-mvt3-p13-cue-audit.json (machine-local path omitted)"
+  ],
+  "playback_authorization": {
+    "authorized": false,
+    "reason": "Incomplete source notehead inventory in systems 1 and 3-5, confirmed clef errors in compared reports, and unresolved cue boundaries and rhythms. Do not use as Horn II playback data or final score export.",
+    "human_review_required": true
+  }
+}

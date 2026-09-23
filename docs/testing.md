@@ -1,51 +1,15 @@
-# Validation Contract
+# Validation contract
 
-Replace the placeholders below with exact project commands before implementation begins.
+Run from the repository root with Python 3.11 or later. Catalog commands operate offline. PDF rendering additionally needs Pillow, pypdf, and ReportLab; Audiveris and Poppler are optional for candidate recognition and source-page rendering.
 
-## Required commands
+| Scope | Command | Expected result |
+| --- | --- | --- |
+| Rebuild both catalogs | `python3 tools/build_catalog.py` | Regenerates composer/work pages and Fuyomi landing page from both manifests |
+| Validate both catalogs | `python3 tools/validate_catalog.py` | Checks metadata, repository paths, hashes, generated links, source exclusions, and audit gates |
+| Unit tests | `python3 -m unittest discover -s tests -v` | Catalog safety and Fuyomi workflow/player tests pass |
+| Fuyomi CLI | `python3 -m tools.fuyomi --help` | Shows standalone commands without importing vEdit |
+| Python syntax | `python3 -m compileall -q tools tests` | No syntax errors |
+| Player JavaScript | `node --check tools/fuyomi/player.js` | No syntax errors |
+| Patch hygiene | `git diff --check` | No whitespace errors |
 
-| Scope | Command | Required environment | Expected result |
-| --- | --- | --- | --- |
-| Install/setup | `<COMMAND>` | `<ENVIRONMENT>` | `<RESULT>` |
-| Format/lint | `<COMMAND>` | `<ENVIRONMENT>` | `<RESULT>` |
-| Type/static check | `<COMMAND>` | `<ENVIRONMENT>` | `<RESULT>` |
-| Unit tests | `<COMMAND>` | `<ENVIRONMENT>` | `<RESULT>` |
-| Integration/contract tests | `<COMMAND>` | `<ENVIRONMENT>` | `<RESULT>` |
-| Build/package | `<COMMAND>` | `<ENVIRONMENT>` | `<RESULT>` |
-| Runtime smoke test | `<COMMAND_OR_PROCEDURE>` | `<ENVIRONMENT>` | `<RESULT>` |
-
-Delete rows that genuinely do not apply; do not leave ambiguous placeholders in an active project.
-
-## Validation strategy
-
-During implementation, run the smallest relevant check frequently. Before review or merge, run every check required for the changed scope against the final head.
-
-Behavior-sensitive changes may additionally require:
-
-- failure-path and negative tests;
-- migration forward/backward or compatibility checks;
-- security and authorization boundary tests;
-- browser, device, hardware, or operating-system evidence;
-- screenshot or recording review;
-- load, latency, memory, storage, or capacity measurements;
-- deployment dry-run, canary, or rollback proof.
-
-Static checks do not substitute for runtime evidence when the acceptance criterion is visual, interactive, distributed, hardware-specific, or operational.
-
-## Evidence format
-
-Record evidence in the pull request and active Issue:
-
-```markdown
-### Validation
-
-- Commit: `<SHA>`
-- Environment: `<OS/runtime/browser/hardware/region>`
-- Command: `<exact command>`
-- Result: `PASS|FAIL|BLOCKED`
-- Output/artifact: `<sanitized excerpt or link>`
-- Checks not run: `<none or exact reason>`
-- Remaining risk: `<none or explanation>`
-```
-
-Do not claim `PASS` from an earlier head after code changes. Do not hide skipped checks. When infrastructure prevents a check, record the blocker, run the closest safe substitute, and leave the residual risk explicit.
+For changed PDFs, inspect page count/metadata, render representative pages, and visually check changed layouts. Code validation does not certify a musical reading. Each artifact retains its source-bound audit scope, unresolved items, and playback state. Never mark an incomplete audit complete because software tests passed.
