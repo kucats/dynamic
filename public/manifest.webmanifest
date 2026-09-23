@@ -1,0 +1,14 @@
+{
+  "name": "DYNAMIC 譜読みアプリ",
+  "short_name": "DYNAMIC",
+  "description": "原譜の音符に記譜ドレミを付けて、クリックや通し再生で確かめられる譜読みアプリ",
+  "lang": "ja",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f3f7fc",
+  "theme_color": "#0f7cf6",
+  "icons": [
+    {"src": "assets/dynamic-icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable"}
+  ]
+}

@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>DYNAMIC 譜読みアプリ</title>
+<meta name="description" content="原譜の音符に記譜ドレミを付けて、クリックや通し再生で確かめられる譜読みアプリ">
+<meta name="theme-color" content="#0f7cf6">
+<link rel="icon" href="../assets/dynamic-icon.svg" type="image/svg+xml">
+<link rel="manifest" href="../manifest.webmanifest">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html" aria-label="DYNAMIC トップへ"><img src="../assets/dynamic-icon.svg" alt="" width="36" height="36"><span>DYNAMIC</span></a>
+  <div class="ttl"><h1 id="title">読み込み中…</h1><p id="subtitle"></p></div>
+  <div class="toplinks"><a id="pdfLink" class="ghost" hidden>PDF</a><button id="infoBtn" class="ghost" aria-haspopup="dialog">説明</button></div>
+</header>
+
+<nav class="bar" id="bar" aria-label="操作">
+  <div class="row1">
+    <div class="mvts" id="mvts" role="tablist" aria-label="楽章"></div>
+    <div class="grp">
+      <button id="play" class="play" title="再生／停止（スペースキー）">▶ 再生</button>
+      <button id="prev" title="前の音（←）" aria-label="前の音">‹</button>
+      <button id="one" title="選んだ音を鳴らす" aria-label="選んだ音を鳴らす">♪</button>
+      <button id="next" title="次の音（→）" aria-label="次の音">›</button>
+    </div>
+    <form id="jump" class="jump"><input id="jumpBar" type="number" inputmode="numeric" min="1" placeholder="小節" aria-label="小節番号"><button>移動</button></form>
+    <label class="tempo">テンポ <input id="tempo" type="range" min="40" max="140" step="5" value="100"><output id="tempoV">100%</output></label>
+    <div class="grp zoom" role="group" aria-label="譜面の拡大縮小"><button id="zoomOut" aria-label="縮小">－</button><button id="zoomIn" aria-label="拡大">＋</button></div>
+    <button id="setBtn" class="ghost" aria-haspopup="true" aria-expanded="false">設定</button>
+  </div>
+  <div class="now" aria-live="polite">
+    <span id="nowW" class="nw">—</span><span id="nowF" class="nf"></span><span id="nowS" class="ns"></span>
+    <span id="nowInfo" class="ni">音符か字をタップするとその音が鳴ります。▶で選んだ音から通し再生。</span>
+    <span id="barNow" class="bnow"></span>
+  </div>
+  <div id="settings" class="settings" hidden>
+    <fieldset><legend>表示する行</legend>
+      <label><input type="checkbox" data-row="w" checked> <b class="cw">記譜ドレミ</b></label>
+      <label><input type="checkbox" data-row="f"> <b class="cf">F管の読み替え</b></label>
+      <label><input type="checkbox" data-row="s"> <b class="cs">実音</b></label>
+    </fieldset>
+    <fieldset><legend>字の大きさ</legend>
+      <label><input type="radio" name="size" value="s"> 小</label>
+      <label><input type="radio" name="size" value="m" checked> 中</label>
+      <label><input type="radio" name="size" value="l"> 大</label>
+    </fieldset>
+    <fieldset><legend>音</legend>
+      <label>鳴らす音 <select id="sound"><option value="s">実音</option><option value="w">記譜どおり</option><option value="f">F管読み</option></select></label>
+      <label><input type="checkbox" id="squeeze" checked> 長い休みを詰める</label>
+      <label><input type="checkbox" id="fromSel" checked> 選んだ音から再生</label>
+      <label><input type="checkbox" id="follow" checked> 再生中に譜面を追う</label>
+      <label><input type="checkbox" id="metro"> 小節頭でクリック音</label>
+    </fieldset>
+    <fieldset><legend>その他</legend>
+      <label><input type="checkbox" id="bars" checked> 小節番号</label>
+      <label><input type="checkbox" id="lines" checked> 音符と字をつなぐ線</label>
+    </fieldset>
+  </div>
+</nav>
+
+<main id="score" class="score" tabindex="-1"></main>
+
+<dialog id="info" class="info">
+  <form method="dialog">
+    <h2>この譜読みについて</h2>
+    <div id="infoBody"></div>
+    <h3>使い方</h3>
+    <ul>
+      <li>音符か青い字をタップ：その音が鳴り、小節番号と音名が上に出ます。</li>
+      <li>▶ 再生：選んだ音から通しで再生します（スペースキー）。←→キーで1音ずつ移動。</li>
+      <li>「小節」に番号を入れて移動：その小節へジャンプします。</li>
+      <li>＋／－：譜面の拡大・縮小（スマホでは横にスクロールできます）。</li>
+      <li>表示・音の設定：F管の読み替えや実音の行、字の大きさ、鳴らす音を切り替えられます。</li>
+    </ul>
+    <p class="fine">合成音は録音と同期していません。原譜PDFはこのサイトに含めていません。</p>
+    <button class="play">閉じる</button>
+  </form>
+</dialog>
+<p id="err" class="err" hidden></p>
+<script src="app.js"></script>
+</body>
+</html>
