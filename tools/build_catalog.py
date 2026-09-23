@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build the legacy composer guide pages and the Fuyomi project catalog."""
+"""Build both the composer guide pages and the Fuyomi project catalog."""
 
 from build_composer_catalog import build as build_composer_catalog
 from build_fuyomi_catalog import main as build_fuyomi_catalog

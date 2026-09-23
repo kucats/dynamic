@@ -38,6 +38,19 @@ def main() -> None:
             '<p class="warning">' + html.escape(warning) + '</p><nav>' + links + '</nav></article>'
         )
     INDEX.parent.mkdir(parents=True, exist_ok=True)
+    composer_catalog = json.loads((ROOT / "public/catalog.json").read_text(encoding="utf-8"))
+    composer_cards = []
+    seen_works = set()
+    for item in composer_catalog["items"]:
+        key = (item["composer_key"], item["work_key"])
+        if key in seen_works:
+            continue
+        seen_works.add(key)
+        href = f"composers/{key[0]}/{key[1]}/index.html"
+        composer_cards.append(
+            f'<li><a href="{html.escape(href)}">'
+            f'{html.escape(item["composer"])} — {html.escape(item["work"])}</a></li>'
+        )
     INDEX.write_text(
         '<!doctype html><html lang="ja"><meta charset="utf-8">'
         '<meta name="viewport" content="width=device-width,initial-scale=1">'
@@ -50,9 +63,8 @@ def main() -> None:
         '<p>再利用ツールは tools/、曲・パート別の譜読み記録は project/、閲覧用HTML/PDFは artifacts/ に整理しています。'
         '検証状態と再生許可は別に表示しています。</p></header>'
         + "\n".join(cards)
-        + '<article><h2>従来の作曲家別ガイド</h2>'
-        '<p>先行する Dvořák トロンボーン I–III の注釈PDF・個別ガイドです。各ガイドに記載された監査状態と制約を確認してください。</p>'
-        '<nav><a href="composers/antonin-dvorak/symphony-no-8/index.html">Dvořák Symphony No. 8 · Trombone I–III guides</a></nav></article>'
+        + '<article><h2>作曲家別ガイド</h2><p>先行する譜読み結果と追加の試作PDF/HTMLです。各ガイドに記載された監査状態と制約を確認してください。</p>'
+        '<ul>' + "\n".join(composer_cards) + '</ul></article>'
         + '<footer><p>原譜PDF・生のページ画像・OMRデータはこのカタログに含めていません。合成音は録音と同期していません。</p></footer></html>\n',
         encoding="utf-8",
     )

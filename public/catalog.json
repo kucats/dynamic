@@ -67,7 +67,9 @@
       "limitations": [
         "Movements II and III are tacet; 95 detected cue noteheads are not part of the 540 visually checked playable-note set.",
         "The guide is a score reading, not a performance transcription or recording-aligned practice track.",
-        "Slide positions are conventional starting choices; tuning, instrument setup, trigger use, and player preference may change them."
+        "Slide positions are conventional starting choices; tuning, instrument setup, trigger use, and player preference may change them.",
+        "Movement IV written bar count remains 387 versus 389 in the reference edition.",
+        "An independent musician review and recording alignment are not certified."
       ],
       "sources": [
         {
@@ -157,6 +159,208 @@
           "kind": "CSV",
           "path": "project/dvorak/symphony-no-8/trombone-iii/publication-source/legacy-catalog/notes.csv",
           "sha256": "62fc79e0a62ccc5b8af933409eb9e5c1c1fae122330b8c98b5a8e277df2184b1"
+        }
+      ]
+    },
+    {
+      "id": "nabucco-sinfonia-trombone-ii-prior",
+      "composer": "Giuseppe Verdi",
+      "composer_key": "giuseppe-verdi",
+      "work": "Nabucco — Sinfonia",
+      "work_key": "nabucco-sinfonia",
+      "instrument": "Trombone II · prior reading",
+      "summary": "Previous reading with 38 systems, 401 reviewed note labels, and 729 timed events for source PDF pp. 2–4.",
+      "review_status": "draft",
+      "limitations": [
+        "PDF p.2 system 11 visual audit does not support a clear meter change or key-signature reset; the bass clef appears to continue.",
+        "The scan does not resolve the key-signature count on PDF pp.3–4; earlier context corrections need comparison against the source.",
+        "Structural note-count and timing checks are not an independent musician listening or complete note-by-note review."
+      ],
+      "sources": [
+        {
+          "label": "Source score PDF (not included; license status not recorded)",
+          "sha256": "75433f6fab0ea26ad4a0bd94ca6e2022b4007c12643fb007ed0f1744bbac8465",
+          "included": false
+        }
+      ],
+      "project_readme": "project/verdi/nabucco/trombone-ii/README.md",
+      "html": "public/composers/giuseppe-verdi/nabucco-sinfonia/trombone-ii-prior/guide.html",
+      "project_files": [
+        "project/verdi/nabucco/trombone-ii/README.md",
+        "project/verdi/nabucco/trombone-ii/status.json"
+      ],
+      "artifacts": [
+        {
+          "kind": "PDF",
+          "path": "public/composers/giuseppe-verdi/nabucco-sinfonia/trombone-ii-prior/annotated.pdf",
+          "sha256": "372c89833da76fd11af841ec81ced98df2a6fd6731e0c3c7164a7410a0cd512d"
+        },
+        {
+          "kind": "HTML",
+          "path": "public/composers/giuseppe-verdi/nabucco-sinfonia/trombone-ii-prior/interactive-reading.html",
+          "sha256": "73d9290f64268ff40a25074e15bf97381d49547fd35fc60fa4e586ca9be308e3"
+        }
+      ]
+    },
+    {
+      "id": "nabucco-sinfonia-trombone-ii-overview",
+      "composer": "Giuseppe Verdi",
+      "composer_key": "giuseppe-verdi",
+      "work": "Nabucco — Sinfonia",
+      "work_key": "nabucco-sinfonia",
+      "instrument": "Trombone II · 3-page overview",
+      "summary": "Compact three-page overview of the prior reading for source PDF pp. 2–4.",
+      "review_status": "draft",
+      "limitations": [
+        "PDF p.2 system 11 visual audit does not support a clear meter change or key-signature reset; the bass clef appears to continue.",
+        "The scan does not resolve the key-signature count on PDF pp.3–4; earlier context corrections need comparison against the source.",
+        "Structural note-count and timing checks are not an independent musician listening or complete note-by-note review."
+      ],
+      "sources": [
+        {
+          "label": "Source score PDF (not included; license status not recorded)",
+          "sha256": "75433f6fab0ea26ad4a0bd94ca6e2022b4007c12643fb007ed0f1744bbac8465",
+          "included": false
+        }
+      ],
+      "project_readme": "project/verdi/nabucco/trombone-ii/README.md",
+      "html": "public/composers/giuseppe-verdi/nabucco-sinfonia/trombone-ii-overview/guide.html",
+      "project_files": [
+        "project/verdi/nabucco/trombone-ii/README.md",
+        "project/verdi/nabucco/trombone-ii/status.json"
+      ],
+      "artifacts": [
+        {
+          "kind": "PDF",
+          "path": "public/composers/giuseppe-verdi/nabucco-sinfonia/trombone-ii-overview/overview-3-pages.pdf",
+          "sha256": "f58ffd52802bab1a92797741fbc7205d1293e949c2c824018c71a01eaf238e7c"
+        }
+      ]
+    },
+    {
+      "id": "nabucco-sinfonia-trombone-ii-fuyomi",
+      "composer": "Giuseppe Verdi",
+      "composer_key": "giuseppe-verdi",
+      "work": "Nabucco — Sinfonia",
+      "work_key": "nabucco-sinfonia",
+      "instrument": "Trombone II · Fuyomi candidates",
+      "summary": "Fuyomi candidate viewer maps 455 notehead candidates to source PDF pp. 2–4.",
+      "review_status": "draft",
+      "limitations": [
+        "Rhythm and rests are not reviewed; playback is synthesized pitch-only and is not synchronized to the score.",
+        "Candidate count differs from the MusicXML count by six; false detections versus omissions are unresolved.",
+        "PDF p.2 system 11 does not support a clear meter change or key-signature reset; key-signature counts on pp.3–4 remain unresolved."
+      ],
+      "sources": [
+        {
+          "label": "Source score PDF (not included; license status not recorded)",
+          "sha256": "75433f6fab0ea26ad4a0bd94ca6e2022b4007c12643fb007ed0f1744bbac8465",
+          "included": false
+        }
+      ],
+      "project_readme": "project/verdi/nabucco/trombone-ii/README.md",
+      "html": "public/composers/giuseppe-verdi/nabucco-sinfonia/trombone-ii-fuyomi/guide.html",
+      "project_files": [
+        "project/verdi/nabucco/trombone-ii/README.md",
+        "project/verdi/nabucco/trombone-ii/status.json"
+      ],
+      "artifacts": [
+        {
+          "kind": "PDF",
+          "path": "public/composers/giuseppe-verdi/nabucco-sinfonia/trombone-ii-fuyomi/annotated.pdf",
+          "sha256": "80ab9f012169d37674ee614c8e11ee2fa90f9fe8584a7db7f1844f5b5fdaff94"
+        },
+        {
+          "kind": "HTML",
+          "path": "public/composers/giuseppe-verdi/nabucco-sinfonia/trombone-ii-fuyomi/interactive-reading.html",
+          "sha256": "2e67e5cafd77427041bbc909cb9761bb4313bfb80045eb9ec614db31577c3d24"
+        }
+      ]
+    },
+    {
+      "id": "dvorak-8-horn-ii-movement-i-p9-p11",
+      "composer": "Antonín Dvořák",
+      "composer_key": "antonin-dvorak",
+      "work": "Symphony No. 8, Op. 88",
+      "work_key": "symphony-no-8",
+      "instrument": "Horn II in F · movement I, pp. 9–11",
+      "summary": "489 note cards source-linked to noteheads, cues, and written/concert pitch.",
+      "review_status": "draft",
+      "limitations": [
+        "Four notes are low confidence and 93 are medium confidence; 47 cues are confirmed and 10 cue-boundary candidates remain.",
+        "The one-flat key signature on p.11 is unresolved; seven B-note alternatives are excluded from audition.",
+        "Eight p.11 D5 noteheads have no reviewed duration. Phrase playback is unavailable."
+      ],
+      "sources": [
+        {
+          "label": "Source score PDF (not included; license status not recorded)",
+          "sha256": "0a29673a6ab1f0b02b89485dd0910ea100876cd4589feaced09fbad153839665",
+          "included": false
+        }
+      ],
+      "project_readme": "project/dvorak/symphony-no-8/horn-ii/README.md",
+      "html": "public/composers/antonin-dvorak/symphony-no-8/horn-ii/movement-i-p9-p11/guide.html",
+      "project_files": [
+        "project/dvorak/symphony-no-8/horn-ii/README.md",
+        "project/dvorak/symphony-no-8/horn-ii/project.json",
+        "project/dvorak/symphony-no-8/horn-ii/reviews/movement-1-gpt6sol-independent.json",
+        "project/dvorak/symphony-no-8/horn-ii/reviews/movement-2-gpt6sol-independent.json",
+        "project/dvorak/symphony-no-8/horn-ii/reviews/movement-3-gpt6sol-independent.json",
+        "project/dvorak/symphony-no-8/horn-ii/reviews/movement-4-gpt6sol-independent.json"
+      ],
+      "artifacts": [
+        {
+          "kind": "PDF",
+          "path": "public/composers/antonin-dvorak/symphony-no-8/horn-ii/movement-i-p9-p11/annotated.pdf",
+          "sha256": "4383c52854225eb3424cdf3b7a4101acd4999395b53045027a00b4a536aed730"
+        },
+        {
+          "kind": "HTML",
+          "path": "public/composers/antonin-dvorak/symphony-no-8/horn-ii/movement-i-p9-p11/interactive-reading.html",
+          "sha256": "51c3e46f39816eab25a2cfd94fc6f6908ec1cf19ff3fb2782bd9b11442e7ec3e"
+        }
+      ]
+    },
+    {
+      "id": "dvorak-8-horn-ii-movement-iii-p13",
+      "composer": "Antonín Dvořák",
+      "composer_key": "antonin-dvorak",
+      "work": "Symphony No. 8, Op. 88",
+      "work_key": "symphony-no-8",
+      "instrument": "Horn II in F · movement III, p. 13",
+      "summary": "Source-linked pitch candidates across all 11 systems on p.13.",
+      "review_status": "draft",
+      "limitations": [
+        "Low-grade notes remain on system 7, and some note durations are unset.",
+        "Cue and key questions remain; this is a draft, not an approved performance edition."
+      ],
+      "sources": [
+        {
+          "label": "Source score PDF (not included; license status not recorded)",
+          "sha256": "0a29673a6ab1f0b02b89485dd0910ea100876cd4589feaced09fbad153839665",
+          "included": false
+        }
+      ],
+      "project_readme": "project/dvorak/symphony-no-8/horn-ii/README.md",
+      "html": "public/composers/antonin-dvorak/symphony-no-8/horn-ii/movement-iii-p13/guide.html",
+      "project_files": [
+        "project/dvorak/symphony-no-8/horn-ii/README.md",
+        "project/dvorak/symphony-no-8/horn-ii/project.json",
+        "project/dvorak/symphony-no-8/horn-ii/reviews/movement-1-gpt6sol-independent.json",
+        "project/dvorak/symphony-no-8/horn-ii/reviews/movement-2-gpt6sol-independent.json",
+        "project/dvorak/symphony-no-8/horn-ii/reviews/movement-3-gpt6sol-independent.json",
+        "project/dvorak/symphony-no-8/horn-ii/reviews/movement-4-gpt6sol-independent.json"
+      ],
+      "artifacts": [
+        {
+          "kind": "PDF",
+          "path": "public/composers/antonin-dvorak/symphony-no-8/horn-ii/movement-iii-p13/annotated.pdf",
+          "sha256": "61bee2a215f6dcbbb15763911713324cd571c49926e3079cdfa576b34a6e7d8d"
+        },
+        {
+          "kind": "HTML",
+          "path": "public/composers/antonin-dvorak/symphony-no-8/horn-ii/movement-iii-p13/interactive-reading.html",
+          "sha256": "a7e6ccc9fce9fe918cfbabad484337ffddab3e70e70aea750accbbd02c6834f9"
         }
       ]
     }

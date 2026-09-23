@@ -387,8 +387,8 @@ def bundle(root: Path, output: Path) -> dict:
     with output.open("xb") as stream, zipfile.ZipFile(stream, "w", zipfile.ZIP_DEFLATED) as archive:
         for relative in sorted(files):
             archive.write(local_path(root, str(relative)), str(Path("fuyomi") / relative))
-        archive.writestr("fuyomi/REBUILD.txt", "Install the vEdit version identified by builds/*/receipt.json.\n"
+        archive.writestr("fuyomi/REBUILD.txt", "Install Python 3.11+ and Pillow, pypdf, and ReportLab.\n"
                          "Run: python -m tools.fuyomi fuyomi validate fuyomi\n"
                          "Run: python -m tools.fuyomi fuyomi build fuyomi [--font same-font.ttf]\n"
-                         "Source images, saved OMR and reviewed inputs are included. The source PDF and font are not.\n")
+                         "Source images, saved OMR, and reviewed inputs are included. The source PDF and font are not.\n")
     return {"status": "bundled", "path": str(output), "sha256": sha256(output)}

@@ -221,7 +221,11 @@ class WorkflowTest(unittest.TestCase):
             self.assertIn('Audiveris grade 0.900',candidate_html)
             self.assertIn('正しさを示す確率',candidate_html)
             bundle=parent/'bundle.zip';w.bundle(root,bundle)
-            with zipfile.ZipFile(bundle) as z:z.extractall(parent/'unpacked')
+            with zipfile.ZipFile(bundle) as z:
+                rebuild=z.read('fuyomi/REBUILD.txt').decode()
+                self.assertIn('Install Python 3.11+',rebuild)
+                self.assertNotIn('vEdit',rebuild)
+                z.extractall(parent/'unpacked')
             restored=parent/'unpacked/fuyomi'
             self.assertEqual(w.validate(restored)['build_artifacts'],'passed')
             self.assertTrue(w.build(restored)['cached'])
