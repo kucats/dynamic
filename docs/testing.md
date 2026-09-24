@@ -12,6 +12,9 @@ Run from the repository root with Python 3.11 or later. Catalog commands operate
 | Player JavaScript | `node --check tools/fuyomi/player.js` | No syntax errors |
 | DYNAMIC reader data | `python3 tools/dynamic/validate_reader.py` | Notes sit in numbered bars, timelines cover all notes, no path leaks |
 | DYNAMIC reader JavaScript | `node --check public/reader/app.js && node --check public/sw.js` | No syntax errors |
+| Score following tests | `cd tools/score_following && python -m pytest -q` | Unit/security plus real localhost WebSocket and WebRTC/Opus paths pass |
+| Score following browser | `cd tools/score_following && python -m scorefollow serve --dev`, then `python scripts/browser_smoke.py` | Synthetic PCM/WebRTC, controls, and mobile-layout evidence; report compatibility capture separately |
+| Score following benchmark | `cd tools/score_following && python -m scorefollow benchmark evidence/local` | Reproducible original-synthetic scenarios; never report them as real-instrument accuracy |
 | DYNAMIC print PDFs | serve `public/`, then `python3 tools/dynamic/render_pdfs.py` | A3 PDFs regenerated; inspect representative pages |
 | Patch hygiene | `git diff --check` | No whitespace errors |
 

@@ -1,3 +1,6 @@
+import json
+from pathlib import Path
+
 import pytest
 from scorefollow.adapters import ImportError, from_dynamic, from_musicxml
 
@@ -85,3 +88,41 @@ def test_dynamic_uncertainty_not_silently_played():
     data["notes"][0]["unc"] = "octave unclear"
     with pytest.raises(ImportError):
         from_dynamic(data, "I")
+
+
+def test_repository_dynamic_reader_data_respects_uncertainty_and_sounding_pitch():
+    root = Path(__file__).resolve().parents[3]
+    paths = [
+        root / "public/reader/data/dvorak8-horn2.json",
+        root / "public/reader/data/dvorak8-horn3-mvt3.json",
+    ]
+    clean, blocked = 0, 0
+    for path in paths:
+        data = json.loads(path.read_text())
+        source_by_id = {str(n["id"]): n for n in data["notes"]}
+        for movement in data["movements"]:
+            key = movement["key"]
+            source = [n for n in data["notes"] if n.get("mvt") == key]
+            if any(n.get("unc") for n in source):
+                with pytest.raises(ImportError):
+                    from_dynamic(data, key)
+                blocked += 1
+                continue
+            score = from_dynamic(data, key)
+            clean += 1
+            assert score.audit_status == "unreviewed"
+            assert score.pitch_domain == "concert"
+            assert score.transpose_semitones == 0
+            assert all(
+                event.pitch is None
+                or event.pitch == float(source_by_id[event.source_id]["snd"][2])
+                for event in score.events
+            )
+            assert all(
+                left.start + left.duration <= right.start + 1e-7
+                for left, right in zip(score.events, score.events[1:])
+            )
+    # The checked-in reader corpus currently contains both structurally usable
+    # movements and movements that must remain blocked by unresolved source notes.
+    assert clean >= 3
+    assert blocked >= 1
