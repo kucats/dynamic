@@ -63,7 +63,7 @@
   async function api(path, opt = {}) {
     const res = await fetch(path, { credentials: 'same-origin', ...opt, headers: { Accept: 'application/json', ...(opt.body ? { 'Content-Type': 'application/json' } : {}) } });
     let body = null; try { body = await res.json(); } catch (e) { /* non-JSON */ }
-    if (res.status === 401) { M.loggedIn = false; sync(); }
+    if (res.status === 401) { M.loggedIn = false; M.email = ''; M.memos = []; if (X) X.rerender(); sync(); }
     if (!res.ok) throw new Error((body && body.error) || `保存できませんでした（${res.status}）`);
     return body;
   }
@@ -75,9 +75,15 @@
     $('memoPen').hidden = !M.enabled; $('memoListBtn').hidden = !M.enabled || !M.loggedIn;
     $('memoPen').setAttribute('aria-pressed', String(M.pen));
     $('memoPen').title = M.loggedIn ? 'ペンを押してから、メモを書きたい場所をタップ' : 'ログインするとメモを書けます';
+    const status = $('memoStatus');
+    status.hidden = !M.enabled;
+    status.textContent = M.loggedIn ? `ログイン中：${M.email}` : 'メモ：未ログイン';
+    status.title = M.loggedIn ? `${M.email} でログイン中` : '「メモ」を押すとGoogleアカウントでログインできます';
+    status.classList.toggle('is-logged-in', M.loggedIn);
     $('memoCount').textContent = M.memos.length ? ` ${M.memos.length}` : '';
     document.body.classList.toggle('memo-mode', M.pen);
   }
+  function askLogin() { if (!$('memoLoginPrompt').open) $('memoLoginPrompt').showModal(); }
   function setPen(on) {
     M.pen = on && M.loggedIn; sync();
     if (M.pen) $('nowInfo').textContent = 'メモを書きたい場所をタップしてください（もう一度 ✎ か Esc で取り消し）。';
@@ -144,9 +150,10 @@
     const score = $('score');
     const at = (e) => { const svg = e.target.closest('.sc svg'); return svg ? anchorFrom(svg, e.clientX, e.clientY) : null; };
     $('memoPen').onclick = () => {
-      if (!M.loggedIn) { if (confirm('練習メモを書くにはログインが必要です。ログインページへ移動しますか？')) location.href = loginUrl(); return; }
+      if (!M.loggedIn) { askLogin(); return; }
       setPen(!M.pen);
     };
+    $('memoLoginGo').onclick = () => { $('memoLoginPrompt').close(); location.assign(loginUrl()); };
     $('memoListBtn').onclick = () => { renderList(); $('memoList').showModal(); };
     // Capture phase: memo pins and pen placement win over note playback in app.js.
     score.addEventListener('click', (e) => {
@@ -158,16 +165,18 @@
     }, true);
     // Shortcut: double-click / double-tap an empty spot (not a note) on the score.
     score.addEventListener('dblclick', (e) => {
-      if (!M.loggedIn || e.target.closest('.note,.memo-pin')) return;
-      const a = at(e); if (a) { e.preventDefault(); openMemo(null, a); }
+      if (e.target.closest('.note,.memo-pin')) return;
+      const a = at(e); if (!a) return;
+      e.preventDefault();
+      if (M.loggedIn) openMemo(null, a); else askLogin();
     });
     let lastTap = null;
     score.addEventListener('touchend', (e) => {
-      if (!M.loggedIn || M.pen || e.changedTouches.length !== 1 || e.target.closest('.note,.memo-pin')) { lastTap = null; return; }
+      if (M.pen || e.changedTouches.length !== 1 || e.target.closest('.note,.memo-pin')) { lastTap = null; return; }
       const t = e.changedTouches[0], now = Date.now();
       if (lastTap && now - lastTap.t < 350 && Math.hypot(t.clientX - lastTap.x, t.clientY - lastTap.y) < 30) {
         const svg = e.target.closest('.sc svg'); lastTap = null;
-        if (svg) { e.preventDefault(); openMemo(null, anchorFrom(svg, t.clientX, t.clientY)); }
+        if (svg) { e.preventDefault(); if (M.loggedIn) openMemo(null, anchorFrom(svg, t.clientX, t.clientY)); else askLogin(); }
       } else lastTap = { t: now, x: t.clientX, y: t.clientY };
     });
     score.addEventListener('keydown', (e) => {
