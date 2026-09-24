@@ -186,3 +186,96 @@ def test_articulation_detects_semitone_steps_without_chasing_pitch():
     onsets = collect_onsets(score)
     assert len(onsets) == 3
     assert [round(obs.pitch) for obs in onsets] == [59, 60, 61]
+
+
+def make_support_test_score():
+    pitches = [60, 62, 64, 65, 67, 69]
+    return Score(
+        title="support guard regression",
+        audit_status="synthetic",
+        tempo_bpm=100,
+        events=[
+            Note(
+                event_id=f"support-{i}",
+                measure="1",
+                beat=float(i),
+                start=float(i),
+                duration=1,
+                pitch=pitch,
+            )
+            for i, pitch in enumerate(pitches)
+        ],
+    )
+
+
+def tracking_follower_for_support_test():
+    follower = Follower(make_support_test_score())
+    for index, (time_s, pitch) in enumerate(((0.2, 60), (0.8, 62), (1.4, 64))):
+        state = follower.consume(
+            Observation(time=time_s, pitch=pitch, clarity=0.95, rms=0.2, onset=True)
+        )
+    assert state["status"] == "tracking"
+    assert state["position"]["event_id"] == "support-2"
+    return follower
+
+
+@pytest.mark.parametrize(
+    ("pitch", "clarity", "rms"),
+    [(70.0, 0.95, 0.2), (64.0, 0.4, 0.2), (None, 0.0, 0.0)],
+)
+def test_confirmed_position_is_revoked_after_unsupported_audio(pitch, clarity, rms):
+    follower = tracking_follower_for_support_test()
+    for hop in range(4):
+        state = follower.consume(
+            Observation(
+                time=1.42 + hop * 0.02,
+                pitch=pitch,
+                clarity=clarity,
+                rms=rms,
+                onset=False,
+            )
+        )
+    assert state["status"] == "uncertain"
+    assert state["confidence"] == 0
+    assert state["position"]["event_id"] == "support-2"
+    assert state["position"]["confirmed"] is False
+
+
+def test_short_pitch_transient_does_not_clear_confirmation():
+    follower = tracking_follower_for_support_test()
+    for hop in range(3):
+        state = follower.consume(
+            Observation(
+                time=1.42 + hop * 0.02,
+                pitch=70.0,
+                clarity=0.95,
+                rms=0.2,
+                onset=False,
+            )
+        )
+    state = follower.consume(
+        Observation(time=1.48, pitch=64.0, clarity=0.95, rms=0.2, onset=False)
+    )
+    assert state["status"] == "tracking"
+    assert state["position"]["event_id"] == "support-2"
+
+
+def test_onsets_reestablish_tracking_after_unsupported_audio():
+    follower = tracking_follower_for_support_test()
+    for hop in range(4):
+        state = follower.consume(
+            Observation(
+                time=1.42 + hop * 0.02,
+                pitch=70.0,
+                clarity=0.95,
+                rms=0.2,
+                onset=False,
+            )
+        )
+    assert state["status"] == "uncertain"
+    for time_s, pitch in ((2.0, 65), (2.6, 67), (3.2, 69)):
+        state = follower.consume(
+            Observation(time=time_s, pitch=pitch, clarity=0.95, rms=0.2, onset=True)
+        )
+    assert state["status"] == "tracking"
+    assert state["position"]["event_id"] == "support-5"
