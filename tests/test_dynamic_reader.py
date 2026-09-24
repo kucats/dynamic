@@ -7,11 +7,26 @@ sys.path.insert(0, str(ROOT / "tools/dynamic"))
 
 from common import HORN_KEYS, label, parse_pitch, transpose  # noqa: E402
 import validate_reader  # noqa: E402
+import validate_score  # noqa: E402
 
 
 class DynamicReaderTests(unittest.TestCase):
     def test_reader_data_is_valid(self):
         self.assertEqual(validate_reader.main(), 0)
+
+    def test_score_viewer_data_is_valid(self):
+        self.assertEqual(validate_score.main(), 0)
+
+    def test_score_overrides(self):
+        try:
+            from build_score import apply_overrides
+        except ImportError:                     # OpenCV / Pillow are only needed for rebuilding
+            self.skipTest("build dependencies not installed")
+        systems = [dict(y0=0, y1=100, bl=[10.0, 200.0, 400.0]), dict(y0=120, y1=200, bl=[10.0, 50.0, 300.0])]
+        out = apply_overrides(systems, {"add": [[0, 300]], "drop": [[1, 52]]})
+        self.assertEqual(out[0]["bl"], [10.0, 200.0, 300.0, 400.0])
+        self.assertEqual(out[1]["bl"], [10.0, 300.0])
+        self.assertEqual(systems[0]["bl"], [10.0, 200.0, 400.0])      # input is not mutated
 
     def test_horn_transposition_spelling(self):
         L, a, o = parse_pitch("C5")

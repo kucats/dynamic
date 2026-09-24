@@ -1,0 +1,149 @@
+{
+  "id": "dvorak8",
+  "title": "ドヴォルザーク 交響曲第8番 総譜",
+  "composer": "Antonín Dvořák",
+  "work": "Symphony No. 8 in G major, Op. 88",
+  "edition": "Conductor's score, critical edition based on the composer's manuscript, ed. František Bartoš",
+  "source": {
+    "file": "Bartos.pdf (user-supplied via the source_db8 GitHub release, not committed)",
+    "sha256": "f644a29d78440db51cb15d007be6d0f8198e253f9adb53845e9a8334977f7026",
+    "pages": 172
+  },
+  "status": "小節番号は小節線の自動検出で振り、印刷された小節番号（5小節ごと）と全ページ照合して食い違いを overrides で修正済み。音符は読んでいません。",
+  "limitations": [
+    "総譜の画像は原譜PDFを200dpiで描画・傾き補正・圧縮した派生物です。",
+    "小節番号は小節線の位置から付けています。印刷された番号とは照合済みですが、小節の境目の位置は数ピクセルずれることがあります。"
+  ],
+  "printed_page_offset": -2,
+  "movements": [
+    {
+      "key": "I",
+      "title": "第1楽章 Allegro con brio",
+      "first_page": 3,
+      "last_page": 61,
+      "last_bar": 318
+    },
+    {
+      "key": "II",
+      "title": "第2楽章 Adagio",
+      "first_page": 62,
+      "last_page": 94,
+      "last_bar": 170
+    },
+    {
+      "key": "III",
+      "title": "第3楽章 Allegretto grazioso",
+      "first_page": 95,
+      "last_page": 126,
+      "last_bar": 231
+    },
+    {
+      "key": "IV",
+      "title": "第4楽章 Allegro ma non troppo",
+      "first_page": 127,
+      "last_page": 172,
+      "last_bar": 389
+    }
+  ],
+  "overrides": {
+    "41": {
+      "add": [
+        [
+          0,
+          1136
+        ]
+      ],
+      "note": "double barline at Poco meno mosso (bar 239) too short to detect"
+    },
+    "69": {
+      "drop": [
+        [
+          0,
+          1817
+        ]
+      ],
+      "note": "courtesy key signature after the final barline is not a bar"
+    },
+    "129": {
+      "add": [
+        [
+          0,
+          1095
+        ],
+        [
+          0,
+          1267
+        ]
+      ],
+      "note": "first/second ending barlines at the repeat (bars 42, 43)"
+    },
+    "135": {
+      "add": [
+        [
+          0,
+          967
+        ],
+        [
+          0,
+          1242
+        ]
+      ],
+      "note": "first/second ending barlines at the repeat (bars 92, 93)"
+    },
+    "139": {
+      "drop": [
+        [
+          0,
+          1808
+        ]
+      ],
+      "note": "courtesy key signature after the final barline"
+    },
+    "150": {
+      "drop": [
+        [
+          0,
+          1818
+        ]
+      ],
+      "note": "courtesy key signature after the final barline"
+    },
+    "160": {
+      "drop": [
+        [
+          0,
+          421
+        ]
+      ],
+      "note": "start-repeat sign right after the clef is not a bar"
+    },
+    "161": {
+      "drop": [
+        [
+          0,
+          420
+        ]
+      ],
+      "note": "start-repeat sign right after the clef is not a bar"
+    },
+    "162": {
+      "drop": [
+        [
+          2,
+          433
+        ]
+      ],
+      "note": "start-repeat sign right after the clef is not a bar"
+    },
+    "163": {
+      "drop": [
+        [
+          0,
+          432
+        ]
+      ],
+      "note": "start-repeat sign right after the clef is not a bar"
+    }
+  },
+  "separator": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAAAAAA7VNdtAAADNklEQVRIDZXBfWjUdRzA8ffndrdr82BTxlpzXX9MyBSWZpgbLeYqpcJk1CJRm4oGMoLMHqjFpBw9uIEGEY2Cco11IGpJuwzcXFErhKAGWSFWaw832br5sJ17uvv02/d3d845t/1eL1GcEsUpUZwSxSlRnBJlnmIiGKLMy9UzR9ZvwBBlXk7s+auqBkOUufUGOk+e06oaDFHm1Ne0bwioqsEQZQ5DXwWbw1jeqMYQZTaXz423H7iAcXB7BpNEmcXQRx9HLoex3RvIZ5IoNzX2zw+v9JPg21GVzSRRZhaLdp08OtBBgm/97gcxRJlJLNQe7PxpRGIYku+u2ONOwRBlBnppd3uXYpM7VqRsyl+WSpwoNxi58F1D2wQ2b+7jjxS5vG6SRJnu298Dv1wibusDS5ct4jqiXC8ceGdwWLEt/rDEhy186tC65zOxiDJV5GxHdQ+27IdvvfNZbBdbW5oiqwJ+LKIkjUaGP2s+O4jhXbmrzOfBiP76QnfvVQoDfiyiJIRamrp/i2F4iksr8ogbO/z1iSi4H6r3YxHFGOtrbWvtwiYLyvdnezDGr3S+G9QhwFXyiR+LKEbD91/2Kzbf/XtLXdj+bapP6xrCKAz4sYhivFyn2PyPlhXkYERH2xq/mBgnrihwOxZRjNoDA1hSV2Vve8yDrb+hbnAiSlx6xpbXMrGIYhzehmXJvtJcbNpT331sOIpN1L+24q5FqVhEMT6ohMyC6lLB0L9/bgwyQZzvqcG38xZgE8V4qQ721gpxfzxzflCJc2U9XZtKkihG8NDI1g05TIpdPP7WymOKzaMp5fuzfFwjyjT/1Z85NUyCp3xF2j2FwhSiTDHa625pDkZISPMVv7mcaUS5ZvjzyoUDUZIyy3fe7WU6URIiPx7887wS584pWbs8bzE3EsUW6vj0SJSktI3PrRFhJqIY2vhqD0ke79L3VwszE8UIbTmtxKUX7NjkusXFTYhihHcexxBX2hOvL2EWohihzaexeHz37VqTkS7MQhSjtzI4Bq7Vm5/MYQ6iGH3bv1G57b3ihanMRRRj7MWjWevKipgHUWyhK95cD/MhilOiOCWKU6I4JYpTojj1P0GZKBBXbKP4AAAAAElFTkSuQmCC"
+}
