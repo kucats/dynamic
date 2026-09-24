@@ -11,14 +11,43 @@
       3,
       4
     ],
+    "total_pages": 34,
     "original_pdf_committed": false
   },
-  "status": "provisional_omr_candidate_reading_manual_check_in_progress",
-  "omr_candidates": 455,
-  "verified_note_count": null,
-  "playback_authorized": false,
+  "status": "pitch_position_audited_excerpt",
+  "systems_reviewed": 38,
+  "verified_note_count": 401,
+  "noteheads_by_page": {
+    "2": 124,
+    "3": 125,
+    "4": 152
+  },
+  "audited_dimensions": [
+    "printed bass-clef pitch",
+    "pitch spelling and octave",
+    "key signatures and explicit or carried accidentals",
+    "conventional basic trombone slide position",
+    "source-notehead to label coverage"
+  ],
+  "not_audited": [
+    "durations and rests",
+    "ties and repeats",
+    "cue-note separation",
+    "tempo and performance timing",
+    "recording synchronization",
+    "source pages outside physical pages 2-4"
+  ],
+  "omr_candidate_count": 455,
+  "omr_candidates_verified": false,
+  "playback_authorized": true,
+  "playback_mode": "exploratory_unverified",
+  "playback_warning_required": true,
+  "playback_timing_verified": false,
   "limitations": [
-    "The existing HTML/PDF is an interim candidate reading, not a verified transcription.",
-    "The source notes, accidentals (including B and sharps), clef, and durations require manual review."
-  ]
+    "This checked excerpt covers only physical source PDF pages 2-4 of the 34-page Trombone II part.",
+    "The note labels were checked for pitch, spelling, octave, accidentals, and basic position; durations, rests, ties, repeats, cues, and tempo were not audited.",
+    "Exploratory synthesized playback is available only after acknowledging a warning; this pitch-only audit does not verify its timing or authorize a recording-synchronized practice track.",
+    "Basic slide positions are conventional starting choices and may vary by instrument setup and player preference."
+  ],
+  "audit_receipt": "reading-audit.json"
 }
