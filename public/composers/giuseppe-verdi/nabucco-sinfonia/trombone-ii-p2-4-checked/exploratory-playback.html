@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nabucco · Trombone II · 試作再生</title>
+  <style>
+    :root { color-scheme: light; font: 16px/1.55 system-ui, sans-serif; color: #172a36; background: #f5f8fa; }
+    body { margin: 0; }
+    header, main { max-width: 76rem; margin: 0 auto; padding: 1rem 1.25rem; }
+    header { background: #102f42; color: white; max-width: none; }
+    header > div { max-width: 76rem; margin: 0 auto; }
+    a { color: #075d82; }
+    header a { color: white; }
+    .status { padding: .8rem 1rem; border-left: .35rem solid #d97706; background: #fff3d4; }
+    iframe { display: block; width: 100%; height: 78vh; min-height: 38rem; border: 1px solid #b8c8d1; background: white; }
+    dialog { max-width: 36rem; border: 0; border-radius: .75rem; padding: 1.5rem; box-shadow: 0 1rem 4rem #102f4266; }
+    dialog::backdrop { background: #102f428c; }
+    dialog h2 { margin-top: 0; }
+    .actions { display: flex; justify-content: flex-end; gap: .75rem; margin-top: 1.5rem; }
+    button { border: 1px solid #8298a5; border-radius: .4rem; padding: .65rem .9rem; background: white; color: #172a36; font: inherit; cursor: pointer; }
+    button.primary { border-color: #075d82; background: #075d82; color: white; font-weight: 700; }
+    @media (max-width: 40rem) { iframe { min-height: 32rem; height: 70vh; } .actions { flex-direction: column-reverse; } }
+  </style>
+</head>
+<body>
+  <header><div><strong>Giuseppe Verdi · Nabucco · Trombone II</strong><br>pp. 2–4 · 試作再生</div></header>
+  <main>
+    <p class="status"><strong>ピッチ譜読みは照合済み、再生タイミングは未監査です。</strong> 再生ボタンまたは音符の試聴を始める前に確認を表示します。試奏用の参考で、正確なリズムや録音同期を示すものではありません。</p>
+    <p><a href="Nabucco_Sinfonia_Trombone_II_source_pages_2-4_pitch_checked.pdf">譜読みPDFを開く</a></p>
+    <iframe id="player" title="Nabucco Trombone II source pages 2–4 interactive reading" src="../trombone-ii-prior/interactive-reading.html"></iframe>
+  </main>
+  <dialog id="timing-warning" aria-labelledby="warning-title" aria-describedby="warning-copy">
+    <h2 id="warning-title">再生タイミングは未監査です</h2>
+    <div id="warning-copy">
+      <p>音高・オクターブ・臨時記号・基本ポジションはpp.2–4の401音を照合済みです。一方、音価、休符、タイ、反復、キュー、テンポは未確認です。</p>
+      <p>この再生は譜読み候補の試聴です。リズムが原譜どおりであること、演奏録音と同期していることは保証しません。</p>
+    </div>
+    <div class="actions">
+      <button id="cancel-playback" type="button">戻る</button>
+      <button id="accept-warning" class="primary" type="button">未監査を理解して再生</button>
+    </div>
+  </dialog>
+  <script>
+    const frame = document.getElementById("player");
+    const warning = document.getElementById("timing-warning");
+    const accept = document.getElementById("accept-warning");
+    const cancel = document.getElementById("cancel-playback");
+    let acknowledged = false;
+    let pendingAction = null;
+
+    function installWarningGate() {
+      const doc = frame.contentDocument;
+      const play = doc && doc.getElementById("play");
+      if (!play) return;
+      play.disabled = false;
+      play.textContent = "▶ 試作再生（要確認）";
+      play.setAttribute("aria-label", "警告を確認して試作再生");
+      const stop = doc.getElementById("stop");
+      const seek = doc.getElementById("seek");
+      const tempo = doc.getElementById("tempo");
+      if (stop) stop.disabled = false;
+      if (seek) seek.disabled = false;
+      if (tempo) tempo.disabled = false;
+      const notice = doc.querySelector("header .notice");
+      if (notice) notice.textContent = "音高・オクターブ・臨時記号・基本ポジションは照合済みです。試作再生は警告確認後に使えますが、音価・休符・タイ・反復・テンポは未監査で、録音との同期もありません。";
+      const status = doc.getElementById("status");
+      if (status) status.textContent = "試作再生は有効（タイミング未監査・開始前に警告を表示）";
+      if (doc.documentElement.dataset.warningGate === "installed") return;
+      doc.documentElement.dataset.warningGate = "installed";
+
+      function gateAction(event, action) {
+        if (acknowledged) {
+          acknowledged = false;
+          pendingAction = null;
+          return;
+        }
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        pendingAction = action;
+        warning.showModal();
+      }
+
+      doc.addEventListener("click", event => {
+        const target = event.target;
+        if (typeof target?.closest !== "function") return;
+        const playButton = target.closest("#play");
+        const note = target.closest(".note");
+        if (!playButton && !note) return;
+        const isPausing = playButton && frame.contentWindow.__scoreQA?.state?.playing === true;
+        if (isPausing) return;
+        gateAction(event, playButton ? { kind: "play" } : { kind: "note", id: note.dataset.id });
+      }, true);
+
+      doc.addEventListener("keydown", event => {
+        if (event.key !== "Enter" && event.key !== " ") return;
+        const target = event.target;
+        const note = typeof target?.closest === "function" ? target.closest(".note") : null;
+        if (!note) return;
+        gateAction(event, { kind: "note", id: note.dataset.id });
+      }, true);
+    }
+
+    frame.addEventListener("load", installWarningGate);
+    cancel.addEventListener("click", () => { pendingAction = null; warning.close(); });
+    accept.addEventListener("click", () => {
+      const action = pendingAction;
+      pendingAction = null;
+      acknowledged = true;
+      warning.close();
+      const doc = frame.contentDocument;
+      if (!doc) return;
+      if (action?.kind === "note") {
+        Array.from(doc.querySelectorAll(".note")).find(note => note.dataset.id === action.id)?.click();
+      }
+      else doc.getElementById("play")?.click();
+    });
+  </script>
+</body>
+</html>
