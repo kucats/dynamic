@@ -1,5 +1,5 @@
 /* DYNAMIC offline cache: stale-while-revalidate for same-origin GET requests */
-const CACHE = 'dynamic-v4';
+const CACHE = 'dynamic-v5';
 // Full-score page images are cached only after a viewer has opened them, in their own bounded cache.
 const SCORE_CACHE = 'dynamic-score-v1';
 const SCORE_MAX = 120;

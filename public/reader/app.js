@@ -16,14 +16,14 @@
 
   // ---------- settings (per viewer, optional) ----------
   const DEF = { rows: { w: true, f: false, s: false }, fontSize: 44, barPosition: 'bottom', sound: 's', tempo: 100, squeeze: true,
-    fromSel: true, follow: true, metro: false, lines: true, hornMode: 'double', hornSwitchAt: 0, zoom: innerWidth < 760 ? 2.6 : 1 };
-  let S = structuredClone(DEF);
+    fromSel: true, follow: true, metro: false, lines: true, hornMode: 'double', hornSwitch: 69, zoom: innerWidth < 760 ? 2.6 : 1 };
+  let S = structuredClone(DEF), storedSettings = {};
   try {
-    const stored = JSON.parse(localStorage.getItem('dynamic-settings') || '{}');
-    Object.assign(S, stored);
-    const legacySize = LEGACY_SIZES[stored.size] || DEF.fontSize;
-    S.fontSize = Math.max(26, Math.min(72, stored.fontSize == null || !Number.isFinite(Number(stored.fontSize)) ? legacySize : Number(stored.fontSize)));
-    if (!['bottom', 'top', 'off'].includes(S.barPosition)) S.barPosition = stored.bars === false ? 'off' : 'bottom';
+    storedSettings = JSON.parse(localStorage.getItem('dynamic-settings') || '{}');
+    Object.assign(S, storedSettings);
+    const legacySize = LEGACY_SIZES[storedSettings.size] || DEF.fontSize;
+    S.fontSize = Math.max(26, Math.min(72, storedSettings.fontSize == null || !Number.isFinite(Number(storedSettings.fontSize)) ? legacySize : Number(storedSettings.fontSize)));
+    if (!['bottom', 'top', 'off'].includes(S.barPosition)) S.barPosition = storedSettings.bars === false ? 'off' : 'bottom';
   } catch (e) { /* ignore */ }
   if (PRINT) {
     S.zoom = 1;
@@ -42,14 +42,16 @@
   const svgHooks = [];                // extensions (memo.js) draw extra SVG per system
   // ---------- horn fingering aid (general chart, keyed by the F-horn written reading) ----------
   let FG = null;
-  function fingering(n) {           // [first choice, ...alternates]; B♭-side fingerings carry a leading T
+  function fingering(n) {           // [first choice, ...alternates]; B♭-side fingerings carry a leading 4
     if (!FG || !n.f) return [];
-    const m = String(n.f[2]);
-    if (S.hornMode === 'F') return FG.single_F[m] || [];
-    const list = FG.double[m] || [], sw = Number(S.hornSwitchAt);
-    if (!sw) return list;            // chart order (left column first)
-    const t = list.filter((v) => v[0] === 'T'), f = list.filter((v) => v[0] !== 'T');
-    return n.f[2] >= sw ? [...t, ...f] : [...f, ...t];
+    const m = String(n.f[2]), F = FG.sides.F[m] || [], B = FG.sides.Bb[m] || [];
+    const bb = B.map((v) => '4' + v), sw = Number(S.hornSwitch), low = FG.double.lowBb, keepF = FG.double.mostlyBbKeepF;
+    if (S.hornMode === 'F') return F;
+    // switch 0 = B♭ nearly throughout (GONLOG); otherwise B♭ from the switch note up and in the low C♯3–F3 range (Yamaha)
+    const pickBb = sw === 0 ? !keepF.includes(n.f[2]) : n.f[2] >= sw || (n.f[2] >= low[0] && n.f[2] <= low[1]);
+    // Avoid 123 (all three valves) when the other side offers another fingering.
+    const useBb = B.length && (F[0] === '123' || (pickBb && B[0] !== '123'));
+    return useBb ? [...bb, ...F] : [...F, ...bb];
   }
 
   let D = null, byId = new Map(), cur = null, playing = null, ctx = null, master = null, practiceOsc = [], practiceTimer = null, fontRenderFrame = 0;
@@ -57,7 +59,7 @@
   // ---------- label layout ----------
   function rowWidth(lbl) {           // label width in em (compact metrics)
     const [sol, oct] = lbl; const base = sol.replace(/[♭♯𝄫𝄪]/g, ''); const acc = sol.length - base.length;
-    const bw = base === 'ファ' ? 1.62 : /^[A-H]$/.test(base) ? 0.74 : /^[0-9T–?]+$/.test(base) ? 0.62 * base.length : 1.0;
+    const bw = base === 'ファ' ? 1.62 : /^[A-H]$/.test(base) ? 0.74 : /^[0-9–?]+$/.test(base) ? 0.62 * base.length : 1.0;
     return bw + 0.45 * acc + (oct === '' ? 0.1 : 0.42);
   }
   function labelWidth(n, fs) {
@@ -370,7 +372,7 @@
     document.querySelectorAll('[data-bar-pos]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.barPos === S.barPosition)));
     $('sound').value = S.sound; $('tempo').value = S.tempo; $('tempoV').textContent = S.tempo + '%';
     for (const k of ['squeeze', 'fromSel', 'follow', 'metro', 'lines']) $(k).checked = !!S[k];
-    $('hornMode').value = S.hornMode; $('hornSwitch').value = String(S.hornSwitchAt); $('hornSwitch').disabled = S.hornMode !== 'double';
+    $('hornMode').value = S.hornMode; $('hornSwitch').value = String(S.hornSwitch); $('hornSwitch').disabled = S.hornMode !== 'double';
   }
   // ---------- bar context menu / full score ----------
   let viewer = null;
@@ -470,7 +472,7 @@
     $('sound').onchange = () => { S.sound = $('sound').value; save(); };
     const refingering = () => { syncControls(); save(); renderScore(); if (cur) select(cur, { scroll: false }); };
     $('hornMode').onchange = () => { S.hornMode = $('hornMode').value; refingering(); };
-    $('hornSwitch').onchange = () => { S.hornSwitchAt = Number($('hornSwitch').value); refingering(); };
+    $('hornSwitch').onchange = () => { S.hornSwitch = Number($('hornSwitch').value); refingering(); };
     for (const k of ['squeeze', 'fromSel', 'follow', 'metro']) $(k).onchange = () => { S[k] = $(k).checked; save(); };
     $('lines').onchange = () => { S.lines = $('lines').checked; document.body.classList.toggle('nolines', !S.lines); save(); };
     $('practicePlay').onclick = () => {
@@ -502,10 +504,16 @@
       try { const r = await fetch('horn-fingerings.json'); if (r.ok) FG = await r.json(); } catch (e) { /* fingering row shows – */ }
       if (FG) {
         const names = FG.names || {};
-        $('hornSwitch').innerHTML = '<option value="0">運指表どおり</option>' + FG.switch_choices.map((m) => `<option value="${m}">${esc((names[m] || m).replace('#', '♯').replace('b', '♭'))}から</option>`).join('');
-        if (!FG.switch_choices.includes(Number(S.hornSwitchAt))) S.hornSwitchAt = 0;
+        // Migrate the earlier hornSwitchAt setting. Its zero value meant the Yamaha chart order,
+        // which is the same as this chart's default; it did not mean the new mostly-B♭ mode.
+        if (storedSettings.hornSwitch == null && storedSettings.hornSwitchAt != null) {
+          const oldSwitch = Number(storedSettings.hornSwitchAt);
+          S.hornSwitch = oldSwitch === 0 ? FG.switch.default : oldSwitch;
+        }
+        $('hornSwitch').innerHTML = FG.switch.choices.map((m) => `<option value="${m}">${esc(FG.switch.labels?.[m] || (names[m] || m).replace('#', '♯').replace('b', '♭') + 'から')}</option>`).join('');
+        if (!FG.switch.choices.includes(Number(S.hornSwitch))) S.hornSwitch = FG.switch.default;
       }
-      if (PRINT) { if (params.get('horn') === 'F') S.hornMode = 'F'; if (params.get('switch')) S.hornSwitchAt = Number(params.get('switch')); }
+      if (PRINT) { if (params.get('horn') === 'F') S.hornMode = 'F'; if (params.get('switch')) S.hornSwitch = Number(params.get('switch')); }
     }
     D.showF = D.instrument !== 'trombone' && D.notes.some((n) => n.f[2] !== n.w[2]);
     S.rowsByPart = S.rowsByPart || {};
