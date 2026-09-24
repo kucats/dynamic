@@ -1,0 +1,81 @@
+{
+  "id": "verdi-nabucco-trombone2",
+  "instrument": "trombone",
+  "title": "ヴェルディ《ナブッコ》序曲 トロンボーン2番",
+  "subtitle": "Sinfonia · 音名（CDEFGAH）＋ポジション",
+  "composer": "Giuseppe Verdi",
+  "work": "Nabucco — Sinfonia",
+  "part": "Trombone 2（ヘ音記号・テナートロンボーン）",
+  "source": {
+    "file": "トロンボーン2.pdf (user-supplied, not committed)",
+    "sha256": "75433f6fab0ea26ad4a0bd94ca6e2022b4007c12643fb007ed0f1744bbac8465",
+    "pages": [
+      2,
+      3,
+      4
+    ]
+  },
+  "dpi": 355,
+  "movements": [
+    {
+      "key": "S",
+      "short": "序曲",
+      "title": "Sinfonia（序曲）",
+      "last": 329,
+      "pages": [
+        2,
+        3,
+        4
+      ],
+      "meters": [
+        [
+          1,
+          "4/4"
+        ],
+        [
+          54,
+          "3/8"
+        ],
+        [
+          108,
+          "2/2"
+        ]
+      ],
+      "tempos": [
+        [
+          1,
+          66
+        ],
+        [
+          24,
+          138
+        ],
+        [
+          51,
+          66
+        ],
+        [
+          54,
+          50
+        ],
+        [
+          108,
+          160
+        ],
+        [
+          270,
+          184
+        ]
+      ]
+    }
+  ],
+  "status": "Assistant transcription compared page by page with the source; no independent musician audit. The page 2, bar 4 E-sharp remains unresolved and is excluded from all note playback.",
+  "limitations": [
+    "このPDFの表紙は「TROMBONE 2」です（2番パート）。",
+    "小節番号は印刷されていないため、序曲の最初を1小節目として数えた通し番号です（2ページ目1〜114、3ページ目115〜202、4ページ目203〜329）。",
+    "小節反復記号（％）の小節は、直前の小節の音を記号の下に薄く並べて表示し、再生にも含めています。",
+    "テンポにメトロノーム記号がないため、Andante ♩=66、Allegro ♩=138、Andantino ♪=100、Allegro(¢) ♩=160、Più mosso ♩=184 の目安で再生します。フェルマータ・rit. は反映していません。",
+    "German note names use H=B natural and B=B-flat; orange digits are primary B-flat tenor trombone positions. Unresolved: source page 2, bar 4 is read as E-sharp, but the printed accidental may be natural; this note is flagged and silent in click, long-tone, and continuous playback."
+  ],
+  "pdf": "reader/pdf/Verdi_Nabucco_Trombone2_reading.pdf"
+}

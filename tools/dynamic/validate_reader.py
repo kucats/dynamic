@@ -75,6 +75,31 @@ def check_part(entry: dict) -> list[str]:
         for k in ("w", "f", "snd"):
             if not (isinstance(n[k], list) and len(n[k]) == 3 and 20 <= n[k][2] <= 100):
                 errs.append(f"{d['id']}: note {n['id']} bad {k} label")
+    if "review_items" in d:
+        reviews = d["review_items"]
+        if not isinstance(reviews, list):
+            errs.append(f"{d['id']}: review_items must be a list")
+            reviews = []
+        by_review_id = {}
+        for review in reviews:
+            note_id = review.get("note_id")
+            if note_id in by_review_id:
+                errs.append(f"{d['id']}: duplicate review item for note {note_id}")
+            by_review_id[note_id] = review
+            note = next((n for n in d["notes"] if n["id"] == note_id), None)
+            if not note or not note.get("unc"):
+                errs.append(f"{d['id']}: review item {note_id} does not reference an uncertain note")
+            if review.get("status") != "unresolved" or review.get("playback") is not False:
+                errs.append(f"{d['id']}: review item {note_id} must remain unresolved and blocked from playback")
+            if note and review.get("detail") != note["unc"]:
+                errs.append(f"{d['id']}: review item {note_id} detail differs from note uncertainty")
+            if note and (review.get("movement") != note["mvt"] or review.get("bar") != note["bar"]
+                         or review.get("pitch") != note["p"]
+                         or review.get("page") != d["systems"][note["s"]]["page"]):
+                errs.append(f"{d['id']}: review item {note_id} location or pitch differs from its note")
+        for note in d["notes"]:
+            if note.get("unc") and note["id"] not in by_review_id:
+                errs.append(f"{d['id']}: uncertain note {note['id']} has no blocked review item")
     for m in d["movements"]:
         lens = {b: ln for b, ln, _spw, _ds in m["timeline"]}
         for n in (x for x in d["notes"] if x["mvt"] == m["key"]):

@@ -77,6 +77,26 @@
    ],
    "notes": 574,
    "data": "reader/data/dvorak8-trombone1.json"
+  },
+  {
+   "id": "verdi-nabucco-trombone2",
+   "title": "ヴェルディ《ナブッコ》序曲 トロンボーン2番",
+   "subtitle": "Sinfonia · 音名（CDEFGAH）＋ポジション",
+   "part": "Trombone 2（ヘ音記号・テナートロンボーン）",
+   "work": "Nabucco — Sinfonia",
+   "composer": "Giuseppe Verdi",
+   "status": "Assistant transcription compared page by page with the source; no independent musician audit. The page 2, bar 4 E-sharp remains unresolved and is excluded from all note playback.",
+   "pdf": "reader/pdf/Verdi_Nabucco_Trombone2_reading.pdf",
+   "movements": [
+    {
+     "key": "S",
+     "title": "Sinfonia（序曲）",
+     "short": "序曲",
+     "notes": 492
+    }
+   ],
+   "notes": 492,
+   "data": "reader/data/verdi-nabucco-trombone2.json"
   }
  ]
 }
