@@ -24,4 +24,4 @@ A player may sound notes only when pitch and duration are explicit. Score focus 
 
 ## Validation and provenance
 
-Keep candidate output, direct source observations, independent audits, and confirmed readings separate. Store source SHA-256 and physical page references, not the excluded source itself. A data-structure change updates schema, parser/validator, documentation, examples, and tests together. No deployment is configured.
+Keep candidate output, direct source observations, independent audits, and confirmed readings separate. Store source SHA-256 and physical page references, not the excluded source itself. A data-structure change updates schema, parser/validator, documentation, examples, and tests together. The Cloudflare Workers configuration publishes only `public/`.

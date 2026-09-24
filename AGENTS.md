@@ -33,4 +33,4 @@ The Fuyomi engine is ported into this repository and must run without importing 
 - `public/catalog.json` indexes composer/work guides and generated HTML/PDF; `project/catalog.json` indexes Fuyomi outputs and audit/playback states.
 - `python3 tools/build_catalog.py` builds both static catalogs. `python3 tools/validate_catalog.py` validates both catalogs, hashes, paths, source exclusions, and audit gates.
 - `tools/fuyomi/publish.py` is a convenience wrapper around those root commands.
-- Keep links repository-relative. No deployment is configured.
+- Keep links repository-relative. Cloudflare Workers deployment is configured in `wrangler.jsonc`; publish `public/` only.

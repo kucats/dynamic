@@ -39,13 +39,9 @@
     <span id="barNow" class="bnow"></span>
   </div>
   <div id="settings" class="settings" hidden>
-    <fieldset><legend>表示する行</legend>
-      <label><input type="checkbox" data-row="w" checked> <b class="cw">記譜ドレミ</b></label>
-      <label><input type="checkbox" data-row="f"> <b class="cf">F管の読み替え</b></label>
-      <label><input type="checkbox" data-row="s"> <b class="cs">実音</b></label>
-    </fieldset>
+    <fieldset id="rowset"></fieldset>
     <fieldset><legend>音</legend>
-      <label>鳴らす音 <select id="sound"><option value="s">実音</option><option value="w">記譜どおり</option><option value="f">F管読み</option></select></label>
+      <label id="soundWrap">鳴らす音 <select id="sound"><option value="s">実音</option><option value="w">記譜どおり</option><option value="f">F管読み</option></select></label>
       <label><input type="checkbox" id="squeeze" checked> 長い休みを詰める</label>
       <label><input type="checkbox" id="fromSel" checked> 選んだ音から再生</label>
       <label><input type="checkbox" id="follow" checked> 再生中に譜面を追う</label>

@@ -1,0 +1,135 @@
+{
+  "id": "dvorak8-trombone1",
+  "instrument": "trombone",
+  "title": "ドヴォルザーク 交響曲第8番 トロンボーン1番",
+  "subtitle": "第1・4楽章 · 音名（CDEFGAH）＋ポジション",
+  "composer": "Antonín Dvořák",
+  "work": "Symphony No. 8 in G major, Op. 88",
+  "part": "Trombone I（アルト記号）",
+  "source": {
+    "file": "Trombone_1_23Tuba.pdf (user-supplied, not committed)",
+    "sha256": "6c161bf1a3a10e54194fecec8b52e2bc6a6fa0de7638c21296808e5456719d8c",
+    "pages": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ]
+  },
+  "dpi": 340,
+  "movements": [
+    {
+      "key": "I",
+      "title": "第1楽章 Allegro con brio",
+      "last": 318,
+      "pages": [
+        1,
+        2,
+        3
+      ],
+      "meters": [
+        [
+          1,
+          "4/4"
+        ]
+      ],
+      "tempos": [
+        [
+          1,
+          138
+        ],
+        [
+          127,
+          112
+        ],
+        [
+          143,
+          138
+        ],
+        [
+          239,
+          112
+        ],
+        [
+          251,
+          138
+        ]
+      ]
+    },
+    {
+      "key": "IV",
+      "title": "第4楽章 Allegro ma non troppo",
+      "last": 389,
+      "pages": [
+        3,
+        4,
+        5
+      ],
+      "meters": [
+        [
+          1,
+          "2/4"
+        ]
+      ],
+      "tempos": [
+        [
+          1,
+          116
+        ],
+        [
+          26,
+          108
+        ],
+        [
+          59,
+          116
+        ],
+        [
+          75,
+          126
+        ],
+        [
+          93,
+          116
+        ],
+        [
+          253,
+          108
+        ],
+        [
+          323,
+          116
+        ],
+        [
+          337,
+          72
+        ],
+        [
+          339,
+          126
+        ],
+        [
+          356,
+          144
+        ]
+      ]
+    }
+  ],
+  "splits": [
+    {
+      "page": 3,
+      "first_system": 6,
+      "movement": "IV",
+      "note": "page 3: movement I ends at system 5; 'II e III Tacet'; movement IV starts at system 6"
+    }
+  ],
+  "status": "Claudeのサブエージェントが1ページずつ原譜と照合した転記（音高・調号・臨時記号・キュー除外・音価・小節番号）。第三者による独立監査は未実施。第2・3楽章は休み（Tacet）。",
+  "limitations": [
+    "音名はドイツ式（H＝シ、B♭＝シ♭）。数字はオクターブ（C4＝中央のド）。オレンジの数字はB♭テナートロンボーンの基本ポジション（替えポジションは示していません）。",
+    "第4楽章の小節番号はホルンのパート譜に印刷された番号（C＝59、D＝75、E＝93）に合わせています。トロンボーン譜だけで数えると54小節目以降が1〜2小節ずれます。",
+    "テンポはホルン譜のメトロノーム記号に合わせた値で、記号のない部分は目安、rit. は反映していません。休み中の反復記号は再生では省略しています。",
+    "要確認の音には赤い点線の枠を付けています（例：第1楽章 bar 292 の2つ目の音、第4楽章 bar 384 のリズム）。"
+  ],
+  "pdf": "reader/pdf/Dvorak8_Trombone1_reading.pdf"
+}

@@ -1,13 +1,17 @@
 # DYNAMIC 譜読みアプリ
 
-`public/` がそのまま公開サイトです（dynamic.oke.jp 想定。公開対象は `public/` 以下のみ）。
+`public/` がそのまま公開サイトです（`dynamic.oke.jp`）。Cloudflare Workers の設定は `wrangler.jsonc` にあり、アップロード対象は `public/` 以下のみです。
 
-- `public/index.html` — トップ（DYNAMIC）。譜読みアプリの各パートと、従来の Fuyomi カタログへの入口
-- `public/reader/` — 譜読みアプリ本体。原譜の各段に記譜ドレミ（任意でF管読み・実音）を付け、タップ試聴・通し再生・小節番号・小節ジャンプ・拡大・印刷に対応。データは `public/reader/data/<id>.json`
+- `public/index.html` — DYNAMIC のトップ。パートまたは作曲家から譜読みを選び、従来の Fuyomi カタログにも移動できます
+- `public/reader/` — 譜読みアプリ本体。ホルンの記譜ドレミ・F管読み・実音、トロンボーンの音名・基本ポジション、タップ試聴・通し再生・ロングトーン練習・小節番号の位置切り替え・小節ジャンプ・拡大・印刷に対応。データは `public/reader/data/<id>.json`
 - 作り方と再現用のプロンプト・コード：`tools/dynamic/README.md`、`tools/dynamic/prompts/`
 - 読み取りデータ：`project/dvorak/symphony-no-8/horn-ii/dynamic/`、`project/dvorak/symphony-no-8/horn-iii/dynamic/`
 
-静的ファイルだけで動きます（ビルド不要・外部CDN不使用）。任意のWebサーバーで `public/` を配信してください。
+静的ファイルだけで動きます（ビルド不要・外部CDN不使用）。Cloudflare Workers の Static Assets として `public/` を配信します。認証済みの開発環境から `npx wrangler deploy` でデプロイできます。
+
+将来の音声追従では、Workers を静的配信と WebSocket のシグナリング/API 入口に使えます。WebRTC の音声処理と TURN は別サービスとして扱い、実機・ネットワーク検証後に接続します。現時点の音声追従実験パッケージは `tools/score_following/` にあり、本番サイトには含まれません。
+
+Cloudflare のデプロイ手順と将来の音声経路は [`docs/deployment/cloudflare-workers.md`](docs/deployment/cloudflare-workers.md) を参照してください。
 
 # dynamic · 譜読みカタログ
 

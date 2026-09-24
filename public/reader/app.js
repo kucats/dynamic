@@ -6,7 +6,12 @@
   const PART = params.get('part') || 'dvorak8-horn2';
   const PRINT = params.has('print');
   const LEGACY_SIZES = { s: 36, m: 44, l: 56 };
-  const ROWS = [['w', 'lw', 1.0], ['f', 'lf', 0.78], ['s', 'ls', 0.64]];
+  const ROWSETS = {
+    horn: [['w', 'lw', 1.0, '記譜ドレミ', 'cw', true], ['f', 'lf', 0.78, 'F管の読み替え', 'cf', false], ['s', 'ls', 0.64, '実音', 'cs', false]],
+    trombone: [['w', 'lw', 1.0, '音名', 'cw', true], ['p', 'lp', 0.8, 'ポジション', 'cp', true]],
+  };
+  let ROWS = ROWSETS.horn;
+  const val = (n, k) => (k === 'w' ? n.w : k === 'f' ? n.f : k === 's' ? n.snd : [String(n.pos ?? '–'), '', 0]);
   const MV_NUM = { I: 1, II: 2, III: 3, IV: 4 };
 
   // ---------- settings (per viewer, optional) ----------
@@ -16,24 +21,35 @@
   try {
     const stored = JSON.parse(localStorage.getItem('dynamic-settings') || '{}');
     Object.assign(S, stored);
-    if (!Number.isFinite(Number(stored.fontSize))) S.fontSize = LEGACY_SIZES[stored.size] || DEF.fontSize;
+    const legacySize = LEGACY_SIZES[stored.size] || DEF.fontSize;
+    S.fontSize = Math.max(26, Math.min(72, stored.fontSize == null || !Number.isFinite(Number(stored.fontSize)) ? legacySize : Number(stored.fontSize)));
     if (!['bottom', 'top', 'off'].includes(S.barPosition)) S.barPosition = stored.bars === false ? 'off' : 'bottom';
   } catch (e) { /* ignore */ }
-  if (PRINT) { S.zoom = 1; S.rows = { w: params.get('rows') ? params.get('rows').includes('w') : true,
-    f: (params.get('rows') || '').includes('f'), s: (params.get('rows') || '').includes('s') };
-    S.fontSize = LEGACY_SIZES[params.get('size')] || Math.max(26, Math.min(72, Number(params.get('size')) || 44)); S.barPosition = 'bottom'; }
-  const save = () => { if (PRINT) return; try { localStorage.setItem('dynamic-settings', JSON.stringify(S)); } catch (e) { /* ignore */ } };
+  if (PRINT) {
+    S.zoom = 1;
+    S.fontSize = LEGACY_SIZES[params.get('size')] || Math.max(26, Math.min(72, Number(params.get('size')) || 44));
+    S.barPosition = 'bottom';
+  }
+  const save = () => {
+    if (PRINT) return;
+    if (D) {
+      S.rowsByPart = S.rowsByPart || {}; S.rowsByPart[PART] = S.rows;
+      S.soundByPart = S.soundByPart || {}; S.soundByPart[PART] = S.sound;
+    }
+    try { localStorage.setItem('dynamic-settings', JSON.stringify(S)); } catch (e) { /* ignore */ }
+  };
 
   let D = null, byId = new Map(), cur = null, playing = null, ctx = null, master = null, practiceOsc = [], practiceTimer = null, fontRenderFrame = 0;
 
   // ---------- label layout ----------
   function rowWidth(lbl) {           // label width in em (compact metrics)
-    const [sol] = lbl; const base = sol.replace(/[♭♯𝄫𝄪]/g, ''); const acc = sol.length - base.length;
-    return (base === 'ファ' ? 1.62 : 1.0) + 0.45 * acc + 0.42;
+    const [sol, oct] = lbl; const base = sol.replace(/[♭♯𝄫𝄪]/g, ''); const acc = sol.length - base.length;
+    const bw = base === 'ファ' ? 1.62 : /^[A-H]$/.test(base) ? 0.74 : /^[0-9–?]+$/.test(base) ? 0.62 : 1.0;
+    return bw + 0.45 * acc + (oct === '' ? 0.1 : 0.42);
   }
   function labelWidth(n, fs) {
     let w = 0;
-    for (const [k, , sc] of ROWS) if (S.rows[k]) w = Math.max(w, rowWidth(k === 'w' ? n.w : k === 'f' ? n.f : n.snd) * sc);
+    for (const [k, , sc] of ROWS) if (S.rows[k]) w = Math.max(w, rowWidth(val(n, k)) * sc);
     return w * fs + 8;
   }
   function labelHeight(fs) {
@@ -53,19 +69,42 @@
     for (const [sm, c] of blocks) for (let k = 0; k < c; k++, i++) out.push(sm / c + s[i]);
     return out;
   }
-  function layout(xs, ws, maxd = 70) {
-    const n = xs.length; if (!n) return [[], []];
+  const LOW = 0.84;                   // lower lane is drawn slightly smaller
+  function layout(xs, ws, ps, maxd = 70) {
+    // One lane when labels fit near their notes. Otherwise crowded runs are split by pitch:
+    // higher notes go to the upper lane, lower notes to the lower (smaller) lane.
+    const n = xs.length; if (!n) return [[], [], ws];
     let c = place(xs, ws);
-    if (Math.max(...c.map((v, i) => Math.abs(v - xs[i]))) <= maxd) return [c, new Array(n).fill(0)];
+    if (Math.max(...c.map((v, i) => Math.abs(v - xs[i]))) <= maxd) return [c, new Array(n).fill(0), ws];
     const lane = new Array(n).fill(0);
-    for (let i = 1; i < n; i++) if (xs[i] - xs[i - 1] < (ws[i] + ws[i - 1]) / 2 + 6) lane[i] = 1 - lane[i - 1];
+    const crowded = (i) => xs[i] - xs[i - 1] < (ws[i] + ws[i - 1]) / 2 + 6;
+    let i = 0;
+    while (i < n) {
+      let j = i; while (j + 1 < n && crowded(j + 1)) j++;
+      if (j > i) {
+        const run = []; for (let k = i; k <= j; k++) run.push(k);
+        const hi = Math.max(...run.map((k) => ps[k])), lo = Math.min(...run.map((k) => ps[k]));
+        if (hi === lo) run.forEach((k, t) => { lane[k] = t % 2; });
+        else {
+          const thr = (hi + lo) / 2;
+          run.forEach((k) => { lane[k] = ps[k] > thr ? 0 : 1; });
+          // repeated equal pitches next to each other inside one lane still alternate when very close
+          for (let t = 1; t < run.length; t++) {
+            const a = run[t - 1], b = run[t];
+            if (lane[a] === lane[b] && ps[a] === ps[b] && xs[b] - xs[a] < (ws[a] + ws[b]) / 4) lane[b] = 1 - lane[a];
+          }
+        }
+      }
+      i = j + 1;
+    }
+    const w2 = ws.map((w, k) => (lane[k] ? w * LOW : w));
     c = new Array(n);
     for (const r of [0, 1]) {
-      const idx = []; for (let i = 0; i < n; i++) if (lane[i] === r) idx.push(i);
-      const cc = place(idx.map((i) => xs[i]), idx.map((i) => ws[i]));
-      idx.forEach((i, k) => { c[i] = cc[k]; });
+      const idx = []; for (let k = 0; k < n; k++) if (lane[k] === r) idx.push(k);
+      const cc = place(idx.map((k) => xs[k]), idx.map((k) => w2[k]));
+      idx.forEach((k, t) => { c[k] = cc[t]; });
     }
-    return [c, lane];
+    return [c, lane, w2];
   }
   const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
   function textRow(cls, lbl, x, y, fs) {
@@ -74,7 +113,7 @@
     let t = `<tspan${ls}>${base}</tspan>`;
     if (acc) t += `<tspan font-size="${Math.round(fs * 0.72)}" dx="${Math.round(fs * (ls ? 0.2 : 0.04))}">${acc}</tspan>`;
     else if (ls) t += `<tspan dx="${Math.round(fs * 0.2)}"></tspan>`;
-    t += `<tspan font-size="${Math.round(fs * 0.5)}" dy="${-Math.round(fs * 0.42)}">${oct}</tspan>`;
+    if (oct !== '') t += `<tspan font-size="${Math.round(fs * 0.5)}" dy="${-Math.round(fs * 0.42)}">${oct}</tspan>`;
     return `<text class="${cls}" x="${x.toFixed(1)}" y="${y.toFixed(1)}" font-size="${Math.round(fs)}">${t}</text>`;
   }
 
@@ -82,8 +121,8 @@
   function systemSVG(sy) {
     const fs = Math.max(26, Math.min(72, Number(S.fontSize) || 44)), W = sy.w, h = sy.h;
     const ns = D.notes.filter((n) => n.s === sy.i).sort((a, b) => a.x - b.x);
-    const ws = ns.map((n) => labelWidth(n, fs));
-    const [cx, lane] = layout(ns.map((n) => n.x), ws);
+    const ws0 = ns.map((n) => labelWidth(n, fs));
+    const [cx, lane, ws] = layout(ns.map((n) => n.x), ws0, ns.map((n) => n.w[2]));
     const lh = labelHeight(fs), strip = 40, topBand = S.barPosition === 'top' ? strip : 0, laneH = lh + 12;
     const lanes = ns.length ? Math.max(...lane) + 1 : 0;
     const H = topBand + h + strip + (ns.length ? lanes * laneH + 10 : 4);
@@ -103,20 +142,21 @@
     });
     ns.forEach((n, i) => {
       const w = ws[i], top = tops[i], ny = topBand + n.y;
+      const fsl = lane[i] ? fs * LOW : fs, lhl = lane[i] ? lh * LOW : lh;
       let y = top, rows = '';
       for (const [k, cls, sc] of ROWS) {
         if (!S.rows[k]) continue;
-        const f = fs * sc; y += f * 0.95;
-        rows += textRow(cls, k === 'w' ? n.w : k === 'f' ? n.f : n.snd, cx[i], y, f);
-        if (k === 'w' && n.old) rows += `<text class="lw" x="${(cx[i] + w / 2 - fs * 0.18).toFixed(1)}" y="${(y - fs * 0.5).toFixed(1)}" font-size="${Math.round(fs * 0.4)}" fill="#c0392b">※</text>`;
+        const f = fsl * sc; y += f * 0.95;
+        rows += textRow(cls, val(n, k), cx[i], y, f);
+        if (k === 'w' && n.old) rows += `<text class="lw" x="${(cx[i] + w / 2 - fsl * 0.18).toFixed(1)}" y="${(y - fsl * 0.5).toFixed(1)}" font-size="${Math.round(fsl * 0.4)}" fill="#c0392b">※</text>`;
         y += f * 0.13;
       }
       const cls = 'note' + (n.tie ? ' tiec' : '') + (n.unc ? ' unc' : '');
       o.push(`<g class="${cls}" data-id="${n.id}" tabindex="0" role="button" aria-label="${n.bar}小節 ${esc(n.w[0])}${n.w[1]}。クリックで実音、ダブルクリックまたは右クリックでロングトーン練習">`
         + `<rect class="hit" x="${n.x - 34}" y="${ny - 34}" width="68" height="68"/>`
         + `<ellipse class="halo" cx="${n.x}" cy="${ny}" rx="30" ry="25"/>`
-        + `<rect class="lbg" x="${(cx[i] - w / 2).toFixed(1)}" y="${(top + 2).toFixed(1)}" width="${w.toFixed(1)}" height="${(lh + 4).toFixed(1)}" rx="8"/>`
-        + rows + `<rect class="hit" x="${(cx[i] - w / 2).toFixed(1)}" y="${top.toFixed(1)}" width="${w.toFixed(1)}" height="${(lh + 8).toFixed(1)}"/></g>`);
+        + `<rect class="lbg" x="${(cx[i] - w / 2).toFixed(1)}" y="${(top + 2).toFixed(1)}" width="${w.toFixed(1)}" height="${(lhl + 4).toFixed(1)}" rx="8"/>`
+        + rows + `<rect class="hit" x="${(cx[i] - w / 2).toFixed(1)}" y="${top.toFixed(1)}" width="${w.toFixed(1)}" height="${(lhl + 8).toFixed(1)}"/></g>`);
     });
     o.push('</svg>');
     return o.join('');
@@ -159,9 +199,13 @@
     const n = byId.get(id); if (!n) return;
     cur = id; mark(id, scroll);
     $('nowW').innerHTML = `${esc(n.w[0])}<sup>${n.w[1]}</sup>${n.old ? '<small>※</small>' : ''}`;
-    $('nowF').innerHTML = S.rows.f || D.showF ? `F管 ${esc(n.f[0])}<sup>${n.f[1]}</sup>` : '';
-    $('nowS').innerHTML = `実音 ${esc(n.snd[0])}<sup>${n.snd[1]}</sup>`;
-    $('nowInfo').textContent = `${MV_NUM[n.mvt] || n.mvt}楽章 ${n.bar}小節 · in ${n.key}${n.tie ? ' · タイの続き' : ''}${n.old ? ' · ヘ音記号は旧記譜' : ''}${n.unc ? ' · 要確認：' + n.unc : ''} · ${id}/${D.notes.length}`;
+    if (D.instrument === 'trombone') {
+      $('nowF').innerHTML = `ポジション ${n.pos ?? '–'}`; $('nowS').innerHTML = '';
+    } else {
+      $('nowF').innerHTML = S.rows.f || D.showF ? `F管 ${esc(n.f[0])}<sup>${n.f[1]}</sup>` : '';
+      $('nowS').innerHTML = `実音 ${esc(n.snd[0])}<sup>${n.snd[1]}</sup>`;
+    }
+    $('nowInfo').textContent = `${MV_NUM[n.mvt] || n.mvt}楽章 ${n.bar}小節${D.instrument === "trombone" ? "" : " · in " + n.key}${n.tie ? ' · タイの続き' : ''}${n.old ? ' · ヘ音記号は旧記譜' : ''}${n.unc ? ' · 要確認：' + n.unc : ''} · ${id}/${D.notes.length}`;
     setMvt(n.mvt, false);
     if (sound && !playing) one(n);
   }
@@ -342,7 +386,9 @@
     $('zoomOut').onclick = () => { S.zoom = Math.max(1, +(S.zoom / 1.25).toFixed(2)); document.documentElement.style.setProperty('--zoom', S.zoom); save(); if (cur) mark(cur, false); };
     $('setBtn').onclick = () => { const s = $('settings'); s.hidden = !s.hidden; $('setBtn').setAttribute('aria-expanded', String(!s.hidden)); };
     document.querySelectorAll('[data-row]').forEach((c) => c.addEventListener('change', () => {
-      S.rows[c.dataset.row] = c.checked; if (!S.rows.w && !S.rows.f && !S.rows.s) { S.rows.w = true; syncControls(); } save(); renderScore();
+      S.rows[c.dataset.row] = c.checked;
+      if (!ROWS.some(([k]) => S.rows[k])) { S.rows[ROWS[0][0]] = true; syncControls(); }
+      save(); renderScore();
     }));
     $('sound').onchange = () => { S.sound = $('sound').value; save(); };
     for (const k of ['squeeze', 'fromSel', 'follow', 'metro']) $(k).onchange = () => { S[k] = $(k).checked; save(); };
@@ -370,7 +416,18 @@
       $('err').hidden = false; $('err').textContent = `${e.message}。ページを再読み込みしてください。`; $('title').textContent = 'DYNAMIC'; return;
     }
     D.notes.forEach((n) => { byId.set(n.id, n); const k = n.mvt + ':' + n.bar; if (!mvtNotes.has(k)) mvtNotes.set(k, []); mvtNotes.get(k).push(n.id); });
-    D.showF = D.notes.some((n) => n.f[2] !== n.w[2]);
+    ROWS = ROWSETS[D.instrument] || ROWSETS.horn;
+    D.showF = D.instrument !== 'trombone' && D.notes.some((n) => n.f[2] !== n.w[2]);
+    S.rowsByPart = S.rowsByPart || {};
+    S.soundByPart = S.soundByPart || {};
+    if (!PRINT) {
+      const savedRows = S.rowsByPart[PART] || {};
+      S.rows = Object.fromEntries(ROWS.map(([k, , , , , on]) => [k, savedRows[k] === undefined ? on : !!savedRows[k]]));
+      S.sound = D.instrument === 'trombone' ? 's' : (S.soundByPart[PART] || S.sound || 's');
+    } else if (!params.get('rows')) S.rows = Object.fromEntries(ROWS.map(([k, , , , , on]) => [k, on]));
+    else S.rows = Object.fromEntries(ROWS.map(([k]) => [k, params.get('rows').includes(k)]));
+    $('rowset').innerHTML = '<legend>表示する行</legend>' + ROWS.map(([k, , , lab, c]) => `<label><input type="checkbox" data-row="${k}"> <b class="${c}">${lab}</b></label>`).join('');
+    $('soundWrap').hidden = D.instrument === 'trombone';
     document.title = `${D.title} — DYNAMIC 譜読みアプリ`;
     $('title').textContent = D.title; $('subtitle').textContent = D.subtitle;
     if (D.pdf) { $('pdfLink').hidden = false; $('pdfLink').href = '../' + D.pdf; }

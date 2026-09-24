@@ -1,0 +1,16 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "dynamic-score-reader",
+  "compatibility_date": "2026-09-24",
+  "workers_dev": false,
+  "routes": [
+    {
+      "pattern": "dynamic.oke.jp",
+      "custom_domain": true
+    }
+  ],
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS"
+  }
+}

@@ -65,3 +65,19 @@ def label(L, a, o):
 
 # horn crook -> (letter steps, semitones) from written to sounding pitch
 HORN_KEYS = {'F': (-4, -7), 'E': (-5, -8), 'Eb': (-5, -9), 'D': (-6, -10), 'C': (-7, -12), 'G': (-3, -5), 'Bb': (-1, -2)}
+
+GERMAN = {'C': 'C', 'D': 'D', 'E': 'E', 'F': 'F', 'G': 'G', 'A': 'A', 'B': 'H'}
+
+
+def label_german(L, a, o):
+    """German-style letter names used by the trombone parts: H = B natural, B♭ written 'B♭'."""
+    name = 'B♭' if (L == 'B' and a == -1) else GERMAN[L] + ACC_OUT[a]
+    return [name, o, midi(L, a, o)]
+
+
+# basic B♭ tenor trombone slide positions (first choice), by MIDI number
+TROMBONE_POS = {
+    40: 7, 41: 6, 42: 5, 43: 4, 44: 3, 45: 2, 46: 1, 47: 7, 48: 6, 49: 5, 50: 4, 51: 3, 52: 2, 53: 1,
+    54: 5, 55: 4, 56: 3, 57: 2, 58: 1, 59: 4, 60: 3, 61: 2, 62: 1, 63: 3, 64: 2, 65: 1, 66: 3, 67: 2,
+    68: 3, 69: 2, 70: 1, 71: 2, 72: 1, 73: 2, 74: 1, 75: 3, 76: 2, 77: 1, 78: 2, 79: 1,
+}

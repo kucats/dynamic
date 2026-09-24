@@ -40,6 +40,14 @@
 5. `python3 -m http.server 8765 -d public` を起動して `python3 tools/dynamic/render_pdfs.py` で印刷用PDFを作る。
 6. `python3 tools/build_catalog.py` でトップページ（DYNAMIC）を再生成し、`python3 tools/validate_catalog.py`。
 
+## トロンボーン（1ページで音高・リズム・小節番号をまとめて）
+トロンボーン1番（PDF 1〜5ページ、340dpiで `work/p101〜p105.png` として描画）は、1つの指示 `prompts/11_trombone_page.md` で
+音高・調号・音価・小節番号までを1回で依頼しました。起動プロンプト例:
+> Read tools/dynamic/prompts/11_trombone_page.md and carry out that task for PAGE = 103 (PDF page 3: Trombone I, end of
+> movement I, "II e III Tacet", then start of movement IV ...). Write work/final_p103.json as soon as the notes are read.
+
+第4楽章の小節番号は、ページ間で数え方がずれたため、ホルン譜に印刷された番号（C=59, D=75, E=93）に合わせてメインが補正しました。
+
 ## 注意（今回の作業で分かったこと）
 - キュー（他楽器の小さい音符）は最も混入しやすい。音符が小さい／同じ小節に全休符がある／楽器名が書いてある、で判断する。
 - ♭・♯・♮は小節内で持続し、タイで次の小節へ持ち越す。ユーザーから「フラットを落としている」と指摘があったので重点確認。
