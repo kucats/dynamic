@@ -89,3 +89,7 @@ python scripts/browser_smoke.py
 - 関連研究: Nakamura et al., real-time audio-to-score alignment, https://arxiv.org/abs/1512.07748
 
 追従器はこのリポジトリで作成した実験ベースラインであり、上記論文のアルゴリズム・性能を再現したという意味ではありません。
+
+## v0.2: M4A実録音・合奏参照モード
+
+`python -m scorefollow.recording_lab` でローカル録音の診断・参照比較・因果追従を実行できます。`serve --reference-audio REF` は同じWebSocket/WebRTC受信で参照演奏内の秒数を返します。参照モードでは小節・音符への対応を未監査のまま確定せず、`score_position=null` を維持します。手順・時計・privacy・未検証事項は [recording-lab.md](docs/recording-lab.md)。

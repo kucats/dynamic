@@ -150,6 +150,17 @@ class Follower:
             status, confidence = "paused", 0.0
         elif silent > self.options.silence_hold_s and self.beam:
             status, confidence = "holding", 0.0
+        # A previously matched onset must not keep a cursor "confirmed" while
+        # current sound contradicts it (common when another section dominates).
+        obs = self.last_observation
+        if status == "tracking" and self.beam:
+            support = (
+                math.exp(-pitch_cost(obs.pitch, self.pitches[self.beam[0].index]))
+                if obs and obs.pitch is not None and obs.clarity >= 0.70 else 0.0
+            )
+            confidence *= support
+            if confidence < 0.55:
+                status = "uncertain"
         position = None
         alternatives = []
         if self.beam:

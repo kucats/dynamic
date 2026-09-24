@@ -2,7 +2,7 @@ import {ScoreClient} from './client.js';
 import {createPcmCapture} from './pcm-capture.js';
 const $=(id)=>document.getElementById(id);
 let score=null,client=null,context=null,mic=null,capture=null,source=null,timer=null,paused=false;
-let running=false,lastPosition=0,logLines=[];
+let running=false,lastPosition=0,lastReference=0,logLines=[];
 const tones=['C','C#','D','D#','E','F','F#','G','G#','A','A#','B'];
 const pitchName=(m)=>m==null?'休符':tones[((Math.round(m)%12)+12)%12]+(Math.floor(Math.round(m)/12)-1);
 function log(text){logLines.push(text);logLines=logLines.slice(-12);$('log').textContent=logLines.join('\n');}
@@ -35,8 +35,14 @@ function position(m){
   // An explicit, bounded diagnostics surface for automated browser verification; no tokens or audio.
   window.labState={event:p?.event_id??null,status:m.status,confirmed:p?.confirmed??false,revision:m.revision,generation:m.generation,capture:capture?.kind??'webrtc-opus',captureBufferMs:capture?.bufferMs??null};
 }
+function clearReference(label){
+  lastReference=0;window.labReference=null;
+  $('reference-time').textContent=label;
+  $('reference-status').textContent='参照秒数は未確定です。譜面の小節・音符とは対応付けていません。';
+}
 async function loadDemo(){const r=await fetch('/v1/demo-score');if(!r.ok)throw new Error('demo load failed');score=await r.json();displayScore();}
 async function stop(){
+  clearReference('入力停止');
   if(timer){clearTimeout(timer);timer=null;}capture?.disconnect();capture=null;source?.disconnect();source=null;
   mic?.getTracks().forEach(t=>t.stop());mic=null;
   const ctx=context;context=null;if(ctx&&ctx.state!=='closed')await ctx.close();
@@ -62,7 +68,7 @@ function makeSynthetic(ctx){
 }
 async function start(useMic){
   if(running)return;
-  $('error').hidden=true;lastPosition=0;window.labState=null;setButtons(true);
+  $('error').hidden=true;lastPosition=0;clearReference('参照音源との照合待ち');window.labState=null;setButtons(true);
   for(const id of ['stop','pause','seek'])$(id).disabled=true;
   try{
     const mode=$('transport').value;
@@ -76,7 +82,16 @@ async function start(useMic){
     client.addEventListener('client-drop',()=>log('送信バッファ上限: 古い音声を破棄'));
     client.addEventListener('rtc-state',e=>{$('connection').textContent=`WebRTC ${e.detail.state}`;});
     client.addEventListener('reset-audio-clock',e=>capture?.reset(e.detail.epoch));
-    await client.open(score,mode,$('api-key').value,$('allow-unreviewed').checked);
+    client.addEventListener('ack',()=>clearReference('追従状態をリセットしました。新しい音声の文脈を待っています。'));
+    client.addEventListener('reference_position',({detail:r})=>{
+      lastReference=performance.now();
+      $('reference-card').hidden=false;
+      $('reference-time').textContent=`参照演奏 ${r.reference_time_s.toFixed(1)} 秒 · ${r.status}`;
+      $('reference-status').textContent=`cost ${r.cost.toFixed(3)} · 未監査・小節未対応 · 文脈 ${r.context_s}s`;
+      window.labReference=r;
+    });
+    const sessionInfo=await client.open(score,mode,$('api-key').value,$('allow-unreviewed').checked);
+    $('reference-card').hidden=!sessionInfo.reference_mode;
     source=useMic?context.createMediaStreamSource(mic):makeSynthetic(context).node;
     if(mode==='webrtc'){
       const destination=context.createMediaStreamDestination();source.connect(destination);
@@ -88,6 +103,7 @@ async function start(useMic){
     }
     if(!useMic)source.start();
     for(const id of ['stop','pause','seek'])$(id).disabled=false;
+    $('seek').disabled=Boolean(client.info.reference_mode);
     $('connection').textContent=mode==='webrtc'?'WebRTC 接続中':'WebSocket 接続中';
     log(`${useMic?'マイク':'合成PCM'} → ${mode} → Score Follower`);
   }catch(error){failure(error);}
@@ -97,6 +113,6 @@ $('pause').addEventListener('click',async()=>{try{await client.control(paused?'r
 $('seek').addEventListener('click',async()=>{try{$('seek').disabled=true;await client.control('seek',$('anchor').value);log(`基準位置: ${$('anchor').value}`);}catch(e){failure(e);}finally{$('seek').disabled=!running;}});
 $('demo').addEventListener('click',()=>loadDemo().catch(failure));
 $('score-file').addEventListener('change',async(e)=>{try{const file=e.target.files[0];if(!file)return;if(file.size>2*1024*1024)throw new Error('譜面JSONは2MiB以下にしてください');const candidate=JSON.parse(await file.text());if(candidate.schema_version!==1||!Array.isArray(candidate.events)||!candidate.events.length||candidate.events.length>4096)throw new Error('Score schema_version=1 / events=1..4096が必要です');score=candidate;displayScore();}catch(error){failure(error);}});
-setInterval(()=>{if(running&&lastPosition&&performance.now()-lastPosition>2000){$('status').textContent='stale';document.querySelectorAll('.note.confirmed').forEach(el=>el.classList.remove('confirmed'));if(window.labState)window.labState.confirmed=false;$('freshness').textContent='推定更新が途切れています。位置は確定扱いにしないでください。';}},500);
+setInterval(()=>{if(running&&lastReference&&performance.now()-lastReference>2500)clearReference('参照推定の更新が途切れています');if(running&&lastPosition&&performance.now()-lastPosition>2000){$('status').textContent='stale';document.querySelectorAll('.note.confirmed').forEach(el=>el.classList.remove('confirmed'));if(window.labState)window.labState.confirmed=false;$('freshness').textContent='推定更新が途切れています。位置は確定扱いにしないでください。';}},500);
 window.addEventListener('pagehide',()=>{mic?.getTracks().forEach(t=>t.stop());context?.close();client?.close();});
 loadDemo().catch(failure);

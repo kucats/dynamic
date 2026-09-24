@@ -1,0 +1,50 @@
+[
+  {
+    "movement": 1,
+    "page": "https://commons.wikimedia.org/wiki/File:Dvo%C5%99%C3%A1k%2C_Antonin_%E2%80%94_Symphony_No._8%2C_Op._88_%E2%80%94_1._Allegro_con_brio.ogg",
+    "performer": "DuPage Symphony Orchestra",
+    "conductor": "Barbara Schubert",
+    "license": "CC BY 3.0 US per Commons; IMSLP source lists CC BY-SA 3.0; retain attribution and no endorsement",
+    "license_url": "https://creativecommons.org/licenses/by/3.0/us/",
+    "modifications": "unmodified source; feature extraction performed locally",
+    "bytes": 7563007,
+    "sha256": "edfdcd948a21d3ee41324c557112a6e4d5d3e0c8dd50e13eb240b8dcc7ca29fc",
+    "status": "downloaded"
+  },
+  {
+    "movement": 2,
+    "page": "https://commons.wikimedia.org/wiki/File:Dvo%C5%99%C3%A1k%2C_Antonin_%E2%80%94_Symphony_No._8%2C_Op._88_%E2%80%94_2._adagio.ogg",
+    "performer": "DuPage Symphony Orchestra",
+    "conductor": "Barbara Schubert",
+    "license": "CC BY 3.0 US per Commons; IMSLP source lists CC BY-SA 3.0; retain attribution and no endorsement",
+    "license_url": "https://creativecommons.org/licenses/by/3.0/us/",
+    "modifications": "unmodified source; feature extraction performed locally",
+    "bytes": 7234471,
+    "sha256": "42ba27179de4cd325855a3af7ec059f6ae3a758dfaad34255e0cf4b3e56dd619",
+    "status": "downloaded"
+  },
+  {
+    "movement": 3,
+    "page": "https://commons.wikimedia.org/wiki/File:Dvo%C5%99%C3%A1k%2C_Antonin_%E2%80%94_Symphony_No._8%2C_Op._88_%E2%80%94_3._allegretto_grazioso.ogg",
+    "performer": "DuPage Symphony Orchestra",
+    "conductor": "Barbara Schubert",
+    "license": "CC BY 3.0 US per Commons; IMSLP source lists CC BY-SA 3.0; retain attribution and no endorsement",
+    "license_url": "https://creativecommons.org/licenses/by/3.0/us/",
+    "modifications": "unmodified source; feature extraction performed locally",
+    "bytes": 4122955,
+    "sha256": "0c00119a09278b0e7aaf6eb357ab1143ae97c12b4d8b6ac133509cdd8d3cfaa9",
+    "status": "downloaded"
+  },
+  {
+    "movement": 4,
+    "page": "https://commons.wikimedia.org/wiki/File:Dvo%C5%99%C3%A1k%2C_Antonin_%E2%80%94_Symphony_No._8%2C_Op._88_%E2%80%94_4._allegro.ogg",
+    "performer": "DuPage Symphony Orchestra",
+    "conductor": "Barbara Schubert",
+    "license": "CC BY 3.0 US per Commons; IMSLP source lists CC BY-SA 3.0; retain attribution and no endorsement",
+    "license_url": "https://creativecommons.org/licenses/by/3.0/us/",
+    "modifications": "unmodified source; feature extraction performed locally",
+    "bytes": 7086642,
+    "sha256": "cd285f930b43ba6638eb42b4c10c41b5052a388b7be274173b6421241f4aa59a",
+    "status": "downloaded"
+  }
+]

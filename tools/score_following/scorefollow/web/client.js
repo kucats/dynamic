@@ -2,7 +2,7 @@
 export class ScoreClient extends EventTarget {
   constructor(base=location.origin) {
     super(); this.base=base.replace(/\/$/,''); this.epoch=0; this.generation=0;
-    this.controlQueue=Promise.resolve(); this.revision=0; this.seq=0; this.closed=false; this.waiters=new Map(); this.heartbeat=null;
+    this.controlQueue=Promise.resolve(); this.controlRevision=0; this.revisions={position:0,reference_position:0}; this.revision=0; this.seq=0; this.closed=false; this.waiters=new Map(); this.heartbeat=null;
   }
   emit(type,detail) { this.dispatchEvent(new CustomEvent(type,{detail})); }
   wait(type, timeout=15000) {
@@ -38,14 +38,16 @@ export class ScoreClient extends EventTarget {
       this.fail(new Error('score digest mismatch')); return;
     }
     if(message.type==='error') { this.fail(new Error(message.code)); return; }
-    if(message.type==='position') {
-      // DataChannel may be unordered and race ordered WebSocket. One version order for both.
-      if(message.epoch<this.epoch || message.generation<this.generation || message.revision<=this.revision) return;
-      this.epoch=message.epoch; this.generation=message.generation; this.revision=message.revision;
+    if(['position','reference_position'].includes(message.type)) {
+      // Independent stream revisions share epoch/generation and the control barrier.
+      if(message.epoch<this.epoch || message.generation<this.generation || message.revision<=Math.max(this.controlRevision,this.revisions[message.type])) return;
+      this.epoch=message.epoch; this.generation=message.generation; this.revisions[message.type]=message.revision; this.revision=Math.max(this.revision,message.revision);
     } else if(['ready','ack'].includes(message.type)) {
       if(message.epoch>this.epoch) { this.seq=0; this.emit('reset-audio-clock',{epoch:message.epoch}); }
-      this.epoch=message.epoch; this.generation=message.generation;
-      if(message.revision) this.revision=Math.max(this.revision,message.revision);
+      // An older WS acknowledgement can arrive after newer-generation DC data.
+      // Resolve the control promise without rolling the receiver fence backwards.
+      this.epoch=Math.max(this.epoch,message.epoch); this.generation=Math.max(this.generation,message.generation);
+      if(message.revision) { this.controlRevision=Math.max(this.controlRevision,message.revision);this.revision=Math.max(this.revision,message.revision); }
     }
     const waiter=this.waiters.get(message.type);
     if(waiter) { this.waiters.delete(message.type);waiter.resolve(message); }

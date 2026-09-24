@@ -18,6 +18,7 @@ import numpy as np
 from .audio import HOP, SAMPLE_RATE, WINDOW, Observation, StreamingAudio
 from .follower import Follower
 from .schema import CreateSession, Feature
+from .reference import ChromaStream, ReferenceTracker
 
 HEADER = struct.Struct("<4sIIQ")
 MAX_PCM_BYTES = HEADER.size + 3200
@@ -95,7 +96,7 @@ class Subscriber:
         saved = []
         while not self.queue.empty():
             item = self.queue.get_nowait()
-            if event["type"] != "position" or item["type"] != "position":
+            if event["type"] not in ("position", "reference_position") or item["type"] != event["type"]:
                 saved.append(item)
         for item in saved:
             self.queue.put_nowait(item)
@@ -106,7 +107,7 @@ class Subscriber:
 
 
 class Session:
-    def __init__(self, request: CreateSession, settings: Settings, acoustic_factory=StreamingAudio):
+    def __init__(self, request: CreateSession, settings: Settings, acoustic_factory=StreamingAudio, reference_chroma=None):
         self.id = secrets.token_hex(16)
         self.token = secrets.token_urlsafe(32)
         self.request, self.settings = request, settings
@@ -122,6 +123,10 @@ class Session:
         self.subscribers: set[Subscriber] = set()
         self.dsp = acoustic_factory(request.options.a4_hz)
         self.follower = Follower(request.score, request.options)
+        self.reference_dsp = ChromaStream() if reference_chroma is not None else None
+        self.reference_tracker = ReferenceTracker(reference_chroma) if reference_chroma is not None else None
+        self.reference_digest = hashlib.sha256(reference_chroma.astype("<f4").tobytes()).hexdigest() if reference_chroma is not None else None
+        self.pending_reference = None
         self.last_seq = -1
         self.received_end = 0
         self.processed_end: int | None = None
@@ -135,6 +140,20 @@ class Session:
         self.rtc_tasks: set[asyncio.Task] = set()
         self.data_channel = None
         self.task = asyncio.create_task(self._worker())
+
+    def _reset_reference(self):
+        self.pending_reference = None
+        if self.reference_tracker:
+            self.reference_tracker.reset()
+            self.reference_dsp.reset()
+
+    def snapshot(self):
+        result = self.follower.snapshot()
+        if self.reference_tracker:
+            # No reviewed reference->score anchors exist in this version.
+            result.update(position=None, alternatives=[], confidence=0.0,
+                          status="paused" if self.follower.paused else "reference_only")
+        return result
 
     def authenticate(self, token: str):
         if self.closed or time.monotonic() - self.created >= self.settings.ttl_s:
@@ -157,6 +176,7 @@ class Session:
         self.credit, self.credit_time = 0.3, time.monotonic()
         self.last_seq, self.received_end, self.processed_end = -1, 0, None
         self.dsp.reset()
+        self._reset_reference()
         self.follower.reset(event_id or self.request.options.start_event_id)
         self.last_emit = -1
         while not self.queue.empty():
@@ -170,6 +190,7 @@ class Session:
             self.generation += 1
             self.epoch += 1  # Fence already-decoded media from the old peer immediately.
             self.follower.discontinuity()
+            self._reset_reference()
             while not self.queue.empty():
                 self.queue.get_nowait()
             pc, self.pc = self.pc, None
@@ -188,7 +209,7 @@ class Session:
         event = {**event, "epoch": self.epoch, "generation": self.generation, "revision": self.revision}
         for subscriber in tuple(self.subscribers):
             subscriber.offer(event)
-        if event["type"] == "position" and self.data_channel:
+        if event["type"] in ("position", "reference_position") and self.data_channel:
             if self.data_channel.readyState == "open" and self.data_channel.bufferedAmount < 16384:
                 import json
 
@@ -243,7 +264,14 @@ class Session:
         ):
             self.dsp.reset()
             self.follower.discontinuity()
+            self._reset_reference()
+        self.pending_reference = None
         if kind == "pcm":
+            if self.reference_tracker and not self.follower.paused:
+                for frame in self.reference_dsp.push(payload, start):
+                    candidate = self.reference_tracker.consume(frame)
+                    if candidate:
+                        self.pending_reference = {**candidate, "reference_sha256": self.reference_digest}
             observations = self.dsp.push(payload, start)
             self.processed_end = start + len(payload)
         else:
@@ -258,7 +286,7 @@ class Session:
             ]
             self.processed_end = start + HOP
         results = [self.follower.consume(o) for o in observations]
-        return results[-1] if results else None
+        return self.snapshot() if results else None
 
     async def _worker(self):
         try:
@@ -278,6 +306,9 @@ class Session:
                     elapsed = (time.monotonic() - begin) * 1000
                     self.compute_ms.append(elapsed)
                     self.processed += 1
+                    if self.pending_reference:
+                        self.publish(self.pending_reference)
+                        self.pending_reference = None
                     if result and (
                         result["audio_time_s"] - self.last_emit >= 0.10 - 1e-6
                         or self.follower.observations != previous_onsets
@@ -303,6 +334,8 @@ class Session:
         op = message.get("type")
         async with self.lock:
             if op == "seek":
+                if self.reference_tracker:
+                    raise ProtocolError("reference_mode_requires_reviewed_score_anchors")
                 event_id = message.get("event_id")
                 if event_id not in {n.event_id for n in self.follower.notes}:
                     raise ProtocolError("unknown_event_id")
@@ -318,6 +351,7 @@ class Session:
                 else:
                     self._new_epoch(event_id)
             elif op == "pause":
+                self._reset_reference()
                 self.follower.paused = True
             elif op == "resume":
                 self.generation += 1
@@ -326,6 +360,7 @@ class Session:
                 self.follower.paused = False
                 self.follower.discontinuity()
                 self.dsp.reset()
+                self._reset_reference()
             else:
                 raise ProtocolError("unknown_control")
             self.publish({"type": "ack", "command": op})
@@ -343,16 +378,19 @@ class Session:
 
 
 class Registry:
-    def __init__(self, settings: Settings, acoustic_factory=StreamingAudio):
+    def __init__(self, settings: Settings, acoustic_factory=StreamingAudio, reference_chroma=None):
         self.settings = settings
         self.acoustic_factory = acoustic_factory
+        self.reference_chroma = ReferenceTracker(reference_chroma).reference.copy() if reference_chroma is not None else None
+        if self.reference_chroma is not None:
+            self.reference_chroma.setflags(write=False)
         self.sessions: dict[str, Session] = {}
         self.created_count = 0
 
     def create(self, request: CreateSession) -> Session:
         if len(self.sessions) >= self.settings.max_sessions:
             raise ProtocolError("session_capacity_exceeded")
-        session = Session(request, self.settings, self.acoustic_factory)
+        session = Session(request, self.settings, self.acoustic_factory, self.reference_chroma)
         self.sessions[session.id] = session
         self.created_count += 1
         return session
