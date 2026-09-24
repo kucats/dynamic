@@ -3,6 +3,10 @@ from pathlib import Path
 
 import pytest
 from scorefollow.adapters import ImportError, from_dynamic, from_musicxml
+from scorefollow.audio import HOP, StreamingAudio
+from scorefollow.fixtures import synthesize
+from scorefollow.follower import Follower
+from scorefollow.schema import Note, Score
 
 
 def xml(notes, attributes="", direction=""):
@@ -126,3 +130,57 @@ def test_repository_dynamic_reader_data_respects_uncertainty_and_sounding_pitch(
     # movements and movements that must remain blocked by unresolved source notes.
     assert clean >= 3
     assert blocked >= 1
+
+
+def test_checked_in_dynamic_midscore_phrase_reacquires_from_audio_without_hint():
+    root = Path(__file__).resolve().parents[3]
+    data = json.loads((root / "public/reader/data/dvorak8-horn3-mvt3.json").read_text())
+    full = from_dynamic(data, "III")
+    notes = [event for event in full.events if event.pitch is not None]
+    width = 10
+    patterns = {}
+    for i in range(len(notes) - width + 1):
+        pattern = tuple(round(n.pitch) for n in notes[i : i + width])
+        patterns[pattern] = patterns.get(pattern, 0) + 1
+    candidates = []
+    for i in range(1, len(notes) - width):
+        window = notes[i : i + width]
+        pattern = tuple(round(n.pitch) for n in window)
+        span = window[-1].start - window[0].start
+        if patterns[pattern] == 1 and span <= 64:
+            candidates.append((span, i))
+    assert candidates, "checked-in movement should expose at least one bounded unique phrase"
+    _, start_index = min(candidates)
+    window = notes[start_index : start_index + width]
+    origin = window[0].start
+    fixture = Score(
+        title="DYNAMIC checked-in midscore regression excerpt",
+        part=full.part,
+        audit_status="synthetic",
+        provenance="Synthesized only from checked-in reviewed-data candidate pitches; not a real recording",
+        tempo_bpm=full.tempo_bpm,
+        events=[
+            Note(
+                event_id=f"fixture-{j}",
+                measure=n.measure,
+                beat=n.beat,
+                start=n.start - origin,
+                duration=n.duration,
+                pitch=n.pitch,
+            )
+            for j, n in enumerate(window)
+        ],
+    )
+    audio, _ = synthesize(fixture, noise=0.003, seed=20260924)
+    dsp, follower = StreamingAudio(), Follower(full)
+    trace = []
+    for sample in range(0, len(audio), HOP):
+        for observation in dsp.push(audio[sample : sample + HOP], sample):
+            trace.append(follower.consume(observation))
+    target = window[-1].event_id
+    assert any(
+        row["status"] == "tracking"
+        and row["position"]
+        and row["position"]["event_id"] == target
+        for row in trace
+    ), (start_index, target, trace[-1]["position"], trace[-1]["alternatives"])
