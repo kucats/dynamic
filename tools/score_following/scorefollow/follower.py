@@ -52,6 +52,7 @@ class Follower:
         self.status = "acquiring"
         self.last_reported_index: int | None = None
         self.jumps = 0
+        self.unsupported_hops = 0
 
     def discontinuity(self):
         # No fictional silence or tempo extrapolation across lost audio.
@@ -72,6 +73,25 @@ class Follower:
             self.last_voiced = obs.time
             if obs.onset:
                 self._align(obs)
+        if self.status == "tracking" and self.beam:
+            expected = self.pitches[self.beam[0].index]
+            supported = (
+                obs.pitch is not None
+                and obs.clarity >= 0.70
+                and pitch_cost(float(obs.pitch), expected) <= 1.5
+            )
+            if supported:
+                self.unsupported_hops = 0
+            else:
+                self.unsupported_hops += 1
+                if self.unsupported_hops >= 4:
+                    # Keep the candidate available for reacquisition, but do not
+                    # keep showing a stale confirmed cursor when frames stop
+                    # supporting its pitch. Four 20 ms hops tolerate short
+                    # transients without hiding a sustained mismatch.
+                    self.status = "uncertain"
+                    self.confidence = 0.0
+                    self.unsupported_hops = 4
         return self.snapshot()
 
     def _align(self, obs: Observation):
