@@ -24,6 +24,8 @@ def main():
     serve.add_argument("--dev", action="store_true", help="loopback-only, no service API key")
     serve.add_argument("--host", default="127.0.0.1")
     serve.add_argument("--port", type=int, default=8765)
+    serve.add_argument("--reference-audio", type=Path, help="operator-owned reference; returns reference seconds, never score notes")
+    serve.add_argument("--reference-timestamp-policy", choices=("strict", "samples"), default="strict")
     fixture = sub.add_parser("fixtures", help="write original synthetic score/WAV/labels")
     fixture.add_argument("output", type=Path)
     bench = sub.add_parser("benchmark", help="eight synthetic regression scenarios")
@@ -55,8 +57,14 @@ def main():
             settings.dev = args.dev or settings.dev
             if settings.dev and args.host not in ("127.0.0.1", "::1", "localhost"):
                 raise ValueError("--dev cannot bind a non-loopback address")
+            reference_chroma = None
+            if args.reference_audio:
+                from .recording import load_recording
+                from .reference import features
+                reference = load_recording(args.reference_audio, timestamp_policy=args.reference_timestamp_policy)
+                reference_chroma, _, _ = features(reference.samples)
             uvicorn.run(
-                create_app(settings),
+                create_app(settings, reference_chroma=reference_chroma),
                 host=args.host,
                 port=args.port,
                 workers=1,

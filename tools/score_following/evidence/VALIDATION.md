@@ -1,3 +1,5 @@
+> Historical v0.1 baseline evidence below. Current v0.2 real-recording development results and limitations are recorded in `project/dvorak/symphony-no-8/ensemble-near-trombones/score-following-trial.md` (repository root). Local current suite: 89 Python tests and 11 Node tests. Current root suite: 23 tests run, 5 skipped (18 passed); optional source/PDF dependencies were not available. Do not present the historical 67-test baseline as the current HEAD evidence.
+
 # Validation / 2026-09-24
 
 ## Source boundary

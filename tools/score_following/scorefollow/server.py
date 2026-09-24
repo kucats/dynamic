@@ -61,10 +61,10 @@ class BodyLimit:
             await self.app(scope, receive, send)
 
 
-def create_app(settings: Settings | None = None, *, acoustic_factory=StreamingAudio) -> FastAPI:
+def create_app(settings: Settings | None = None, *, acoustic_factory=StreamingAudio, reference_chroma=None) -> FastAPI:
     settings = settings or Settings.from_env()
     settings.validate()
-    registry = Registry(settings, acoustic_factory)
+    registry = Registry(settings, acoustic_factory, reference_chroma)
 
     @asynccontextmanager
     async def lifespan(_app):
@@ -170,6 +170,7 @@ def create_app(settings: Settings | None = None, *, acoustic_factory=StreamingAu
             "ttl_s": settings.ttl_s,
             "ice_servers": settings.ice_servers(s.id),
             "score_sha256": body.score.digest,
+            "reference_mode": s.reference_tracker is not None,
         }
 
     @app.get("/v1/sessions/{sid}")
@@ -177,7 +178,7 @@ def create_app(settings: Settings | None = None, *, acoustic_factory=StreamingAu
         s = session_auth(sid, bearer(request.headers))
         async with s.lock:
             return {
-                **s.follower.snapshot(),
+                **s.snapshot(),
                 "epoch": s.epoch,
                 "generation": s.generation,
                 "revision": s.revision,
@@ -236,6 +237,8 @@ def create_app(settings: Settings | None = None, *, acoustic_factory=StreamingAu
                 raise ProtocolError("invalid_mode")
             if len(s.subscribers) >= 3:
                 raise ProtocolError("subscriber_capacity_exceeded")
+            if mode == "features" and s.reference_tracker:
+                raise ProtocolError("reference_mode_requires_pcm_or_webrtc")
             if mode != "observe":
                 await s.claim(owner, mode)
             subscriber = Subscriber()
@@ -251,6 +254,7 @@ def create_app(settings: Settings | None = None, *, acoustic_factory=StreamingAu
                     "format": "s16le",
                     "hop_samples": 320,
                     "max_packet_samples": 1600,
+                    "reference_mode": s.reference_tracker is not None,
                     "score_sha256": s.request.score.digest,
                 }
             )

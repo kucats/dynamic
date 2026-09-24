@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="style.css"><script type="module" src="app.js"></script>
 </head>
 <body>
-<header><div><span class="eyebrow">DYNAMIC / RESEARCH LAB</span><h1>演奏を聴いて、譜面を追う。</h1><p>Score Following Server <span class="pill">EXPERIMENTAL · v0.1</span></p></div><div class="badge" id="connection">未接続</div></header>
+<header><div><span class="eyebrow">DYNAMIC / RESEARCH LAB</span><h1>演奏を聴いて、譜面を追う。</h1><p>Score Following Server <span class="pill">EXPERIMENTAL · v0.2</span></p></div><div class="badge" id="connection">未接続</div></header>
 <main>
 <section class="setup card" aria-labelledby="setup-title">
 <h2 id="setup-title">入力と接続</h2>
@@ -20,6 +20,7 @@
 <div class="actions"><button id="synthetic">合成音声で接続テスト</button><button id="microphone" class="secondary">マイクで練習</button><button id="stop" class="danger" disabled>停止・切断</button></div>
 <p class="hint">合成音声も実際の音声経路で送信します。スピーカーへの出力はありません。マイクはHTTPSまたはlocalhostで使用してください。</p>
 </section>
+<section class="card" id="reference-card" hidden><h2>合奏・参照演奏との照合</h2><p id="reference-time">取得待ち（最大20秒の文脈を使用）</p><p id="reference-status">参照音源内の秒数候補です。トロンボーンの音符・小節番号ではありません。</p></section>
 <section class="card tracking" aria-labelledby="tracking-title">
 <div class="section-top"><h2 id="tracking-title">現在の推定</h2><span id="status" class="pill">acquiring</span></div>
 <div class="reading"><span id="measure">—</span><div><span id="beat">演奏待ち</span><small id="event">まだ位置は確定していません</small></div></div>

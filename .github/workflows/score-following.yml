@@ -10,6 +10,8 @@ jobs:
   test:
     runs-on: ubuntu-24.04
     timeout-minutes: 10
+    env:
+      OPENBLAS_NUM_THREADS: "1"
     defaults:
       run:
         working-directory: tools/score_following
@@ -29,7 +31,7 @@ jobs:
           python -m pytest -q --junitxml=evidence/ci/junit.xml
           python -m ruff check scorefollow tests scripts
           for file in scorefollow/web/*.js; do node --check "$file"; done
-          node --test scripts/pcm-capture.test.mjs
+          node --test scripts/*.test.mjs
           python -m scorefollow benchmark evidence/ci/benchmark
       - name: Browser PCM, Opus, controls and mobile layout
         run: |
