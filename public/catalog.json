@@ -363,6 +363,48 @@
           "sha256": "a7e6ccc9fce9fe918cfbabad484337ffddab3e70e70aea750accbbd02c6834f9"
         }
       ]
+    },
+    {
+      "id": "nabucco-sinfonia-trombone-ii-p2-4-pitch-checked",
+      "composer": "Giuseppe Verdi",
+      "composer_key": "giuseppe-verdi",
+      "work": "Nabucco — Sinfonia",
+      "work_key": "nabucco-sinfonia",
+      "instrument": "Trombone II · source pp. 2–4 pitch-checked excerpt",
+      "summary": "401 source noteheads across 38 systems checked for bass-clef pitch, octave, accidental spelling, and conventional basic slide position. The A3-landscape PDF retains the printed score notes and note lengths; exploratory playback requires warning acknowledgement and is not timing-verified.",
+      "review_status": "reviewed",
+      "limitations": [
+        "This excerpt covers only physical source PDF pages 2–4 of the 34-page Trombone II part.",
+        "Durations, rests, ties, repeats, cues, meter, tempo, and recording synchronization were not audited; exploratory playback is available only after acknowledging a warning and must not be treated as timing-verified.",
+        "Basic slide positions are conventional starting choices and can vary by instrument setup and player preference."
+      ],
+      "sources": [
+        {
+          "label": "Source score PDF (not included). The matching 34-page Trombone 2 part is listed in the Ricordi/Kalmus set as Public Domain on IMSLP; exact file identity not verified.",
+          "sha256": "75433f6fab0ea26ad4a0bd94ca6e2022b4007c12643fb007ed0f1744bbac8465",
+          "included": false
+        }
+      ],
+      "project_readme": "project/verdi/nabucco/trombone-ii/README.md",
+      "html": "public/composers/giuseppe-verdi/nabucco-sinfonia/trombone-ii-p2-4-checked/guide.html",
+      "project_files": [
+        "project/verdi/nabucco/trombone-ii/README.md",
+        "project/verdi/nabucco/trombone-ii/status.json",
+        "project/verdi/nabucco/trombone-ii/reading-audit.json"
+      ],
+      "artifacts": [
+        {
+          "kind": "PDF",
+          "path": "public/composers/giuseppe-verdi/nabucco-sinfonia/trombone-ii-p2-4-checked/Nabucco_Sinfonia_Trombone_II_source_pages_2-4_pitch_checked.pdf",
+          "sha256": "372c89833da76fd11af841ec81ced98df2a6fd6731e0c3c7164a7410a0cd512d",
+          "derivative": true
+        },
+        {
+          "kind": "HTML",
+          "path": "public/composers/giuseppe-verdi/nabucco-sinfonia/trombone-ii-p2-4-checked/exploratory-playback.html",
+          "sha256": "b81e56084539f7e02b3e8f8c6a475f3be22e144a5939749584e7a1dc76a2d91f"
+        }
+      ]
     }
   ]
 }

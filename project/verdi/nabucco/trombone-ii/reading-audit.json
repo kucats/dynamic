@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "composer": "Giuseppe Verdi",
+  "work": "Nabucco, Sinfonia",
+  "part": "Trombone II, printed bass clef",
+  "source": {
+    "sha256": "75433f6fab0ea26ad4a0bd94ca6e2022b4007c12643fb007ed0f1744bbac8465",
+    "physical_pages_reviewed": [
+      2,
+      3,
+      4
+    ],
+    "total_pages": 34,
+    "included_in_repository": false,
+    "edition_reference": "IMSLP Nabucco work page lists Trombone 2 item #856391 as 1.66 MB and 34 pages. The associated Ricordi/Kalmus part set is listed as Public Domain. Cover, part name, and page count match the supplied PDF; byte-for-byte identity was not tested.",
+    "edition_reference_url": "https://imslp.org/wiki/Nabucco_(Verdi,_Giuseppe)"
+  },
+  "review": {
+    "status": "pitch_position_reviewed",
+    "reviewer_model": "Luna subagents only",
+    "method": "Three independent page-level visual reviews compared every represented notehead and pitch label against the rendered source. A second page-4 coverage review checked all 14 systems. The annotated PDF was then rendered page by page for layout inspection.",
+    "reviewed_dimensions": [
+      "bass-clef staff position, pitch spelling, and octave",
+      "key signature, explicit accidentals, and accidental carry",
+      "conventional basic trombone position",
+      "source notehead to pitch-label coverage"
+    ],
+    "page_results": [
+      {
+        "physical_page": 2,
+        "systems": 11,
+        "source_noteheads": 124,
+        "pitch_labels": 124,
+        "discrepancies": 0,
+        "key_signatures": "systems 1-4: four sharps; systems 5-11: two flats"
+      },
+      {
+        "physical_page": 3,
+        "systems": 13,
+        "source_noteheads": 125,
+        "pitch_labels": 125,
+        "discrepancies": 0,
+        "key_signatures": "systems 1-3: one flat; systems 4-13: two sharps"
+      },
+      {
+        "physical_page": 4,
+        "systems": 14,
+        "source_noteheads": 152,
+        "pitch_labels": 152,
+        "discrepancies": 0,
+        "key_signatures": "systems 1-14: two sharps"
+      }
+    ],
+    "total_systems": 38,
+    "total_source_noteheads": 401,
+    "total_pitch_labels": 401,
+    "confirmed_corrections": 0,
+    "unresolved_pitch_or_position_items": 0,
+    "spelling_convention": "H is B-natural; Bb is B-flat; written sharps are preserved. Octave numbers use C4 as middle C."
+  },
+  "note_data_reference": {
+    "path": "public/composers/giuseppe-verdi/nabucco-sinfonia/trombone-ii-prior/interactive-reading.html",
+    "sha256": "5efb5e3b9102b1d68e62fcbbe656e2f7718c720f6905684b1ee0184bd3b14783",
+    "pitch_labels": 401,
+    "playback_enabled": false
+  },
+  "exploratory_player": {
+    "path": "public/composers/giuseppe-verdi/nabucco-sinfonia/trombone-ii-p2-4-checked/exploratory-playback.html",
+    "warning_required_before_play_or_single_note_audition": true,
+    "playback_timing_verified": false,
+    "recording_synchronization": "not_available"
+  },
+  "output": {
+    "path": "public/composers/giuseppe-verdi/nabucco-sinfonia/trombone-ii-p2-4-checked/Nabucco_Sinfonia_Trombone_II_source_pages_2-4_pitch_checked.pdf",
+    "sha256": "372c89833da76fd11af841ec81ced98df2a6fd6731e0c3c7164a7410a0cd512d",
+    "pages": 21,
+    "page_size": "A3 landscape",
+    "source_note_artwork_retained": true
+  },
+  "not_reviewed": [
+    "durations and rests",
+    "ties and repeats",
+    "cue-note separation",
+    "meter and tempo accuracy",
+    "performance timing and recording synchronization",
+    "source pages outside physical pages 2-4"
+  ],
+  "playback_authorized": true,
+  "playback_authorization_scope": "exploratory synthesized playback after warning acknowledgement only; timing and recording synchronization remain unverified"
+}
