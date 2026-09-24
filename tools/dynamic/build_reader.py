@@ -23,12 +23,7 @@ import sys
 from fractions import Fraction
 from pathlib import Path
 
-import cv2
-import numpy as np
-from PIL import Image
-
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from common import HORN_KEYS, TROMBONE_POS, label, label_german, parse_pitch, staves, transpose  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[2]
 OUT = ROOT / "public/reader/data"
@@ -44,8 +39,10 @@ def render_page(pdf: Path, page: int, work: Path, dpi: int = 300) -> Path:
     return png
 
 
-def staff_extent(im: np.ndarray, ST) -> tuple[int, int]:
+def staff_extent(im, ST) -> tuple[int, int]:
     """Left/right x of the staff lines (union over systems), padded for clefs and final barlines."""
+    import numpy as np
+
     B = im < 140
     xs0, xs1 = [], []
     for s in ST:
@@ -59,7 +56,9 @@ def staff_extent(im: np.ndarray, ST) -> tuple[int, int]:
     return max(0, min(xs0) - 110), min(im.shape[1], max(xs1) + 40)
 
 
-def crop_system(im: np.ndarray, s: list[float], first: bool, cx: tuple[int, int]) -> tuple[np.ndarray, int]:
+def crop_system(im, s: list[float], first: bool, cx: tuple[int, int]):
+    import cv2
+
     top = max(0, int(s[0]) - (200 if first else 150))
     bot = min(im.shape[0], int(s[4]) + 100)
     c = im[top:bot, cx[0]:cx[1]].copy()
@@ -84,7 +83,9 @@ def crop_system(im: np.ndarray, s: list[float], first: bool, cx: tuple[int, int]
     return c, top
 
 
-def png_b64(arr: np.ndarray) -> str:
+def png_b64(arr) -> str:
+    from PIL import Image
+
     img = Image.fromarray(arr).convert("L").quantize(colors=16, dither=Image.Dither.NONE)
     buf = io.BytesIO()
     img.save(buf, "PNG", optimize=True)
@@ -103,7 +104,19 @@ def at(pairs, bar):
     return v
 
 
+def review_items(notes: list[dict], systems: list[dict]) -> list[dict]:
+    """Expose unresolved note readings as explicit, non-playable review records."""
+    return [
+        dict(note_id=n["id"], page=systems[n["s"]]["page"], movement=n["mvt"], bar=n["bar"],
+             pitch=n["p"], status="unresolved", detail=n["unc"], playback=False)
+        for n in notes if n.get("unc")
+    ]
+
+
 def build(part_dir: Path, pdf: Path, work: Path) -> dict:
+    import cv2
+    from common import HORN_KEYS, TROMBONE_POS, label, label_german, parse_pitch, staves, transpose
+
     cfg = json.loads((part_dir / "part.json").read_text(encoding="utf-8"))
     pages = sorted({p for m in cfg["movements"] for p in m["pages"]})
     splits = {s["page"]: s for s in cfg.get("splits", [])}
@@ -136,7 +149,8 @@ def build(part_dir: Path, pdf: Path, work: Path) -> dict:
             wo = o + 1 if old else o          # old notation bass clef is written an octave low
             rec = dict(s=sy["i"], mvt=sy["mvt"], x=round(n["x"] - cx[0], 1), y=round(n["y"] - sy["top"], 1),
                        bar=n["bar"], off=float(Fraction(n["off"])), dur=float(Fraction(n["dur"])),
-                       tie=bool(n.get("tie_from_prev")), unc=n.get("uncertain") or "", old=old, p=n["pitch"])
+                       tie=bool(n.get("tie_from_prev")), unc=n.get("uncertain") or "", old=old, p=n["pitch"],
+                       sim=bool(n.get("sim")))
             if cfg.get("instrument") == "trombone":        # non-transposing; German names + slide position
                 w_ = label_german(L, a, wo)
                 rec.update(key="C", w=w_, f=w_, snd=w_, pos=TROMBONE_POS.get(w_[2]))
@@ -159,23 +173,83 @@ def build(part_dir: Path, pdf: Path, work: Path) -> dict:
             for b in part:
                 timeline.append([b, meter_len(at(m["meters"], b)), round(240.0 / at(m["tempos"], b), 5),
                                  1 if (k == 1 and len(seq) == 3) else 0])
-        movements.append(dict(key=m["key"], title=m["title"], last=m["last"], timeline=timeline,
+        movements.append(dict(key=m["key"], title=m["title"], short=m.get("short"), last=m["last"], timeline=timeline,
                               notes=sum(1 for n in notes if n["mvt"] == m["key"])))
     for s in systems:
         del s["top"]
     out = dict(schema=1, id=cfg["id"], instrument=cfg.get("instrument", "horn"), title=cfg["title"], subtitle=cfg["subtitle"], composer=cfg["composer"],
                work=cfg["work"], part=cfg["part"], source=cfg["source"], status=cfg["status"],
                limitations=cfg["limitations"], pdf=cfg.get("pdf"), movements=movements,
-               systems=systems, notes=notes)
+               systems=systems, notes=notes, review_items=review_items(notes, systems))
     return out
+
+
+def refresh_existing_metadata(part_dir: Path) -> None:
+    """Refresh provenance and review metadata without the uncommitted source PDF.
+
+    This is for source-note/status corrections when the generated system crops are
+    already present. Full score-image regeneration still requires the source PDF.
+    """
+    cfg = json.loads((part_dir / "part.json").read_text(encoding="utf-8"))
+    data_path = OUT / f"{cfg['id']}.json"
+    if not data_path.is_file():
+        raise SystemExit(f"{data_path.relative_to(ROOT)} is missing; a full build needs the source PDF")
+    data = json.loads(data_path.read_text(encoding="utf-8"))
+    if data.get("id") != cfg["id"]:
+        raise SystemExit(f"Reader data ID mismatch for {part_dir}")
+    source_notes = []
+    pages_dir = part_dir / "pages"
+    for page in sorted({page for movement in cfg["movements"] for page in movement["pages"]}):
+        page_data = json.loads((pages_dir / f"notes_p{page:02d}.json").read_text(encoding="utf-8"))
+        source_notes.extend((page, note) for note in page_data["notes"])
+    if len(source_notes) != len(data["notes"]):
+        raise SystemExit(f"Note count mismatch for {cfg['id']}: source={len(source_notes)} reader={len(data['notes'])}")
+    for reader_note, (page, source_note) in zip(data["notes"], source_notes):
+        if (reader_note["p"] != source_note["pitch"] or reader_note["bar"] != source_note["bar"]
+                or data["systems"][reader_note["s"]]["page"] != page):
+            raise SystemExit(f"Source/reader note mismatch at note {reader_note['id']} in {cfg['id']}")
+        reader_note["unc"] = source_note.get("uncertain") or ""
+    data["source"] = cfg["source"]
+    data["status"] = cfg["status"]
+    data["limitations"] = cfg["limitations"]
+    data["pdf"] = cfg.get("pdf")
+    for movement in data["movements"]:
+        source = next((m for m in cfg["movements"] if m["key"] == movement["key"]), None)
+        if source and source.get("short"):
+            movement["short"] = source["short"]
+    data["review_items"] = review_items(data["notes"], data["systems"])
+    data_path.write_text(json.dumps(data, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+
+    idx_path = ROOT / "public/reader/parts.json"
+    index = json.loads(idx_path.read_text(encoding="utf-8"))
+    entry = next((p for p in index["parts"] if p["id"] == cfg["id"]), None)
+    if entry is None:
+        raise SystemExit(f"{cfg['id']} is missing from {idx_path.relative_to(ROOT)}")
+    entry.update(id=data["id"], title=data["title"], subtitle=data["subtitle"], part=data["part"],
+                 work=data["work"], composer=data["composer"], status=data["status"], pdf=data["pdf"],
+                 movements=[dict(key=m["key"], title=m["title"], short=m.get("short"), notes=m["notes"])
+                            for m in data["movements"]], notes=len(data["notes"]),
+                 data=f"reader/data/{data['id']}.json")
+    idx_path.write_text(json.dumps(index, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+    print(f"refreshed metadata for {cfg['id']}: {len(data['review_items'])} unresolved note(s)")
 
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--pdf", required=True, type=Path)
+    ap.add_argument("--pdf", type=Path)
     ap.add_argument("--work", default=Path("work"), type=Path)
+    ap.add_argument("--refresh-metadata", action="store_true",
+                    help="refresh source/status/review JSON without rerendering system images from the source PDF")
     ap.add_argument("parts", nargs="*", type=Path)
     args = ap.parse_args()
+    if args.refresh_metadata:
+        if not args.parts:
+            ap.error("--refresh-metadata requires one or more part directories")
+        for part_dir in args.parts:
+            refresh_existing_metadata(part_dir)
+        return
+    if args.pdf is None:
+        ap.error("--pdf is required unless --refresh-metadata is used")
     digest = hashlib.sha256(args.pdf.read_bytes()).hexdigest()
     part_dirs = args.parts or sorted(p.parent for p in ROOT.glob("project/**/dynamic/part.json"))
     OUT.mkdir(parents=True, exist_ok=True)
@@ -189,7 +263,8 @@ def main() -> None:
                                                  encoding="utf-8")
         index.append(dict(id=data["id"], title=data["title"], subtitle=data["subtitle"], part=data["part"],
                           work=data["work"], composer=data["composer"], status=data["status"], pdf=data["pdf"],
-                          movements=[dict(key=m["key"], title=m["title"], notes=m["notes"]) for m in data["movements"]],
+                                 movements=[dict(key=m["key"], title=m["title"], short=m.get("short"), notes=m["notes"])
+                                            for m in data["movements"]],
                           notes=len(data["notes"]), data=f"reader/data/{data['id']}.json"))
         print(f"built {data['id']}: {len(data['notes'])} notes, {len(data['systems'])} systems")
     idx_path = ROOT / "public/reader/parts.json"

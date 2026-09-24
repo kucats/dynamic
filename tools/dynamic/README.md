@@ -49,3 +49,5 @@ python3 tools/build_catalog.py && python3 tools/validate_catalog.py
 - 小節番号の修正は `bars_pNN.json` の `label` を直します。`validate_reader.py` が、音符とその小節番号の食い違いを検出します。
 - 楽器ごとの表示：ホルンは記譜ドレミ（任意でF管読み・実音）、トロンボーン（`"instrument": "trombone"`）はドイツ式音名（H＝シ）＋B♭テナーの基本ポジション（`common.py` の `TROMBONE_POS`）。
 - ラベルの配置：1列に収まらない箇所は、音の高い方を上段、低い方を下段（少し小さい字）に分けます（`public/reader/app.js` の `layout`）。
+- 未解決の読みは `uncertain` に残し、生成 JSON では `unc` と `review_items` に出力します。`review_items[].playback` は `false` で、アプリは該当音を単音試聴・ロングトーン・通し再生から除外します。
+- 既存の切り出し画像を保ったまま出典・制約・要確認情報だけ更新する場合は、`python3 tools/dynamic/build_reader.py --refresh-metadata project/<composer>/<work>/<part>/dynamic` を使います。完全な画像再生成には元PDFが必要です。

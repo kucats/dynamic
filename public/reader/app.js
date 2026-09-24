@@ -13,6 +13,7 @@
   let ROWS = ROWSETS.horn;
   const val = (n, k) => (k === 'w' ? n.w : k === 'f' ? n.f : k === 's' ? n.snd : [String(n.pos ?? '–'), '', 0]);
   const MV_NUM = { I: 1, II: 2, III: 3, IV: 4 };
+  const mvLabel = (k) => { const m = D && D.movements.find((x) => x.key === k); return (m && m.short) || `${MV_NUM[k] || k}楽章`; };
 
   // ---------- settings (per viewer, optional) ----------
   const DEF = { rows: { w: true, f: false, s: false }, fontSize: 44, barPosition: 'bottom', sound: 's', tempo: 100, squeeze: true,
@@ -138,7 +139,7 @@
     }
     const tops = ns.map((n, i) => topBand + h + strip + lane[i] * laneH);
     ns.forEach((n, i) => {
-      o.push(`<polyline class="leader${n.tie ? ' tie' : ''}" points="${n.x},${(topBand + n.y + 20).toFixed(0)} ${n.x},${topBand + h + 2} ${cx[i].toFixed(1)},${tops[i].toFixed(1)}"/>`);
+      o.push(`<polyline class="leader${n.tie ? ' tie' : ''}${n.sim ? ' simL' : ''}" points="${n.x},${(topBand + n.y + 20).toFixed(0)} ${n.x},${topBand + h + 2} ${cx[i].toFixed(1)},${tops[i].toFixed(1)}"/>`);
     });
     ns.forEach((n, i) => {
       const w = ws[i], top = tops[i], ny = topBand + n.y;
@@ -151,8 +152,9 @@
         if (k === 'w' && n.old) rows += `<text class="lw" x="${(cx[i] + w / 2 - fsl * 0.18).toFixed(1)}" y="${(y - fsl * 0.5).toFixed(1)}" font-size="${Math.round(fsl * 0.4)}" fill="#c0392b">※</text>`;
         y += f * 0.13;
       }
-      const cls = 'note' + (n.tie ? ' tiec' : '') + (n.unc ? ' unc' : '');
-      o.push(`<g class="${cls}" data-id="${n.id}" tabindex="0" role="button" aria-label="${n.bar}小節 ${esc(n.w[0])}${n.w[1]}。クリックで実音、ダブルクリックまたは右クリックでロングトーン練習">`
+      const cls = 'note' + (n.tie ? ' tiec' : '') + (n.unc ? ' unc' : '') + (n.sim ? ' sim' : '');
+      const audioLabel = n.unc ? '。要確認のため音は再生されません' : '。クリックで試聴、ダブルクリックでロングトーン練習';
+      o.push(`<g class="${cls}" data-id="${n.id}" tabindex="0" role="button" aria-label="${n.bar}小節 ${esc(n.w[0])}${n.w[1]}${audioLabel}">`
         + `<rect class="hit" x="${n.x - 34}" y="${ny - 34}" width="68" height="68"/>`
         + `<ellipse class="halo" cx="${n.x}" cy="${ny}" rx="30" ry="25"/>`
         + `<rect class="lbg" x="${(cx[i] - w / 2).toFixed(1)}" y="${(top + 2).toFixed(1)}" width="${w.toFixed(1)}" height="${(lhl + 4).toFixed(1)}" rx="8"/>`
@@ -164,7 +166,11 @@
 
   function renderScore() {
     const main = $('score'); const html = [];
-    if (PRINT) html.push(`<div class="printhead"><h1>${esc(D.title)}</h1><div>${esc(D.subtitle)} ／ 茶色の数字＝小節番号 ／ 線で音符とつながっています ／ 薄い字＝タイの続き ／ キューには付けていません</div></div>`);
+    const reviewItems = D.review_items || D.notes.filter((n) => n.unc).map((n) => ({ page: D.systems[n.s].page, bar: n.bar, pitch: n.p, detail: n.unc }));
+    const reviewWarning = reviewItems.length
+      ? `<div class="print-warning">要確認：${reviewItems.map((r) => `原譜${r.page}ページ ${r.bar}小節 ${esc(r.pitch)} — ${esc(r.detail)}`).join(' ／ ')}（未確定のため音は再生対象外）</div>`
+      : '';
+    if (PRINT) html.push(`<div class="printhead"><h1>${esc(D.title)}</h1><div>${esc(D.subtitle)} ／ 茶色の数字＝小節番号 ／ 線で音符とつながっています ／ 薄い字＝タイの続き ／ キューには付けていません</div>${reviewWarning}</div>`);
     for (const m of D.movements) {
       html.push(`<h2 class="mv" id="mv-${m.key}">${esc(m.title)} <small>${m.notes}音</small></h2>`);
       for (const sy of D.systems.filter((s) => s.mvt === m.key)) {
@@ -205,7 +211,7 @@
       $('nowF').innerHTML = S.rows.f || D.showF ? `F管 ${esc(n.f[0])}<sup>${n.f[1]}</sup>` : '';
       $('nowS').innerHTML = `実音 ${esc(n.snd[0])}<sup>${n.snd[1]}</sup>`;
     }
-    $('nowInfo').textContent = `${MV_NUM[n.mvt] || n.mvt}楽章 ${n.bar}小節${D.instrument === "trombone" ? "" : " · in " + n.key}${n.tie ? ' · タイの続き' : ''}${n.old ? ' · ヘ音記号は旧記譜' : ''}${n.unc ? ' · 要確認：' + n.unc : ''} · ${id}/${D.notes.length}`;
+    $('nowInfo').textContent = `${mvLabel(n.mvt)} ${n.bar}小節${D.instrument === "trombone" ? "" : " · in " + n.key}${n.tie ? ' · タイの続き' : ''}${n.old ? ' · ヘ音記号は旧記譜' : ''}${n.unc ? ' · 要確認：' + n.unc + '（音は再生しません）' : ''} · ${id}/${D.notes.length}`;
     setMvt(n.mvt, false);
     if (sound && !playing) one(n);
   }
@@ -237,7 +243,10 @@
     o.frequency.value = accent ? 1600 : 1100; g.gain.setValueAtTime(0.12, t0); g.gain.exponentialRampToValueAtTime(0.001, t0 + 0.05);
     o.connect(g); g.connect(master); o.start(t0); o.stop(t0 + 0.06); return [o];
   }
-  async function one(n, actualSound = true) { await audio(); voice(actualSound ? n.snd[2] : pitchOf(n), ctx.currentTime + 0.02, 0.85); }
+  async function one(n, actualSound = true) {
+    if (!n || n.unc) return;
+    await audio(); voice(actualSound ? n.snd[2] : pitchOf(n), ctx.currentTime + 0.02, 0.85);
+  }
 
   function stopPractice() {
     clearTimeout(practiceTimer); practiceTimer = null;
@@ -247,6 +256,7 @@
     if (button) { button.textContent = '▶ ロングトーン'; button.classList.remove('on'); }
   }
   async function startPractice(n) {
+    if (!n || n.unc) return;
     stopPractice(); await audio();
     if (!$('practice').open || Number($('practice').dataset.noteId) !== n.id) return;
     const seconds = Number($('practiceDuration').value) || 4;
@@ -258,9 +268,11 @@
     const n = byId.get(id); if (!n) return;
     stop(); stopPractice(); select(id, { sound: false, scroll: false });
     const pitch = (p) => `${p[0]}${p[1]}`;
-    $('practiceWritten').textContent = `譜面：${pitch(n.w)} · ${MV_NUM[n.mvt] || n.mvt}楽章 ${n.bar}小節`;
-    $('practiceSounding').textContent = `吹く音（実音）：${pitch(n.snd)}`;
+    $('practiceWritten').textContent = `譜面：${pitch(n.w)} · ${mvLabel(n.mvt)} ${n.bar}小節`;
+    $('practiceSounding').textContent = n.unc ? '吹く音：要確認のため未確定' : `吹く音（実音）：${pitch(n.snd)}`;
     $('practice').dataset.noteId = n.id;
+    $('practicePlay').disabled = !!n.unc;
+    $('practicePlay').textContent = n.unc ? '要確認のため再生不可' : '▶ ロングトーン';
     if (!$('practice').open) $('practice').showModal();
   }
 
@@ -289,9 +301,10 @@
     for (let i = 0; i < ne.length; i++) {
       const e = ne[i], n = byId.get(e.id);
       if (n.tie && i > 0 && byId.get(ne[i - 1].id).mvt === n.mvt) continue;
+      if (n.unc) continue;
       if (!e.d) continue;
       let d = e.d, j = i;
-      while (j + 1 < ne.length && byId.get(ne[j + 1].id).tie) { j++; d = ne[j].t + ne[j].d - e.t; }
+      while (j + 1 < ne.length && !byId.get(ne[j + 1].id).unc && byId.get(ne[j + 1].id).tie) { j++; d = ne[j].t + ne[j].d - e.t; }
       osc.push(...voice(pitchOf(n), t0 + e.t, Math.max(0.05, d * 0.93)));
     }
     for (const e of ev) {
@@ -299,7 +312,7 @@
       if (e.m && S.metro) osc.push(...click(t0 + e.t, true));
       const ms = (t0 + e.t - ctx.currentTime) * 1000;
       timers.push(setTimeout(() => {
-        if (e.m) $('barNow').textContent = `${MV_NUM[mv] || mv}楽章 ${e.bar}小節${e.ds ? '（D.S.後）' : ''}`;
+        if (e.m) $('barNow').textContent = `${mvLabel(mv)} ${e.bar}小節${e.ds ? '（D.S.後）' : ''}`;
         else select(e.id, { scroll: S.follow });
       }, Math.max(0, ms)));
     }
@@ -395,6 +408,7 @@
     $('lines').onchange = () => { S.lines = $('lines').checked; document.body.classList.toggle('nolines', !S.lines); save(); };
     $('practicePlay').onclick = () => {
       const n = byId.get(Number($('practice').dataset.noteId)); if (!n) return;
+      if (n.unc) return;
       if (practiceOsc.length) stopPractice(); else startPractice(n);
     };
     $('practice').addEventListener('close', stopPractice);
@@ -431,7 +445,7 @@
     document.title = `${D.title} — DYNAMIC 譜読みアプリ`;
     $('title').textContent = D.title; $('subtitle').textContent = D.subtitle;
     if (D.pdf) { $('pdfLink').hidden = false; $('pdfLink').href = '../' + D.pdf; }
-    $('mvts').innerHTML = D.movements.map((m) => `<button role="tab" data-k="${m.key}" aria-selected="false">${MV_NUM[m.key] || m.key}楽章</button>`).join('');
+    $('mvts').innerHTML = D.movements.map((m) => `<button role="tab" data-k="${m.key}" aria-selected="false">${esc(mvLabel(m.key))}</button>`).join('');
     $('mvts').querySelectorAll('button').forEach((b) => { b.onclick = () => setMvt(b.dataset.k, true); });
     $('infoBody').innerHTML = `<p><b>${esc(D.work)}</b> · ${esc(D.part)}</p><p><span class="badge">要確認あり・第三者監査前</span> ${esc(D.status)}</p><ul class="lim">${D.limitations.map((l) => `<li>${esc(l)}</li>`).join('')}</ul>`;
     syncControls(); wire(); renderScore(); setMvt(D.movements[0].key, false);
