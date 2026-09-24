@@ -26,9 +26,9 @@
   ],
   "vars": {
     // Cloudflare Zero Trust team domain and the Access application AUD tag for /login.
-    // Leave either empty to keep the memo feature disabled.
-    "ACCESS_TEAM_DOMAIN": "",
-    "ACCESS_AUD": "",
+    // These identify the DYNAMIC Reader Memo Login app in the fs-admin account.
+    "ACCESS_TEAM_DOMAIN": "fsadmin.cloudflareaccess.com",
+    "ACCESS_AUD": "4da37640f21c46aa2606e91629bc36fc1c34cbc2139558cee79a356a4de0fec6",
     // Comma-separated reader part ids where memos are offered.
     "MEMO_PARTS": "dvorak8-trombone1"
   }

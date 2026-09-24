@@ -75,10 +75,13 @@
 1. R2 バケットを作る：`npx wrangler r2 bucket create dynamic-memos`
 2. Zero Trust → Access → Applications で **Self-hosted** のアプリを作る。
    - ドメイン：`dynamic.oke.jp`、パス：`login`（`/login` だけを守る）
-   - ポリシー：ログインを許可するメールアドレスや IdP のグループ
-   - セッションの期間：メモのログインがこの期間続きます（例：1 週間）
+   - ポリシー：`DYNAMIC Google accounts`（Allow / All authenticated users）を割り当てます。
+   - Login methods：Google のみを有効にします。現在は Google アカウントを持つ人なら誰でもログインできます。
+   - セッションの期間：24 時間に設定済みです。
 3. アプリの **Application Audience (AUD) Tag** とチームドメイン（`<team>.cloudflareaccess.com`）を、`wrangler.jsonc` の `vars.ACCESS_AUD` と `vars.ACCESS_TEAM_DOMAIN` に入れる（どちらも秘密情報ではありません）。
 4. `npx wrangler deploy`。`https://dynamic.oke.jp/login` を開いて認証し、元のページに戻ってから、✎ でメモが保存できることを確かめます。
+
+現在の実環境：fs-admin Cloudflare アカウント（ID `29e8010570c1cef4764ba466ab6ebb55`）に R2 バケット `dynamic-memos` と Access アプリ `DYNAMIC Reader Memo Login` を作成済みです。アプリの対象は `dynamic.oke.jp/login`、IdP は Google のみ、ポリシーは全認証済みユーザーを許可します。管理者による承認画面は将来の追加予定で、現時点ではありません。
 
 **元に戻すとき**：`ACCESS_AUD` を空にしてデプロイすると、メモ機能だけが止まります（保存したデータは R2 に残ります）。Worker そのものを外すには、`wrangler.jsonc` から `main` と `run_worker_first` を消します。
 

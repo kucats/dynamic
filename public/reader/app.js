@@ -7,16 +7,16 @@
   const PRINT = params.has('print');
   const LEGACY_SIZES = { s: 36, m: 44, l: 56 };
   const ROWSETS = {
-    horn: [['w', 'lw', 1.0, '記譜ドレミ', 'cw', true], ['f', 'lf', 0.78, 'F管の読み替え', 'cf', false], ['s', 'ls', 0.64, '実音', 'cs', false]],
+    horn: [['w', 'lw', 1.0, '記譜ドレミ', 'cw', true], ['f', 'lf', 0.78, 'F管の読み替え', 'cf', false], ['s', 'ls', 0.64, '実音', 'cs', false], ['v', 'lv', 0.8, '運指', 'cv', false]],
     trombone: [['w', 'lw', 1.0, '音名', 'cw', true], ['p', 'lp', 0.8, 'ポジション', 'cp', true]],
   };
   let ROWS = ROWSETS.horn;
-  const val = (n, k) => (k === 'w' ? n.w : k === 'f' ? n.f : k === 's' ? n.snd : [String(n.pos ?? '–'), '', 0]);
+  const val = (n, k) => (k === 'w' ? n.w : k === 'f' ? n.f : k === 's' ? n.snd : k === 'v' ? [fingering(n)[0] || '–', '', 0] : [String(n.pos ?? '–'), '', 0]);
   const MV_NUM = { I: 1, II: 2, III: 3, IV: 4 };
 
   // ---------- settings (per viewer, optional) ----------
   const DEF = { rows: { w: true, f: false, s: false }, fontSize: 44, barPosition: 'bottom', sound: 's', tempo: 100, squeeze: true,
-    fromSel: true, follow: true, metro: false, lines: true, zoom: innerWidth < 760 ? 2.6 : 1 };
+    fromSel: true, follow: true, metro: false, lines: true, hornMode: 'double', hornSwitchAt: 0, zoom: innerWidth < 760 ? 2.6 : 1 };
   let S = structuredClone(DEF);
   try {
     const stored = JSON.parse(localStorage.getItem('dynamic-settings') || '{}');
@@ -40,12 +40,24 @@
   };
 
   const svgHooks = [];                // extensions (memo.js) draw extra SVG per system
+  // ---------- horn fingering aid (general chart, keyed by the F-horn written reading) ----------
+  let FG = null;
+  function fingering(n) {           // [first choice, ...alternates]; B♭-side fingerings carry a leading T
+    if (!FG || !n.f) return [];
+    const m = String(n.f[2]);
+    if (S.hornMode === 'F') return FG.single_F[m] || [];
+    const list = FG.double[m] || [], sw = Number(S.hornSwitchAt);
+    if (!sw) return list;            // chart order (left column first)
+    const t = list.filter((v) => v[0] === 'T'), f = list.filter((v) => v[0] !== 'T');
+    return n.f[2] >= sw ? [...t, ...f] : [...f, ...t];
+  }
+
   let D = null, byId = new Map(), cur = null, playing = null, ctx = null, master = null, practiceOsc = [], practiceTimer = null, fontRenderFrame = 0;
 
   // ---------- label layout ----------
   function rowWidth(lbl) {           // label width in em (compact metrics)
     const [sol, oct] = lbl; const base = sol.replace(/[♭♯𝄫𝄪]/g, ''); const acc = sol.length - base.length;
-    const bw = base === 'ファ' ? 1.62 : /^[A-H]$/.test(base) ? 0.74 : /^[0-9–?]+$/.test(base) ? 0.62 : 1.0;
+    const bw = base === 'ファ' ? 1.62 : /^[A-H]$/.test(base) ? 0.74 : /^[0-9T–?]+$/.test(base) ? 0.62 * base.length : 1.0;
     return bw + 0.45 * acc + (oct === '' ? 0.1 : 0.42);
   }
   function labelWidth(n, fs) {
@@ -206,6 +218,8 @@
     } else {
       $('nowF').innerHTML = S.rows.f || D.showF ? `F管 ${esc(n.f[0])}<sup>${n.f[1]}</sup>` : '';
       $('nowS').innerHTML = `実音 ${esc(n.snd[0])}<sup>${n.snd[1]}</sup>`;
+      const fg = fingering(n);
+      $('nowV').innerHTML = S.rows.v && fg.length ? `運指 ${esc(fg[0])}${fg.length > 1 ? `<small>（替え ${esc(fg.slice(1).join('・'))}）</small>` : ''}` : '';
     }
     $('nowInfo').textContent = `${MV_NUM[n.mvt] || n.mvt}楽章 ${n.bar}小節${D.instrument === "trombone" ? "" : " · in " + n.key}${n.tie ? ' · タイの続き' : ''}${n.old ? ' · ヘ音記号は旧記譜' : ''}${n.unc ? ' · 要確認：' + n.unc : ''} · ${id}/${D.notes.length}`;
     setMvt(n.mvt, false);
@@ -262,6 +276,8 @@
     const pitch = (p) => `${p[0]}${p[1]}`;
     $('practiceWritten').textContent = `譜面：${pitch(n.w)} · ${MV_NUM[n.mvt] || n.mvt}楽章 ${n.bar}小節`;
     $('practiceSounding').textContent = `吹く音（実音）：${pitch(n.snd)}`;
+    const fg = D.instrument === 'trombone' ? [] : fingering(n);
+    $('practiceFingering').textContent = S.rows.v && fg.length ? `運指（目安）：${fg[0]}${fg.length > 1 ? `　替え ${fg.slice(1).join('・')}` : ''}` : '';
     $('practice').dataset.noteId = n.id;
     if (!$('practice').open) $('practice').showModal();
   }
@@ -354,6 +370,7 @@
     document.querySelectorAll('[data-bar-pos]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.barPos === S.barPosition)));
     $('sound').value = S.sound; $('tempo').value = S.tempo; $('tempoV').textContent = S.tempo + '%';
     for (const k of ['squeeze', 'fromSel', 'follow', 'metro', 'lines']) $(k).checked = !!S[k];
+    $('hornMode').value = S.hornMode; $('hornSwitch').value = String(S.hornSwitchAt); $('hornSwitch').disabled = S.hornMode !== 'double';
   }
   function wire() {
     $('score').addEventListener('click', (e) => {
@@ -390,9 +407,12 @@
     document.querySelectorAll('[data-row]').forEach((c) => c.addEventListener('change', () => {
       S.rows[c.dataset.row] = c.checked;
       if (!ROWS.some(([k]) => S.rows[k])) { S.rows[ROWS[0][0]] = true; syncControls(); }
-      save(); renderScore();
+      save(); renderScore(); if (cur) select(cur, { scroll: false });
     }));
     $('sound').onchange = () => { S.sound = $('sound').value; save(); };
+    const refingering = () => { syncControls(); save(); renderScore(); if (cur) select(cur, { scroll: false }); };
+    $('hornMode').onchange = () => { S.hornMode = $('hornMode').value; refingering(); };
+    $('hornSwitch').onchange = () => { S.hornSwitchAt = Number($('hornSwitch').value); refingering(); };
     for (const k of ['squeeze', 'fromSel', 'follow', 'metro']) $(k).onchange = () => { S[k] = $(k).checked; save(); };
     $('lines').onchange = () => { S.lines = $('lines').checked; document.body.classList.toggle('nolines', !S.lines); save(); };
     $('practicePlay').onclick = () => {
@@ -419,6 +439,15 @@
     }
     D.notes.forEach((n) => { byId.set(n.id, n); const k = n.mvt + ':' + n.bar; if (!mvtNotes.has(k)) mvtNotes.set(k, []); mvtNotes.get(k).push(n.id); });
     ROWS = ROWSETS[D.instrument] || ROWSETS.horn;
+    if (D.instrument !== 'trombone') {
+      try { const r = await fetch('horn-fingerings.json'); if (r.ok) FG = await r.json(); } catch (e) { /* fingering row shows – */ }
+      if (FG) {
+        const names = FG.names || {};
+        $('hornSwitch').innerHTML = '<option value="0">運指表どおり</option>' + FG.switch_choices.map((m) => `<option value="${m}">${esc((names[m] || m).replace('#', '♯').replace('b', '♭'))}から</option>`).join('');
+        if (!FG.switch_choices.includes(Number(S.hornSwitchAt))) S.hornSwitchAt = 0;
+      }
+      if (PRINT) { if (params.get('horn') === 'F') S.hornMode = 'F'; if (params.get('switch')) S.hornSwitchAt = Number(params.get('switch')); }
+    }
     D.showF = D.instrument !== 'trombone' && D.notes.some((n) => n.f[2] !== n.w[2]);
     S.rowsByPart = S.rowsByPart || {};
     S.soundByPart = S.soundByPart || {};
@@ -430,6 +459,7 @@
     else S.rows = Object.fromEntries(ROWS.map(([k]) => [k, params.get('rows').includes(k)]));
     $('rowset').innerHTML = '<legend>表示する行</legend>' + ROWS.map(([k, , , lab, c]) => `<label><input type="checkbox" data-row="${k}"> <b class="${c}">${lab}</b></label>`).join('');
     $('soundWrap').hidden = D.instrument === 'trombone';
+    $('fingerset').hidden = D.instrument === 'trombone' || !FG;
     document.title = `${D.title} — DYNAMIC 譜読みアプリ`;
     $('title').textContent = D.title; $('subtitle').textContent = D.subtitle;
     if (D.pdf) { $('pdfLink').hidden = false; $('pdfLink').href = '../' + D.pdf; }

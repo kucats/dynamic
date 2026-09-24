@@ -38,6 +38,7 @@ class FakeR2 {
   async put(key, body, opt = {}) {
     const cur = this.store.get(key);
     if (opt.onlyIf?.etagMatches && (!cur || cur.etag !== opt.onlyIf.etagMatches)) return null;
+    if (opt.onlyIf?.etagDoesNotMatch === '*' && cur) return null;
     const etag = `e${++this.n}`; this.store.set(key, { body, etag }); return { etag };
   }
 }
@@ -145,6 +146,7 @@ test('memo API rejects anonymous, cross-site, disabled-part and invalid requests
   assert.equal((await handle(plain, env, opts)).status, 415);
   const noParts = { ...env, MEMO_PARTS: '' };
   assert.equal((await handle(req('/api/memos/not-a-part', { token }), noParts, opts)).status, 404);
+  assert.deepEqual(await (await handle(req('/api/me'), noParts, opts)).json(), { enabled: false });
 });
 
 test('cleanMemo drops unknown fields and bounds anchors', () => {
@@ -159,6 +161,18 @@ test('concurrent saves do not drop memos', async () => {
   await Promise.all([1, 2, 3].map((i) => handle(req('/api/memos/dvorak8-trombone1', { method: 'POST', token, body: { ...memo, text: `t${i}` } }), env, opts)));
   const doc = await (await handle(req('/api/memos/dvorak8-trombone1', { token }), env, opts)).json();
   assert.equal(doc.memos.length, 4);
+});
+
+test('concurrent first saves create the document once and preserve both memos', async () => {
+  const token = await sign();
+  const [a, b] = await Promise.all([
+    handle(req('/api/memos/dvorak8-trombone1', { method: 'POST', token, body: { ...memo, text: 'first' } }), env, opts),
+    handle(req('/api/memos/dvorak8-trombone1', { method: 'POST', token, body: { ...memo, text: 'second' } }), env, opts),
+  ]);
+  assert.equal(a.status, 201);
+  assert.equal(b.status, 201);
+  const doc = await (await handle(req('/api/memos/dvorak8-trombone1', { token }), env, opts)).json();
+  assert.deepEqual(doc.memos.map((m) => m.text).sort(), ['first', 'second']);
 });
 
 test('non-API paths fall through to static assets', async () => {

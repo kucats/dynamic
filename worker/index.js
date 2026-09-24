@@ -102,8 +102,10 @@ export function safeReturn(value) {
   } catch { return '/reader/'; }
 }
 
-const configured = (env) => Boolean(env.ACCESS_TEAM_DOMAIN && env.ACCESS_AUD && env.MEMOS);
 const memoParts = (env) => String(env.MEMO_PARTS || '').split(',').map((s) => s.trim()).filter(Boolean);
+// Fail closed when no parts are explicitly enabled; an empty deployment setting
+// must never silently widen the API to every catalog entry.
+const configured = (env) => Boolean(env.ACCESS_TEAM_DOMAIN && env.ACCESS_AUD && env.MEMOS && memoParts(env).length);
 
 async function currentUser(request, env, opts) {
   return verifyAccessJwt(readCookie(request, COOKIE), env, opts);
@@ -189,8 +191,8 @@ async function mutate(env, key, fresh, change) {
     const body = JSON.stringify(doc, null, 1);
     const put = await env.MEMOS.put(key, body, {
       httpMetadata: { contentType: 'application/json; charset=utf-8' },
-      // First save of a document is unconditional; two first saves racing is the only unguarded case.
-      ...(etag ? { onlyIf: { etagMatches: etag } } : {}),
+      // Use a create-only precondition for the first save, then compare-and-swap.
+      ...(etag ? { onlyIf: { etagMatches: etag } } : { onlyIf: { etagDoesNotMatch: '*' } }),
     });
     if (put) return { doc, memo: result.memo };
   }
@@ -206,7 +208,7 @@ async function memos(request, env, opts, part, id) {
   if (!configured(env)) return fail(404, 'メモ機能は無効です。');
   if (!PART_RE.test(part) || (id && !ID_RE.test(id))) return fail(404, '見つかりません。');
   const allowed = memoParts(env);
-  if (allowed.length && !allowed.includes(part)) return fail(403, 'このパートではメモを使えません。');
+  if (!allowed.includes(part)) return fail(403, 'このパートではメモを使えません。');
   const claims = await currentUser(request, env, opts);
   if (!claims) return fail(401, 'ログインが必要です。');
   const method = request.method;
