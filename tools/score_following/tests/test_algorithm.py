@@ -151,3 +151,38 @@ def test_chunk_boundary_invariance():
     for i in range(0, len(audio), 177):
         right.extend(b.push(audio[i : i + 177], i))
     assert left == right
+
+
+def collect_onsets(score):
+    audio, _ = synthesize(score)
+    dsp = StreamingAudio()
+    onsets = []
+    for start in range(0, len(audio), HOP):
+        onsets.extend(obs for obs in dsp.push(audio[start : start + HOP], start) if obs.onset)
+    return onsets
+
+
+def test_articulation_detects_same_pitch_reattacks_without_silence():
+    score = Score(
+        audit_status="synthetic",
+        tempo_bpm=120,
+        events=[Note(event_id=f"n{i}", start=i, duration=1, pitch=62) for i in range(4)],
+    )
+    onsets = collect_onsets(score)
+    assert len(onsets) == 4
+    assert all(obs.pitch == pytest.approx(62, abs=0.15) for obs in onsets)
+
+
+def test_articulation_detects_semitone_steps_without_chasing_pitch():
+    score = Score(
+        audit_status="synthetic",
+        tempo_bpm=120,
+        events=[
+            Note(event_id="a", start=0, duration=1, pitch=59),
+            Note(event_id="b", start=1, duration=1, pitch=60),
+            Note(event_id="c", start=2, duration=1, pitch=61),
+        ],
+    )
+    onsets = collect_onsets(score)
+    assert len(onsets) == 3
+    assert [round(obs.pitch) for obs in onsets] == [59, 60, 61]

@@ -82,6 +82,12 @@ class StreamingAudio:
         self.silent_hops = 3
         self.previous_rms = 0.0
         self.last_onset = -100.0
+        # A short amplitude notch is a useful articulation cue when the player
+        # repeats the same pitch. Keep it separate from the stable pitch anchor:
+        # the 128 ms YIN window intentionally lags note boundaries.
+        self.dip_rms: float | None = None
+        self.dip_time: float | None = None
+        self.dip_pitch: float | None = None
 
     def push(self, samples: np.ndarray, start_sample: int) -> list[Observation]:
         if self.cursor is None:
@@ -100,27 +106,60 @@ class StreamingAudio:
             rms = float(np.sqrt(np.mean(hop * hop)))
             pitch, clarity = yin_pitch(self.window, self.a4_hz) if rms >= 0.003 else (None, 0.0)
             onset = False
+            # Track a pronounced hop-energy dip. For a same-pitch reattack we
+            # wait 120 ms before committing, because YIN can still report the
+            # previous pitch for ~100 ms after an actual pitch change.
+            if self.pitch is not None and self.previous_rms > 0.02 and rms < self.previous_rms * 0.72:
+                self.dip_rms = rms
+                self.dip_time = t
+                self.dip_pitch = self.pitch
             if pitch is None:
                 self.silent_hops += 1
                 self.pending = None
                 self.pending_count = 0
                 if self.silent_hops >= 3:
                     self.pitch = None
+                    self.dip_rms = self.dip_time = self.dip_pitch = None
+                elif self.dip_time is not None and t - self.dip_time > 0.30:
+                    self.dip_rms = self.dip_time = self.dip_pitch = None
             else:
                 rounded = round(pitch)
                 self.pending_count = self.pending_count + 1 if self.pending == rounded else 1
                 self.pending = rounded
                 change = self.pitch is None or abs(pitch - self.pitch) > 0.75
-                reattack = self.silent_hops >= 2 or (
+
+                # If the delayed pitch estimate has clearly moved away from the
+                # pre-dip note, this was a pitch change rather than a reattack.
+                if self.dip_pitch is not None and abs(pitch - self.dip_pitch) > 0.75:
+                    self.dip_rms = self.dip_time = self.dip_pitch = None
+                dip_reattack = False
+                if self.dip_time is not None and self.dip_pitch is not None:
+                    age = t - self.dip_time
+                    dip_reattack = (
+                        0.12 <= age <= 0.30
+                        and abs(pitch - self.dip_pitch) <= 0.5
+                        and rms > max(0.01, self.dip_rms * 1.25)
+                    )
+
+                reattack = self.silent_hops >= 2 or dip_reattack or (
                     rms > max(0.01, self.previous_rms * 2.8) and t - self.last_onset > 0.12
                 )
-                if (change and self.pending_count >= 2) or (reattack and not change):
+                # Four equal rounded-pitch observations reject the short
+                # intermediate pitches produced as the trailing YIN window
+                # crosses a boundary (for example 60 -> 61 -> 62). Very large
+                # jumps receive two extra hops because octave/transient errors
+                # are especially common there.
+                required = 6 if self.pitch is not None and abs(pitch - self.pitch) > 19 else 4
+                if (change and self.pending_count >= required) or (reattack and not change):
                     onset = t - self.last_onset >= 0.08
                     if onset:
                         self.pitch = pitch
                         self.last_onset = t
-                if not change:
-                    self.pitch = pitch
+                        self.dip_rms = self.dip_time = self.dip_pitch = None
+
+                # Deliberately do not chase every fractional YIN estimate here.
+                # self.pitch is the last articulated-note anchor; updating it
+                # every 20 ms makes semitone steps disappear into a slow glide.
                 self.silent_hops = 0
             self.previous_rms = rms
             result.append(Observation(t, pitch, clarity, rms, onset))
