@@ -8,7 +8,7 @@ permissions:
 jobs:
   source:
     runs-on: ubuntu-24.04
-    timeout-minutes: 3
+    timeout-minutes: 6
     steps:
       - uses: actions/checkout@v4
         with:
@@ -18,8 +18,38 @@ jobs:
           mkdir -p /tmp/source-bundle
           git rev-parse HEAD > /tmp/source-bundle/checkout-sha.txt
           git archive --format=tar.gz HEAD > /tmp/source-bundle/dynamic-source.tar.gz
-          cd /tmp/source-bundle && sha256sum dynamic-source.tar.gz > SHA256SUMS
+      - name: Licensed public reference performances only
+        run: |
+          python - <<'PY'
+          import hashlib, json, pathlib, urllib.request, urllib.parse, re
+          out=pathlib.Path('/tmp/source-bundle/references'); out.mkdir()
+          names={1:'1._Allegro_con_brio',2:'2._adagio',3:'3._allegretto_grazioso',4:'4._allegro'}
+          known={1:'5/5d',3:'9/93',4:'4/42'}
+          records=[]
+          for movement,suffix in names.items():
+              name='Dvořák,_Antonin_—_Symphony_No._8,_Op._88_—_'+suffix+'.ogg'
+              page='https://commons.wikimedia.org/wiki/File:'+urllib.parse.quote(name)
+              url=('https://upload.wikimedia.org/wikipedia/commons/'+known[movement]+'/'+urllib.parse.quote(name)) if movement in known else ('https://commons.wikimedia.org/wiki/Special:Redirect/file/'+urllib.parse.quote(name))
+              record=dict(movement=movement,page=page,performer='DuPage Symphony Orchestra',conductor='Barbara Schubert',license='CC BY 3.0 US per Commons; IMSLP source lists CC BY-SA 3.0; retain attribution and no endorsement',license_url='https://creativecommons.org/licenses/by/3.0/us/',modifications='unmodified source; feature extraction performed locally')
+              try:
+                  request=urllib.request.Request(url,headers={'User-Agent':'DYNAMIC-score-following-research/0.1 (https://github.com/kucats/dynamic; public reference comparison)'})
+                  with urllib.request.urlopen(request,timeout=45) as response:
+                      if urllib.parse.urlparse(response.url).hostname not in ('commons.wikimedia.org','upload.wikimedia.org'): raise ValueError('unexpected host')
+                      raw=response.read(12*1024*1024+1)
+                  if len(raw)>12*1024*1024 or not raw.startswith(b'OggS'): raise ValueError('invalid or oversized audio')
+                  (out/f'movement-{movement}.ogg').write_bytes(raw)
+                  record.update(bytes=len(raw),sha256=hashlib.sha256(raw).hexdigest(),status='downloaded')
+              except Exception as exc:
+                  record.update(status='unavailable',error=type(exc).__name__)
+              records.append(record)
+          (out/'attribution.json').write_text(json.dumps(records,indent=2))
+          print(json.dumps(records,indent=2))
+          assert sum(r['status']=='downloaded' for r in records)>=1
+          PY
+      - name: Check source hash
+        run: cd /tmp/source-bundle && sha256sum dynamic-source.tar.gz > SHA256SUMS
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: score-following-source
           path: /tmp/source-bundle/
