@@ -45,7 +45,8 @@
     if (!FG || !n.f) return [];
     const m = String(n.f[2]), F = FG.sides.F[m] || [], B = FG.sides.Bb[m] || [];
     const t = B.map((v) => 'T' + v);
-    const useB = S.hornMode === 'double' && B.length && n.f[2] >= Number(S.hornSwitch);
+    // 123 (all three valves) is avoided when the B♭ side offers another fingering
+    const useB = S.hornMode === 'double' && B.length && (n.f[2] >= Number(S.hornSwitch) || F[0] === '123');
     return useB ? [...t, ...F] : S.hornMode === 'double' ? [...F, ...t] : F;
   }
 

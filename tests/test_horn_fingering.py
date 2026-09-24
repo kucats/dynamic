@@ -45,6 +45,16 @@ class HornFingeringTests(unittest.TestCase):
             self.assertIn(str(midi), Bb)
             self.assertIn(str(midi), F)
 
+    def test_123_only_without_alternative(self):
+        F, Bb = CHART["sides"]["F"], CHART["sides"]["Bb"]
+        for side, table in CHART["sides"].items():
+            for midi, fingerings in table.items():
+                if "123" in fingerings:
+                    self.assertEqual(fingerings, ["123"], f"{side} {CHART['names'][midi]}: 123 listed beside another fingering")
+        for midi, fingerings in F.items():
+            if fingerings == ["123"] and int(midi) >= 48:
+                self.assertIn(midi, Bb, f"{CHART['names'][midi]}: 123 without a B♭-side alternative")
+
     def test_every_horn_note_has_a_fingering(self):
         parts = json.loads((ROOT / "public/reader/parts.json").read_text(encoding="utf-8"))["parts"]
         for entry in parts:
