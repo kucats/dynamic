@@ -353,9 +353,59 @@
     $('sound').value = S.sound; $('tempo').value = S.tempo; $('tempoV').textContent = S.tempo + '%';
     for (const k of ['squeeze', 'fromSel', 'follow', 'metro', 'lines']) $(k).checked = !!S[k];
   }
+  // ---------- bar context menu / full score ----------
+  let viewer = null;
+  function loadViewer() {
+    if (!viewer) viewer = new Promise((ok, ng) => {
+      const s = document.createElement('script'); s.src = 'score-viewer.js';
+      s.onload = () => ok(window.DynamicScore); s.onerror = () => { viewer = null; ng(new Error('総譜ビューアを読み込めませんでした')); };
+      document.head.appendChild(s);
+    });
+    return viewer;
+  }
+  async function openScore(mvt, bar) {
+    closeCtx(); stop();
+    try { await (await loadViewer()).open({ work: D.work, composer: D.composer, mvt, bar }); }
+    catch (e) { $('nowInfo').textContent = e.message; }
+  }
+  function barAt(e) {                   // bar under the pointer inside a system image, or null
+    const svg = e.target.closest('.sc svg'); if (!svg) return null;
+    const sec = svg.closest('.sys');
+    const sy = D.systems[+sec.id.slice(4)];
+    const pt = svg.createSVGPoint(); pt.x = e.clientX; pt.y = e.clientY;
+    const x = pt.matrixTransform(svg.getScreenCTM().inverse()).x;
+    const segs = sy.segs.filter((g) => g[2]); if (!segs.length) return null;
+    const g = segs.find((q) => x >= q[0] && x < q[1]) || (x < segs[0][0] ? segs[0] : segs.filter((q) => q[0] <= x).pop());
+    const [a, b] = segRange(g[2]);
+    return { sy, mvt: sy.mvt, bar: a, last: b, seg: g };
+  }
+  function closeCtx() { const m = $('ctx'); if (m && !m.hidden) m.hidden = true; }
+  function openCtx(e, hit) {
+    const m = $('ctx'), mv = `${MV_NUM[hit.mvt] || hit.mvt}楽章`;
+    const rng = hit.last > hit.bar ? `${hit.bar}〜${hit.last}小節` : `${hit.bar}小節`;
+    const hasNotes = D.notes.some((n) => n.mvt === hit.mvt && n.bar >= hit.bar);
+    m.innerHTML = `<div class="ctx-h">${mv} ${rng}</div>`
+      + `<button type="button" class="ctx-score" data-act="score">${hit.bar}小節目のスコアを見る</button>`
+      + `<button type="button" data-act="play"${hasNotes ? '' : ' disabled'}>この小節から再生</button>`
+      + '<button type="button" data-act="close">閉じる</button>';
+    m.hidden = false;
+    const r = m.getBoundingClientRect();
+    m.style.left = `${Math.max(8, Math.min(e.clientX, innerWidth - r.width - 8))}px`;
+    m.style.top = `${Math.max(8, Math.min(e.clientY, innerHeight - r.height - 8))}px`;
+    m.onclick = (ev) => {
+      const act = ev.target.closest('button')?.dataset.act; if (!act) return;
+      if (act === 'score') openScore(hit.mvt, hit.bar);
+      else if (act === 'play') { closeCtx(); setMvt(hit.mvt, false); jumpTo(hit.bar); play(); }
+      else closeCtx();
+    };
+    m.querySelector('.ctx-score').focus({ preventScroll: true });
+    flash(hit.sy, hit.seg[0], hit.seg[1]);
+  }
+
   function wire() {
     $('score').addEventListener('click', (e) => {
-      const g = e.target.closest('.note'); if (!g) return;
+      const g = e.target.closest('.note');
+      if (!g) { const hit = barAt(e); if (hit) openCtx(e, hit); return; }
       if (e.detail >= 2) { e.preventDefault(); openPractice(+g.dataset.id); return; }
       select(+g.dataset.id, { sound: true, scroll: false });
     });
@@ -363,8 +413,16 @@
       const g = e.target.closest('.note'); if (g) { e.preventDefault(); openPractice(+g.dataset.id); }
     });
     $('score').addEventListener('contextmenu', (e) => {
-      const g = e.target.closest('.note'); if (g) { e.preventDefault(); openPractice(+g.dataset.id); }
+      const g = e.target.closest('.note'); if (g) { e.preventDefault(); openPractice(+g.dataset.id); return; }
+      const hit = barAt(e); if (hit) { e.preventDefault(); openCtx(e, hit); }
     });
+    document.addEventListener('pointerdown', (e) => { if (!e.target.closest('#ctx')) closeCtx(); }, true);
+    addEventListener('scroll', closeCtx, { passive: true });
+    $('scoreBtn').onclick = () => {
+      const n = cur && byId.get(cur);
+      const typed = parseInt($('jumpBar').value, 10);
+      openScore(n ? n.mvt : currentMvt, n ? n.bar : typed || 1);
+    };
     $('score').addEventListener('keydown', (e) => {
       const g = e.target.closest('.note'); if (g && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); select(+g.dataset.id, { sound: true, scroll: false }); }
     });
@@ -400,7 +458,8 @@
     $('practice').addEventListener('close', stopPractice);
     $('infoBtn').onclick = () => $('info').showModal();
     document.addEventListener('keydown', (e) => {
-      if (e.target.matches('input,select,textarea') || $('info').open || $('practice').open) return;
+      if (e.key === 'Escape') closeCtx();
+      if (e.target.matches('input,select,textarea') || $('info').open || $('practice').open || document.documentElement.classList.contains('sv-open')) return;
       if (e.key === ' ' && !e.target.closest('.note') && !e.target.matches('button')) { e.preventDefault(); $('play').click(); }
       else if (e.key === 'ArrowRight') { e.preventDefault(); $('next').click(); }
       else if (e.key === 'ArrowLeft') { e.preventDefault(); $('prev').click(); }
@@ -436,7 +495,7 @@
     $('infoBody').innerHTML = `<p><b>${esc(D.work)}</b> · ${esc(D.part)}</p><p><span class="badge">要確認あり・第三者監査前</span> ${esc(D.status)}</p><ul class="lim">${D.limitations.map((l) => `<li>${esc(l)}</li>`).join('')}</ul>`;
     syncControls(); wire(); renderScore(); setMvt(D.movements[0].key, false);
     if (PRINT) document.body.classList.add('print');
-    window.__dynamic = { data: D, timeline, select, get cur() { return cur; }, get playing() { return !!playing; }, jumpTo };
+    window.__dynamic = { data: D, timeline, select, get cur() { return cur; }, get playing() { return !!playing; }, jumpTo, openScore };
     document.dispatchEvent(new Event('dynamic:ready'));
   }
   init();

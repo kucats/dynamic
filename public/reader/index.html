@@ -27,6 +27,7 @@
       <button id="next" title="次の音（→）" aria-label="次の音">›</button>
     </div>
     <form id="jump" class="jump"><input id="jumpBar" type="number" inputmode="numeric" min="1" placeholder="小節" aria-label="小節番号"><button>移動</button></form>
+    <button id="scoreBtn" type="button" title="選んだ小節の総譜を開く" aria-haspopup="dialog">総譜</button>
     <label class="fsize">譜読み字 <input id="fontSize" type="range" min="26" max="72" step="2" value="44"><output id="fontSizeV">44</output></label>
     <div class="barpos" role="group" aria-label="小節番号の位置"><span>小節番号</span><button type="button" data-bar-pos="bottom" aria-pressed="true" aria-label="小節番号を下に表示">下</button><button type="button" data-bar-pos="top" aria-pressed="false" aria-label="小節番号を上に表示">上</button><button type="button" data-bar-pos="off" aria-pressed="false" aria-label="小節番号を非表示">オフ</button></div>
     <label class="tempo">テンポ <input id="tempo" type="range" min="40" max="140" step="5" value="100"><output id="tempoV">100%</output></label>
@@ -64,6 +65,7 @@
       <li>音符か青い字をクリック：その音の実音が鳴ります。ダブルクリック／右クリックでロングトーン練習を開きます。</li>
       <li>▶ 再生：選んだ音から通しで再生します（スペースキー）。←→キーで1音ずつ移動。</li>
       <li>「小節」に番号を入れて移動：その小節へジャンプします。</li>
+      <li>小節番号や音符のない所をクリック（右クリック）：メニューから「○小節目のスコアを見る」で総譜をその小節で開きます。「総譜」ボタンは選んだ音の小節で開きます。総譜の画像は開いたときに読み込みます。</li>
       <li>＋／－：譜面の拡大・縮小（スマホでは横にスクロールできます）。</li>
       <li>上部スライダーで譜読み字の大きさを変更し、小節番号は下・上・オフを切り替えられます。</li>
       <li>設定でF管の読み替えや実音の行、通し再生の音を切り替えられます。</li>
@@ -84,6 +86,7 @@
     <div class="practice-actions"><button id="practicePlay" type="button" class="play">▶ ロングトーン</button><button type="submit" class="ghost">閉じる</button></div>
   </form>
 </dialog>
+<div id="ctx" class="ctx" role="menu" hidden></div>
 <p id="err" class="err" hidden></p>
 <script src="app.js"></script>
 </body>
