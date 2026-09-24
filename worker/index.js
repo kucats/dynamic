@@ -38,6 +38,32 @@ function redirect(location, cookie) {
   if (cookie) h.append('Set-Cookie', cookie);
   return new Response(null, { status: 302, headers: h });
 }
+function escapeHtml(value) {
+  return String(value).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
+}
+function loginComplete(email, back, cookie) {
+  const headers = new Headers({
+    'Content-Type': 'text/html; charset=utf-8',
+    ...SECURITY_HEADERS,
+    'Content-Security-Policy': "default-src 'none'; style-src 'unsafe-inline'; base-uri 'none'; form-action 'self'; frame-ancestors 'none'",
+  });
+  headers.append('Set-Cookie', cookie);
+  const html = `<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0f7cf6"><title>ログインしました · DYNAMIC</title>
+<style>
+:root{color-scheme:light;font:16px/1.6 system-ui,-apple-system,"Hiragino Sans","Noto Sans CJK JP",sans-serif;color:#10233d;background:#f3f7fc}
+*{box-sizing:border-box}body{min-height:100vh;margin:0;display:grid;place-items:center;padding:20px}
+main{width:min(100%,460px);padding:32px;border:1px solid #d5e1ee;border-radius:20px;background:#fff;box-shadow:0 18px 55px #10233d18}
+.brand{margin:0 0 24px;color:#0f7cf6;font-size:14px;font-weight:900;letter-spacing:.1em}
+.ok{margin:0 0 4px;color:#2f7a5f;font-size:14px;font-weight:800}h1{margin:0 0 24px;font-size:28px;line-height:1.3}
+.label{margin:0;color:#5b6f86;font-size:13px}.identity{display:block;margin:4px 0 24px;overflow-wrap:anywhere;font-size:17px}
+a{display:block;padding:12px 18px;border-radius:12px;background:linear-gradient(120deg,#1b9bff,#0f7cf6 55%,#2fe3cf);color:#fff;text-align:center;text-decoration:none;font-weight:800}
+</style></head><body><main><p class="brand">DYNAMIC</p><p class="ok">ログインしました</p><h1>ログインできました</h1>
+<p class="label">ログイン中のアカウント</p><strong class="identity">${escapeHtml(email)}</strong>
+<a href="${escapeHtml(back)}">続ける</a></main></body></html>`;
+  return new Response(html, { status: 200, headers });
+}
 
 // ---------- JWT (Cloudflare Access, RS256) ----------
 function b64urlBytes(s) {
@@ -121,7 +147,7 @@ async function login(request, env, opts) {
   // Access should never let an unauthenticated request reach /login; refuse rather than loop.
   if (!claims) return fail(401, 'Cloudflare Access の認証情報を確認できませんでした。');
   const maxAge = claims.exp - Math.floor((opts.now ?? Date.now()) / 1000);
-  return redirect(back, sessionCookie(token, maxAge));
+  return loginComplete(claims.email, back, sessionCookie(token, maxAge));
 }
 
 function logout(request, env) {

@@ -77,15 +77,29 @@ test('unknown key ids trigger one JWKS refresh', async () => {
   assert.equal(certFetches, 2);
 });
 
-test('/login stores the Access assertion in a site-wide HttpOnly cookie', async () => {
+test('/login shows verified identity and stores the Access assertion in a site-wide HttpOnly cookie', async () => {
   const token = await sign();
   const res = await handle(new Request(`${ORIGIN}/login?return=${encodeURIComponent('/reader/?part=dvorak8-trombone1')}`, { headers: { 'Cf-Access-Jwt-Assertion': token } }), env, opts);
-  assert.equal(res.status, 302);
-  assert.equal(res.headers.get('Location'), '/reader/?part=dvorak8-trombone1');
+  assert.equal(res.status, 200);
+  assert.match(res.headers.get('Content-Type'), /^text\/html; charset=utf-8$/);
+  assert.match(res.headers.get('Content-Security-Policy'), /default-src 'none'/);
+  const html = await res.text();
+  assert.match(html, /ログインしました/);
+  assert.match(html, /ログインできました/);
+  assert.match(html, /player@example\.com/);
+  assert.match(html, /href="\/reader\/\?part=dvorak8-trombone1">続ける<\/a>/);
   const cookie = res.headers.get('Set-Cookie');
   assert.match(cookie, new RegExp(`^${COOKIE}=${token.replace(/\./g, '\\.')}; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=3600$`));
   const bad = await handle(new Request(`${ORIGIN}/login`), env, opts);
   assert.equal(bad.status, 401);
+});
+
+test('/login HTML-escapes identity claims', async () => {
+  const token = await sign({ email: '<script>alert(1)</script>@example.com' });
+  const res = await handle(new Request(`${ORIGIN}/login`, { headers: { 'Cf-Access-Jwt-Assertion': token } }), env, opts);
+  const html = await res.text();
+  assert.match(html, /&lt;script&gt;alert\(1\)&lt;\/script&gt;@example\.com/);
+  assert.doesNotMatch(html, /<script>alert\(1\)<\/script>/);
 });
 
 test('post-login redirects stay on this site', () => {
