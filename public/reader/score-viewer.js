@@ -150,7 +150,16 @@
     const src = new URL(p.img, V.d.base).href;
     V.st.msg.hidden = true;
     if (img.src !== src) { page.classList.add('loading'); img.removeAttribute('src'); layout(); img.src = src; }
-    else { layout(); scrollToTarget(); }
+    else if (!img.complete) { page.classList.add('loading'); }
+    else if (img.naturalWidth > 0) {
+      // open() marks the page as loading while score metadata resolves. If this
+      // page is already cached, setting the same src does not fire another load
+      // event, so clear that temporary state here.
+      page.classList.remove('loading'); layout(); scrollToTarget();
+    } else {
+      page.classList.remove('loading');
+      note('画像を読み込めませんでした。通信状況を確認してください。');
+    }
     overlay(); where();
     V.st.stage.focus({ preventScroll: true });
   }
