@@ -39,6 +39,7 @@
     try { localStorage.setItem('dynamic-settings', JSON.stringify(S)); } catch (e) { /* ignore */ }
   };
 
+  const svgHooks = [];                // extensions (memo.js) draw extra SVG per system
   // ---------- horn fingering aid (general chart, keyed by the F-horn written reading) ----------
   let FG = null;
   function fingering(n) {           // [first choice, ...alternates]; B♭-side fingerings carry a leading T
@@ -138,7 +139,7 @@
     const lh = labelHeight(fs), strip = 40, topBand = S.barPosition === 'top' ? strip : 0, laneH = lh + 12;
     const lanes = ns.length ? Math.max(...lane) + 1 : 0;
     const H = topBand + h + strip + (ns.length ? lanes * laneH + 10 : 4);
-    const o = [`<svg viewBox="0 0 ${W} ${H}" role="group" aria-label="原譜${sy.page}ページ ${sy.sys}段目"><image href="${sy.img}" x="0" y="${topBand}" width="${W}" height="${h}"/>`];
+    const o = [`<svg viewBox="0 0 ${W} ${H}" data-top="${topBand}" role="group" aria-label="原譜${sy.page}ページ ${sy.sys}段目"><image href="${sy.img}" x="0" y="${topBand}" width="${W}" height="${h}"/>`];
     if (S.barPosition !== 'off') for (const [xa, xb, lab] of sy.segs) {
       if (S.barPosition === 'top') {
         o.push(`<line class="bt" x1="${xa}" y1="4" x2="${xa}" y2="34"/>`);
@@ -170,6 +171,7 @@
         + `<rect class="lbg" x="${(cx[i] - w / 2).toFixed(1)}" y="${(top + 2).toFixed(1)}" width="${w.toFixed(1)}" height="${(lhl + 4).toFixed(1)}" rx="8"/>`
         + rows + `<rect class="hit" x="${(cx[i] - w / 2).toFixed(1)}" y="${top.toFixed(1)}" width="${w.toFixed(1)}" height="${(lhl + 8).toFixed(1)}"/></g>`);
     });
+    for (const hook of svgHooks) o.push(hook(sy, { topBand, H }));
     o.push('</svg>');
     return o.join('');
   }
@@ -420,7 +422,7 @@
     $('practice').addEventListener('close', stopPractice);
     $('infoBtn').onclick = () => $('info').showModal();
     document.addEventListener('keydown', (e) => {
-      if (e.target.matches('input,select,textarea') || $('info').open || $('practice').open) return;
+      if (e.target.matches('input,select,textarea') || e.target.closest('.memo-pin') || document.querySelector('dialog[open]')) return;
       if (e.key === ' ' && !e.target.closest('.note') && !e.target.matches('button')) { e.preventDefault(); $('play').click(); }
       else if (e.key === 'ArrowRight') { e.preventDefault(); $('next').click(); }
       else if (e.key === 'ArrowLeft') { e.preventDefault(); $('prev').click(); }
@@ -466,7 +468,8 @@
     $('infoBody').innerHTML = `<p><b>${esc(D.work)}</b> · ${esc(D.part)}</p><p><span class="badge">要確認あり・第三者監査前</span> ${esc(D.status)}</p><ul class="lim">${D.limitations.map((l) => `<li>${esc(l)}</li>`).join('')}</ul>`;
     syncControls(); wire(); renderScore(); setMvt(D.movements[0].key, false);
     if (PRINT) document.body.classList.add('print');
-    window.__dynamic = { data: D, timeline, select, get cur() { return cur; }, get playing() { return !!playing; }, jumpTo };
+    window.__dynamic = { data: D, timeline, select, get cur() { return cur; }, get playing() { return !!playing; }, jumpTo,
+      ext: { part: PART, print: PRINT, esc, segRange, mvNum: MV_NUM, stop, setMvt, rerender: renderScore, addSvgHook: (f) => { svgHooks.push(f); } } };
     document.dispatchEvent(new Event('dynamic:ready'));
   }
   init();
