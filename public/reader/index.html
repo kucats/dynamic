@@ -9,12 +9,13 @@
 <link rel="icon" href="../assets/dynamic-icon.svg" type="image/svg+xml">
 <link rel="manifest" href="../manifest.webmanifest">
 <link rel="stylesheet" href="app.css">
+<link rel="stylesheet" href="memo.css">
 </head>
 <body>
 <header class="top">
   <a class="brand" href="../" aria-label="DYNAMIC トップへ"><img src="../assets/dynamic-icon.svg" alt="" width="36" height="36"><span>DYNAMIC</span></a>
   <div class="ttl"><h1 id="title">読み込み中…</h1><p id="subtitle"></p></div>
-  <div class="toplinks"><a id="pdfLink" class="ghost" hidden>PDF</a><button id="infoBtn" class="ghost" aria-haspopup="dialog">説明</button></div>
+  <div class="toplinks"><button id="memoPen" class="ghost pen" type="button" hidden aria-pressed="false" title="ペンを押してから、メモを書きたい場所をタップ" aria-label="メモを書く（場所をタップ）"><span aria-hidden="true">✎</span><span class="pen-l">メモ</span></button><button id="memoListBtn" class="ghost" type="button" hidden aria-haspopup="dialog">一覧<span id="memoCount" class="memo-count"></span></button><a id="pdfLink" class="ghost" hidden>PDF</a><button id="infoBtn" class="ghost" aria-haspopup="dialog">説明</button></div>
 </header>
 
 <nav class="bar" id="bar" aria-label="操作">
@@ -67,6 +68,7 @@
       <li>＋／－：譜面の拡大・縮小（スマホでは横にスクロールできます）。</li>
       <li>上部スライダーで譜読み字の大きさを変更し、小節番号は下・上・オフを切り替えられます。</li>
       <li>設定でF管の読み替えや実音の行、通し再生の音を切り替えられます。</li>
+      <li>練習メモ（ログイン時・対応パートのみ）：右上の ✎ を押して譜面の場所をタップ、またはダブルクリック／ダブルタップで、その場所にメモを書けます。練習記号も付けられます。</li>
     </ul>
     <p class="fine">合成音は録音と同期していません。原譜PDFはこのサイトに含めていません。</p>
     <button class="play">閉じる</button>
@@ -84,7 +86,41 @@
     <div class="practice-actions"><button id="practicePlay" type="button" class="play">▶ ロングトーン</button><button type="submit" class="ghost">閉じる</button></div>
   </form>
 </dialog>
+<dialog id="memo" class="info memo-dlg" aria-labelledby="memoTitle">
+  <form id="memoForm" method="dialog">
+    <h2 id="memoTitle">練習メモ</h2>
+    <p id="memoWhere" class="memo-where"></p>
+    <div class="memo-row">
+      <label class="memo-reh">練習記号 <input id="memoReh" list="rehList" maxlength="8" autocomplete="off" placeholder="例：C"></label>
+      <datalist id="rehList"></datalist>
+      <fieldset class="memo-kind"><legend>種類</legend>
+        <label><input type="radio" name="memoKind" value="note" checked> メモ</label>
+        <label><input type="radio" name="memoKind" value="issue"> 課題</label>
+        <label><input type="radio" name="memoKind" value="good"> できた</label>
+      </fieldset>
+    </div>
+    <label class="memo-text">内容<textarea id="memoText" rows="4" maxlength="2000" required placeholder="例：練習記号Cで息が足りなかった。前の小節で吸う"></textarea></label>
+    <p id="memoMeta" class="fine"></p>
+    <p id="memoErr" class="memo-err" role="alert" hidden></p>
+    <div class="practice-actions memo-actions">
+      <button id="memoDelete" type="button" class="ghost danger" hidden>削除</button>
+      <span class="sp"></span>
+      <button type="button" class="ghost" id="memoCancel">キャンセル</button>
+      <button id="memoSave" type="submit" class="play" value="save">保存</button>
+    </div>
+  </form>
+</dialog>
+<dialog id="memoList" class="info memo-list-dlg" aria-labelledby="memoListTitle">
+  <form method="dialog">
+    <h2 id="memoListTitle">練習メモ一覧</h2>
+    <p id="memoAccount" class="fine"></p>
+    <ol id="memoItems" class="memo-items"></ol>
+    <p class="fine">メモはログインしたアカウントごと・パートごとに保存され、保存日時も記録されます。譜面の音や監査状態には影響しません。</p>
+    <button class="play">閉じる</button>
+  </form>
+</dialog>
 <p id="err" class="err" hidden></p>
 <script src="app.js"></script>
+<script src="memo.js"></script>
 </body>
 </html>

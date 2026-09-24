@@ -4,6 +4,7 @@
 
 - `public/index.html` — DYNAMIC のトップ。パートまたは作曲家から譜読みを選び、従来の Fuyomi カタログにも移動できます
 - `public/reader/` — 譜読みアプリ本体。ホルンの記譜ドレミ・F管読み・実音、トロンボーンの音名・基本ポジション、タップ試聴・通し再生・ロングトーン練習・小節番号の位置切り替え・小節ジャンプ・拡大・印刷に対応。データは `public/reader/data/<id>.json`
+- `worker/index.js` — Cloudflare Access ログイン（`/login`）とユーザー・パートごとの練習メモ API（R2）。設計と設定手順は `docs/reader-memos.md`
 - 作り方と再現用のプロンプト・コード：`tools/dynamic/README.md`、`tools/dynamic/prompts/`
 - 読み取りデータ：`project/dvorak/symphony-no-8/horn-ii/dynamic/`、`project/dvorak/symphony-no-8/horn-iii/dynamic/`
 
