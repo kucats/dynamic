@@ -198,8 +198,27 @@ def test_bad_ws_auth_does_not_claim_session(message):
         with client.websocket_connect(info["ws_path"]) as ws:
             ws.send_json(message)
             assert ws.receive_json()["type"] == "error"
+        # Inspect the server invariant directly. Re-opening a TestClient websocket
+        # immediately after the server closes a malformed-auth socket is flaky in
+        # Starlette/httpx and does not strengthen the ownership assertion.
+        session = client.app.state.registry.sessions[info["session_id"]]
+        assert session.owner is None
+        assert session.mode is None
+        assert not session.subscribers
+
+
+def test_valid_ws_auth_can_claim_after_independent_connection():
+    with make_client() as client:
+        info = new_session(client)
         with client.websocket_connect(info["ws_path"]) as ws:
-            assert authenticate(ws, info)["type"] == "ready"
+            ready = authenticate(ws, info)
+            assert ready["type"] == "ready"
+            session = client.app.state.registry.sessions[info["session_id"]]
+            assert session.owner is not None
+            assert session.mode == "pcm"
+        session = client.app.state.registry.sessions[info["session_id"]]
+        assert session.owner is None
+        assert session.mode is None
 
 
 def test_ws_audio_ready_position_and_controls():
