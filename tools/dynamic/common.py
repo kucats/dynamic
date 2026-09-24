@@ -1,6 +1,5 @@
 """Shared helpers for the DYNAMIC score-reading pipeline (staff detection, pitch spelling)."""
 from __future__ import annotations
-import numpy as np
 
 LET = 'CDEFGAB'
 SEMI = [0, 2, 4, 5, 7, 9, 11]
@@ -11,6 +10,8 @@ ACC_OUT = {0: '', -1: '♭', 1: '♯', -2: '𝄫', 2: '𝄪'}
 
 def staves(B):
     """Detect 5-line staves in a boolean (dark=True) 300-dpi page image. Returns list of 5 y-values."""
+    import numpy as np
+
     H, W = B.shape
     allst = []
     for x0 in (500, 900, 1400, 1900, 2300):
