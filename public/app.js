@@ -216,7 +216,7 @@
         reviewStatus: '第三者監査前',
         reviewed: false,
         limitations: [part.status],
-        open: `reader/index.html?part=${encodeURIComponent(part.id)}`,
+        open: `reader/?part=${encodeURIComponent(part.id)}`,
         links: part.pdf ? [{ label: 'PDFを開く', href: publicPath(`public/${part.pdf}`) }] : []
       }));
       const catalogRecords = catalogData.items.map((item) => {

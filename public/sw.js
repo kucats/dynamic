@@ -1,6 +1,6 @@
 /* DYNAMIC offline cache: stale-while-revalidate for same-origin GET requests */
-const CACHE = 'dynamic-v2';
-const SHELL = ['./', 'index.html', 'app.js', 'app.css', 'catalog.json', 'reader/index.html', 'reader/app.js', 'reader/app.css', 'reader/parts.json', 'assets/dynamic-icon.svg', 'assets/dynamic-logo.svg', 'assets/instrument-horn.png', 'assets/instrument-trombone.png', 'manifest.webmanifest'];
+const CACHE = 'dynamic-v3';
+const SHELL = ['./', 'app.js', 'app.css', 'catalog.json', 'reader/', 'reader/app.js', 'reader/app.css', 'reader/parts.json', 'assets/dynamic-icon.svg', 'assets/dynamic-logo.svg', 'assets/instrument-horn.png', 'assets/instrument-trombone.png', 'manifest.webmanifest'];
 self.addEventListener('install', (e) => { e.waitUntil(caches.open(CACHE).then((c) => c.addAll(SHELL)).then(() => self.skipWaiting())); });
 self.addEventListener('activate', (e) => {
   e.waitUntil(caches.keys().then((ks) => Promise.all(ks.filter((k) => k !== CACHE).map((k) => caches.delete(k)))).then(() => self.clients.claim()));
@@ -8,9 +8,20 @@ self.addEventListener('activate', (e) => {
 self.addEventListener('fetch', (e) => {
   const req = e.request;
   if (req.method !== 'GET' || new URL(req.url).origin !== location.origin) return;
+  const requestUrl = new URL(req.url);
+  // Cloudflare redirects explicit index.html URLs to their directory URLs.
+  // Safari rejects redirected responses returned from a service worker, so
+  // request the canonical directory route directly and preserve query params.
+  if (req.mode === 'navigate' && requestUrl.pathname.endsWith('/index.html')) {
+    requestUrl.pathname = requestUrl.pathname.slice(0, -'index.html'.length) || '/';
+  }
+  const cacheKey = requestUrl.href === req.url ? req : requestUrl.href;
+  const networkRequest = requestUrl.href === req.url
+    ? req
+    : new Request(requestUrl.href, { credentials: req.credentials, headers: req.headers });
   e.respondWith(caches.open(CACHE).then(async (c) => {
-    const hit = await c.match(req, { ignoreSearch: req.mode === 'navigate' });
-    const net = fetch(req).then((r) => { if (r.ok && !req.url.endsWith('.pdf')) c.put(req, r.clone()); return r; }).catch(() => hit);
+    const hit = await c.match(cacheKey, { ignoreSearch: req.mode === 'navigate' });
+    const net = fetch(networkRequest).then((r) => { if (r.ok && !requestUrl.pathname.endsWith('.pdf')) c.put(cacheKey, r.clone()); return r; }).catch(() => hit);
     return hit || net;
   }));
 });
