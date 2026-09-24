@@ -15,6 +15,6 @@ Then check `https://dynamic.oke.jp/`, the Horn II, Horn III, and Trombone I read
 
 ## Realtime audio direction
 
-The current deployment is static-only. The `ASSETS` binding is reserved for a future Worker entrypoint that can handle a narrowly routed API or WebSocket signaling path and delegate ordinary requests back to static assets. The experimental score-following code under `tools/score_following/` is not part of the public deployment. Its Python/aiortc receiver and TURN service require a separate runtime; this site does not claim that WebRTC media processing runs inside the static Worker.
+The current deployment is static-only and has no Worker entrypoint. When adding a Worker for a narrowly routed API or WebSocket signaling path, add an `ASSETS` binding then so the script can delegate ordinary requests back to static assets. The experimental score-following code under `tools/score_following/` is not part of the public deployment. Its Python/aiortc receiver and TURN service require a separate runtime; this site does not claim that WebRTC media processing runs inside the static Worker.
 
 Keep WebSocket signaling and WebRTC media transport as separate concerns. Any future live audio feature needs a reviewed Worker/API boundary, authenticated session lifecycle, browser/device tests, and WAN/TURN validation before it is exposed from the public site.
