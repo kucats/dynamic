@@ -16,7 +16,7 @@
 
   // ---------- settings (per viewer, optional) ----------
   const DEF = { rows: { w: true, f: false, s: false }, fontSize: 44, barPosition: 'bottom', sound: 's', tempo: 100, squeeze: true,
-    fromSel: true, follow: true, metro: false, lines: true, hornMode: 'double', hornSwitch: 68, zoom: innerWidth < 760 ? 2.6 : 1 };
+    fromSel: true, follow: true, metro: false, lines: true, hornMode: 'double', hornSwitchAt: 0, zoom: innerWidth < 760 ? 2.6 : 1 };
   let S = structuredClone(DEF);
   try {
     const stored = JSON.parse(localStorage.getItem('dynamic-settings') || '{}');
@@ -43,11 +43,12 @@
   let FG = null;
   function fingering(n) {           // [first choice, ...alternates]; B♭-side fingerings carry a leading T
     if (!FG || !n.f) return [];
-    const m = String(n.f[2]), F = FG.sides.F[m] || [], B = FG.sides.Bb[m] || [];
-    const t = B.map((v) => 'T' + v);
-    // 123 (all three valves) is avoided when the B♭ side offers another fingering
-    const useB = S.hornMode === 'double' && B.length && (n.f[2] >= Number(S.hornSwitch) || F[0] === '123');
-    return useB ? [...t, ...F] : S.hornMode === 'double' ? [...F, ...t] : F;
+    const m = String(n.f[2]);
+    if (S.hornMode === 'F') return FG.single_F[m] || [];
+    const list = FG.double[m] || [], sw = Number(S.hornSwitchAt);
+    if (!sw) return list;            // chart order (left column first)
+    const t = list.filter((v) => v[0] === 'T'), f = list.filter((v) => v[0] !== 'T');
+    return n.f[2] >= sw ? [...t, ...f] : [...f, ...t];
   }
 
   let D = null, byId = new Map(), cur = null, playing = null, ctx = null, master = null, practiceOsc = [], practiceTimer = null, fontRenderFrame = 0;
@@ -367,7 +368,7 @@
     document.querySelectorAll('[data-bar-pos]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.barPos === S.barPosition)));
     $('sound').value = S.sound; $('tempo').value = S.tempo; $('tempoV').textContent = S.tempo + '%';
     for (const k of ['squeeze', 'fromSel', 'follow', 'metro', 'lines']) $(k).checked = !!S[k];
-    $('hornMode').value = S.hornMode; $('hornSwitch').value = String(S.hornSwitch); $('hornSwitch').disabled = S.hornMode !== 'double';
+    $('hornMode').value = S.hornMode; $('hornSwitch').value = String(S.hornSwitchAt); $('hornSwitch').disabled = S.hornMode !== 'double';
   }
   function wire() {
     $('score').addEventListener('click', (e) => {
@@ -409,7 +410,7 @@
     $('sound').onchange = () => { S.sound = $('sound').value; save(); };
     const refingering = () => { syncControls(); save(); renderScore(); if (cur) select(cur, { scroll: false }); };
     $('hornMode').onchange = () => { S.hornMode = $('hornMode').value; refingering(); };
-    $('hornSwitch').onchange = () => { S.hornSwitch = Number($('hornSwitch').value); refingering(); };
+    $('hornSwitch').onchange = () => { S.hornSwitchAt = Number($('hornSwitch').value); refingering(); };
     for (const k of ['squeeze', 'fromSel', 'follow', 'metro']) $(k).onchange = () => { S[k] = $(k).checked; save(); };
     $('lines').onchange = () => { S.lines = $('lines').checked; document.body.classList.toggle('nolines', !S.lines); save(); };
     $('practicePlay').onclick = () => {
@@ -440,10 +441,10 @@
       try { const r = await fetch('horn-fingerings.json'); if (r.ok) FG = await r.json(); } catch (e) { /* fingering row shows – */ }
       if (FG) {
         const names = FG.names || {};
-        $('hornSwitch').innerHTML = FG.switch.choices.map((m) => `<option value="${m}">${esc((names[m] || m).replace('#', '♯').replace('b', '♭'))}から</option>`).join('');
-        if (!FG.switch.choices.includes(Number(S.hornSwitch))) S.hornSwitch = FG.switch.default;
+        $('hornSwitch').innerHTML = '<option value="0">運指表どおり</option>' + FG.switch_choices.map((m) => `<option value="${m}">${esc((names[m] || m).replace('#', '♯').replace('b', '♭'))}から</option>`).join('');
+        if (!FG.switch_choices.includes(Number(S.hornSwitchAt))) S.hornSwitchAt = 0;
       }
-      if (PRINT) { if (params.get('horn') === 'F') S.hornMode = 'F'; if (params.get('switch')) S.hornSwitch = Number(params.get('switch')); }
+      if (PRINT) { if (params.get('horn') === 'F') S.hornMode = 'F'; if (params.get('switch')) S.hornSwitchAt = Number(params.get('switch')); }
     }
     D.showF = D.instrument !== 'trombone' && D.notes.some((n) => n.f[2] !== n.w[2]);
     S.rowsByPart = S.rowsByPart || {};
