@@ -1,5 +1,5 @@
 /* DYNAMIC offline cache: stale-while-revalidate for same-origin GET requests */
-const CACHE = 'dynamic-v4';
+const CACHE = 'dynamic-v5';
 const SHELL = ['./', 'app.js', 'app.css', 'catalog.json', 'reader/', 'reader/app.js', 'reader/app.css', 'reader/parts.json', 'reader/horn-fingerings.json', 'assets/dynamic-icon.svg', 'assets/dynamic-logo.svg', 'assets/instrument-horn.png', 'assets/instrument-trombone.png', 'manifest.webmanifest'];
 self.addEventListener('install', (e) => { e.waitUntil(caches.open(CACHE).then((c) => c.addAll(SHELL)).then(() => self.skipWaiting())); });
 self.addEventListener('activate', (e) => {

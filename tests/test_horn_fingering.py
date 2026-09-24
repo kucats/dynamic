@@ -3,6 +3,9 @@
 Pitches are MIDI numbers of the F-horn written reading. A fingering is valid when the written pitch
 plus the semitones its valves lower reaches an open partial of that side. The 7th partial (flat)
 is accepted only as an alternate, never as the first choice.
+
+The full-double first choices are also pinned to the Yamaha 楽器解体全書 chart (F/B♭フルダブル row,
+read 2026-09-24), which the GONLOG chart agrees with from C4 up.
 """
 import json
 import unittest
@@ -17,6 +20,28 @@ OPEN = {
     "F": {36 + off: n for n, off in PARTIAL_OFFSETS.items()},
     "Bb": {41 + off: n for n, off in PARTIAL_OFFSETS.items()},
 }
+
+
+# Yamaha full-double first choice per F-horn written pitch (T = thumb / B♭ side)
+YAMAHA_DOUBLE = {
+    42: "123", 43: "13", 44: "23", 45: "12", 46: "1", 47: "2", 48: "0", 49: "T23", 50: "T12", 51: "T1",
+    52: "T2", 53: "T0", 54: "2", 55: "0", 56: "23", 57: "12", 58: "1", 59: "2", 60: "0", 61: "12",
+    62: "1", 63: "2", 64: "0", 65: "1", 66: "2", 67: "0", 68: "23", 69: "T12", 70: "T1", 71: "T2",
+    72: "T0", 73: "T23", 74: "T12", 75: "T1", 76: "T2", 77: "T0", 78: "T2", 79: "T0", 80: "T23",
+    81: "T12", 82: "T1", 83: "T2", 84: "T0",
+}
+
+
+def first_choice(midi: int, mode: str = "double", switch: int | None = None) -> str:
+    """Mirror of fingering() in public/reader/app.js (first choice only)."""
+    F, B = CHART["sides"]["F"].get(str(midi), []), CHART["sides"]["Bb"].get(str(midi), [])
+    if mode != "double" or not B:
+        return F[0]
+    sw = CHART["switch"]["default"] if switch is None else switch
+    low, keep_f = CHART["double"]["lowBb"], CHART["double"]["mostlyBbKeepF"]
+    pick_b = midi not in keep_f if sw == 0 else midi >= sw or low[0] <= midi <= low[1]
+    use_b = F[0] == "123" or (pick_b and B[0] != "123")
+    return "T" + B[0] if use_b else F[0]
 
 
 def lowered(fingering: str) -> int:
@@ -37,8 +62,9 @@ class HornFingeringTests(unittest.TestCase):
 
     def test_switch_range_is_covered(self):
         F, Bb = CHART["sides"]["F"], CHART["sides"]["Bb"]
-        lo = min(CHART["switch"]["choices"])
+        lo = CHART["double"]["lowBb"][0]
         self.assertIn(CHART["switch"]["default"], CHART["switch"]["choices"])
+        self.assertTrue(all(c == 0 or c > CHART["double"]["lowBb"][1] for c in CHART["switch"]["choices"]))
         for midi in range(int(min(F, key=int)), lo):
             self.assertIn(str(midi), F)
         for midi in range(lo, int(max(Bb, key=int)) + 1):
@@ -54,6 +80,18 @@ class HornFingeringTests(unittest.TestCase):
         for midi, fingerings in F.items():
             if fingerings == ["123"] and int(midi) >= 48:
                 self.assertIn(midi, Bb, f"{CHART['names'][midi]}: 123 without a B♭-side alternative")
+
+    def test_default_double_matches_yamaha(self):
+        for midi, expected in YAMAHA_DOUBLE.items():
+            self.assertEqual(first_choice(midi), expected, CHART["names"][str(midi)])
+
+    def test_mostly_bb_mode_keeps_c_and_b_on_f(self):
+        for midi in range(49, 85):
+            got = first_choice(midi, switch=0)
+            if midi in (54, 59, 60, 71, 72):
+                self.assertFalse(got.startswith("T"), CHART["names"][str(midi)])
+            else:
+                self.assertTrue(got.startswith("T"), CHART["names"][str(midi)])
 
     def test_every_horn_note_has_a_fingering(self):
         parts = json.loads((ROOT / "public/reader/parts.json").read_text(encoding="utf-8"))["parts"]

@@ -16,7 +16,7 @@
 
   // ---------- settings (per viewer, optional) ----------
   const DEF = { rows: { w: true, f: false, s: false }, fontSize: 44, barPosition: 'bottom', sound: 's', tempo: 100, squeeze: true,
-    fromSel: true, follow: true, metro: false, lines: true, hornMode: 'double', hornSwitch: 68, zoom: innerWidth < 760 ? 2.6 : 1 };
+    fromSel: true, follow: true, metro: false, lines: true, hornMode: 'double', hornSwitch: 69, zoom: innerWidth < 760 ? 2.6 : 1 };
   let S = structuredClone(DEF);
   try {
     const stored = JSON.parse(localStorage.getItem('dynamic-settings') || '{}');
@@ -44,9 +44,11 @@
   function fingering(n) {           // [first choice, ...alternates]; B♭-side fingerings carry a leading T
     if (!FG || !n.f) return [];
     const m = String(n.f[2]), F = FG.sides.F[m] || [], B = FG.sides.Bb[m] || [];
-    const t = B.map((v) => 'T' + v);
-    // 123 (all three valves) is avoided when the B♭ side offers another fingering
-    const useB = S.hornMode === 'double' && B.length && (n.f[2] >= Number(S.hornSwitch) || F[0] === '123');
+    const t = B.map((v) => 'T' + v), sw = Number(S.hornSwitch), low = FG.double.lowBb, keepF = FG.double.mostlyBbKeepF;
+    // switch 0 = B♭ nearly throughout (GONLOG); otherwise B♭ from the switch note up and in the low C♯3–F3 range (Yamaha)
+    const pickB = sw === 0 ? !keepF.includes(n.f[2]) : n.f[2] >= sw || (n.f[2] >= low[0] && n.f[2] <= low[1]);
+    // 123 (all three valves) is avoided when the other side offers another fingering
+    const useB = S.hornMode === 'double' && B.length && (F[0] === '123' || (pickB && B[0] !== '123'));
     return useB ? [...t, ...F] : S.hornMode === 'double' ? [...F, ...t] : F;
   }
 
@@ -440,7 +442,7 @@
       try { const r = await fetch('horn-fingerings.json'); if (r.ok) FG = await r.json(); } catch (e) { /* fingering row shows – */ }
       if (FG) {
         const names = FG.names || {};
-        $('hornSwitch').innerHTML = FG.switch.choices.map((m) => `<option value="${m}">${esc((names[m] || m).replace('#', '♯').replace('b', '♭'))}から</option>`).join('');
+        $('hornSwitch').innerHTML = FG.switch.choices.map((m) => `<option value="${m}">${esc(FG.switch.labels?.[m] || (names[m] || m).replace('#', '♯').replace('b', '♭') + 'から')}</option>`).join('');
         if (!FG.switch.choices.includes(Number(S.hornSwitch))) S.hornSwitch = FG.switch.default;
       }
       if (PRINT) { if (params.get('horn') === 'F') S.hornMode = 'F'; if (params.get('switch')) S.hornSwitch = Number(params.get('switch')); }
