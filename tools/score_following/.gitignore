@@ -1,0 +1,18 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+build/
+dist/
+# Private recordings / generated audio / operational secrets stay local.
+*.wav
+*.mp3
+*.opus
+*.m4a
+*.pdf
+.env
+.env.*
+evidence/local/
+evidence/private*/
