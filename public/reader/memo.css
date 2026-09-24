@@ -1,0 +1,42 @@
+/* DYNAMIC 譜読みアプリ — practice memos */
+.pen{display:inline-flex;align-items:center;gap:4px;font-weight:800}
+.pen[aria-pressed=true]{background:#10233d;border-color:#10233d;color:#fff}
+.memo-status{display:inline-flex;align-items:center;max-width:100%;padding:2px 9px;border:1px solid #d5e1ee;border-radius:999px;background:#fff;color:#5b6f86;font-size:12px;overflow-wrap:anywhere}
+.memo-status[hidden]{display:none}
+.memo-status.is-logged-in{border-color:#b7dfc1;background:#eef9f0;color:#24723a}
+.memo-count{font-weight:800;color:var(--blue)}
+.memo-mode .sc{cursor:crosshair}
+.memo-mode .sys{border-color:#10233d55;border-style:dashed}
+.memo-pin{cursor:pointer}
+.memo-pin path{fill:var(--blue);stroke:#fff;stroke-width:4;filter:drop-shadow(0 2px 3px #10233d55)}
+.memo-pin text{fill:#fff;font:900 28px system-ui,Arial,sans-serif;text-anchor:middle;dominant-baseline:middle;pointer-events:none}
+.memo-pin.k-issue path{fill:#e8590c}.memo-pin.k-good path{fill:#2f9e44}
+.memo-pin:hover path,.memo-pin:focus-visible path{stroke:#ffc766}
+.memo-pin.flash path{stroke:var(--hl);stroke-width:10}
+.memo-dlg,.memo-list-dlg{width:min(94vw,560px)}
+.memo-login-prompt{width:min(94vw,460px)}
+.memo-login-prompt .practice-actions{justify-content:flex-end;flex-wrap:wrap}
+.memo-where{font-weight:800;color:var(--bn);margin:4px 0 12px}
+.memo-row{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;margin-bottom:10px}
+.memo-reh{display:flex;align-items:center;gap:8px;font-weight:700}
+.memo-reh input{width:5.5em;border:1px solid #c5d4e4;border-radius:8px;padding:6px 8px;font-weight:800;text-transform:uppercase}
+.memo-kind{border:0;margin:0;padding:0;display:flex;gap:10px;align-items:center}
+.memo-kind legend{float:left;font-weight:700;margin-right:6px}
+.memo-kind label{display:inline-flex;gap:4px;align-items:center}
+.memo-text{display:flex;flex-direction:column;gap:4px;font-weight:700}
+.memo-text textarea{font:16px/1.5 inherit;font-family:inherit;border:1px solid #c5d4e4;border-radius:10px;padding:8px 10px;resize:vertical;min-height:6em}
+.memo-err{color:#c0392b;font-weight:700;margin:6px 0}
+.memo-actions .sp{flex:1}
+.danger{color:#c0392b;border-color:#f3b4b4}
+.memo-items{list-style:none;padding:0;margin:10px 0;max-height:60vh;overflow:auto}
+.memo-items li{border:1px solid var(--line);border-left:6px solid var(--blue);border-radius:10px;padding:8px 10px;margin:8px 0}
+.memo-items li.k-issue{border-left-color:#e8590c}.memo-items li.k-good{border-left-color:#2f9e44}
+.memo-items li.empty{border-left-color:var(--line);color:var(--mute)}
+.mi-h{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
+.mi-k{font-size:12px;font-weight:800;background:#eef5ff;color:var(--blue);border-radius:999px;padding:1px 8px}
+.mi-k.warn{background:#fff0f0;color:#c0392b}
+.mi-t{margin:4px 0;white-space:pre-wrap;overflow-wrap:anywhere}
+.mi-f{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;font-size:12px;color:var(--mute)}
+.mi-f button{min-height:30px;padding:3px 10px;margin-left:4px;font-size:13px}
+@media (max-width:760px){.toplinks{gap:4px}.toplinks button,.toplinks a{padding:5px 8px}.memo-status{font-size:11px;padding:2px 7px}}
+@media print{.memo-pin{display:none}}

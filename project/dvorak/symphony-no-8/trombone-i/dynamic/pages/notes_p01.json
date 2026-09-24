@@ -854,13 +854,13 @@
    "sys": 7,
    "x": 1858,
    "y": 3090,
-   "pitch": "D4",
+   "pitch": "D#4",
    "clef": "alto",
    "bar": 105,
    "dur": "1/8",
    "off": "1/2",
    "tie_from_prev": false,
-   "uncertain": "natural printed (faint)"
+   "uncertain": ""
   },
   {
    "sys": 7,
@@ -974,13 +974,13 @@
    "sys": 7,
    "x": 2690,
    "y": 3091,
-   "pitch": "D4",
+   "pitch": "D#4",
    "clef": "alto",
    "bar": 107,
    "dur": "1/8",
    "off": "1/2",
    "tie_from_prev": false,
-   "uncertain": "natural printed (faint)"
+   "uncertain": ""
   },
   {
    "sys": 7,

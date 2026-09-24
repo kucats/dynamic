@@ -1,6 +1,7 @@
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "dynamic-score-reader",
+  "main": "worker/index.js",
   "compatibility_date": "2026-09-24",
   "workers_dev": false,
   "routes": [
@@ -10,6 +11,25 @@
     }
   ],
   "assets": {
-    "directory": "./public"
+    "directory": "./public",
+    "binding": "ASSETS",
+    // Only login and the memo API run the Worker script; all other paths stay static.
+    "run_worker_first": ["/login", "/logout", "/api/*"]
+  },
+  // Practice memos: one JSON object per user and part (memos/v1/<user>/<part>.json).
+  // Create once with `npx wrangler r2 bucket create dynamic-memos` before deploying.
+  "r2_buckets": [
+    {
+      "binding": "MEMOS",
+      "bucket_name": "dynamic-memos"
+    }
+  ],
+  "vars": {
+    // Cloudflare Zero Trust team domain and the Access application AUD tag for /login.
+    // These identify the DYNAMIC Reader Memo Login app in the fs-admin account.
+    "ACCESS_TEAM_DOMAIN": "fsadmin.cloudflareaccess.com",
+    "ACCESS_AUD": "4da37640f21c46aa2606e91629bc36fc1c34cbc2139558cee79a356a4de0fec6",
+    // Comma-separated reader part ids where memos are offered.
+    "MEMO_PARTS": "dvorak8-trombone1"
   }
 }

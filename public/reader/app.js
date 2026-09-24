@@ -17,13 +17,13 @@
   // ---------- settings (per viewer, optional) ----------
   const DEF = { rows: { w: true, f: false, s: false }, fontSize: 44, barPosition: 'bottom', sound: 's', tempo: 100, squeeze: true,
     fromSel: true, follow: true, metro: false, lines: true, hornMode: 'double', hornSwitch: 69, zoom: innerWidth < 760 ? 2.6 : 1 };
-  let S = structuredClone(DEF);
+  let S = structuredClone(DEF), storedSettings = {};
   try {
-    const stored = JSON.parse(localStorage.getItem('dynamic-settings') || '{}');
-    Object.assign(S, stored);
-    const legacySize = LEGACY_SIZES[stored.size] || DEF.fontSize;
-    S.fontSize = Math.max(26, Math.min(72, stored.fontSize == null || !Number.isFinite(Number(stored.fontSize)) ? legacySize : Number(stored.fontSize)));
-    if (!['bottom', 'top', 'off'].includes(S.barPosition)) S.barPosition = stored.bars === false ? 'off' : 'bottom';
+    storedSettings = JSON.parse(localStorage.getItem('dynamic-settings') || '{}');
+    Object.assign(S, storedSettings);
+    const legacySize = LEGACY_SIZES[storedSettings.size] || DEF.fontSize;
+    S.fontSize = Math.max(26, Math.min(72, storedSettings.fontSize == null || !Number.isFinite(Number(storedSettings.fontSize)) ? legacySize : Number(storedSettings.fontSize)));
+    if (!['bottom', 'top', 'off'].includes(S.barPosition)) S.barPosition = storedSettings.bars === false ? 'off' : 'bottom';
   } catch (e) { /* ignore */ }
   if (PRINT) {
     S.zoom = 1;
@@ -39,17 +39,19 @@
     try { localStorage.setItem('dynamic-settings', JSON.stringify(S)); } catch (e) { /* ignore */ }
   };
 
+  const svgHooks = [];                // extensions (memo.js) draw extra SVG per system
   // ---------- horn fingering aid (general chart, keyed by the F-horn written reading) ----------
   let FG = null;
-  function fingering(n) {           // [first choice, ...alternates]; B♭-side fingerings carry a leading T
+  function fingering(n) {           // [first choice, ...alternates]; B♭-side fingerings carry a leading 4
     if (!FG || !n.f) return [];
     const m = String(n.f[2]), F = FG.sides.F[m] || [], B = FG.sides.Bb[m] || [];
-    const t = B.map((v) => 'T' + v), sw = Number(S.hornSwitch), low = FG.double.lowBb, keepF = FG.double.mostlyBbKeepF;
+    const bb = B.map((v) => '4' + v), sw = Number(S.hornSwitch), low = FG.double.lowBb, keepF = FG.double.mostlyBbKeepF;
+    if (S.hornMode === 'F') return F;
     // switch 0 = B♭ nearly throughout (GONLOG); otherwise B♭ from the switch note up and in the low C♯3–F3 range (Yamaha)
-    const pickB = sw === 0 ? !keepF.includes(n.f[2]) : n.f[2] >= sw || (n.f[2] >= low[0] && n.f[2] <= low[1]);
-    // 123 (all three valves) is avoided when the other side offers another fingering
-    const useB = S.hornMode === 'double' && B.length && (F[0] === '123' || (pickB && B[0] !== '123'));
-    return useB ? [...t, ...F] : S.hornMode === 'double' ? [...F, ...t] : F;
+    const pickBb = sw === 0 ? !keepF.includes(n.f[2]) : n.f[2] >= sw || (n.f[2] >= low[0] && n.f[2] <= low[1]);
+    // Avoid 123 (all three valves) when the other side offers another fingering.
+    const useBb = B.length && (F[0] === '123' || (pickBb && B[0] !== '123'));
+    return useBb ? [...bb, ...F] : [...F, ...bb];
   }
 
   let D = null, byId = new Map(), cur = null, playing = null, ctx = null, master = null, practiceOsc = [], practiceTimer = null, fontRenderFrame = 0;
@@ -57,7 +59,7 @@
   // ---------- label layout ----------
   function rowWidth(lbl) {           // label width in em (compact metrics)
     const [sol, oct] = lbl; const base = sol.replace(/[♭♯𝄫𝄪]/g, ''); const acc = sol.length - base.length;
-    const bw = base === 'ファ' ? 1.62 : /^[A-H]$/.test(base) ? 0.74 : /^[0-9T–?]+$/.test(base) ? 0.62 * base.length : 1.0;
+    const bw = base === 'ファ' ? 1.62 : /^[A-H]$/.test(base) ? 0.74 : /^[0-9–?]+$/.test(base) ? 0.62 * base.length : 1.0;
     return bw + 0.45 * acc + (oct === '' ? 0.1 : 0.42);
   }
   function labelWidth(n, fs) {
@@ -139,7 +141,7 @@
     const lh = labelHeight(fs), strip = 40, topBand = S.barPosition === 'top' ? strip : 0, laneH = lh + 12;
     const lanes = ns.length ? Math.max(...lane) + 1 : 0;
     const H = topBand + h + strip + (ns.length ? lanes * laneH + 10 : 4);
-    const o = [`<svg viewBox="0 0 ${W} ${H}" role="group" aria-label="原譜${sy.page}ページ ${sy.sys}段目"><image href="${sy.img}" x="0" y="${topBand}" width="${W}" height="${h}"/>`];
+    const o = [`<svg viewBox="0 0 ${W} ${H}" data-top="${topBand}" role="group" aria-label="原譜${sy.page}ページ ${sy.sys}段目"><image href="${sy.img}" x="0" y="${topBand}" width="${W}" height="${h}"/>`];
     if (S.barPosition !== 'off') for (const [xa, xb, lab] of sy.segs) {
       if (S.barPosition === 'top') {
         o.push(`<line class="bt" x1="${xa}" y1="4" x2="${xa}" y2="34"/>`);
@@ -171,6 +173,7 @@
         + `<rect class="lbg" x="${(cx[i] - w / 2).toFixed(1)}" y="${(top + 2).toFixed(1)}" width="${w.toFixed(1)}" height="${(lhl + 4).toFixed(1)}" rx="8"/>`
         + rows + `<rect class="hit" x="${(cx[i] - w / 2).toFixed(1)}" y="${top.toFixed(1)}" width="${w.toFixed(1)}" height="${(lhl + 8).toFixed(1)}"/></g>`);
     });
+    for (const hook of svgHooks) o.push(hook(sy, { topBand, H }));
     o.push('</svg>');
     return o.join('');
   }
@@ -371,9 +374,59 @@
     for (const k of ['squeeze', 'fromSel', 'follow', 'metro', 'lines']) $(k).checked = !!S[k];
     $('hornMode').value = S.hornMode; $('hornSwitch').value = String(S.hornSwitch); $('hornSwitch').disabled = S.hornMode !== 'double';
   }
+  // ---------- bar context menu / full score ----------
+  let viewer = null;
+  function loadViewer() {
+    if (!viewer) viewer = new Promise((ok, ng) => {
+      const s = document.createElement('script'); s.src = 'score-viewer.js';
+      s.onload = () => ok(window.DynamicScore); s.onerror = () => { viewer = null; ng(new Error('総譜ビューアを読み込めませんでした')); };
+      document.head.appendChild(s);
+    });
+    return viewer;
+  }
+  async function openScore(mvt, bar) {
+    closeCtx(); stop();
+    try { await (await loadViewer()).open({ work: D.work, composer: D.composer, mvt, bar }); }
+    catch (e) { $('nowInfo').textContent = e.message; }
+  }
+  function barAt(e) {                   // bar under the pointer inside a system image, or null
+    const svg = e.target.closest('.sc svg'); if (!svg) return null;
+    const sec = svg.closest('.sys');
+    const sy = D.systems[+sec.id.slice(4)];
+    const pt = svg.createSVGPoint(); pt.x = e.clientX; pt.y = e.clientY;
+    const x = pt.matrixTransform(svg.getScreenCTM().inverse()).x;
+    const segs = sy.segs.filter((g) => g[2]); if (!segs.length) return null;
+    const g = segs.find((q) => x >= q[0] && x < q[1]) || (x < segs[0][0] ? segs[0] : segs.filter((q) => q[0] <= x).pop());
+    const [a, b] = segRange(g[2]);
+    return { sy, mvt: sy.mvt, bar: a, last: b, seg: g };
+  }
+  function closeCtx() { const m = $('ctx'); if (m && !m.hidden) m.hidden = true; }
+  function openCtx(e, hit) {
+    const m = $('ctx'), mv = `${MV_NUM[hit.mvt] || hit.mvt}楽章`;
+    const rng = hit.last > hit.bar ? `${hit.bar}〜${hit.last}小節` : `${hit.bar}小節`;
+    const hasNotes = D.notes.some((n) => n.mvt === hit.mvt && n.bar >= hit.bar);
+    m.innerHTML = `<div class="ctx-h">${mv} ${rng}</div>`
+      + `<button type="button" class="ctx-score" data-act="score">${hit.bar}小節目のスコアを見る</button>`
+      + `<button type="button" data-act="play"${hasNotes ? '' : ' disabled'}>この小節から再生</button>`
+      + '<button type="button" data-act="close">閉じる</button>';
+    m.hidden = false;
+    const r = m.getBoundingClientRect();
+    m.style.left = `${Math.max(8, Math.min(e.clientX, innerWidth - r.width - 8))}px`;
+    m.style.top = `${Math.max(8, Math.min(e.clientY, innerHeight - r.height - 8))}px`;
+    m.onclick = (ev) => {
+      const act = ev.target.closest('button')?.dataset.act; if (!act) return;
+      if (act === 'score') openScore(hit.mvt, hit.bar);
+      else if (act === 'play') { closeCtx(); setMvt(hit.mvt, false); jumpTo(hit.bar); play(); }
+      else closeCtx();
+    };
+    m.querySelector('.ctx-score').focus({ preventScroll: true });
+    flash(hit.sy, hit.seg[0], hit.seg[1]);
+  }
+
   function wire() {
     $('score').addEventListener('click', (e) => {
-      const g = e.target.closest('.note'); if (!g) return;
+      const g = e.target.closest('.note');
+      if (!g) { const hit = barAt(e); if (hit) openCtx(e, hit); return; }
       if (e.detail >= 2) { e.preventDefault(); openPractice(+g.dataset.id); return; }
       select(+g.dataset.id, { sound: true, scroll: false });
     });
@@ -381,8 +434,16 @@
       const g = e.target.closest('.note'); if (g) { e.preventDefault(); openPractice(+g.dataset.id); }
     });
     $('score').addEventListener('contextmenu', (e) => {
-      const g = e.target.closest('.note'); if (g) { e.preventDefault(); openPractice(+g.dataset.id); }
+      const g = e.target.closest('.note'); if (g) { e.preventDefault(); openPractice(+g.dataset.id); return; }
+      const hit = barAt(e); if (hit) { e.preventDefault(); openCtx(e, hit); }
     });
+    document.addEventListener('pointerdown', (e) => { if (!e.target.closest('#ctx')) closeCtx(); }, true);
+    addEventListener('scroll', closeCtx, { passive: true });
+    $('scoreBtn').onclick = () => {
+      const n = cur && byId.get(cur);
+      const typed = parseInt($('jumpBar').value, 10);
+      openScore(n ? n.mvt : currentMvt, n ? n.bar : typed || 1);
+    };
     $('score').addEventListener('keydown', (e) => {
       const g = e.target.closest('.note'); if (g && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); select(+g.dataset.id, { sound: true, scroll: false }); }
     });
@@ -421,7 +482,8 @@
     $('practice').addEventListener('close', stopPractice);
     $('infoBtn').onclick = () => $('info').showModal();
     document.addEventListener('keydown', (e) => {
-      if (e.target.matches('input,select,textarea') || $('info').open || $('practice').open) return;
+      if (e.key === 'Escape') closeCtx();
+      if (e.target.matches('input,select,textarea') || e.target.closest('.memo-pin') || $('info').open || $('practice').open || document.querySelector('dialog[open]') || document.documentElement.classList.contains('sv-open')) return;
       if (e.key === ' ' && !e.target.closest('.note') && !e.target.matches('button')) { e.preventDefault(); $('play').click(); }
       else if (e.key === 'ArrowRight') { e.preventDefault(); $('next').click(); }
       else if (e.key === 'ArrowLeft') { e.preventDefault(); $('prev').click(); }
@@ -442,6 +504,12 @@
       try { const r = await fetch('horn-fingerings.json'); if (r.ok) FG = await r.json(); } catch (e) { /* fingering row shows – */ }
       if (FG) {
         const names = FG.names || {};
+        // Migrate the earlier hornSwitchAt setting. Its zero value meant the Yamaha chart order,
+        // which is the same as this chart's default; it did not mean the new mostly-B♭ mode.
+        if (storedSettings.hornSwitch == null && storedSettings.hornSwitchAt != null) {
+          const oldSwitch = Number(storedSettings.hornSwitchAt);
+          S.hornSwitch = oldSwitch === 0 ? FG.switch.default : oldSwitch;
+        }
         $('hornSwitch').innerHTML = FG.switch.choices.map((m) => `<option value="${m}">${esc(FG.switch.labels?.[m] || (names[m] || m).replace('#', '♯').replace('b', '♭') + 'から')}</option>`).join('');
         if (!FG.switch.choices.includes(Number(S.hornSwitch))) S.hornSwitch = FG.switch.default;
       }
@@ -467,7 +535,9 @@
     $('infoBody').innerHTML = `<p><b>${esc(D.work)}</b> · ${esc(D.part)}</p><p><span class="badge">要確認あり・第三者監査前</span> ${esc(D.status)}</p><ul class="lim">${D.limitations.map((l) => `<li>${esc(l)}</li>`).join('')}</ul>`;
     syncControls(); wire(); renderScore(); setMvt(D.movements[0].key, false);
     if (PRINT) document.body.classList.add('print');
-    window.__dynamic = { data: D, timeline, select, get cur() { return cur; }, get playing() { return !!playing; }, jumpTo };
+    window.__dynamic = { data: D, timeline, select, get cur() { return cur; }, get playing() { return !!playing; }, jumpTo,
+      openScore,
+      ext: { part: PART, print: PRINT, esc, segRange, mvNum: MV_NUM, stop, setMvt, rerender: renderScore, addSvgHook: (f) => { svgHooks.push(f); } } };
     document.dispatchEvent(new Event('dynamic:ready'));
   }
   init();

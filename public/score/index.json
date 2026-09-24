@@ -1,0 +1,12 @@
+{
+ "schema": 1,
+ "scores": [
+  {
+   "id": "dvorak8",
+   "title": "ドヴォルザーク 交響曲第8番 総譜",
+   "composer": "Antonín Dvořák",
+   "work": "Symphony No. 8 in G major, Op. 88",
+   "index": "score/dvorak8/index.json"
+  }
+ ]
+}

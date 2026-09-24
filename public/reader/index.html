@@ -9,12 +9,13 @@
 <link rel="icon" href="../assets/dynamic-icon.svg" type="image/svg+xml">
 <link rel="manifest" href="../manifest.webmanifest">
 <link rel="stylesheet" href="app.css">
+<link rel="stylesheet" href="memo.css">
 </head>
 <body>
 <header class="top">
   <a class="brand" href="../" aria-label="DYNAMIC トップへ"><img src="../assets/dynamic-icon.svg" alt="" width="36" height="36"><span>DYNAMIC</span></a>
   <div class="ttl"><h1 id="title">読み込み中…</h1><p id="subtitle"></p></div>
-  <div class="toplinks"><a id="pdfLink" class="ghost" hidden>PDF</a><button id="infoBtn" class="ghost" aria-haspopup="dialog">説明</button></div>
+  <div class="toplinks"><button id="memoPen" class="ghost pen" type="button" hidden aria-pressed="false" title="ペンを押してから、メモを書きたい場所をタップ" aria-label="メモを書く（場所をタップ）"><span aria-hidden="true">✎</span><span class="pen-l">メモ</span></button><button id="memoListBtn" class="ghost" type="button" hidden aria-haspopup="dialog">一覧<span id="memoCount" class="memo-count"></span></button><a id="pdfLink" class="ghost" hidden>PDF</a><button id="infoBtn" class="ghost" aria-haspopup="dialog">説明</button></div>
 </header>
 
 <nav class="bar" id="bar" aria-label="操作">
@@ -27,6 +28,7 @@
       <button id="next" title="次の音（→）" aria-label="次の音">›</button>
     </div>
     <form id="jump" class="jump"><input id="jumpBar" type="number" inputmode="numeric" min="1" placeholder="小節" aria-label="小節番号"><button>移動</button></form>
+    <button id="scoreBtn" type="button" title="選んだ小節の総譜を開く" aria-haspopup="dialog">総譜</button>
     <label class="fsize">譜読み字 <input id="fontSize" type="range" min="26" max="72" step="2" value="44"><output id="fontSizeV">44</output></label>
     <div class="barpos" role="group" aria-label="小節番号の位置"><span>小節番号</span><button type="button" data-bar-pos="bottom" aria-pressed="true" aria-label="小節番号を下に表示">下</button><button type="button" data-bar-pos="top" aria-pressed="false" aria-label="小節番号を上に表示">上</button><button type="button" data-bar-pos="off" aria-pressed="false" aria-label="小節番号を非表示">オフ</button></div>
     <label class="tempo">テンポ <input id="tempo" type="range" min="40" max="140" step="5" value="100"><output id="tempoV">100%</output></label>
@@ -36,6 +38,7 @@
   <div class="now" aria-live="polite">
     <span id="nowW" class="nw">—</span><span id="nowF" class="nf"></span><span id="nowS" class="ns"></span><span id="nowV" class="nv"></span>
     <span id="nowInfo" class="ni">音符をクリックすると吹く音（実音）が鳴ります。ダブルクリック／右クリックでロングトーン。</span>
+    <span id="memoStatus" class="memo-status" hidden aria-live="polite"></span>
     <span id="barNow" class="bnow"></span>
   </div>
   <div id="settings" class="settings" hidden>
@@ -49,8 +52,8 @@
     </fieldset>
     <fieldset id="fingerset" hidden><legend>運指（「運指」の行をオンにすると表示）</legend>
       <label>楽器 <select id="hornMode"><option value="double">フルダブル（F／B♭）</option><option value="F">F管シングル</option></select></label>
-      <label>B♭側（T）に切り替える音 <select id="hornSwitch"><option value="69">A4から</option></select></label>
-      <span class="fine">1＝人差し指・2＝中指・3＝薬指・0＝開放・T＝親指レバー（B♭側）。ヤマハ・GONLOG の運指表に合わせた目安で、原譜の指示ではありません。</span>
+      <label>B♭側（4）を先にする音 <select id="hornSwitch"><option value="0">運指表どおり</option></select></label>
+      <span class="fine">1＝人差し指・2＝中指・3＝薬指・0＝開放・4＝親指レバー（B♭側。例：412）。ヤマハの運指表（左側＝第一候補）に基づく目安で、原譜の指示ではありません。</span>
     </fieldset>
     <fieldset><legend>その他</legend>
       <label><input type="checkbox" id="lines" checked> 音符と字をつなぐ線</label>
@@ -69,10 +72,12 @@
       <li>音符か青い字をクリック：その音の実音が鳴ります。ダブルクリック／右クリックでロングトーン練習を開きます。</li>
       <li>▶ 再生：選んだ音から通しで再生します（スペースキー）。←→キーで1音ずつ移動。</li>
       <li>「小節」に番号を入れて移動：その小節へジャンプします。</li>
+      <li>小節番号や音符のない所をクリック（右クリック）：メニューから「○小節目のスコアを見る」で総譜をその小節で開きます。「総譜」ボタンは選んだ音の小節で開きます。総譜の画像は開いたときに読み込みます。</li>
       <li>＋／－：譜面の拡大・縮小（スマホでは横にスクロールできます）。</li>
       <li>上部スライダーで譜読み字の大きさを変更し、小節番号は下・上・オフを切り替えられます。</li>
       <li>設定でF管の読み替えや実音の行、通し再生の音を切り替えられます。</li>
-      <li>ホルンは設定の「運指」行をオンにすると、F管の読みから求めた運指の目安（1＝人差し指、2＝中指、3＝薬指、0＝開放、T＝親指レバーでB♭側）を表示します。フルダブル／F管シングルと、B♭側へ切り替える音を選べます。原譜の指示や奏者の確認済み運指ではありません。</li>
+      <li>練習メモ（対応パートのみ）：右上の「メモ」を押して譜面の場所をタップ、または空白をダブルクリック／ダブルタップすると、その場所にメモを書けます。未ログインならGoogleログインを案内し、ログイン後はアカウントを確認してから譜面に戻ります。</li>
+      <li>ホルンは設定の「運指」行をオンにすると、F管の読みから求めた運指の目安（1＝人差し指、2＝中指、3＝薬指、0＝開放、4＝親指レバーでB♭側。例：412）を表示します。運指はヤマハとGONLOGの運指表に基づきます。フルダブル／F管シングルを選べ、B♭側を先に出す音の高さも変えられます。原譜の指示や奏者の確認済み運指ではありません。</li>
     </ul>
     <p class="fine">合成音は録音と同期していません。原譜PDFはこのサイトに含めていません。</p>
     <button class="play">閉じる</button>
@@ -91,7 +96,52 @@
     <div class="practice-actions"><button id="practicePlay" type="button" class="play">▶ ロングトーン</button><button type="submit" class="ghost">閉じる</button></div>
   </form>
 </dialog>
+<div id="ctx" class="ctx" role="menu" hidden></div>
+<dialog id="memoLoginPrompt" class="info memo-login-prompt" aria-labelledby="memoLoginTitle">
+  <form method="dialog">
+    <h2 id="memoLoginTitle">メモにはログインが必要です</h2>
+    <p>Googleアカウントでログインすると、このパートの練習メモを保存できます。ログイン後、この譜面に戻ります。</p>
+    <div class="practice-actions">
+      <button type="submit" class="ghost">キャンセル</button>
+      <button id="memoLoginGo" type="button" class="play">ログインして続ける</button>
+    </div>
+  </form>
+</dialog>
+<dialog id="memo" class="info memo-dlg" aria-labelledby="memoTitle">
+  <form id="memoForm" method="dialog">
+    <h2 id="memoTitle">練習メモ</h2>
+    <p id="memoWhere" class="memo-where"></p>
+    <div class="memo-row">
+      <label class="memo-reh">練習記号 <input id="memoReh" list="rehList" maxlength="8" autocomplete="off" placeholder="例：C"></label>
+      <datalist id="rehList"></datalist>
+      <fieldset class="memo-kind"><legend>種類</legend>
+        <label><input type="radio" name="memoKind" value="note" checked> メモ</label>
+        <label><input type="radio" name="memoKind" value="issue"> 課題</label>
+        <label><input type="radio" name="memoKind" value="good"> できた</label>
+      </fieldset>
+    </div>
+    <label class="memo-text">内容<textarea id="memoText" rows="4" maxlength="2000" required placeholder="例：練習記号Cで息が足りなかった。前の小節で吸う"></textarea></label>
+    <p id="memoMeta" class="fine"></p>
+    <p id="memoErr" class="memo-err" role="alert" hidden></p>
+    <div class="practice-actions memo-actions">
+      <button id="memoDelete" type="button" class="ghost danger" hidden>削除</button>
+      <span class="sp"></span>
+      <button type="button" class="ghost" id="memoCancel">キャンセル</button>
+      <button id="memoSave" type="submit" class="play" value="save">保存</button>
+    </div>
+  </form>
+</dialog>
+<dialog id="memoList" class="info memo-list-dlg" aria-labelledby="memoListTitle">
+  <form method="dialog">
+    <h2 id="memoListTitle">練習メモ一覧</h2>
+    <p id="memoAccount" class="fine"></p>
+    <ol id="memoItems" class="memo-items"></ol>
+    <p class="fine">メモはログインしたアカウントごと・パートごとに保存され、保存日時も記録されます。譜面の音や監査状態には影響しません。</p>
+    <button class="play">閉じる</button>
+  </form>
+</dialog>
 <p id="err" class="err" hidden></p>
 <script src="app.js"></script>
+<script src="memo.js"></script>
 </body>
 </html>
