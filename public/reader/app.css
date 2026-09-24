@@ -29,6 +29,13 @@ button:focus-visible,input:focus-visible,select:focus-visible,.note:focus-visibl
 .tempo{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--mute)}
 .tempo input{width:110px;accent-color:var(--blue)}
 .tempo output{min-width:40px;font-variant-numeric:tabular-nums}
+.fsize{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--mute);white-space:nowrap}
+.fsize input{width:96px;accent-color:var(--blue)}
+.fsize output{min-width:38px;font-size:12px;font-variant-numeric:tabular-nums}
+.barpos{display:flex;align-items:center;gap:3px}
+.barpos span{font-size:12px;color:var(--mute);margin-right:2px;white-space:nowrap}
+.barpos button{padding:4px 8px;min-height:31px;font-size:12px;border-radius:8px}
+.barpos button[aria-pressed=true]{background:var(--blue);border-color:var(--blue);color:#fff}
 .jump{display:flex;gap:4px}
 .jump input{width:74px;border:1px solid #c5d4e4;border-radius:10px;padding:6px 8px;min-height:36px}
 .now{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px;padding:0 16px 8px}
@@ -68,15 +75,37 @@ button:focus-visible,input:focus-visible,select:focus-visible,.note:focus-visibl
 .bn{font:700 30px system-ui,Arial,sans-serif;fill:var(--bn)}
 .bt{stroke:#e2b36f;stroke-width:2.5}
 .segflash{fill:#ffd36e;opacity:.35}
-.nolines .leader{display:none}.nobars .bn,.nobars .bt{display:none}
+.nolines .leader{display:none}
 .info{max-width:640px;border:0;border-radius:16px;padding:20px 22px;box-shadow:0 20px 60px #10233d55}
 .info::backdrop{background:#10233d66}
 .info h2{margin-top:0}.info li{margin:4px 0}.fine{font-size:12.5px;color:var(--mute)}
 .info .lim{font-size:13.5px}.badge{display:inline-block;background:#fff3d6;color:#8a5300;border-radius:999px;padding:2px 10px;font-size:12px;font-weight:800}
+.practice{width:min(94vw,460px)}
+.practice-note{font-size:18px;font-weight:800;margin:12px 0 4px}
+.practice-pitch{font-size:24px;font-weight:900;color:var(--blue);margin:4px 0 16px}
+.practice-duration{display:flex;align-items:center;gap:10px;font-weight:700}
+.practice-duration select{border:1px solid #c5d4e4;border-radius:8px;padding:6px 10px}
+.practice-actions{display:flex;gap:10px;align-items:center;margin-top:16px}
 .err{max-width:800px;margin:30px auto;padding:16px;background:#fff0f0;border:1px solid #f3b4b4;border-radius:12px}
+@media (min-width:761px) and (max-width:1024px){
+  .top{flex-wrap:wrap;gap:7px 12px;padding:8px 12px}
+  .ttl{flex:1 1 300px}
+  .toplinks{margin-left:auto}
+  .row1{gap:7px 9px;padding:8px 10px}
+  .mvts{flex:1 0 100%;order:-1}
+  .mvts button{min-height:38px}
+  .tempo input{width:82px}
+  .fsize input{width:72px}
+  .jump input{width:66px}
+  .now{padding-inline:12px}
+  .ni{min-width:150px}
+  .score{padding-inline:8px}
+}
 @media (max-width:760px){
   .top{gap:8px;padding:8px 10px}.brand span{display:none}.ttl h1{font-size:15px}.ttl p{font-size:11.5px}
   .row1{padding:6px 8px;gap:5px}.tempo{font-size:0;gap:2px}.tempo input{width:70px}.tempo output{font-size:12px;min-width:34px}
+  .fsize{font-size:11px;gap:3px}.fsize input{width:58px}.fsize output{min-width:32px;font-size:11px}
+  .barpos{gap:2px}.barpos span{font-size:10px;margin-right:0}.barpos button{padding:4px 6px;font-size:11px}
   .jump input{width:58px}.row1 button{padding:5px 9px}.mvts button{padding:4px 10px}
   .now{padding:0 10px 6px;gap:2px 10px}.nw{font-size:21px}.ni{font-size:11.5px;min-width:0;flex-basis:100%}
   .score{padding:6px 4px 80px}.sys{padding:4px 2px 0;border-radius:10px}

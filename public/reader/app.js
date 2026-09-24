@@ -5,20 +5,26 @@
   const params = new URLSearchParams(location.search);
   const PART = params.get('part') || 'dvorak8-horn2';
   const PRINT = params.has('print');
-  const SIZES = { s: 36, m: 44, l: 56 };
+  const LEGACY_SIZES = { s: 36, m: 44, l: 56 };
   const ROWS = [['w', 'lw', 1.0], ['f', 'lf', 0.78], ['s', 'ls', 0.64]];
   const MV_NUM = { I: 1, II: 2, III: 3, IV: 4 };
 
   // ---------- settings (per viewer, optional) ----------
-  const DEF = { rows: { w: true, f: false, s: false }, size: 'm', sound: 's', tempo: 100, squeeze: true,
-    fromSel: true, follow: true, metro: false, bars: true, lines: true, zoom: innerWidth < 760 ? 2.6 : 1 };
+  const DEF = { rows: { w: true, f: false, s: false }, fontSize: 44, barPosition: 'bottom', sound: 's', tempo: 100, squeeze: true,
+    fromSel: true, follow: true, metro: false, lines: true, zoom: innerWidth < 760 ? 2.6 : 1 };
   let S = structuredClone(DEF);
-  try { Object.assign(S, JSON.parse(localStorage.getItem('dynamic-settings') || '{}')); } catch (e) { /* ignore */ }
+  try {
+    const stored = JSON.parse(localStorage.getItem('dynamic-settings') || '{}');
+    Object.assign(S, stored);
+    if (!Number.isFinite(Number(stored.fontSize))) S.fontSize = LEGACY_SIZES[stored.size] || DEF.fontSize;
+    if (!['bottom', 'top', 'off'].includes(S.barPosition)) S.barPosition = stored.bars === false ? 'off' : 'bottom';
+  } catch (e) { /* ignore */ }
   if (PRINT) { S.zoom = 1; S.rows = { w: params.get('rows') ? params.get('rows').includes('w') : true,
-    f: (params.get('rows') || '').includes('f'), s: (params.get('rows') || '').includes('s') }; S.size = params.get('size') || 'm'; }
+    f: (params.get('rows') || '').includes('f'), s: (params.get('rows') || '').includes('s') };
+    S.fontSize = LEGACY_SIZES[params.get('size')] || Math.max(26, Math.min(72, Number(params.get('size')) || 44)); S.barPosition = 'bottom'; }
   const save = () => { if (PRINT) return; try { localStorage.setItem('dynamic-settings', JSON.stringify(S)); } catch (e) { /* ignore */ } };
 
-  let D = null, byId = new Map(), cur = null, playing = null, ctx = null, master = null;
+  let D = null, byId = new Map(), cur = null, playing = null, ctx = null, master = null, practiceOsc = [], practiceTimer = null, fontRenderFrame = 0;
 
   // ---------- label layout ----------
   function rowWidth(lbl) {           // label width in em (compact metrics)
@@ -74,24 +80,29 @@
 
   // ---------- rendering ----------
   function systemSVG(sy) {
-    const fs = SIZES[S.size] || 44, W = sy.w, h = sy.h;
+    const fs = Math.max(26, Math.min(72, Number(S.fontSize) || 44)), W = sy.w, h = sy.h;
     const ns = D.notes.filter((n) => n.s === sy.i).sort((a, b) => a.x - b.x);
     const ws = ns.map((n) => labelWidth(n, fs));
     const [cx, lane] = layout(ns.map((n) => n.x), ws);
-    const lh = labelHeight(fs), strip = 40, laneH = lh + 12;
+    const lh = labelHeight(fs), strip = 40, topBand = S.barPosition === 'top' ? strip : 0, laneH = lh + 12;
     const lanes = ns.length ? Math.max(...lane) + 1 : 0;
-    const H = h + strip + (ns.length ? lanes * laneH + 10 : 4);
-    const o = [`<svg viewBox="0 0 ${W} ${H}" role="group" aria-label="原譜${sy.page}ページ ${sy.sys}段目"><image href="${sy.img}" x="0" y="0" width="${W}" height="${h}"/>`];
-    for (const [xa, xb, lab] of sy.segs) {
-      o.push(`<line class="bt" x1="${xa}" y1="${h - 8}" x2="${xa}" y2="${h + 30}"/>`);
-      if (lab) o.push(`<text class="bn" x="${xa + 8}" y="${h + 28}">${esc(lab)}</text>`);
+    const H = topBand + h + strip + (ns.length ? lanes * laneH + 10 : 4);
+    const o = [`<svg viewBox="0 0 ${W} ${H}" role="group" aria-label="原譜${sy.page}ページ ${sy.sys}段目"><image href="${sy.img}" x="0" y="${topBand}" width="${W}" height="${h}"/>`];
+    if (S.barPosition !== 'off') for (const [xa, xb, lab] of sy.segs) {
+      if (S.barPosition === 'top') {
+        o.push(`<line class="bt" x1="${xa}" y1="4" x2="${xa}" y2="34"/>`);
+        if (lab) o.push(`<text class="bn" x="${xa + 8}" y="29">${esc(lab)}</text>`);
+      } else {
+        o.push(`<line class="bt" x1="${xa}" y1="${topBand + h - 8}" x2="${xa}" y2="${topBand + h + 30}"/>`);
+        if (lab) o.push(`<text class="bn" x="${xa + 8}" y="${topBand + h + 28}">${esc(lab)}</text>`);
+      }
     }
-    const tops = ns.map((n, i) => h + strip + lane[i] * laneH);
+    const tops = ns.map((n, i) => topBand + h + strip + lane[i] * laneH);
     ns.forEach((n, i) => {
-      o.push(`<polyline class="leader${n.tie ? ' tie' : ''}" points="${n.x},${(n.y + 20).toFixed(0)} ${n.x},${h + 2} ${cx[i].toFixed(1)},${tops[i].toFixed(1)}"/>`);
+      o.push(`<polyline class="leader${n.tie ? ' tie' : ''}" points="${n.x},${(topBand + n.y + 20).toFixed(0)} ${n.x},${topBand + h + 2} ${cx[i].toFixed(1)},${tops[i].toFixed(1)}"/>`);
     });
     ns.forEach((n, i) => {
-      const w = ws[i], top = tops[i];
+      const w = ws[i], top = tops[i], ny = topBand + n.y;
       let y = top, rows = '';
       for (const [k, cls, sc] of ROWS) {
         if (!S.rows[k]) continue;
@@ -101,9 +112,9 @@
         y += f * 0.13;
       }
       const cls = 'note' + (n.tie ? ' tiec' : '') + (n.unc ? ' unc' : '');
-      o.push(`<g class="${cls}" data-id="${n.id}" tabindex="0" role="button" aria-label="${n.bar}小節 ${esc(n.w[0])}${n.w[1]}">`
-        + `<rect class="hit" x="${n.x - 34}" y="${n.y - 34}" width="68" height="68"/>`
-        + `<ellipse class="halo" cx="${n.x}" cy="${n.y}" rx="30" ry="25"/>`
+      o.push(`<g class="${cls}" data-id="${n.id}" tabindex="0" role="button" aria-label="${n.bar}小節 ${esc(n.w[0])}${n.w[1]}。クリックで実音、ダブルクリックまたは右クリックでロングトーン練習">`
+        + `<rect class="hit" x="${n.x - 34}" y="${ny - 34}" width="68" height="68"/>`
+        + `<ellipse class="halo" cx="${n.x}" cy="${ny}" rx="30" ry="25"/>`
         + `<rect class="lbg" x="${(cx[i] - w / 2).toFixed(1)}" y="${(top + 2).toFixed(1)}" width="${w.toFixed(1)}" height="${(lh + 4).toFixed(1)}" rx="8"/>`
         + rows + `<rect class="hit" x="${(cx[i] - w / 2).toFixed(1)}" y="${top.toFixed(1)}" width="${w.toFixed(1)}" height="${(lh + 8).toFixed(1)}"/></g>`);
     });
@@ -124,7 +135,6 @@
     }
     main.innerHTML = html.join('');
     document.body.classList.toggle('nolines', !S.lines);
-    document.body.classList.toggle('nobars', !S.bars);
     document.documentElement.style.setProperty('--zoom', S.zoom);
     if (cur) mark(cur, false);
   }
@@ -183,7 +193,32 @@
     o.frequency.value = accent ? 1600 : 1100; g.gain.setValueAtTime(0.12, t0); g.gain.exponentialRampToValueAtTime(0.001, t0 + 0.05);
     o.connect(g); g.connect(master); o.start(t0); o.stop(t0 + 0.06); return [o];
   }
-  async function one(n) { await audio(); voice(pitchOf(n), ctx.currentTime + 0.02, 0.65); }
+  async function one(n, actualSound = true) { await audio(); voice(actualSound ? n.snd[2] : pitchOf(n), ctx.currentTime + 0.02, 0.85); }
+
+  function stopPractice() {
+    clearTimeout(practiceTimer); practiceTimer = null;
+    practiceOsc.forEach((o) => { try { o.stop(); } catch (e) { /* already stopped */ } });
+    practiceOsc = [];
+    const button = $('practicePlay');
+    if (button) { button.textContent = '▶ ロングトーン'; button.classList.remove('on'); }
+  }
+  async function startPractice(n) {
+    stopPractice(); await audio();
+    if (!$('practice').open || Number($('practice').dataset.noteId) !== n.id) return;
+    const seconds = Number($('practiceDuration').value) || 4;
+    practiceOsc = voice(n.snd[2], ctx.currentTime + 0.02, seconds);
+    $('practicePlay').textContent = '■ 停止'; $('practicePlay').classList.add('on');
+    practiceTimer = setTimeout(stopPractice, seconds * 1000 + 120);
+  }
+  function openPractice(id) {
+    const n = byId.get(id); if (!n) return;
+    stop(); stopPractice(); select(id, { sound: false, scroll: false });
+    const pitch = (p) => `${p[0]}${p[1]}`;
+    $('practiceWritten').textContent = `譜面：${pitch(n.w)} · ${MV_NUM[n.mvt] || n.mvt}楽章 ${n.bar}小節`;
+    $('practiceSounding').textContent = `吹く音（実音）：${pitch(n.snd)}`;
+    $('practice').dataset.noteId = n.id;
+    if (!$('practice').open) $('practice').showModal();
+  }
 
   let mvtNotes = new Map();
   function timeline(mv) {
@@ -261,7 +296,7 @@
   function flash(sy, xa, xb) {
     const svg = $('sys-' + sy.i).querySelector('svg');
     const r = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-    r.setAttribute('class', 'segflash'); r.setAttribute('x', xa); r.setAttribute('y', 0);
+    r.setAttribute('class', 'segflash'); r.setAttribute('x', xa); r.setAttribute('y', S.barPosition === 'top' ? 40 : 0);
     r.setAttribute('width', xb - xa); r.setAttribute('height', sy.h);
     svg.insertBefore(r, svg.children[1]); setTimeout(() => r.remove(), 1800);
   }
@@ -269,13 +304,22 @@
   // ---------- wiring ----------
   function syncControls() {
     document.querySelectorAll('[data-row]').forEach((c) => { c.checked = !!S.rows[c.dataset.row]; });
-    document.querySelectorAll('input[name=size]').forEach((r) => { r.checked = r.value === S.size; });
+    $('fontSize').value = S.fontSize; $('fontSizeV').textContent = `${S.fontSize}px`;
+    document.querySelectorAll('[data-bar-pos]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.barPos === S.barPosition)));
     $('sound').value = S.sound; $('tempo').value = S.tempo; $('tempoV').textContent = S.tempo + '%';
-    for (const k of ['squeeze', 'fromSel', 'follow', 'metro', 'bars', 'lines']) $(k).checked = !!S[k];
+    for (const k of ['squeeze', 'fromSel', 'follow', 'metro', 'lines']) $(k).checked = !!S[k];
   }
   function wire() {
     $('score').addEventListener('click', (e) => {
-      const g = e.target.closest('.note'); if (g) select(+g.dataset.id, { sound: true, scroll: false });
+      const g = e.target.closest('.note'); if (!g) return;
+      if (e.detail >= 2) { e.preventDefault(); openPractice(+g.dataset.id); return; }
+      select(+g.dataset.id, { sound: true, scroll: false });
+    });
+    $('score').addEventListener('dblclick', (e) => {
+      const g = e.target.closest('.note'); if (g) { e.preventDefault(); openPractice(+g.dataset.id); }
+    });
+    $('score').addEventListener('contextmenu', (e) => {
+      const g = e.target.closest('.note'); if (g) { e.preventDefault(); openPractice(+g.dataset.id); }
     });
     $('score').addEventListener('keydown', (e) => {
       const g = e.target.closest('.note'); if (g && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); select(+g.dataset.id, { sound: true, scroll: false }); }
@@ -285,6 +329,14 @@
     $('prev').onclick = () => select(Math.max(1, (cur || 2) - 1), { sound: true });
     $('next').onclick = () => select(Math.min(D.notes.length, (cur || 0) + 1), { sound: true });
     $('tempo').oninput = () => { S.tempo = +$('tempo').value; $('tempoV').textContent = S.tempo + '%'; save(); };
+    $('fontSize').oninput = () => {
+      S.fontSize = +$('fontSize').value; $('fontSizeV').textContent = `${S.fontSize}px`; save();
+      if (fontRenderFrame) cancelAnimationFrame(fontRenderFrame);
+      fontRenderFrame = requestAnimationFrame(() => { fontRenderFrame = 0; renderScore(); });
+    };
+    document.querySelectorAll('[data-bar-pos]').forEach((b) => b.addEventListener('click', () => {
+      S.barPosition = b.dataset.barPos; syncControls(); save(); renderScore();
+    }));
     $('jump').onsubmit = (e) => { e.preventDefault(); const b = parseInt($('jumpBar').value, 10); if (b) jumpTo(b); };
     $('zoomIn').onclick = () => { S.zoom = Math.min(4, +(S.zoom * 1.25).toFixed(2)); document.documentElement.style.setProperty('--zoom', S.zoom); save(); if (cur) mark(cur, false); };
     $('zoomOut').onclick = () => { S.zoom = Math.max(1, +(S.zoom / 1.25).toFixed(2)); document.documentElement.style.setProperty('--zoom', S.zoom); save(); if (cur) mark(cur, false); };
@@ -292,14 +344,17 @@
     document.querySelectorAll('[data-row]').forEach((c) => c.addEventListener('change', () => {
       S.rows[c.dataset.row] = c.checked; if (!S.rows.w && !S.rows.f && !S.rows.s) { S.rows.w = true; syncControls(); } save(); renderScore();
     }));
-    document.querySelectorAll('input[name=size]').forEach((r) => r.addEventListener('change', () => { S.size = r.value; save(); renderScore(); }));
     $('sound').onchange = () => { S.sound = $('sound').value; save(); };
     for (const k of ['squeeze', 'fromSel', 'follow', 'metro']) $(k).onchange = () => { S[k] = $(k).checked; save(); };
-    $('bars').onchange = () => { S.bars = $('bars').checked; document.body.classList.toggle('nobars', !S.bars); save(); };
     $('lines').onchange = () => { S.lines = $('lines').checked; document.body.classList.toggle('nolines', !S.lines); save(); };
+    $('practicePlay').onclick = () => {
+      const n = byId.get(Number($('practice').dataset.noteId)); if (!n) return;
+      if (practiceOsc.length) stopPractice(); else startPractice(n);
+    };
+    $('practice').addEventListener('close', stopPractice);
     $('infoBtn').onclick = () => $('info').showModal();
     document.addEventListener('keydown', (e) => {
-      if (e.target.matches('input,select,textarea') || $('info').open) return;
+      if (e.target.matches('input,select,textarea') || $('info').open || $('practice').open) return;
       if (e.key === ' ' && !e.target.closest('.note') && !e.target.matches('button')) { e.preventDefault(); $('play').click(); }
       else if (e.key === 'ArrowRight') { e.preventDefault(); $('next').click(); }
       else if (e.key === 'ArrowLeft') { e.preventDefault(); $('prev').click(); }
