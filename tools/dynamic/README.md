@@ -10,6 +10,7 @@
 | `check_rhythm.py` | 音価・開始位置が拍子からはみ出していないかの検査 |
 | `barlines.py` / `bars_overlay.py` | 縦線（小節線）の自動検出・多小節休み判定・小節番号の推定と確認図 |
 | `build_reader.py` | `project/**/dynamic/` のデータ＋原譜から `public/reader/data/<id>.json` を生成 |
+| `refresh_reader_pitches.py` | PDFなしで、レビュー済みの音高・要確認フラグを既存の閲覧データへ反映（小節・音価・タイを照合） |
 | `validate_reader.py` | 閲覧データの整合性検査（小節番号と音符、タイムライン、画像形式、パス漏れ） |
 | `render_pdfs.py` | 閲覧アプリの印刷モードからA3のPDFを作成 |
 | `prompts/` | サブエージェントに渡した指示（00が全体の手順） |
@@ -44,6 +45,13 @@ python3 tools/build_catalog.py && python3 tools/validate_catalog.py
 | `final_pNN.json` と `bars_pNN.json` | `project/.../dynamic/pages/notes_pNN.json`・`bars_pNN.json` にコピー（PDFのページ番号で2桁） → `build_reader.py --pdf ...` |
 | `project/**/dynamic/`（リポジトリにあるデータ） | 原譜PDFを用意して `build_reader.py --pdf ...` を実行するだけ。閲覧データ・PDFを完全に再現できます |
 | `public/reader/data/<id>.json` だけ | 表示・再生・PDF出力はこれだけで可能（原譜不要）。サーバーで `public/` を配信して `render_pdfs.py` |
+
+既存の閲覧データと段画像があり、`notes_pNN.json` の音高だけを修正した場合は、原譜PDFを再描画せずに反映できます。段・小節・音価・開始位置・タイの件数と値が一致しないと停止します。
+
+```sh
+python3 tools/dynamic/refresh_reader_pitches.py project/dvorak/symphony-no-8/trombone-i/dynamic
+python3 tools/dynamic/validate_reader.py
+```
 
 - 読み取りの修正は `notes_pNN.json`（音高 `pitch`、音価 `dur`、開始位置 `off`、小節 `bar`、タイ `tie_from_prev`）を直して `build_reader.py` を再実行します。
 - 小節番号の修正は `bars_pNN.json` の `label` を直します。`validate_reader.py` が、音符とその小節番号の食い違いを検出します。
