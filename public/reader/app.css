@@ -74,6 +74,7 @@ button:focus-visible,input:focus-visible,select:focus-visible,.note:focus-visibl
 .unc .lbg{stroke:#e0484f;stroke-width:3;stroke-dasharray:6 5}
 .leader{fill:none;stroke:#6f9fd6;stroke-width:2.2;opacity:.7}
 .leader.tie{opacity:.25}
+.sim text{opacity:.62}.sim .lbg{stroke:#9bb7d6;stroke-width:2;stroke-dasharray:4 4}.leader.simL{stroke-dasharray:6 6;opacity:.5}
 .bn{font:700 30px system-ui,Arial,sans-serif;fill:var(--bn)}
 .bt{stroke:#e2b36f;stroke-width:2.5}
 .segflash{fill:#ffd36e;opacity:.35}
@@ -114,13 +115,13 @@ button:focus-visible,input:focus-visible,select:focus-visible,.note:focus-visibl
   .score{padding:6px 4px 80px}.sys{padding:4px 2px 0;border-radius:10px}
 }
 @media print{
+  @page{size:A3 portrait;margin:9mm 8mm}
   .top,.bar,.info{display:none!important}
   body{background:#fff}.score{max-width:none;padding:0}
   .sys{break-inside:avoid;border:0;margin:0 0 2mm;padding:0}.mv{break-before:page;margin:0 0 2mm}.mv:first-of-type{break-before:auto}
   .sc{overflow:visible}.sc svg{width:100%!important}
 }
 .printhead{display:none}
-@media print{.printhead{display:block;font-size:10pt;margin-bottom:3mm}.printhead h1{font-size:17pt;margin:0 0 1mm}}
 /* bar context menu */
 .ctx{position:fixed;z-index:60;min-width:220px;max-width:min(92vw,340px);background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 12px 36px #10233d40;padding:6px;display:flex;flex-direction:column;gap:2px}
 .ctx[hidden]{display:none}
@@ -172,3 +173,4 @@ html.sv-open{overflow:hidden}
   .sv-jump input{width:70px}.sv-tools{margin-left:0}
 }
 @media print{.ctx,.scorev{display:none!important}}
+@media print{.printhead{display:block;font-size:10pt;margin-bottom:3mm}.printhead h1{font-size:17pt;margin:0 0 1mm}.print-warning{margin-top:1mm;color:#9f1239;font-weight:700}}

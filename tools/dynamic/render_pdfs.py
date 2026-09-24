@@ -12,11 +12,17 @@ from pathlib import Path
 from playwright.async_api import async_playwright
 
 ROOT = Path(__file__).resolve().parents[2]
-ROWS = {"dvorak8-horn2": "w", "dvorak8-horn3-mvt3": "wfs", "dvorak8-trombone1": "wp"}
+ROWS = {"dvorak8-horn2": "w", "dvorak8-horn3-mvt3": "wfs", "dvorak8-trombone1": "wp",
+        "verdi-nabucco-trombone2": "wp"}
 
 
-async def main(base: str) -> None:
+async def main(base: str, selected_parts: list[str] | None = None) -> None:
     parts = json.loads((ROOT / "public/reader/parts.json").read_text(encoding="utf-8"))["parts"]
+    if selected_parts:
+        missing = set(selected_parts) - {part["id"] for part in parts}
+        if missing:
+            raise SystemExit(f"unknown reader part(s): {', '.join(sorted(missing))}")
+        parts = [part for part in parts if part["id"] in selected_parts]
     async with async_playwright() as p:
         b = await p.chromium.launch()
         for part in parts:
@@ -36,4 +42,6 @@ async def main(base: str) -> None:
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--base", default="http://127.0.0.1:8765/")
-    asyncio.run(main(ap.parse_args().base))
+    ap.add_argument("--part", action="append", help="render only this reader part; may be repeated")
+    args = ap.parse_args()
+    asyncio.run(main(args.base, args.part))
