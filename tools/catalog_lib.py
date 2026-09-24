@@ -246,9 +246,18 @@ def validate_catalog(root: Path) -> list[str]:
     # Public artifacts must not accidentally contain raw scan or audio bundles.
     public_root = root / "public"
     prohibited_suffixes = {".omr", ".jpg", ".jpeg", ".png", ".wav", ".flac", ".mp3", ".mid"}
+    generated_public_images = {
+        Path("assets/instrument-horn.png"),
+        Path("assets/instrument-trombone.png"),
+    }
     if public_root.exists():
         for path in public_root.rglob("*"):
-            if path.is_file() and path.suffix.lower() in prohibited_suffixes:
+            relative = path.relative_to(public_root)
+            if (
+                path.is_file()
+                and path.suffix.lower() in prohibited_suffixes
+                and relative not in generated_public_images
+            ):
                 errors.append(f"prohibited source/media file under public/: {path.relative_to(root)}")
 
     # Guard against accidental publication of machine-specific paths.

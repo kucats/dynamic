@@ -52,9 +52,18 @@ def main() -> None:
     for rel in linked:
         if f'href="{rel}"' not in index:
             raise SystemExit(f"Catalog page does not link artifact: {rel}")
+    generated_public_images = {
+        Path("public/assets/instrument-horn.png"),
+        Path("public/assets/instrument-trombone.png"),
+    }
     for base in (ROOT / "public", ROOT / "project"):
         for path in base.rglob("*"):
-            if path.is_file() and path.suffix.lower() in {".omr", ".png", ".jpg", ".jpeg", ".m4a", ".wav"}:
+            relative = path.relative_to(ROOT)
+            if (
+                path.is_file()
+                and path.suffix.lower() in {".omr", ".png", ".jpg", ".jpeg", ".m4a", ".wav"}
+                and relative not in generated_public_images
+            ):
                 raise SystemExit(f"Raw page/audio/OMR file is not allowed: {path.relative_to(ROOT)}")
             if not path.is_file() or path.suffix.lower() not in {".html", ".json", ".md", ".csv", ".js", ".css"}:
                 continue

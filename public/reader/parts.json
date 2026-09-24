@@ -53,6 +53,30 @@
    ],
    "notes": 57,
    "data": "reader/data/dvorak8-horn3-mvt3.json"
+  },
+  {
+   "id": "dvorak8-trombone1",
+   "title": "ドヴォルザーク 交響曲第8番 トロンボーン1番",
+   "subtitle": "第1・4楽章 · 音名（CDEFGAH）＋ポジション",
+   "part": "Trombone I（アルト記号）",
+   "work": "Symphony No. 8 in G major, Op. 88",
+   "composer": "Antonín Dvořák",
+   "status": "Claudeのサブエージェントが1ページずつ原譜と照合した転記（音高・調号・臨時記号・キュー除外・音価・小節番号）。第三者による独立監査は未実施。第2・3楽章は休み（Tacet）。",
+   "pdf": "reader/pdf/Dvorak8_Trombone1_reading.pdf",
+   "movements": [
+    {
+     "key": "I",
+     "title": "第1楽章 Allegro con brio",
+     "notes": 305
+    },
+    {
+     "key": "IV",
+     "title": "第4楽章 Allegro ma non troppo",
+     "notes": 269
+    }
+   ],
+   "notes": 574,
+   "data": "reader/data/dvorak8-trombone1.json"
   }
  ]
 }

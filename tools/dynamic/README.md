@@ -32,3 +32,20 @@ python3 tools/build_catalog.py && python3 tools/validate_catalog.py
 
 `notes_pNN.json` の `notes[]`: `sys`（ページ内の段）, `x`/`y`（300dpiのページ座標）, `pitch`（印刷どおりの記譜音、例 `Bb4`）, `clef`, `bar`, `dur`/`off`（全音符=1の分数）, `tie_from_prev`, `uncertain`, 任意で `horn_key`（管）と `notation: "old-bass-clef"`。
 `bars_pNN.json`: 段ごとの小節区間 `{xa, xb, label}`（多小節休みは `"61–64"`）。
+
+## 中間データから再生成する（途中からやり直す）
+
+各段階の出力はそのまま次の段階の入力なので、どこからでもやり直せます。
+
+| 手元にあるもの | やること |
+| --- | --- |
+| 原譜PDFだけ | `pdftoppm -r 300 -gray`（トロンボーンは `-r 340`）でページを `work/pNN.png` に描画 → `cand.py` → サブエージェントに `prompts/01`（ホルン）または `prompts/11`（トロンボーン）→ `02` → `03` |
+| `work/final_pNN.json`（音高・音価） | `bars_overlay.py` で小節線を確認し `prompts/03` で小節番号を付ける |
+| `final_pNN.json` と `bars_pNN.json` | `project/.../dynamic/pages/notes_pNN.json`・`bars_pNN.json` にコピー（PDFのページ番号で2桁） → `build_reader.py --pdf ...` |
+| `project/**/dynamic/`（リポジトリにあるデータ） | 原譜PDFを用意して `build_reader.py --pdf ...` を実行するだけ。閲覧データ・PDFを完全に再現できます |
+| `public/reader/data/<id>.json` だけ | 表示・再生・PDF出力はこれだけで可能（原譜不要）。サーバーで `public/` を配信して `render_pdfs.py` |
+
+- 読み取りの修正は `notes_pNN.json`（音高 `pitch`、音価 `dur`、開始位置 `off`、小節 `bar`、タイ `tie_from_prev`）を直して `build_reader.py` を再実行します。
+- 小節番号の修正は `bars_pNN.json` の `label` を直します。`validate_reader.py` が、音符とその小節番号の食い違いを検出します。
+- 楽器ごとの表示：ホルンは記譜ドレミ（任意でF管読み・実音）、トロンボーン（`"instrument": "trombone"`）はドイツ式音名（H＝シ）＋B♭テナーの基本ポジション（`common.py` の `TROMBONE_POS`）。
+- ラベルの配置：1列に収まらない箇所は、音の高い方を上段、低い方を下段（少し小さい字）に分けます（`public/reader/app.js` の `layout`）。

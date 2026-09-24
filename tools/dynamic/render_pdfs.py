@@ -12,7 +12,7 @@ from pathlib import Path
 from playwright.async_api import async_playwright
 
 ROOT = Path(__file__).resolve().parents[2]
-ROWS = {"dvorak8-horn2": "w", "dvorak8-horn3-mvt3": "wfs"}
+ROWS = {"dvorak8-horn2": "w", "dvorak8-horn3-mvt3": "wfs", "dvorak8-trombone1": "wp"}
 
 
 async def main(base: str) -> None:

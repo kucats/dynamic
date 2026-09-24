@@ -28,26 +28,41 @@ import numpy as np
 from PIL import Image
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from common import HORN_KEYS, label, parse_pitch, staves, transpose  # noqa: E402
+from common import HORN_KEYS, TROMBONE_POS, label, label_german, parse_pitch, staves, transpose  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[2]
 OUT = ROOT / "public/reader/data"
-CROP_X = (170, 2790)          # horizontal crop of the 300-dpi page (keeps clef and final barline)
+CROP_X = (170, 2790)          # default horizontal crop; per-page crop follows the detected staff extent
 
 
-def render_page(pdf: Path, page: int, work: Path) -> Path:
+def render_page(pdf: Path, page: int, work: Path, dpi: int = 300) -> Path:
     png = work / f"p{page}.png"
     if not png.exists():
         work.mkdir(parents=True, exist_ok=True)
-        subprocess.run(["pdftoppm", "-f", str(page), "-l", str(page), "-r", "300", "-png", "-singlefile", "-gray",
+        subprocess.run(["pdftoppm", "-f", str(page), "-l", str(page), "-r", str(dpi), "-png", "-singlefile", "-gray",
                         str(pdf), str(work / f"p{page}")], check=True)
     return png
 
 
-def crop_system(im: np.ndarray, s: list[float], first: bool) -> tuple[np.ndarray, int]:
+def staff_extent(im: np.ndarray, ST) -> tuple[int, int]:
+    """Left/right x of the staff lines (union over systems), padded for clefs and final barlines."""
+    B = im < 140
+    xs0, xs1 = [], []
+    for s in ST:
+        row = B[int(round(s[0]))] & B[int(round(s[4]))]
+        cols = np.where(row)[0]
+        if len(cols):
+            xs0.append(int(np.percentile(cols, 1)))
+            xs1.append(int(np.percentile(cols, 99)))
+    if not xs0:
+        return CROP_X
+    return max(0, min(xs0) - 110), min(im.shape[1], max(xs1) + 40)
+
+
+def crop_system(im: np.ndarray, s: list[float], first: bool, cx: tuple[int, int]) -> tuple[np.ndarray, int]:
     top = max(0, int(s[0]) - (200 if first else 150))
     bot = min(im.shape[0], int(s[4]) + 100)
-    c = im[top:bot, CROP_X[0]:CROP_X[1]].copy()
+    c = im[top:bot, cx[0]:cx[1]].copy()
     bb = (c < 215).astype(np.uint8)
     nl, lab, stt, _ = cv2.connectedComponentsWithStats(bb, connectivity=8)
     st_top = s[0] - top
@@ -93,9 +108,12 @@ def build(part_dir: Path, pdf: Path, work: Path) -> dict:
     pages = sorted({p for m in cfg["movements"] for p in m["pages"]})
     splits = {s["page"]: s for s in cfg.get("splits", [])}
     systems, notes = [], []
+    dpi = cfg.get("dpi", 300)
+    wdir = work / cfg["id"]
     for page in pages:
-        im = cv2.imread(str(render_page(pdf, page, work)), cv2.IMREAD_GRAYSCALE)
+        im = cv2.imread(str(render_page(pdf, page, wdir, dpi)), cv2.IMREAD_GRAYSCALE)
         ST = staves(im < 140)
+        cx = staff_extent(im, ST)
         data = json.loads((part_dir / f"pages/notes_p{page:02d}.json").read_text(encoding="utf-8"))
         bars = json.loads((part_dir / f"pages/bars_p{page:02d}.json").read_text(encoding="utf-8"))
         mv_here = [m["key"] for m in cfg["movements"] if page in m["pages"]]
@@ -104,8 +122,8 @@ def build(part_dir: Path, pdf: Path, work: Path) -> dict:
             mv = mv_here[0]
             if page in splits and si >= splits[page]["first_system"]:
                 mv = splits[page]["movement"]
-            crop, top = crop_system(im, s, si == 1)
-            segs = [[round(g["xa"] - CROP_X[0]), round(g["xb"] - CROP_X[0]), g.get("label", "")]
+            crop, top = crop_system(im, s, si == 1, cx)
+            segs = [[round(g["xa"] - cx[0]), round(g["xb"] - cx[0]), g.get("label", "")]
                     for g in bars.get(str(si), [])]
             sys_index[si] = len(systems)
             systems.append(dict(i=len(systems), mvt=mv, page=page, sys=si, w=crop.shape[1], h=crop.shape[0],
@@ -116,15 +134,19 @@ def build(part_dir: Path, pdf: Path, work: Path) -> dict:
             L, a, o = parse_pitch(n["pitch"])
             old = n.get("notation") == "old-bass-clef"
             wo = o + 1 if old else o          # old notation bass clef is written an octave low
-            key = n.get("horn_key") or cfg.get("default_horn_key", "F")
-            dl, ds = HORN_KEYS[key]
-            s_ = transpose(L, a, wo, dl, ds)
-            f_ = transpose(*s_, 4, 7)
-            notes.append(dict(
-                s=sy["i"], mvt=sy["mvt"], x=round(n["x"] - CROP_X[0], 1), y=round(n["y"] - sy["top"], 1),
-                bar=n["bar"], off=float(Fraction(n["off"])), dur=float(Fraction(n["dur"])),
-                tie=bool(n.get("tie_from_prev")), unc=n.get("uncertain") or "", key=key,
-                w=label(L, a, wo), f=label(*f_), snd=label(*s_), old=old, p=n["pitch"]))
+            rec = dict(s=sy["i"], mvt=sy["mvt"], x=round(n["x"] - cx[0], 1), y=round(n["y"] - sy["top"], 1),
+                       bar=n["bar"], off=float(Fraction(n["off"])), dur=float(Fraction(n["dur"])),
+                       tie=bool(n.get("tie_from_prev")), unc=n.get("uncertain") or "", old=old, p=n["pitch"])
+            if cfg.get("instrument") == "trombone":        # non-transposing; German names + slide position
+                w_ = label_german(L, a, wo)
+                rec.update(key="C", w=w_, f=w_, snd=w_, pos=TROMBONE_POS.get(w_[2]))
+            else:
+                key = n.get("horn_key") or cfg.get("default_horn_key", "F")
+                dl, ds = HORN_KEYS[key]
+                s_ = transpose(L, a, wo, dl, ds)
+                f_ = transpose(*s_, 4, 7)
+                rec.update(key=key, w=label(L, a, wo), f=label(*f_), snd=label(*s_))
+            notes.append(rec)
     for i, n in enumerate(notes):
         n["id"] = i + 1
     movements = []
@@ -141,7 +163,7 @@ def build(part_dir: Path, pdf: Path, work: Path) -> dict:
                               notes=sum(1 for n in notes if n["mvt"] == m["key"])))
     for s in systems:
         del s["top"]
-    out = dict(schema=1, id=cfg["id"], title=cfg["title"], subtitle=cfg["subtitle"], composer=cfg["composer"],
+    out = dict(schema=1, id=cfg["id"], instrument=cfg.get("instrument", "horn"), title=cfg["title"], subtitle=cfg["subtitle"], composer=cfg["composer"],
                work=cfg["work"], part=cfg["part"], source=cfg["source"], status=cfg["status"],
                limitations=cfg["limitations"], pdf=cfg.get("pdf"), movements=movements,
                systems=systems, notes=notes)
@@ -170,12 +192,15 @@ def main() -> None:
                           movements=[dict(key=m["key"], title=m["title"], notes=m["notes"]) for m in data["movements"]],
                           notes=len(data["notes"]), data=f"reader/data/{data['id']}.json"))
         print(f"built {data['id']}: {len(data['notes'])} notes, {len(data['systems'])} systems")
-    existing = []
     idx_path = ROOT / "public/reader/parts.json"
-    if args.parts and idx_path.exists():
-        existing = [p for p in json.loads(idx_path.read_text(encoding="utf-8"))["parts"]
-                    if p["id"] not in {i["id"] for i in index}]
-    idx_path.write_text(json.dumps(dict(schema=1, parts=existing + index), ensure_ascii=False, indent=1) + "\n",
+    merged = json.loads(idx_path.read_text(encoding="utf-8"))["parts"] if idx_path.exists() else []
+    for entry in index:                     # replace in place, append new parts at the end
+        pos = next((k for k, p in enumerate(merged) if p["id"] == entry["id"]), None)
+        if pos is None:
+            merged.append(entry)
+        else:
+            merged[pos] = entry
+    idx_path.write_text(json.dumps(dict(schema=1, parts=merged), ensure_ascii=False, indent=1) + "\n",
                         encoding="utf-8")
 
 
