@@ -1,0 +1,26 @@
+name: Score Following source bundle
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/score-following-source.yml'
+permissions:
+  contents: read
+jobs:
+  source:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Archive checked-in public source only
+        run: |
+          mkdir -p /tmp/source-bundle
+          git rev-parse HEAD > /tmp/source-bundle/checkout-sha.txt
+          git archive --format=tar.gz HEAD > /tmp/source-bundle/dynamic-source.tar.gz
+          cd /tmp/source-bundle && sha256sum dynamic-source.tar.gz > SHA256SUMS
+      - uses: actions/upload-artifact@v4
+        with:
+          name: score-following-source
+          path: /tmp/source-bundle/
+          retention-days: 1
