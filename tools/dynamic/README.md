@@ -13,6 +13,7 @@
 | `refresh_reader_pitches.py` | PDFなしで、レビュー済みの音高・要確認フラグを既存の閲覧データへ反映（小節・音価・タイを照合） |
 | `validate_reader.py` | 閲覧データの整合性検査（小節番号と音符、タイムライン、画像形式、パス漏れ） |
 | `render_pdfs.py` | 閲覧アプリの印刷モードからA3のPDFを作成 |
+| `trombone_alt.py` / `trombone_positions.json` | トロンボーンの替えポジション提案（スライド移動と倍音の変化の釣り合い）。`project/**/dynamic/alt-positions.{json,md}` を出力し、閲覧データの `pos` は変えない。詳細は `docs/trombone-alt-positions.md` |
 | `prompts/` | サブエージェントに渡した指示（00が全体の手順） |
 
 ## 再現手順

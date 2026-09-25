@@ -11,6 +11,7 @@ Run from the repository root with Python 3.11 or later. Catalog commands operate
 | Python syntax | `python3 -m compileall -q tools tests` | No syntax errors |
 | Player JavaScript | `node --check tools/fuyomi/player.js` | No syntax errors |
 | DYNAMIC reader data | `python3 tools/dynamic/validate_reader.py` | Notes sit in numbered bars, timelines cover all notes, no path leaks |
+| Trombone alternate positions | `python3 tools/dynamic/trombone_alt.py --check` | Committed `alt-positions.*` match the current reader data and option table (also run by `tests/test_trombone_alt.py`) |
 | DYNAMIC reader JavaScript | `node --check public/reader/app.js && node --check public/reader/memo.js && node --check public/reader/score-viewer.js && node --check public/reader/trombone3d.js && node --check public/reader/trombone3d-addon.js && node --check public/sw.js` | No syntax errors |
 | 3D trombone player kinematics | `node --test tests/reader/*.test.mjs` | Slide extensions, position parsing, constant arm bones, reach and bell landmarks pass |
 | Full-score viewer data | `python3 tools/dynamic/validate_score.py` | WebP pages exist, bar numbers run 1..last per movement and match the reviewed totals, no path leaks or PDFs |

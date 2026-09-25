@@ -1,0 +1,147 @@
+{
+ "schema": 1,
+ "part": "verdi-nabucco-trombone2",
+ "preset": "balanced",
+ "lip_weight": 1.0,
+ "model": "ideal B♭ tenor 2.74 m; options from tools/dynamic/trombone_positions.json",
+ "movements": [
+  {
+   "key": "S",
+   "notes": 492,
+   "standard": {
+    "slide_m": 24.28,
+    "lip_changes": 82
+   },
+   "suggested": {
+    "slide_m": 22.31,
+    "lip_changes": 74
+   },
+   "passages": [
+    {
+     "mvt": "S",
+     "bars": [
+      42,
+      42
+     ],
+     "before": "G3(4)",
+     "after": "G3(4)",
+     "notes": [
+      {
+       "id": 67,
+       "bar": 42,
+       "pitch": "F3",
+       "standard": 1,
+       "suggested": 6,
+       "partial": 4,
+       "tuning": ""
+      },
+      {
+       "id": 68,
+       "bar": 42,
+       "pitch": "F3",
+       "standard": 1,
+       "suggested": 6,
+       "partial": 4,
+       "tuning": ""
+      }
+     ],
+     "slide_change_m": -0.119,
+     "lip_change": -2,
+     "gain": 1.26
+    },
+    {
+     "mvt": "S",
+     "bars": [
+      173,
+      173
+     ],
+     "before": "F♯3(5)",
+     "after": "F♯3(5)",
+     "notes": [
+      {
+       "id": 221,
+       "bar": 173,
+       "pitch": "E♯3",
+       "standard": 1,
+       "suggested": 6,
+       "partial": 4,
+       "tuning": ""
+      }
+     ],
+     "slide_change_m": -0.507,
+     "lip_change": -2,
+     "gain": 5.3
+    },
+    {
+     "mvt": "S",
+     "bars": [
+      196,
+      196
+     ],
+     "before": "H3(4)",
+     "after": "H3(4)",
+     "notes": [
+      {
+       "id": 261,
+       "bar": 196,
+       "pitch": "A♯3",
+       "standard": 1,
+       "suggested": 5,
+       "partial": 5,
+       "tuning": "低め：スライドを少し内側へ"
+      }
+     ],
+     "slide_change_m": -0.325,
+     "lip_change": -2,
+     "gain": 3.79
+    },
+    {
+     "mvt": "S",
+     "bars": [
+      198,
+      198
+     ],
+     "before": "H3(4)",
+     "after": "F♯3(5)",
+     "notes": [
+      {
+       "id": 271,
+       "bar": 198,
+       "pitch": "A♯3",
+       "standard": 1,
+       "suggested": 5,
+       "partial": 5,
+       "tuning": "低め：スライドを少し内側へ"
+      }
+     ],
+     "slide_change_m": -0.518,
+     "lip_change": 0,
+     "gain": 5.79
+    },
+    {
+     "mvt": "S",
+     "bars": [
+      264,
+      264
+     ],
+     "before": "F♯3(5)",
+     "after": "F♯3(5)",
+     "notes": [
+      {
+       "id": 345,
+       "bar": 264,
+       "pitch": "E♯3",
+       "standard": 1,
+       "suggested": 6,
+       "partial": 4,
+       "tuning": ""
+      }
+     ],
+     "slide_change_m": -0.507,
+     "lip_change": -2,
+     "gain": 5.3
+    }
+   ]
+  }
+ ]
+}
