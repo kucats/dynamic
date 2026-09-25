@@ -251,7 +251,9 @@
     for (const m of D.movements) {
       html.push(`<h2 class="mv" id="mv-${m.key}">${esc(m.title)} <small>${m.notes}音</small></h2>`);
       for (const sy of D.systems.filter((s) => s.mvt === m.key)) {
-        html.push(`<section class="sys" id="sys-${sy.i}" data-mvt="${sy.mvt}"><div class="sc">${systemSVG(sy)}${systemHooks.map((hook) => hook(sy)).join('')}</div></section>`);
+        const labs = sy.segs.map((g) => g[2]).filter(Boolean);
+        const rng = labs.length ? `${labs[0].split('–')[0]}〜${labs[labs.length - 1].split('–').pop()}小節` : '';
+        html.push(`<section class="sys" id="sys-${sy.i}" data-mvt="${sy.mvt}"><div class="cap">原譜 ${sy.page}ページ ${sy.sys}段目 · ${rng}</div><div class="sc">${systemSVG(sy)}${systemHooks.map((hook) => hook(sy)).join('')}</div></section>`);
       }
     }
     main.innerHTML = html.join('');
