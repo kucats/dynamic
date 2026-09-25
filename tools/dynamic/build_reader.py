@@ -104,6 +104,16 @@ def at(pairs, bar):
     return v
 
 
+def conducting(m: dict) -> dict:
+    """Meter strings and the optional conducting plan ([bar, beats per bar]) for the reader's conductor."""
+    out = dict(meters=m["meters"])
+    if m.get("conduct"):
+        out["conduct"] = m["conduct"]
+    if m.get("conduct_note"):
+        out["conduct_note"] = m["conduct_note"]
+    return out
+
+
 def review_items(notes: list[dict], systems: list[dict]) -> list[dict]:
     """Expose unresolved note readings as explicit, non-playable review records."""
     return [
@@ -174,7 +184,7 @@ def build(part_dir: Path, pdf: Path, work: Path) -> dict:
                 timeline.append([b, meter_len(at(m["meters"], b)), round(240.0 / at(m["tempos"], b), 5),
                                  1 if (k == 1 and len(seq) == 3) else 0])
         movements.append(dict(key=m["key"], title=m["title"], short=m.get("short"), last=m["last"], timeline=timeline,
-                              notes=sum(1 for n in notes if n["mvt"] == m["key"])))
+                              notes=sum(1 for n in notes if n["mvt"] == m["key"]), **conducting(m)))
     for s in systems:
         del s["top"]
     out = dict(schema=1, id=cfg["id"], instrument=cfg.get("instrument", "horn"), title=cfg["title"], subtitle=cfg["subtitle"], composer=cfg["composer"],
@@ -217,6 +227,10 @@ def refresh_existing_metadata(part_dir: Path) -> None:
         source = next((m for m in cfg["movements"] if m["key"] == movement["key"]), None)
         if source and source.get("short"):
             movement["short"] = source["short"]
+        if source:
+            for key in ("meters", "conduct", "conduct_note"):
+                movement.pop(key, None)
+            movement.update(conducting(source))
     data["review_items"] = review_items(data["notes"], data["systems"])
     data_path.write_text(json.dumps(data, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
 

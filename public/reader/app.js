@@ -17,7 +17,7 @@
 
   // ---------- settings (per viewer, optional) ----------
   const DEF = { rows: { w: true, f: false, s: false }, fontSize: 44, barPosition: 'bottom', sound: 's', tempo: 100, squeeze: true,
-    fromSel: true, follow: true, metro: false, metroMode: 'beat', metroVol: 0.7, metroCount: false, lines: true, hornMode: 'double', hornSwitch: 69, hornFingeringStyle: 'circles', zoom: innerWidth < 760 ? 2.6 : 1 };
+    fromSel: true, follow: true, metro: false, metroMode: 'beat', metroVol: 0.7, metroCount: false, cond: false, condMode: 'auto', condMirror: false, lines: true, hornMode: 'double', hornSwitch: 69, hornFingeringStyle: 'circles', zoom: innerWidth < 760 ? 2.6 : 1 };
   let S = structuredClone(DEF), storedSettings = {};
   try {
     storedSettings = JSON.parse(localStorage.getItem('dynamic-settings') || '{}');
@@ -34,6 +34,7 @@
   if (!['circles', 'dots'].includes(S.hornFingeringStyle)) S.hornFingeringStyle = DEF.hornFingeringStyle;
   if (!['bar', 'beat', 'sub'].includes(S.metroMode)) S.metroMode = DEF.metroMode;
   S.metroVol = Math.max(0.1, Math.min(1, Number(S.metroVol) || DEF.metroVol));
+  if (!['auto', '1', '2', '3', '4', '6'].includes(String(S.condMode))) S.condMode = DEF.condMode;
   const save = () => {
     if (PRINT) return;
     if (D) {
@@ -274,8 +275,9 @@
     el.classList.add('on'); const sec = el.closest('.sys'); sec.classList.add('cur');
     if (scroll) {
       const r = sec.getBoundingClientRect(), top = $('bar').getBoundingClientRect().bottom;
+      const cv = $('condVis'), cover = cv && !cv.hidden ? Math.max(0, cv.getBoundingClientRect().bottom - top) : 0;
       const overlay = parseFloat(getComputedStyle(document.body).getPropertyValue('--overlay-bottom')) || 0;   // e.g. an add-on panel
-      if (r.top < top + 4 || r.bottom > innerHeight - overlay - 10) sec.scrollIntoView({ block: overlay ? 'start' : 'center', behavior: 'smooth' });
+      if (r.top < top + cover + 4 || r.bottom > innerHeight - overlay - 10) sec.scrollIntoView({ block: overlay && !cover ? 'start' : 'center', behavior: 'smooth' });
     }
     const sc = el.closest('.sc'), n = byId.get(id), sy = D.systems[n.s];
     if (sc.scrollWidth > sc.clientWidth + 4) {
@@ -407,10 +409,76 @@
   }
   function setMetro(on) { S.metro = on; save(); syncMetro(); }
 
+  // ---------- conductor (conductor.mjs; beats on the same clock as the metronome) ----------
+  let condMod = null;
+  const SVGNS = 'http://www.w3.org/2000/svg';
+  const COND_SRC = { plan: '曲ごとの目安', auto: 'テンポから自動', forced: '固定' };
+  const condX = (x) => (S.condMirror ? x : -x);   // default: seen from the players' side
+  const condPath = (pts) => pts.map((q, i) => `${i ? 'L' : 'M'}${condX(q.x).toFixed(3)} ${q.y.toFixed(3)}`).join('');
+  function condPattern(n) {
+    const vis = $('condVis');
+    vis.querySelector('.cv-guide').setAttribute('d', condPath(condMod.guide(n)));
+    const marks = vis.querySelector('.cv-marks'); marks.textContent = '';
+    for (let k = 0; k < n; k++) {
+      const q = condMod.ictus(n, k), t = document.createElementNS(SVGNS, 'text');
+      t.setAttribute('x', condX(q.x) + (k === 0 ? 0.12 : 0)); t.setAttribute('y', Math.min(1.0, q.y + 0.1));
+      t.textContent = k + 1; if (k === 0) t.classList.add('down');
+      marks.appendChild(t);
+    }
+  }
+  function condFrame() {
+    const c = playing && playing.cond;
+    if (!c) return;
+    c.raf = requestAnimationFrame(condFrame);
+    const vis = $('condVis');
+    vis.hidden = !S.cond;
+    if (!S.cond || !c.beats.length) return;
+    const t = ctx.currentTime - (ctx.outputLatency || ctx.baseLatency || 0) - c.t0;
+    const tip = condMod.tipAt(c.beats, t), b = c.beats[Math.max(0, tip.i)];
+    const key = `${b.n}:${S.condMirror}`;
+    if (key !== c.key) { c.key = key; condPattern(b.n); c.trail = []; }
+    if (tip.i !== c.last) {
+      c.last = tip.i;
+      if (tip.i >= 0) {
+        vis.classList.toggle('pre', !!b.pre);
+        vis.querySelector('.cv-in').textContent = `in ${b.n}`;
+        vis.querySelector('.cv-count').textContent = b.pre ? '予備拍' : `${b.k + 1} / ${b.n}`;
+        vis.querySelector('.cv-sub').textContent = `${COND_SRC[b.src]} · ${Math.round(60 / b.dur)}/分`;
+        const nx = condMod.nextChange(c.beats, tip.i);
+        vis.querySelector('.cv-next').textContent = nx && nx.t - b.t < 8 ? `▸ ${nx.bar}小節から in ${nx.n}` : '';
+        [...vis.querySelectorAll('.cv-marks text')].forEach((m, k) => m.classList.toggle('now', k === b.k));
+        const q = condMod.ictus(b.n, b.k), ring = vis.querySelector('.cv-ring');
+        ring.setAttribute('cx', condX(q.x)); ring.setAttribute('cy', q.y);
+        ring.animate?.([{ opacity: 0.9, transform: 'scale(.6)' }, { opacity: 0, transform: 'scale(1.8)' }],
+          { duration: Math.min(360, b.dur * 800), easing: 'ease-out' });
+      }
+    }
+    const tipEl = vis.querySelector('.cv-tip');
+    tipEl.setAttribute('cx', condX(tip.x)); tipEl.setAttribute('cy', tip.y);
+    c.trail.push(tip); if (c.trail.length > 9) c.trail.shift();
+    vis.querySelector('.cv-trail').setAttribute('d', condPath(c.trail));
+  }
+  function syncCond() {
+    const b = $('condBtn'); b.setAttribute('aria-pressed', String(!!S.cond)); b.classList.toggle('on', !!S.cond);
+    $('cond').checked = !!S.cond; $('condMode').value = String(S.condMode); $('condMirror').checked = !!S.condMirror;
+    if (!S.cond || !playing) $('condVis').hidden = true;
+  }
+  function setCond(on) { S.cond = on; save(); syncCond(); }
+  // Conducting grid for this playback: pattern per bar follows the score tempo, not the practice-tempo slider.
+  function condGrid(mv, bars, st, lead, t0, tf = S.tempo / 100) {
+    const m = D.movements.find((x) => x.key === mv);
+    const pick = (b) => condMod.patternFor(b.bar, { len: b.len, s: b.s * tf, meter: condMod.parseMeter(condMod.planAt(m.meters, b.bar)),
+      plan: m.conduct, force: S.condMode });
+    return { beats: condMod.conductGrid(bars, pick, st, lead), mv, bars, st, lead, t0, tf, last: -2, key: '', trail: [] };
+  }
+
   async function play() {
     stop(); await audio();
     if (!metroMod) {
       try { metroMod = await import('./metronome.mjs'); } catch (e) { metroMod = null; /* play without metronome */ }
+    }
+    if (!condMod) {
+      try { condMod = await import('./conductor.mjs'); } catch (e) { condMod = null; /* play without conductor */ }
     }
     if (!metroOut && metroMod) { metroOut = ctx.createGain(); metroOut.gain.value = 0.9; metroOut.connect(ctx.destination); }
     if (playing) return;
@@ -446,11 +514,14 @@
       document.body.classList.add('metro-playing');
       metroFrame();
     }
+    if (condMod) { playing.cond = condGrid(mv, ev.filter((e) => e.m), st, lead, t0); condFrame(); }
   }
   function stop() {
     if (!playing) return;
     playing.timers.forEach(clearTimeout); playing.osc.forEach((o) => { try { o.stop(); } catch (e) { /* ignore */ } });
     if (playing.metro) { playing.metro.stop(); cancelAnimationFrame(playing.raf); }
+    if (playing.cond) cancelAnimationFrame(playing.cond.raf);
+    $('condVis').hidden = true;
     $('metroVis').hidden = true; document.body.classList.remove('metro-playing');
     const arm = $('metroBtn').querySelector('.mt-arm'); arm.style.transitionDuration = '.3s'; arm.style.transform = '';
     playing = null; emit('silence'); $('play').textContent = '▶ 再生'; $('play').classList.remove('on'); $('barNow').textContent = '';
@@ -496,7 +567,7 @@
     document.querySelectorAll('[data-bar-pos]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.barPos === S.barPosition)));
     $('sound').value = S.sound; $('tempo').value = S.tempo; $('tempoV').textContent = S.tempo + '%';
     for (const k of ['squeeze', 'fromSel', 'follow', 'lines']) $(k).checked = !!S[k];
-    syncMetro();
+    syncMetro(); syncCond();
     $('hornMode').value = S.hornMode; $('hornSwitch').value = String(S.hornSwitch); $('hornSwitch').disabled = S.hornMode !== 'double';
     document.querySelectorAll('[name="fingeringStyle"]').forEach((r) => { r.checked = r.value === S.hornFingeringStyle; });
   }
@@ -645,6 +716,17 @@
     $('metroMode').onchange = () => { S.metroMode = $('metroMode').value; save(); };
     $('metroVol').oninput = () => { S.metroVol = +$('metroVol').value; save(); };
     $('metroCount').onchange = () => { S.metroCount = $('metroCount').checked; save(); };
+    $('condBtn').onclick = () => setCond(!S.cond);
+    $('cond').onchange = () => setCond($('cond').checked);
+    // A different pattern choice rebuilds the grid of a running playback from where it is now.
+    $('condMode').onchange = () => {
+      S.condMode = $('condMode').value; save();
+      if (playing && playing.cond) {
+        const c = playing.cond;
+        playing.cond = { ...condGrid(c.mv, c.bars, c.st, c.lead, c.t0, c.tf), raf: c.raf };
+      }
+    };
+    $('condMirror').onchange = () => { S.condMirror = $('condMirror').checked; save(); };
     $('lines').onchange = () => { S.lines = $('lines').checked; document.body.classList.toggle('nolines', !S.lines); save(); };
     $('practicePlay').onclick = () => {
       const n = byId.get(Number($('practice').dataset.noteId)); if (!n) return;
@@ -660,6 +742,7 @@
       else if (e.key === 'ArrowRight') { e.preventDefault(); $('next').click(); }
       else if (e.key === 'ArrowLeft') { e.preventDefault(); $('prev').click(); }
       else if ((e.key === 'm' || e.key === 'M') && !e.metaKey && !e.ctrlKey && !e.altKey) { e.preventDefault(); $('metroBtn').click(); }
+      else if ((e.key === 'c' || e.key === 'C') && !e.metaKey && !e.ctrlKey && !e.altKey) { e.preventDefault(); $('condBtn').click(); }
     });
   }
 

@@ -107,6 +107,22 @@ def check_part(entry: dict) -> list[str]:
                 errs.append(f"{d['id']}: note {n['id']} bar {n['bar']} missing from timeline")
             elif n["off"] + n["dur"] > lens[n["bar"]] + 1e-6:
                 errs.append(f"{d['id']}: note {n['id']} overruns bar {n['bar']}")
+        # Optional conductor data: meter strings match the timeline lengths; plan = [bar, beats per bar].
+        for b, meter in m.get("meters", []):
+            mm = re.fullmatch(r"(\d+)/(\d+)", str(meter))
+            if not mm:
+                errs.append(f"{d['id']}: movement {m['key']} bad meter {meter!r}")
+            elif b in lens and abs(int(mm.group(1)) / int(mm.group(2)) - lens[b]) > 1e-6:
+                errs.append(f"{d['id']}: movement {m['key']} meter {meter} at bar {b} differs from the timeline")
+        plan = m.get("conduct", [])
+        if plan and not m.get("conduct_note"):
+            errs.append(f"{d['id']}: movement {m['key']} conducting plan needs conduct_note (it is a guide, not a score reading)")
+        for i, entry in enumerate(plan):
+            if not (isinstance(entry, list) and len(entry) == 2 and entry[1] in (1, 2, 3, 4, 6)
+                    and isinstance(entry[0], int) and 1 <= entry[0] <= m["last"]):
+                errs.append(f"{d['id']}: movement {m['key']} bad conducting entry {entry!r}")
+            elif i and entry[0] <= plan[i - 1][0]:
+                errs.append(f"{d['id']}: movement {m['key']} conducting plan not in bar order at {entry[0]}")
     return errs
 
 
