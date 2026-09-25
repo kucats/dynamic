@@ -9,6 +9,7 @@
 | `zoom.py` / `check.py` | サブエージェント用：段の拡大図（音高ガイド付き）と読み取り結果の重ね描き |
 | `check_rhythm.py` | 音価・開始位置が拍子からはみ出していないかの検査 |
 | `barlines.py` / `bars_overlay.py` | 縦線（小節線）の自動検出・多小節休み判定・小節番号の推定と確認図 |
+| `score_staves.py` | 総譜ページの五線検出・段→システムの割り付け（`public/score/<id>/index.json` のバンドを利用。休みの段は省略されるため段→楽器の対応はシステムごとに左マージンの楽器名で決める） |
 | `build_reader.py` | `project/**/dynamic/` のデータ＋原譜から `public/reader/data/<id>.json` を生成 |
 | `refresh_reader_pitches.py` | PDFなしで、レビュー済みの音高・要確認フラグを既存の閲覧データへ反映（小節・音価・タイを照合） |
 | `validate_reader.py` | 閲覧データの整合性検査（小節番号と音符、タイムライン、画像形式、パス漏れ） |
