@@ -26,6 +26,7 @@
       <button id="prev" title="前の音（←）" aria-label="前の音">‹</button>
       <button id="next" title="次の音（→）" aria-label="次の音">›</button>
       <button id="metroBtn" class="metro-btn" type="button" title="メトロノーム（M）：再生中に拍を刻みます" aria-label="メトロノーム" aria-pressed="false"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path class="mt-body" d="M8.6 3.2h6.8l3.9 17.3H4.7z"/><path class="mt-face" d="M7.3 15.2h9.4"/><g class="mt-arm"><path d="M12 17.6 12 5.4"/><rect x="10.3" y="8.2" width="3.4" height="2.6" rx=".8"/></g></svg></button>
+      <button id="condBtn" class="cond-btn" type="button" title="指揮（C）：再生中に in 1・in 2・in 4 などの振り方を表示します" aria-label="指揮" aria-pressed="false"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path class="cd-path" d="M12 4.5C9 9 8.6 15 12 19.5M12 19.5C14.5 16.5 17 14.5 19.5 13.8"/><path class="cd-stick" d="M4.5 21.5 11 13"/><circle class="cd-tip" cx="12" cy="19.5" r="1.9"/></svg></button>
     </div>
     <div id="readerExtras" class="reader-extras">
       <button id="one" title="選んだ音を鳴らす" aria-label="選んだ音を鳴らす">♪</button>
@@ -44,6 +45,12 @@
     <span id="metroVis" class="metro-vis" hidden aria-hidden="true"><span class="mt-dots"></span><span class="mt-bpm"></span></span>
     <span id="barNow" class="bnow"></span>
   </div>
+  <div id="condVis" class="cond-vis" hidden aria-hidden="true">
+    <svg class="cv-svg" viewBox="-0.95 0.1 1.9 0.96"><path class="cv-guide"/><g class="cv-marks"></g><path class="cv-trail"/><circle class="cv-ring" r=".09"/><circle class="cv-tip" r=".055"/></svg>
+    <div class="cv-head"><b class="cv-in"></b><span class="cv-count"></span></div>
+    <div class="cv-sub"></div>
+    <div class="cv-next"></div>
+  </div>
   <div id="settings" class="settings" hidden>
     <fieldset id="compactExtras" class="compact-extras" hidden><legend>表示・移動</legend><div id="compactExtrasMount"></div></fieldset>
     <fieldset id="rowset"></fieldset>
@@ -59,6 +66,12 @@
       <label class="metro-vol">音量 <input id="metroVol" type="range" min="0.1" max="1" step="0.05" value="0.7"></label>
       <label><input type="checkbox" id="metroCount"> 1小節カウントしてから再生</label>
       <span class="fine">拍は拍子の長さから決めています（4/4・2/4は四分音符、3/8は八分音符）。速さは譜面のテンポ×「テンポ」スライダーに合わせます。</span>
+    </fieldset>
+    <fieldset id="condSet" class="metro-set"><legend>指揮（再生中）</legend>
+      <label><input type="checkbox" id="cond"> 表示する <kbd>C</kbd></label>
+      <label>振り方 <select id="condMode"><option value="auto">自動（曲ごとの目安）</option><option value="1">いつも in 1</option><option value="2">いつも in 2</option><option value="3">いつも in 3</option><option value="4">いつも in 4</option><option value="6">いつも in 6</option></select></label>
+      <label><input type="checkbox" id="condMirror"> 指揮者の側から見た向き</label>
+      <span class="fine">「自動」は曲ごとの指定があればそれを、なければ拍子とテンポから決めます（速い2/4は in 1、速い4/4は in 2、遅い2/4は in 4 など）。どちらも練習用の目安で、譜面に書かれた指示ではありません。拍子に合わない「いつも」の指定は自動に戻ります。</span>
     </fieldset>
     <fieldset id="fingerset" hidden><legend>運指（「運指」の行で表示）</legend>
       <label>楽器 <select id="hornMode"><option value="double">フルダブル（F／B♭）</option><option value="F">F管シングル</option></select></label>
