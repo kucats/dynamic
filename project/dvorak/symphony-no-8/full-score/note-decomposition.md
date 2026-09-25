@@ -155,6 +155,54 @@ pipeline on the 13 part PDFs reaches it faster (parallel per-instrument
 sessions, cleaner staves, cues already handled) — the score staves then serve
 as the audit target instead of the primary source.
 
+## Viewer + iOS constraints (data volume)
+
+- `dynamic_ios` consumes `reader/parts.json` → `data/<id>.json` monoliths
+  (embedded PNG strips), streamed via `URLCache` (512 MB disk) or downloaded
+  into `Documents/Library/<partId>/` with a `registry.json` size manifest.
+  Codable models mirror `notes`/`systems`/`img` fields directly.
+- **Decision: keep emitting the monolith `data/<id>.json`** — iOS and the web
+  reader stay on the existing contract with zero client work. The packed
+  `data/<id>/` layout is emitted *alongside* for the web shard loader; it is
+  additive, never a replacement, until clients opt in.
+- Data volume is controlled at the image layer, not the note layer:
+  notes ≈ 40 B/event packed; images are ~88% of bytes. Bilevel
+  WebP-lossless crops are ~31.5% of grayscale PNG (~18.5% on score pages) —
+  measured on 175 real crops. Plan: monolith embeds bilevel **PNG-1**
+  (universal decode incl. older iOS ImageIO), shard `img/` files use
+  bilevel WebP-lossless. Both ≈3× smaller than today's grayscale PNGs.
+- Score never ships as one blob: page-sharded notes only, aligned with the
+  lazy page images — both viewer and any future iOS score view fetch
+  `notes/pNNN.json` + `pages/pNNN.webp` per open page. Whole-score note JSON
+  ≈30k events ≈1.2 MB packed lives in `project/` as the audit store, not a
+  delivery unit.
+- Registry/registry-update flow on iOS depends on `Last-Modified`/byte size;
+  monolith rebuilds bump both naturally — no changes needed there.
+
+## 全3曲 decode plan
+
+Part-PDF inventory fetched from the Drive folder (all downloadable via
+`https://drive.usercontent.google.com/download?id=<id>&export=download&confirm=t`):
+
+- **ドボ8 (Bartos)** — 13 PDFs → 21 part dirs (decoding wave 1, in flight).
+- **カレリア (Breitkopf)** — folder `14kqinjfpiT_fm6125Tk5ewlSyKFRN4bs`, 13 PDFs:
+  フルート/オーボエ/クラリネット/ファゴット/ホルン/トランペット/トロンボーン・チューバ/
+  ティンパニ・打楽器/Vl I/Vl II/ヴィオラ/チェロ/コントラバス.
+- **ナブッコ (Kalmus)** — folder `15lNr6w-h_5SoeLwwWkY67dKptXS2Rir9`, 28 PDFs:
+  per-instrument files incl. ハープ1・2, 小太鼓, 打楽器; some are
+  single-instrument duplicates of combined files (e.g. クラリネット1・2.pdf
+  + クラリネット2.pdf) — prefer the combined file and treat singles as
+  alternates, or vice versa if scan quality differs.
+- Score sources: Karelia `1tr-iKb6jlW8FYtCpo9H04c_-DhSC_4zU` (Breitkopf),
+  Nabucco `1ZkvthoT0MFKEDusNg5dMDE39ECN_lhis` (Kalmus, has printed bar
+  numbers — easier bar-index validation).
+- Pipeline per work is identical: part agents write
+  `project/<composer>/<work>/<part>/dynamic/pages/*.json` + `part.json`,
+  then `build_reader` + validators. Karelia lands under
+  `project/sibelius/karelia-suite/`, Nabucco under `project/verdi/nabucco/`.
+- Scale: ~40 additional part PDFs ≈ 40+ instruments — same per-file unit as
+  the Dvořák wave.
+
 ## Caveats recorded during the trial
 
 - Bar 8's accidental looks like the edition's courtesy natural (Eb context);
