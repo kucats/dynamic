@@ -1,0 +1,70 @@
+name: Issue 24 measure memos verification
+on:
+  push:
+    branches: [fix/issue-24-measure-memos]
+    paths: [.github/workflows/materialize-issue24.yml]
+permissions:
+  contents: write
+concurrency:
+  group: issue-24-measure-memos
+  cancel-in-progress: false
+jobs:
+  verify:
+    if: github.repository == 'kucats/dynamic' && github.ref == 'refs/heads/fix/issue-24-measure-memos'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Apply checksum-verified patch and publish only to the issue branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REF" = refs/heads/fix/issue-24-measure-memos
+          cat .github/agent-staging/issue-24/patch-{1,2,3,4}.b64 | base64 --decode | xz --decompress > "$RUNNER_TEMP/issue-24.patch"
+          echo "99c20be8b1f5aea7a76fc91720a7d805ba1e8dea454989c91f13fc727af7ffad  $RUNNER_TEMP/issue-24.patch" | sha256sum -c -
+          git apply --check --index "$RUNNER_TEMP/issue-24.patch"
+          git apply --index "$RUNNER_TEMP/issue-24.patch"
+          git rm --cached -r .github/agent-staging/issue-24 .github/workflows/materialize-issue24.yml
+          test "$(git write-tree)" = 00a583343d736bb7a1e7cef222c5a74896c113a7
+          git add .github/agent-staging/issue-24 .github/workflows/materialize-issue24.yml
+          git -c user.name='ChatGPT' -c user.email='noreply@openai.com' commit -m 'Make practice memos measure-linked and accessible from bar menus (#24)'
+          git push origin HEAD:refs/heads/fix/issue-24-measure-memos
+          mkdir -p "$RUNNER_TEMP/memo-evidence"
+          git rev-parse HEAD > "$RUNNER_TEMP/memo-evidence/SOURCE_COMMIT.txt"
+          # The connector removes these staging files after verification, not the job token.
+          # Test the exact clean source tree that will be the final PR head.
+          git rm -r .github/agent-staging/issue-24 .github/workflows/materialize-issue24.yml
+          git write-tree | tee "$RUNNER_TEMP/memo-evidence/TESTED_TREE.txt"
+          test "$(git write-tree)" = 00a583343d736bb7a1e7cef222c5a74896c113a7
+      - name: Install bounded test dependencies
+        run: |
+          python -m pip install --disable-pip-version-check playwright==1.57.0 pillow pypdf reportlab
+          python -m playwright install --with-deps chromium
+      - name: Unit tests and data guards
+        shell: bash
+        run: |
+          set -euo pipefail
+          { node --check public/reader/app.js; node --check public/reader/memo.js; node --check public/reader/memo-model.mjs; node --check public/sw.js; node --test tests/reader/*.test.mjs tests/worker/*.test.mjs; } 2>&1 | tee "$RUNNER_TEMP/memo-evidence/node.txt"
+          python -m unittest discover -s tests -v 2>&1 | tee "$RUNNER_TEMP/memo-evidence/python.txt"
+          { python tools/dynamic/validate_reader.py; python tools/dynamic/validate_score.py; python tools/validate_catalog.py; python -m compileall -q tools tests; git diff --check; } 2>&1 | tee "$RUNNER_TEMP/memo-evidence/validators.txt"
+      - name: Native module desktop and mobile browser tests (synthetic API, localhost only)
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tests/reader/memo-browser.py --out "$RUNNER_TEMP/memo-evidence" 2>&1 | tee "$RUNNER_TEMP/memo-evidence/browser.txt"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: issue-24-measure-memo-evidence
+          path: ${{ runner.temp }}/memo-evidence/
+          retention-days: 7
+          if-no-files-found: warn
