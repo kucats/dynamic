@@ -85,6 +85,35 @@ index into `dicts`, expand flags, renumber `id`. Until the reader speaks the
 format, emit packed dirs alongside canonical `data/<id>.json` — never instead
 of it, so the generated contract stays single-source.
 
+## Committing crop images
+
+Decision: **system/staff crop images are committed as files**, not only
+embedded in generated JSON. Rationale:
+
+- Policy fit: AGENTS.md bans raw page scans and source PDFs, not derivatives.
+  Crops are the same derivative class as the images already embedded in
+  `data/<id>.json` and the deskewed WebP pages under `public/score/<id>/`.
+- Delivery: files are ~25% smaller than their base64 form, fetchable per
+  system (the shard granularity), and cache/CDN-friendly.
+- Reproducibility: once crops are committed, `build_reader.py`/`pack_notes.py`
+  run without the (uncommitted) source PDF — the repo becomes self-contained
+  for rebuilding delivery artifacts.
+
+Layout and granularity:
+
+- Canonical store: `project/<composer>/<work>/<part>/dynamic/img/sys_NNN.png`
+  (per staff row for parts; per system band for the score), emitted next to
+  `notes_pNN.json`/`bars_pNN.json`.
+- Emit step copies them into `data/<id>/img/` in the packed layout; the
+  monolith `data/<id>.json` keeps inline images until the reader switches.
+- Compression: PNG for line art (measured winner over WebP q60); re-evaluate
+  WebP-lossless/q80 when the corpus exists. Total estimate: parts ~20–60 MB,
+  full score ~80–240 MB depending on band granularity — acceptable under
+  "store heavy" as long as delivery stays sharded.
+
+Decode agents keep writing JSON only; crops are produced by the build/pack
+step (clean crops — no guide lines) so review artifacts stay readable.
+
 ## Open pieces
 
 - Reader/score-viewer support: lazy `img`/`notes` fetches keyed on visible
