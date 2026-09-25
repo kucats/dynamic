@@ -41,7 +41,9 @@
     try { localStorage.setItem('dynamic-settings', JSON.stringify(S)); } catch (e) { /* ignore */ }
   };
 
-  const svgHooks = [];                // extensions (memo.js) draw extra SVG per system
+  const systemHooks = [];             // extensions append content below each system
+  const barMenuHooks = [];            // extensions contribute actions for the selected bar
+  const svgHooks = [];                // extensions may draw extra SVG per system
   const noteHooks = [];               // extensions (trombone3d-addon.js) follow selection and sound
   const emit = (type, detail) => { for (const f of noteHooks) { try { f(type, detail); } catch (e) { /* an add-on must not break the reader */ } } };
   // ---------- horn fingering aid (general chart, keyed by the F-horn written reading) ----------
@@ -180,6 +182,11 @@
     const lanes = ns.length ? Math.max(...lane) + 1 : 0;
     const H = topBand + h + strip + (ns.length ? lanes * laneH + 10 : 4);
     const o = [`<svg viewBox="0 0 ${W} ${H}" data-top="${topBand}" role="group" aria-label="原譜${sy.page}ページ ${sy.sys}段目"><image href="${sy.img}" x="0" y="${topBand}" width="${W}" height="${h}"/>`];
+    // Focusable measure targets sit behind note hitboxes, preserving note playback.
+    if (!PRINT) for (const [xa, xb, lab] of sy.segs) {
+      if (!lab) continue;
+      o.push(`<rect class="bar-target" data-seg="${esc(lab)}" x="${xa}" y="0" width="${xb - xa}" height="${H}" fill="transparent" tabindex="0" role="button" aria-label="${esc(lab)}小節のメニュー"/>`);
+    }
     if (S.barPosition !== 'off') for (const [xa, xb, lab] of sy.segs) {
       if (S.barPosition === 'top') {
         o.push(`<line class="bt" x1="${xa}" y1="4" x2="${xa}" y2="34"/>`);
@@ -219,6 +226,7 @@
 
   function renderScore() {
     const main = $('score'); const html = [];
+    const scrolls = new Map([...main.querySelectorAll('.sys')].map((sec) => [sec.id, sec.querySelector('.sc').scrollLeft]));
     const reviewItems = D.review_items || D.notes.filter((n) => n.unc).map((n) => ({ page: D.systems[n.s].page, bar: n.bar, pitch: n.p, detail: n.unc }));
     const reviewWarning = reviewItems.length
       ? `<div class="print-warning">要確認：${reviewItems.map((r) => `原譜${r.page}ページ ${r.bar}小節 ${esc(r.pitch)} — ${esc(r.detail)}`).join(' ／ ')}（未確定のため音は再生対象外）</div>`
@@ -229,12 +237,14 @@
       for (const sy of D.systems.filter((s) => s.mvt === m.key)) {
         const labs = sy.segs.map((g) => g[2]).filter(Boolean);
         const rng = labs.length ? `${labs[0].split('–')[0]}〜${labs[labs.length - 1].split('–').pop()}小節` : '';
-        html.push(`<section class="sys" id="sys-${sy.i}" data-mvt="${sy.mvt}"><div class="cap">原譜 ${sy.page}ページ ${sy.sys}段目 · ${rng}</div><div class="sc">${systemSVG(sy)}</div></section>`);
+        html.push(`<section class="sys" id="sys-${sy.i}" data-mvt="${sy.mvt}"><div class="cap">原譜 ${sy.page}ページ ${sy.sys}段目 · ${rng}</div><div class="sc">${systemSVG(sy)}${systemHooks.map((hook) => hook(sy)).join('')}</div></section>`);
       }
     }
     main.innerHTML = html.join('');
     document.body.classList.toggle('nolines', !S.lines);
     document.documentElement.style.setProperty('--zoom', S.zoom);
+    // Keep the selected measure visible on phones after memo saves or row changes.
+    for (const [id, left] of scrolls) { const sc = $(id)?.querySelector('.sc'); if (sc) sc.scrollLeft = left; }
     if (cur) mark(cur, false);
   }
 
@@ -461,22 +471,43 @@
   function openCtx(e, hit) {
     const m = $('ctx'), mv = `${MV_NUM[hit.mvt] || hit.mvt}楽章`;
     const rng = hit.last > hit.bar ? `${hit.bar}〜${hit.last}小節` : `${hit.bar}小節`;
-    const hasNotes = D.notes.some((n) => n.mvt === hit.mvt && n.bar >= hit.bar);
+    let selected = hit.bar;
     m.innerHTML = `<div class="ctx-h">${mv} ${rng}</div>`
-      + `<button type="button" class="ctx-score" data-act="score">${hit.bar}小節目のスコアを見る</button>`
-      + `<button type="button" data-act="play"${hasNotes ? '' : ' disabled'}>この小節から再生</button>`
-      + '<button type="button" data-act="close">閉じる</button>';
-    m.hidden = false;
+      + (hit.last > hit.bar ? `<label class="ctx-range">対象の小節 <input type="number" inputmode="numeric" min="${hit.bar}" max="${hit.last}" value="${hit.bar}" step="1" aria-label="休みの中の小節番号"></label>` : '')
+      + '<div class="ctx-actions"></div>';
+    const actions = m.querySelector('.ctx-actions');
+    function renderActions() {
+      const valid = Number.isInteger(selected) && selected >= hit.bar && selected <= hit.last;
+      const target = { ...hit, bar: selected };
+      const extra = valid ? barMenuHooks.flatMap((hook) => hook(target) || []) : [];
+      const items = [
+        { label: `${valid ? selected : '—'}小節目のスコアを見る`, cls: 'ctx-score', disabled: !valid, run: () => openScore(hit.mvt, selected) },
+        ...extra,
+        { label: 'この小節から再生', disabled: !valid || !D.notes.some((n) => n.mvt === hit.mvt && n.bar >= selected), run: () => { setMvt(hit.mvt, false); jumpTo(selected); play(); } },
+        { label: '閉じる', run: () => {} },
+      ];
+      actions.replaceChildren(...items.map((item) => {
+        const button = document.createElement('button');
+        button.type = 'button'; button.textContent = item.label;
+        button.className = item.cls || ''; button.disabled = !!item.disabled;
+        button.setAttribute('role', 'menuitem');
+        button.onclick = () => { closeCtx(); item.run(); };
+        return button;
+      }));
+    }
+    m.querySelector('input')?.addEventListener('input', (ev) => { selected = ev.target.valueAsNumber; renderActions(); });
+    m.onclick = null; renderActions(); m.hidden = false;
     const r = m.getBoundingClientRect();
     m.style.left = `${Math.max(8, Math.min(e.clientX, innerWidth - r.width - 8))}px`;
     m.style.top = `${Math.max(8, Math.min(e.clientY, innerHeight - r.height - 8))}px`;
-    m.onclick = (ev) => {
-      const act = ev.target.closest('button')?.dataset.act; if (!act) return;
-      if (act === 'score') openScore(hit.mvt, hit.bar);
-      else if (act === 'play') { closeCtx(); setMvt(hit.mvt, false); jumpTo(hit.bar); play(); }
-      else closeCtx();
-    };
     m.querySelector('.ctx-score').focus({ preventScroll: true });
+    m.onkeydown = (ev) => {
+      if (!['ArrowDown', 'ArrowUp', 'Home', 'End'].includes(ev.key) || ev.target.matches('input')) return;
+      const buttons = [...m.querySelectorAll('button:not(:disabled)')];
+      const i = buttons.indexOf(document.activeElement);
+      const next = ev.key === 'Home' ? 0 : ev.key === 'End' ? buttons.length - 1 : (i + (ev.key === 'ArrowDown' ? 1 : -1) + buttons.length) % buttons.length;
+      ev.preventDefault(); buttons[next]?.focus();
+    };
     flash(hit.sy, hit.seg[0], hit.seg[1]);
   }
 
@@ -502,6 +533,15 @@
       openScore(n ? n.mvt : currentMvt, n ? n.bar : typed || 1);
     };
     $('score').addEventListener('keydown', (e) => {
+      const target = e.target.closest('.bar-target');
+      if (target && (e.key === 'Enter' || e.key === ' ')) {
+        e.preventDefault(); e.stopPropagation();
+        const sy = D.systems[+target.closest('.sys').id.slice(4)];
+        const seg = sy.segs.find((g) => g[2] === target.dataset.seg), [bar, last] = segRange(seg[2]);
+        const r = target.getBoundingClientRect();
+        openCtx({ clientX: Math.max(8, r.left), clientY: Math.max($('bar').getBoundingClientRect().bottom + 8, r.top) }, { sy, mvt: sy.mvt, bar, last, seg });
+        return;
+      }
       const g = e.target.closest('.note'); if (g && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); select(+g.dataset.id, { sound: true, scroll: false }); }
     });
     $('play').onclick = () => (playing ? stop() : play());
@@ -545,7 +585,7 @@
     $('infoBtn').onclick = () => $('info').showModal();
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') closeCtx();
-      if (e.target.matches('input,select,textarea') || e.target.closest('.memo-pin') || $('info').open || $('practice').open || document.querySelector('dialog[open]') || document.documentElement.classList.contains('sv-open')) return;
+      if (e.target.matches('input,select,textarea') || e.target.closest('.memo-card,.bar-target,#ctx') || $('info').open || $('practice').open || document.querySelector('dialog[open]') || document.documentElement.classList.contains('sv-open')) return;
       if (e.key === ' ' && !e.target.closest('.note') && !e.target.matches('button')) { e.preventDefault(); $('play').click(); }
       else if (e.key === 'ArrowRight') { e.preventDefault(); $('next').click(); }
       else if (e.key === 'ArrowLeft') { e.preventDefault(); $('prev').click(); }
@@ -599,7 +639,7 @@
     if (PRINT) document.body.classList.add('print');
     window.__dynamic = { data: D, timeline, select, get cur() { return cur; }, get playing() { return !!playing; }, jumpTo,
       openScore,
-      ext: { part: PART, print: PRINT, esc, segRange, mvNum: MV_NUM, stop, setMvt, rerender: renderScore, addSvgHook: (f) => { svgHooks.push(f); }, addNoteHook: (f) => { noteHooks.push(f); } } };
+      ext: { part: PART, print: PRINT, esc, segRange, mvNum: MV_NUM, stop, setMvt, rerender: renderScore, addSystemHook: (f) => { systemHooks.push(f); }, addBarMenuHook: (f) => { barMenuHooks.push(f); }, addSvgHook: (f) => { svgHooks.push(f); }, addNoteHook: (f) => { noteHooks.push(f); } } };
     document.dispatchEvent(new Event('dynamic:ready'));
   }
   init();

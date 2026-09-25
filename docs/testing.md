@@ -11,8 +11,9 @@ Run from the repository root with Python 3.11 or later. Catalog commands operate
 | Python syntax | `python3 -m compileall -q tools tests` | No syntax errors |
 | Player JavaScript | `node --check tools/fuyomi/player.js` | No syntax errors |
 | DYNAMIC reader data | `python3 tools/dynamic/validate_reader.py` | Notes sit in numbered bars, timelines cover all notes, no path leaks |
-| DYNAMIC reader JavaScript | `node --check public/reader/app.js && node --check public/reader/memo.js && node --check public/reader/score-viewer.js && node --check public/reader/trombone3d.js && node --check public/reader/trombone3d-addon.js && node --check public/sw.js` | No syntax errors |
-| 3D trombone player kinematics | `node --test tests/reader/*.test.mjs` | Slide extensions, position parsing, constant arm bones, reach and bell landmarks pass |
+| DYNAMIC reader JavaScript | `node --check public/reader/app.js && node --check public/reader/memo.js && node --check public/reader/memo-model.mjs && node --check public/reader/score-viewer.js && node --check public/reader/trombone3d.js && node --check public/reader/trombone3d-addon.js && node --check public/sw.js` | No syntax errors |
+| Reader anchors + 3D trombone kinematics | `node --test tests/reader/*.test.mjs` | Measure anchors, legacy memo fallback, slide extensions, constant arm bones, reach and bell landmarks pass |
+| Measure-memo browser | `python tests/reader/memo-browser.py --out /tmp/memo-evidence` | Local HTTP + synthetic API; desktop/mobile CRUD, bar identity, layout, note gestures, auth/print guards; screenshots and JSON evidence. Install Playwright/Chromium first; `--offline` is an explicitly limited inline harness |
 | Full-score viewer data | `python3 tools/dynamic/validate_score.py` | WebP pages exist, bar numbers run 1..last per movement and match the reviewed totals, no path leaks or PDFs |
 | Full-score rebuild (needs the source PDF) | `python3 tools/dynamic/build_score.py --pdf <score.pdf> --work work --review work/review` | Same movement totals as `score.json`; inspect every review sheet against the printed bar numbers |
 | Worker (login + memo API) | `node --test tests/worker/*.test.mjs` | Access JWT verification, login cookie, per-user memo CRUD, CSRF/part guards pass |
