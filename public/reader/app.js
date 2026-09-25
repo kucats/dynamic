@@ -42,6 +42,8 @@
   };
 
   const svgHooks = [];                // extensions (memo.js) draw extra SVG per system
+  const noteHooks = [];               // extensions (trombone3d-addon.js) follow selection and sound
+  const emit = (type, detail) => { for (const f of noteHooks) { try { f(type, detail); } catch (e) { /* an add-on must not break the reader */ } } };
   // ---------- horn fingering aid (general chart, keyed by the F-horn written reading) ----------
   let FG = null;
   function fingering(n) {           // [first choice, ...alternates]; B♭-side fingerings carry a leading 4
@@ -244,7 +246,8 @@
     el.classList.add('on'); const sec = el.closest('.sys'); sec.classList.add('cur');
     if (scroll) {
       const r = sec.getBoundingClientRect(), top = $('bar').getBoundingClientRect().bottom;
-      if (r.top < top + 4 || r.bottom > innerHeight - 10) sec.scrollIntoView({ block: 'center', behavior: 'smooth' });
+      const overlay = parseFloat(getComputedStyle(document.body).getPropertyValue('--overlay-bottom')) || 0;   // e.g. an add-on panel
+      if (r.top < top + 4 || r.bottom > innerHeight - overlay - 10) sec.scrollIntoView({ block: overlay ? 'start' : 'center', behavior: 'smooth' });
     }
     const sc = el.closest('.sc'), n = byId.get(id), sy = D.systems[n.s];
     if (sc.scrollWidth > sc.clientWidth + 4) {
@@ -266,6 +269,7 @@
     }
     $('nowInfo').textContent = `${mvLabel(n.mvt)} ${n.bar}小節${D.instrument === "trombone" ? "" : " · in " + n.key}${n.tie ? ' · タイの続き' : ''}${n.old ? ' · ヘ音記号は旧記譜' : ''}${n.unc ? ' · 要確認：' + n.unc + '（音は再生しません）' : ''} · ${id}/${D.notes.length}`;
     setMvt(n.mvt, false);
+    emit('select', { note: n });
     if (sound && !playing) one(n);
   }
 
@@ -299,12 +303,14 @@
   async function one(n, actualSound = true) {
     if (!n || n.unc) return;
     await audio(); voice(actualSound ? n.snd[2] : pitchOf(n), ctx.currentTime + 0.02, 0.85);
+    emit('sound', { note: n, delayMs: 0, seconds: 0.85 });
   }
 
   function stopPractice() {
     clearTimeout(practiceTimer); practiceTimer = null;
     practiceOsc.forEach((o) => { try { o.stop(); } catch (e) { /* already stopped */ } });
     practiceOsc = [];
+    emit('silence');
     const button = $('practicePlay');
     if (button) { button.textContent = '▶ ロングトーン'; button.classList.remove('on'); }
   }
@@ -314,6 +320,7 @@
     if (!$('practice').open || Number($('practice').dataset.noteId) !== n.id) return;
     const seconds = Number($('practiceDuration').value) || 4;
     practiceOsc = voice(n.snd[2], ctx.currentTime + 0.02, seconds);
+    emit('sound', { note: n, delayMs: 0, seconds });
     $('practicePlay').textContent = '■ 停止'; $('practicePlay').classList.add('on');
     practiceTimer = setTimeout(stopPractice, seconds * 1000 + 120);
   }
@@ -361,6 +368,7 @@
       let d = e.d, j = i;
       while (j + 1 < ne.length && !byId.get(ne[j + 1].id).unc && byId.get(ne[j + 1].id).tie) { j++; d = ne[j].t + ne[j].d - e.t; }
       osc.push(...voice(pitchOf(n), t0 + e.t, Math.max(0.05, d * 0.93)));
+      emit('sound', { note: n, delayMs: (t0 + e.t - ctx.currentTime) * 1000, seconds: Math.max(0.05, d * 0.93) });
     }
     for (const e of ev) {
       if (e.t < st - 1e-6) continue;
@@ -377,7 +385,7 @@
   function stop() {
     if (!playing) return;
     playing.timers.forEach(clearTimeout); playing.osc.forEach((o) => { try { o.stop(); } catch (e) { /* ignore */ } });
-    playing = null; $('play').textContent = '▶ 再生'; $('play').classList.remove('on'); $('barNow').textContent = '';
+    playing = null; emit('silence'); $('play').textContent = '▶ 再生'; $('play').classList.remove('on'); $('barNow').textContent = '';
   }
 
   // ---------- movements / jump ----------
@@ -591,7 +599,7 @@
     if (PRINT) document.body.classList.add('print');
     window.__dynamic = { data: D, timeline, select, get cur() { return cur; }, get playing() { return !!playing; }, jumpTo,
       openScore,
-      ext: { part: PART, print: PRINT, esc, segRange, mvNum: MV_NUM, stop, setMvt, rerender: renderScore, addSvgHook: (f) => { svgHooks.push(f); } } };
+      ext: { part: PART, print: PRINT, esc, segRange, mvNum: MV_NUM, stop, setMvt, rerender: renderScore, addSvgHook: (f) => { svgHooks.push(f); }, addNoteHook: (f) => { noteHooks.push(f); } } };
     document.dispatchEvent(new Event('dynamic:ready'));
   }
   init();
