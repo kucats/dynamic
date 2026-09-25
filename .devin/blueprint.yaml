@@ -1,0 +1,20 @@
+runs-on: macos
+initialize: |
+  pip3 install playwright
+  python3 -m playwright install chromium
+knowledge:
+  - name: test
+    contents: |
+      node --test tests/reader/*.test.mjs && node --test tests/worker/*.test.mjs && python3 -m compileall -q tools tests
+  - name: validate
+    contents: |
+      python3 tools/dynamic/validate_reader.py && python3 tools/dynamic/validate_score.py && python3 tools/validate_catalog.py
+  - name: lint
+    contents: |
+      node --check public/reader/app.js && node --check public/reader/memo.js && node --check public/sw.js && git diff --check
+  - name: serve-reader
+    contents: |
+      (cd public && python3 -m http.server 8317)  # reader at http://localhost:8317/reader/?part=<id>
+  - name: notes
+    contents: |
+      Browser suite: python3 tests/reader/memo-browser.py --out /tmp/memo-evidence (needs playwright+chromium). Never hand-edit public/reader/data/*.json — rebuild via tools/dynamic/build_reader.py.
