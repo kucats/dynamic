@@ -1,0 +1,510 @@
+{
+ "schema": 1,
+ "part": "dvorak8-trombone1",
+ "preset": "balanced",
+ "lip_weight": 1.0,
+ "model": "ideal B♭ tenor 2.74 m; options from tools/dynamic/trombone_positions.json",
+ "movements": [
+  {
+   "key": "I",
+   "notes": 305,
+   "standard": {
+    "slide_m": 24.8,
+    "lip_changes": 144
+   },
+   "suggested": {
+    "slide_m": 24.99,
+    "lip_changes": 144
+   },
+   "passages": [
+    {
+     "mvt": "I",
+     "bars": [
+      293,
+      293
+     ],
+     "before": "D4(1)",
+     "after": "D♯4(3)",
+     "notes": [
+      {
+       "id": 255,
+       "bar": 293,
+       "pitch": "D4",
+       "standard": 1,
+       "suggested": 4,
+       "partial": 6,
+       "tuning": ""
+      }
+     ],
+     "slide_change_m": 0.183,
+     "lip_change": 0,
+     "gain": 4.14
+    }
+   ]
+  },
+  {
+   "key": "IV",
+   "notes": 269,
+   "standard": {
+    "slide_m": 24.39,
+    "lip_changes": 101
+   },
+   "suggested": {
+    "slide_m": 21.05,
+    "lip_changes": 104
+   },
+   "passages": [
+    {
+     "mvt": "IV",
+     "bars": [
+      61,
+      61
+     ],
+     "before": "H3(4)",
+     "after": "E4(2)",
+     "notes": [
+      {
+       "id": 310,
+       "bar": 61,
+       "pitch": "D4",
+       "standard": 1,
+       "suggested": 4,
+       "partial": 6,
+       "tuning": ""
+      }
+     ],
+     "slide_change_m": -0.163,
+     "lip_change": 0,
+     "gain": 1.18
+    },
+    {
+     "mvt": "IV",
+     "bars": [
+      64,
+      64
+     ],
+     "before": "E♭4(3)",
+     "after": "G4(2)",
+     "notes": [
+      {
+       "id": 318,
+       "bar": 64,
+       "pitch": "D4",
+       "standard": 1,
+       "suggested": 4,
+       "partial": 6,
+       "tuning": ""
+      }
+     ],
+     "slide_change_m": 0.02,
+     "lip_change": -1,
+     "gain": 1.03
+    },
+    {
+     "mvt": "IV",
+     "bars": [
+      65,
+      65
+     ],
+     "before": "F♯4(3)",
+     "after": "E♭4(3)",
+     "notes": [
+      {
+       "id": 322,
+       "bar": 65,
+       "pitch": "D4",
+       "standard": 1,
+       "suggested": 4,
+       "partial": 6,
+       "tuning": ""
+      },
+      {
+       "id": 323,
+       "bar": 65,
+       "pitch": "B♭3",
+       "standard": 1,
+       "suggested": 5,
+       "partial": 5,
+       "tuning": "低め：スライドを少し内側へ"
+      }
+     ],
+     "slide_change_m": 0.041,
+     "lip_change": 0,
+     "gain": 1.72
+    },
+    {
+     "mvt": "IV",
+     "bars": [
+      73,
+      73
+     ],
+     "before": "H3(4)",
+     "after": "C4(3)",
+     "notes": [
+      {
+       "id": 343,
+       "bar": 73,
+       "pitch": "D4",
+       "standard": 1,
+       "suggested": 4,
+       "partial": 6,
+       "tuning": ""
+      }
+     ],
+     "slide_change_m": -0.336,
+     "lip_change": 2,
+     "gain": 0.83
+    },
+    {
+     "mvt": "IV",
+     "bars": [
+      95,
+      95
+     ],
+     "before": "H3(4)",
+     "after": "E4(2)",
+     "notes": [
+      {
+       "id": 353,
+       "bar": 95,
+       "pitch": "D4",
+       "standard": 1,
+       "suggested": 4,
+       "partial": 6,
+       "tuning": ""
+      }
+     ],
+     "slide_change_m": -0.163,
+     "lip_change": 0,
+     "gain": 1.18
+    },
+    {
+     "mvt": "IV",
+     "bars": [
+      98,
+      98
+     ],
+     "before": "E♭4(3)",
+     "after": "G4(2)",
+     "notes": [
+      {
+       "id": 361,
+       "bar": 98,
+       "pitch": "D4",
+       "standard": 1,
+       "suggested": 4,
+       "partial": 6,
+       "tuning": ""
+      }
+     ],
+     "slide_change_m": 0.02,
+     "lip_change": -1,
+     "gain": 1.03
+    },
+    {
+     "mvt": "IV",
+     "bars": [
+      173,
+      173
+     ],
+     "before": "H3(4)",
+     "after": "H3(4)",
+     "notes": [
+      {
+       "id": 419,
+       "bar": 173,
+       "pitch": "D4",
+       "standard": 1,
+       "suggested": 4,
+       "partial": 6,
+       "tuning": ""
+      }
+     ],
+     "slide_change_m": -0.518,
+     "lip_change": 2,
+     "gain": 1.87
+    },
+    {
+     "mvt": "IV",
+     "bars": [
+      174,
+      174
+     ],
+     "before": "H3(4)",
+     "after": "H3(4)",
+     "notes": [
+      {
+       "id": 421,
+       "bar": 174,
+       "pitch": "D4",
+       "standard": 1,
+       "suggested": 4,
+       "partial": 6,
+       "tuning": ""
+      }
+     ],
+     "slide_change_m": -0.518,
+     "lip_change": 2,
+     "gain": 1.15
+    },
+    {
+     "mvt": "IV",
+     "bars": [
+      175,
+      175
+     ],
+     "before": "H3(4)",
+     "after": "H3(4)",
+     "notes": [
+      {
+       "id": 423,
+       "bar": 175,
+       "pitch": "D4",
+       "standard": 1,
+       "suggested": 4,
+       "partial": 6,
+       "tuning": ""
+      }
+     ],
+     "slide_change_m": -0.518,
+     "lip_change": 2,
+     "gain": 1.87
+    },
+    {
+     "mvt": "IV",
+     "bars": [
+      341,
+      341
+     ],
+     "before": "H3(4)",
+     "after": "E4(2)",
+     "notes": [
+      {
+       "id": 458,
+       "bar": 341,
+       "pitch": "D4",
+       "standard": 1,
+       "suggested": 4,
+       "partial": 6,
+       "tuning": ""
+      }
+     ],
+     "slide_change_m": -0.163,
+     "lip_change": 0,
+     "gain": 1.37
+    },
+    {
+     "mvt": "IV",
+     "bars": [
+      344,
+      344
+     ],
+     "before": "E♭4(3)",
+     "after": "G4(2)",
+     "notes": [
+      {
+       "id": 466,
+       "bar": 344,
+       "pitch": "D4",
+       "standard": 1,
+       "suggested": 4,
+       "partial": 6,
+       "tuning": ""
+      }
+     ],
+     "slide_change_m": 0.02,
+     "lip_change": -1,
+     "gain": 1.2
+    },
+    {
+     "mvt": "IV",
+     "bars": [
+      345,
+      345
+     ],
+     "before": "F♯4(3)",
+     "after": "E♭4(3)",
+     "notes": [
+      {
+       "id": 470,
+       "bar": 345,
+       "pitch": "D4",
+       "standard": 1,
+       "suggested": 4,
+       "partial": 6,
+       "tuning": ""
+      },
+      {
+       "id": 471,
+       "bar": 345,
+       "pitch": "B♭3",
+       "standard": 1,
+       "suggested": 5,
+       "partial": 5,
+       "tuning": "低め：スライドを少し内側へ"
+      }
+     ],
+     "slide_change_m": 0.041,
+     "lip_change": 0,
+     "gain": 2.08
+    },
+    {
+     "mvt": "IV",
+     "bars": [
+      349,
+      349
+     ],
+     "before": "H3(4)",
+     "after": "E4(2)",
+     "notes": [
+      {
+       "id": 480,
+       "bar": 349,
+       "pitch": "D4",
+       "standard": 1,
+       "suggested": 4,
+       "partial": 6,
+       "tuning": ""
+      }
+     ],
+     "slide_change_m": -0.163,
+     "lip_change": 0,
+     "gain": 1.37
+    },
+    {
+     "mvt": "IV",
+     "bars": [
+      353,
+      353
+     ],
+     "before": "H3(4)",
+     "after": "C4(3)",
+     "notes": [
+      {
+       "id": 491,
+       "bar": 353,
+       "pitch": "D4",
+       "standard": 1,
+       "suggested": 4,
+       "partial": 6,
+       "tuning": ""
+      }
+     ],
+     "slide_change_m": -0.336,
+     "lip_change": 2,
+     "gain": 0.99
+    },
+    {
+     "mvt": "IV",
+     "bars": [
+      360,
+      361
+     ],
+     "before": "H3(4)",
+     "after": "E4(2)",
+     "notes": [
+      {
+       "id": 505,
+       "bar": 360,
+       "pitch": "D4",
+       "standard": 1,
+       "suggested": 4,
+       "partial": 6,
+       "tuning": ""
+      },
+      {
+       "id": 506,
+       "bar": 360,
+       "pitch": "D4",
+       "standard": 1,
+       "suggested": 4,
+       "partial": 6,
+       "tuning": ""
+      },
+      {
+       "id": 507,
+       "bar": 361,
+       "pitch": "D4",
+       "standard": 1,
+       "suggested": 4,
+       "partial": 6,
+       "tuning": ""
+      }
+     ],
+     "slide_change_m": -0.163,
+     "lip_change": 0,
+     "gain": 2.38
+    },
+    {
+     "mvt": "IV",
+     "bars": [
+      364,
+      364
+     ],
+     "before": "H3(4)",
+     "after": "C4(3)",
+     "notes": [
+      {
+       "id": 522,
+       "bar": 364,
+       "pitch": "B♭3",
+       "standard": 1,
+       "suggested": 5,
+       "partial": 5,
+       "tuning": "低め：スライドを少し内側へ"
+      }
+     ],
+     "slide_change_m": -0.142,
+     "lip_change": -2,
+     "gain": 1.37
+    },
+    {
+     "mvt": "IV",
+     "bars": [
+      366,
+      366
+     ],
+     "before": "H3(4)",
+     "after": "C4(3)",
+     "notes": [
+      {
+       "id": 526,
+       "bar": 366,
+       "pitch": "B♭3",
+       "standard": 1,
+       "suggested": 5,
+       "partial": 5,
+       "tuning": "低め：スライドを少し内側へ"
+      }
+     ],
+     "slide_change_m": -0.142,
+     "lip_change": -2,
+     "gain": 1.37
+    },
+    {
+     "mvt": "IV",
+     "bars": [
+      378,
+      378
+     ],
+     "before": "H3(4)",
+     "after": "E4(2)",
+     "notes": [
+      {
+       "id": 559,
+       "bar": 378,
+       "pitch": "D4",
+       "standard": 1,
+       "suggested": 4,
+       "partial": 6,
+       "tuning": ""
+      }
+     ],
+     "slide_change_m": -0.163,
+     "lip_change": 0,
+     "gain": 1.74
+    }
+   ]
+  }
+ ]
+}
