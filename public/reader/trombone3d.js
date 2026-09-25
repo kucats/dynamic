@@ -10,8 +10,7 @@ const UP = new THREE.Vector3(0, 1, 0);
 function materials() {
   const m = (color, roughness = 0.75, metalness = 0, extra = {}) => new THREE.MeshStandardMaterial({ color, roughness, metalness, ...extra });
   return {
-    skin: m('#e2ae8c', 0.62), skinShade: m('#c98f6e', 0.7), lip: m('#b8695a', 0.5),
-    hair: m('#2b221c', 0.85), brow: m('#2b221c', 0.9), eyeWhite: m('#f7f4ee', 0.3), iris: m('#3a2a1e', 0.25),
+    skin: m('#e2ae8c', 0.62),
     jacket: m('#262d3f', 0.72), jacketDark: m('#141823', 0.7), lapel: m('#252b3b', 0.35), shirt: m('#f4f6fa', 0.6),
     trouser: m('#1a1e2a', 0.78), shoe: m('#0e0f13', 0.28, 0.1), tie: m('#0e1016', 0.4),
     brass: m('#e1b24f', 0.24, 0.9, { envMapIntensity: 1.2 }), brassDark: m('#b8862d', 0.3, 0.9),
@@ -177,26 +176,8 @@ function buildPlayer(M) {
   for (const y of [1.1, 1.18]) ellipsoid(chest, M.jacketDark, U([0.1, y, 0.018]), [0.006, 0.009, 0.009], 8);
   segment(chest, M.skin, U([0.0, 1.45, 0]), U([0.03, 1.56, 0]), 0.05, 0.047);   // neck
   segment(chest, M.shirt, U([0.0, 1.44, 0]), U([0.01, 1.485, 0]), 0.058, 0.055); // collar
-  // Head (faces +X), lips at LIPS.
-  const H = (p) => U(p);
-  ellipsoid(head, M.skin, H([0.035, 1.64, 0]), [0.098, 0.115, 0.085], 36);         // cranium
-  ellipsoid(head, M.skin, H([0.075, 1.575, 0]), [0.06, 0.055, 0.063], 28);         // jaw
-  ellipsoid(head, M.skin, H([0.108, 1.585, 0]), [0.018, 0.024, 0.036], 16);        // upper lip / embouchure
-  ellipsoid(head, M.lip, H([K.LIPS[0] - 0.006, K.LIPS[1], 0]), [0.008, 0.009, 0.022], 12);
-  ellipsoid(head, M.skin, H([0.106, 1.545, 0]), [0.022, 0.019, 0.03], 14);        // chin
-  const nose = ellipsoid(head, M.skin, H([0.138, 1.622, 0]), [0.022, 0.03, 0.014], 14); nose.rotation.z = -0.3;
-  for (const s of [-1, 1]) {
-    ellipsoid(head, M.skin, H([0.07, 1.605, 0.05 * s]), [0.03, 0.03, 0.022], 14);   // cheeks stay firm (not puffed)
-    ellipsoid(head, M.eyeWhite, H([0.119, 1.658, 0.034 * s]), [0.01, 0.0095, 0.014], 12);
-    ellipsoid(head, M.iris, H([0.1275, 1.657, 0.033 * s]), [0.003, 0.0068, 0.0068], 10);
-    const lid = ellipsoid(head, M.skin, H([0.12, 1.665, 0.034 * s]), [0.0108, 0.0055, 0.0148], 12); lid.castShadow = false;
-    const brow = segment(head, M.brow, H([0.132, 1.682, 0.016 * s]), H([0.122, 1.686, 0.05 * s]), 0.004); brow.castShadow = false;
-    const ear = ellipsoid(head, M.skinShade, H([0.02, 1.63, 0.084 * s]), [0.02, 0.03, 0.009], 12); ear.rotation.z = 0.15;
-  }
-  const hairCap = mesh(new THREE.SphereGeometry(1, 36, 24, 0, Math.PI * 2, 0, Math.PI * 0.5), M.hair, head, H([0.03, 1.655, 0]));
-  hairCap.scale.set(0.104, 0.118, 0.091); hairCap.rotation.z = 0.5;
-  const fringe = ellipsoid(head, M.hair, H([0.07, 1.735, 0.012]), [0.05, 0.022, 0.08], 20); fringe.rotation.set(0.12, 0, -0.45);
-  ellipsoid(head, M.hair, H([-0.03, 1.64, 0]), [0.06, 0.09, 0.086], 20);             // back of the head
+  // Head: a plain ball (faces read as uncanny at this level of detail).
+  ellipsoid(head, M.skin, U([0.04, 1.64, 0]), [0.1, 0.112, 0.092], 40);
   // Arms: bones get repositioned every frame.
   const arm = (side) => {
     const o = {};
