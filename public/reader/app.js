@@ -467,7 +467,8 @@
     const [a, b] = segRange(g[2]);
     return { sy, mvt: sy.mvt, bar: a, last: b, seg: g };
   }
-  function closeCtx() { const m = $('ctx'); if (m && !m.hidden) m.hidden = true; }
+  let ctxScroll = null;
+  function closeCtx() { const m = $('ctx'); if (m && !m.hidden) m.hidden = true; ctxScroll = null; }
   function openCtx(e, hit) {
     const m = $('ctx'), mv = `${MV_NUM[hit.mvt] || hit.mvt}楽章`;
     const rng = hit.last > hit.bar ? `${hit.bar}〜${hit.last}小節` : `${hit.bar}小節`;
@@ -497,6 +498,7 @@
     }
     m.querySelector('input')?.addEventListener('input', (ev) => { selected = ev.target.valueAsNumber; renderActions(); });
     m.onclick = null; renderActions(); m.hidden = false;
+    ctxScroll = { x: scrollX, y: scrollY };
     const r = m.getBoundingClientRect();
     m.style.left = `${Math.max(8, Math.min(e.clientX, innerWidth - r.width - 8))}px`;
     m.style.top = `${Math.max(8, Math.min(e.clientY, innerHeight - r.height - 8))}px`;
@@ -526,7 +528,11 @@
       const hit = barAt(e); if (hit) { e.preventDefault(); openCtx(e, hit); }
     });
     document.addEventListener('pointerdown', (e) => { if (!e.target.closest('#ctx')) closeCtx(); }, true);
-    addEventListener('scroll', closeCtx, { passive: true });
+    // Focus can queue a scroll event before Enter opens the menu. Dismiss only
+    // when the viewport actually moves after opening, not for that queued event.
+    addEventListener('scroll', () => {
+      if (ctxScroll && (scrollX !== ctxScroll.x || scrollY !== ctxScroll.y)) closeCtx();
+    }, { passive: true });
     $('scoreBtn').onclick = () => {
       const n = cur && byId.get(cur);
       const typed = parseInt($('jumpBar').value, 10);

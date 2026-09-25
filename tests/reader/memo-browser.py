@@ -135,6 +135,10 @@ def exercise(page, fixture, out, name, offline, touch):
     assert_geometry(page)
     # Actual mouse/touch click on the bar, not a pen/toolbar or arbitrary-coordinate editor.
     open_bar(page, pointer=True, touch=touch)
+    # A focus-generated scroll event already queued at the current position
+    # must not dismiss a keyboard menu. A subsequent actual scroll still must.
+    page.evaluate("window.dispatchEvent(new Event('scroll'))")
+    expect(page.locator('#ctx')).to_be_visible()
     expect(page.locator('#ctx')).not_to_contain_text('練習記号')
     box = page.locator('#ctx').bounding_box()
     vp = page.viewport_size
@@ -297,7 +301,8 @@ def main():
                             assert 'メモを追加' not in page.locator('#ctx').inner_text()
                     results.append({'scenario': mode, 'result': 'PASS'}); context.close()
                 # Existing full-score action retains its exact selected movement/bar, lazy loader intact.
-                context = browser.new_context(); page = context.new_page(); fixture = Fixture()
+                context = browser.new_context(service_workers='block'); page = context.new_page(); fixture = Fixture()
+                page.set_default_timeout(8000)
                 boot(page, fixture, url, False)
                 page.route('**/score-viewer.js', lambda r: r.fulfill(content_type='text/javascript', body='window.DynamicScore={open:async arg=>{window.__scoreTarget=arg}};'))
                 open_bar(page, '61–76'); page.get_by_label('休みの中の小節番号').fill('65')
@@ -305,7 +310,11 @@ def main():
                 page.wait_for_function('window.__scoreTarget !== undefined')
                 assert page.evaluate('window.__scoreTarget.bar') == 65
                 assert page.evaluate('window.__scoreTarget.mvt') == 'I'
-                results.append({'scenario': 'lazy-score-target', 'result': 'PASS'}); context.close()
+                results.append({'scenario': 'lazy-score-target', 'result': 'PASS'})
+                open_bar(page)
+                page.evaluate("window.scrollBy(0, 20)")
+                expect(page.locator('#ctx')).not_to_be_visible()
+                results.append({'scenario': 'menu-scroll-dismissal', 'result': 'PASS'}); context.close()
             report = {'mode': 'inline-offline' if args.offline else 'served-native-modules', 'browser': browser.version, 'results': results,
                       'limitations': 'Synthetic API; no live Google/Access/R2 writes. Offline harness does not verify native module loading or navigation.' if args.offline else 'Synthetic API; no live Google/Access/R2 writes. Full-score target contract is stubbed.'}
             (args.out / 'results.json').write_text(json.dumps(report, ensure_ascii=False, indent=2) + '\n')
