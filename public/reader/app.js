@@ -435,6 +435,7 @@
     if (!S.cond || !c.beats.length) return;
     const t = ctx.currentTime - (ctx.outputLatency || ctx.baseLatency || 0) - c.t0;
     const tip = condMod.tipAt(c.beats, t), b = c.beats[Math.max(0, tip.i)];
+    const nx = condMod.nextChange(c.beats, tip.i);
     const key = `${b.n}:${S.condMirror}`;
     if (key !== c.key) { c.key = key; condPattern(b.n); c.trail = []; }
     if (tip.i !== c.last) {
@@ -444,7 +445,6 @@
         vis.querySelector('.cv-in').textContent = `in ${b.n}`;
         vis.querySelector('.cv-count').textContent = b.pre ? '予備拍' : `${b.k + 1} / ${b.n}`;
         vis.querySelector('.cv-sub').textContent = `${COND_SRC[b.src]} · ${Math.round(60 / b.dur)}/分`;
-        const nx = condMod.nextChange(c.beats, tip.i);
         vis.querySelector('.cv-next').textContent = nx && nx.t - b.t < 8 ? `▸ ${nx.bar}小節から in ${nx.n}` : '';
         [...vis.querySelectorAll('.cv-marks text')].forEach((m, k) => m.classList.toggle('now', k === b.k));
         const q = condMod.ictus(b.n, b.k), ring = vis.querySelector('.cv-ring');
@@ -453,6 +453,16 @@
           { duration: Math.min(360, b.dur * 800), easing: 'ease-out' });
       }
     }
+    // Countdown gauge (HP-style): drains over the last 8 bars before the next
+    // pattern change; hidden otherwise (height reserved so the card never jumps).
+    const gauge = vis.querySelector('.cv-gauge'), barsToGo = nx ? nx.bar - b.bar : 0;
+    if (nx && barsToGo > 0 && barsToGo <= 8) {
+      const w0 = c.beats.find((x) => x.k === 0 && x.bar >= nx.bar - 8);
+      const win = nx.t - (w0 ? w0.t : c.st);
+      gauge.querySelector('.cv-gauge-fill').style.width =
+        `${(Math.max(0, Math.min(1, (nx.t - t) / (win || 0.001))) * 100).toFixed(1)}%`;
+      gauge.classList.add('on');
+    } else gauge.classList.remove('on');
     const tipEl = vis.querySelector('.cv-tip');
     tipEl.setAttribute('cx', condX(tip.x)); tipEl.setAttribute('cy', tip.y);
     c.trail.push(tip); if (c.trail.length > 9) c.trail.shift();

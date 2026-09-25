@@ -287,6 +287,9 @@ html.sv-open{overflow:hidden}
 .cv-count{font-weight:800;color:var(--mute);font-variant-numeric:tabular-nums}
 .cv-sub{color:var(--mute)}
 .cv-next{color:var(--bn);font-weight:800;min-height:1.35em}
+.cv-gauge{height:5px;margin-top:3px;border-radius:3px;background:#fbe7cd;visibility:hidden;overflow:hidden}
+.cv-gauge.on{visibility:visible}
+.cv-gauge-fill{display:block;height:100%;width:0;background:#e98a00;border-radius:3px}
 @media (max-width:1024px){.cond-btn{min-height:34px;padding:3px 7px}}
 @media (max-width:760px){.cond-btn{min-height:32px;padding:3px 6px}.cond-btn svg{width:18px;height:18px}.cond-vis{width:140px;padding:4px 8px 6px;font-size:11px}.cv-in{font-size:15px}}
 @media (prefers-reduced-motion:reduce){.metro-btn .mt-arm{transition:none}}
