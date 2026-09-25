@@ -17,7 +17,7 @@
 
   // ---------- settings (per viewer, optional) ----------
   const DEF = { rows: { w: true, f: false, s: false }, fontSize: 44, barPosition: 'bottom', sound: 's', tempo: 100, squeeze: true,
-    fromSel: true, follow: true, metro: false, lines: true, hornMode: 'double', hornSwitch: 69, hornFingeringStyle: 'circles', zoom: innerWidth < 760 ? 2.6 : 1 };
+    fromSel: true, follow: true, metro: false, metroMode: 'beat', metroVol: 0.7, metroCount: false, lines: true, hornMode: 'double', hornSwitch: 69, hornFingeringStyle: 'circles', zoom: innerWidth < 760 ? 2.6 : 1 };
   let S = structuredClone(DEF), storedSettings = {};
   try {
     storedSettings = JSON.parse(localStorage.getItem('dynamic-settings') || '{}');
@@ -32,6 +32,8 @@
     S.barPosition = 'bottom';
   }
   if (!['circles', 'dots'].includes(S.hornFingeringStyle)) S.hornFingeringStyle = DEF.hornFingeringStyle;
+  if (!['bar', 'beat', 'sub'].includes(S.metroMode)) S.metroMode = DEF.metroMode;
+  S.metroVol = Math.max(0.1, Math.min(1, Number(S.metroVol) || DEF.metroVol));
   const save = () => {
     if (PRINT) return;
     if (D) {
@@ -321,11 +323,6 @@
     o1.start(t0); o2.start(t0); o1.stop(t0 + d + 0.03); o2.stop(t0 + d + 0.03);
     return [o1, o2];
   }
-  function click(t0, accent) {
-    const o = ctx.createOscillator(), g = ctx.createGain();
-    o.frequency.value = accent ? 1600 : 1100; g.gain.setValueAtTime(0.12, t0); g.gain.exponentialRampToValueAtTime(0.001, t0 + 0.05);
-    o.connect(g); g.connect(master); o.start(t0); o.stop(t0 + 0.06); return [o];
-  }
   async function one(n, actualSound = true) {
     if (!n || n.unc) return;
     await audio(); voice(actualSound ? n.snd[2] : pitchOf(n), ctx.currentTime + 0.02, 0.85);
@@ -373,18 +370,56 @@
       const empty = !ids.length;
       if (empty && S.squeeze && prevEmpty) continue;
       prevEmpty = empty; const s = spw / tf;
-      ev.push({ m: 1, bar, ds, t });
+      ev.push({ m: 1, bar, ds, t, len, s });
       for (const id of ids) { const n = byId.get(id); ev.push({ id, t: t + n.off * s, d: n.dur * s, ds }); }
       t += len * s;
     }
     return { ev, total: t };
   }
+  // ---------- metronome (metronome.mjs; clicks are scheduled just ahead, so settings apply live) ----------
+  let metroMod = null, metroOut = null;
+  const metroSettings = () => ({ on: S.metro, mode: S.metroMode, vol: S.metroVol });
+  const NOTE_SIGN = { 0.25: '♩', 0.125: '♪' };
+  function metroFrame() {
+    if (!playing || !playing.metro) return;
+    playing.raf = requestAnimationFrame(metroFrame);
+    const b = playing.metro.current(ctx.currentTime - (ctx.outputLatency || ctx.baseLatency || 0));
+    const vis = $('metroVis'), show = S.metro || !!(b && b.ci);
+    vis.hidden = !show;
+    if (!b || !show || b.index === playing.beat) return;
+    playing.beat = b.index;
+    const dots = vis.querySelector('.mt-dots');
+    if (dots.childElementCount !== b.n) dots.innerHTML = b.n > 12 ? '<i class="mt-num"></i>' : '<i></i>'.repeat(b.n);
+    if (b.n > 12) dots.firstChild.textContent = `${b.k + 1}/${b.n}`;
+    else [...dots.children].forEach((d, i) => { d.className = i === b.k ? (b.k === 0 ? 'on down' : 'on') : i === 0 ? 'down-slot' : ''; });
+    const lit = b.n > 12 ? dots.firstChild : dots.children[b.k];
+    lit.animate?.([{ transform: 'scale(1.55)' }, { transform: 'scale(1)' }], { duration: Math.min(220, b.dur * 700), easing: 'ease-out' });
+    vis.classList.toggle('ci', !!b.ci);
+    vis.querySelector('.mt-bpm').textContent = b.ci ? `カウント ${b.left}` : `${NOTE_SIGN[b.unit] || '拍'}=${Math.round(60 / b.dur)}`;
+    const arm = $('metroBtn').querySelector('.mt-arm');
+    arm.style.transitionDuration = `${Math.min(1.2, b.dur).toFixed(3)}s`;
+    arm.style.transform = `rotate(${b.index % 2 ? 16 : -16}deg)`;
+  }
+  function syncMetro() {
+    const b = $('metroBtn'); b.setAttribute('aria-pressed', String(!!S.metro)); b.classList.toggle('on', !!S.metro);
+    $('metro').checked = !!S.metro; $('metroMode').value = S.metroMode; $('metroVol').value = S.metroVol; $('metroCount').checked = !!S.metroCount;
+    if (playing && playing.metro && !S.metro) $('metroVis').hidden = true;
+  }
+  function setMetro(on) { S.metro = on; save(); syncMetro(); }
+
   async function play() {
     stop(); await audio();
+    if (!metroMod) {
+      try { metroMod = await import('./metronome.mjs'); } catch (e) { metroMod = null; /* play without metronome */ }
+    }
+    if (!metroOut && metroMod) { metroOut = ctx.createGain(); metroOut.gain.value = 0.9; metroOut.connect(ctx.destination); }
+    if (playing) return;
     const mv = currentMvt; const { ev, total } = timeline(mv);
     let st = 0;
     if (S.fromSel && cur && byId.get(cur).mvt === mv) { const e = ev.find((x) => x.id === cur); if (e) st = e.t; }
-    const t0 = ctx.currentTime + 0.15 - st, osc = [], timers = [];
+    const beats = metroMod ? metroMod.beatGrid(ev.filter((e) => e.m), st, { countIn: S.metro && S.metroCount }) : [];
+    const lead = beats.length && beats[0].ci ? st - beats[0].t : 0;
+    const t0 = ctx.currentTime + 0.15 + lead - st, osc = [], timers = [];
     const ne = ev.filter((e) => !e.m && e.t >= st - 1e-6);
     for (let i = 0; i < ne.length; i++) {
       const e = ne[i], n = byId.get(e.id);
@@ -398,7 +433,6 @@
     }
     for (const e of ev) {
       if (e.t < st - 1e-6) continue;
-      if (e.m && S.metro) osc.push(...click(t0 + e.t, true));
       const ms = (t0 + e.t - ctx.currentTime) * 1000;
       timers.push(setTimeout(() => {
         if (e.m) $('barNow').textContent = `${mvLabel(mv)} ${e.bar}小節${e.ds ? '（D.S.後）' : ''}`;
@@ -406,11 +440,19 @@
       }, Math.max(0, ms)));
     }
     timers.push(setTimeout(stop, (t0 + total - ctx.currentTime) * 1000 + 300));
-    playing = { osc, timers }; $('play').textContent = '■ 停止'; $('play').classList.add('on');
+    playing = { osc, timers, beat: -1 }; $('play').textContent = '■ 停止'; $('play').classList.add('on');
+    if (metroMod) {
+      playing.metro = metroMod.createScheduler(ctx, metroOut, beats, t0, metroSettings);
+      document.body.classList.add('metro-playing');
+      metroFrame();
+    }
   }
   function stop() {
     if (!playing) return;
     playing.timers.forEach(clearTimeout); playing.osc.forEach((o) => { try { o.stop(); } catch (e) { /* ignore */ } });
+    if (playing.metro) { playing.metro.stop(); cancelAnimationFrame(playing.raf); }
+    $('metroVis').hidden = true; document.body.classList.remove('metro-playing');
+    const arm = $('metroBtn').querySelector('.mt-arm'); arm.style.transitionDuration = '.3s'; arm.style.transform = '';
     playing = null; emit('silence'); $('play').textContent = '▶ 再生'; $('play').classList.remove('on'); $('barNow').textContent = '';
   }
 
@@ -453,7 +495,8 @@
     $('fontSize').value = S.fontSize; $('fontSizeV').textContent = `${S.fontSize}px`;
     document.querySelectorAll('[data-bar-pos]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.barPos === S.barPosition)));
     $('sound').value = S.sound; $('tempo').value = S.tempo; $('tempoV').textContent = S.tempo + '%';
-    for (const k of ['squeeze', 'fromSel', 'follow', 'metro', 'lines']) $(k).checked = !!S[k];
+    for (const k of ['squeeze', 'fromSel', 'follow', 'lines']) $(k).checked = !!S[k];
+    syncMetro();
     $('hornMode').value = S.hornMode; $('hornSwitch').value = String(S.hornSwitch); $('hornSwitch').disabled = S.hornMode !== 'double';
     document.querySelectorAll('[name="fingeringStyle"]').forEach((r) => { r.checked = r.value === S.hornFingeringStyle; });
   }
@@ -596,7 +639,12 @@
       if (!r.checked) return;
       S.hornFingeringStyle = r.value; refingering();
     }));
-    for (const k of ['squeeze', 'fromSel', 'follow', 'metro']) $(k).onchange = () => { S[k] = $(k).checked; save(); };
+    for (const k of ['squeeze', 'fromSel', 'follow']) $(k).onchange = () => { S[k] = $(k).checked; save(); };
+    $('metroBtn').onclick = () => setMetro(!S.metro);
+    $('metro').onchange = () => setMetro($('metro').checked);
+    $('metroMode').onchange = () => { S.metroMode = $('metroMode').value; save(); };
+    $('metroVol').oninput = () => { S.metroVol = +$('metroVol').value; save(); };
+    $('metroCount').onchange = () => { S.metroCount = $('metroCount').checked; save(); };
     $('lines').onchange = () => { S.lines = $('lines').checked; document.body.classList.toggle('nolines', !S.lines); save(); };
     $('practicePlay').onclick = () => {
       const n = byId.get(Number($('practice').dataset.noteId)); if (!n) return;
@@ -611,6 +659,7 @@
       if (e.key === ' ' && !e.target.closest('.note') && !e.target.matches('button')) { e.preventDefault(); $('play').click(); }
       else if (e.key === 'ArrowRight') { e.preventDefault(); $('next').click(); }
       else if (e.key === 'ArrowLeft') { e.preventDefault(); $('prev').click(); }
+      else if ((e.key === 'm' || e.key === 'M') && !e.metaKey && !e.ctrlKey && !e.altKey) { e.preventDefault(); $('metroBtn').click(); }
     });
   }
 
