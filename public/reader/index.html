@@ -29,6 +29,7 @@
     </div>
     <form id="jump" class="jump"><input id="jumpBar" type="number" inputmode="numeric" min="1" placeholder="小節" aria-label="小節番号"><button>移動</button></form>
     <button id="scoreBtn" type="button" title="選んだ小節の総譜を開く" aria-haspopup="dialog">総譜</button>
+    <button id="tb3dBtn" type="button" class="ghost" hidden aria-pressed="false" aria-controls="tb3d" title="選んだ音のスライドポジションを3Dの奏者で見る">3D奏者</button>
     <label class="fsize">譜読み字 <input id="fontSize" type="range" min="26" max="72" step="2" value="44"><output id="fontSizeV">44</output></label>
     <div class="barpos" role="group" aria-label="小節番号の位置"><span>小節番号</span><button type="button" data-bar-pos="bottom" aria-pressed="true" aria-label="小節番号を下に表示">下</button><button type="button" data-bar-pos="top" aria-pressed="false" aria-label="小節番号を上に表示">上</button><button type="button" data-bar-pos="off" aria-pressed="false" aria-label="小節番号を非表示">オフ</button></div>
     <label class="tempo">テンポ <input id="tempo" type="range" min="40" max="140" step="5" value="100"><output id="tempoV">100%</output></label>
@@ -63,6 +64,17 @@
 
 <main id="score" class="score" tabindex="-1"></main>
 
+<section id="tb3d" class="tb3d" hidden aria-label="3Dトロンボーン奏者">
+  <div class="tb3d-h">
+    <span class="tb3d-pos"><small>ポジション</small><b id="tb3dPos">–</b></span>
+    <span id="tb3dNote" class="tb3d-note" aria-live="polite"></span>
+    <span class="tb3d-views" role="group" aria-label="視点"><button type="button" data-tbview="angle" aria-pressed="true">斜め</button><button type="button" data-tbview="side" aria-pressed="false">横</button><button type="button" data-tbview="front" aria-pressed="false">正面</button></span>
+    <button id="tb3dClose" type="button" class="ghost" aria-label="3D奏者を閉じる">×</button>
+  </div>
+  <div class="tb3d-stage"><canvas id="tb3dCanvas" aria-label="選んだ音のスライドポジションで構える3Dトロンボーン奏者。ドラッグで回転、ホイールで拡大縮小"></canvas><p id="tb3dMsg" class="tb3d-msg">3Dを読み込み中…</p></div>
+  <p class="tb3d-fine">スライド位置は理想管長からの目安です（第1→第7で約57cm）。実際の位置は楽器・音域・音程の調整で変わります。</p>
+</section>
+
 <dialog id="info" class="info">
   <form method="dialog">
     <h2>この譜読みについて</h2>
@@ -77,6 +89,7 @@
       <li>上部スライダーで譜読み字の大きさを変更し、小節番号は下・上・オフを切り替えられます。</li>
       <li>設定でF管の読み替えや実音の行、通し再生の音を切り替えられます。</li>
       <li>練習メモ（対応パートのみ）：右上の「メモ」を押して譜面の場所をタップ、または空白をダブルクリック／ダブルタップすると、その場所にメモを書けます。未ログインならGoogleログインを案内し、ログイン後はアカウントを確認してから譜面に戻ります。</li>
+      <li>トロンボーンのパートでは「3D奏者」を押すと、選んだ音・再生中の音のポジションへスライドを動かす3Dの奏者が表示されます（ドラッグで回転）。ポジションは目安で、原譜の指示ではありません。</li>
       <li>ホルンは設定の「運指」行をオンにすると、F管の読みから求めた運指の目安（1＝人差し指、2＝中指、3＝薬指、0＝開放、4＝親指レバーでB♭側。例：412）を表示します。運指はヤマハとGONLOGの運指表に基づきます。フルダブル／F管シングルを選べ、B♭側を先に出す音の高さも変えられます。原譜の指示や奏者の確認済み運指ではありません。</li>
     </ul>
     <p class="fine">合成音は録音と同期していません。原譜PDFはこのサイトに含めていません。</p>

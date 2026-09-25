@@ -17,7 +17,7 @@
 
   // ---------- settings (per viewer, optional) ----------
   const DEF = { rows: { w: true, f: false, s: false }, fontSize: 44, barPosition: 'bottom', sound: 's', tempo: 100, squeeze: true,
-    fromSel: true, follow: true, metro: false, lines: true, hornMode: 'double', hornSwitch: 69, zoom: innerWidth < 760 ? 2.6 : 1 };
+    fromSel: true, follow: true, metro: false, lines: true, hornMode: 'double', hornSwitch: 69, player3d: false, zoom: innerWidth < 760 ? 2.6 : 1 };
   let S = structuredClone(DEF), storedSettings = {};
   try {
     storedSettings = JSON.parse(localStorage.getItem('dynamic-settings') || '{}');
@@ -209,7 +209,8 @@
     el.classList.add('on'); const sec = el.closest('.sys'); sec.classList.add('cur');
     if (scroll) {
       const r = sec.getBoundingClientRect(), top = $('bar').getBoundingClientRect().bottom;
-      if (r.top < top + 4 || r.bottom > innerHeight - 10) sec.scrollIntoView({ block: 'center', behavior: 'smooth' });
+      const bottom = S.player3d && !$('tb3d').hidden ? $('tb3d').getBoundingClientRect().top : innerHeight;  // keep the note above the 3D panel
+      if (r.top < top + 4 || r.bottom > bottom - 10) sec.scrollIntoView({ block: S.player3d && !$('tb3d').hidden ? 'start' : 'center', behavior: 'smooth' });
     }
     const sc = el.closest('.sc'), n = byId.get(id), sy = D.systems[n.s];
     if (sc.scrollWidth > sc.clientWidth + 4) {
@@ -223,6 +224,7 @@
     $('nowW').innerHTML = `${esc(n.w[0])}<sup>${n.w[1]}</sup>${n.old ? '<small>※</small>' : ''}`;
     if (D.instrument === 'trombone') {
       $('nowF').innerHTML = `ポジション ${n.pos ?? '–'}`; $('nowS').innerHTML = '';
+      tb3dShow(n);
     } else {
       $('nowF').innerHTML = S.rows.f || D.showF ? `F管 ${esc(n.f[0])}<sup>${n.f[1]}</sup>` : '';
       $('nowS').innerHTML = `実音 ${esc(n.snd[0])}<sup>${n.snd[1]}</sup>`;
@@ -264,12 +266,14 @@
   async function one(n, actualSound = true) {
     if (!n || n.unc) return;
     await audio(); voice(actualSound ? n.snd[2] : pitchOf(n), ctx.currentTime + 0.02, 0.85);
+    tb3d?.sound(0.85);
   }
 
   function stopPractice() {
     clearTimeout(practiceTimer); practiceTimer = null;
     practiceOsc.forEach((o) => { try { o.stop(); } catch (e) { /* already stopped */ } });
     practiceOsc = [];
+    tb3d?.silence();
     const button = $('practicePlay');
     if (button) { button.textContent = '▶ ロングトーン'; button.classList.remove('on'); }
   }
@@ -279,6 +283,7 @@
     if (!$('practice').open || Number($('practice').dataset.noteId) !== n.id) return;
     const seconds = Number($('practiceDuration').value) || 4;
     practiceOsc = voice(n.snd[2], ctx.currentTime + 0.02, seconds);
+    tb3d?.sound(seconds);
     $('practicePlay').textContent = '■ 停止'; $('practicePlay').classList.add('on');
     practiceTimer = setTimeout(stopPractice, seconds * 1000 + 120);
   }
@@ -326,6 +331,11 @@
       let d = e.d, j = i;
       while (j + 1 < ne.length && !byId.get(ne[j + 1].id).unc && byId.get(ne[j + 1].id).tie) { j++; d = ne[j].t + ne[j].d - e.t; }
       osc.push(...voice(pitchOf(n), t0 + e.t, Math.max(0.05, d * 0.93)));
+      if (tb3d && tb3dOn()) {           // the slide arrives a moment before the note; sound shows from the bell
+        const ms = (t0 + e.t - ctx.currentTime) * 1000, len = Math.max(0.05, d * 0.93);
+        timers.push(setTimeout(() => tb3d?.setPosition(n.pos), Math.max(0, ms - TB3D_LEAD_MS)));
+        timers.push(setTimeout(() => tb3d?.sound(len), Math.max(0, ms)));
+      }
     }
     for (const e of ev) {
       if (e.t < st - 1e-6) continue;
@@ -342,7 +352,44 @@
   function stop() {
     if (!playing) return;
     playing.timers.forEach(clearTimeout); playing.osc.forEach((o) => { try { o.stop(); } catch (e) { /* ignore */ } });
-    playing = null; $('play').textContent = '▶ 再生'; $('play').classList.remove('on'); $('barNow').textContent = '';
+    playing = null; tb3d?.silence(); $('play').textContent = '▶ 再生'; $('play').classList.remove('on'); $('barNow').textContent = '';
+  }
+
+  // ---------- 3D trombone player (trombone parts only; three.js loads on first use) ----------
+  const TB3D_LEAD_MS = 90;
+  let tb3d = null, tb3dLoading = null;
+  const tb3dOn = () => !!(D && D.instrument === 'trombone' && S.player3d && !PRINT);
+  function tb3dShow(n) {
+    if (!tb3dOn()) return;
+    $('tb3dPos').textContent = n.pos ?? '–';
+    $('tb3dNote').textContent = `${n.w[0]}${n.w[1]} · ${mvLabel(n.mvt)} ${n.bar}小節`;
+    tb3d?.setPosition(n.pos);
+  }
+  async function setTb3d(on) {
+    S.player3d = !!on; save();
+    $('tb3dBtn').setAttribute('aria-pressed', String(S.player3d));
+    $('tb3d').hidden = !S.player3d;
+    document.body.classList.toggle('tb3d-open', S.player3d);
+    if (!S.player3d) { tb3d?.stop(); return; }
+    const n = cur && byId.get(cur);
+    if (n) tb3dShow(n);
+    if (!tb3d) {
+      $('tb3dMsg').hidden = false; $('tb3dMsg').textContent = '3Dを読み込み中…';
+      try {
+        tb3dLoading = tb3dLoading || import('./trombone3d.js');
+        const mod = await tb3dLoading;
+        tb3d = tb3d || mod.createTrombonePlayer($('tb3dCanvas'));
+        $('tb3dMsg').hidden = true;
+      } catch (e) {
+        tb3dLoading = null;
+        $('tb3dMsg').textContent = '3D表示を開始できませんでした（WebGLが使えるブラウザで開いてください）。';
+        return;
+      }
+    }
+    if (!tb3dOn()) return;
+    const m = cur && byId.get(cur);
+    if (m) tb3d.setPosition(m.pos, { immediate: true });
+    tb3d.start();
   }
 
   // ---------- movements / jump ----------
@@ -461,6 +508,13 @@
       const g = e.target.closest('.note'); if (g && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); select(+g.dataset.id, { sound: true, scroll: false }); }
     });
     $('play').onclick = () => (playing ? stop() : play());
+    $('tb3dBtn').onclick = () => setTb3d(!S.player3d);
+    $('tb3dClose').onclick = () => { setTb3d(false); $('tb3dBtn').focus(); };
+    document.querySelectorAll('[data-tbview]').forEach((b) => b.addEventListener('click', () => {
+      tb3d?.setView(b.dataset.tbview);
+      document.querySelectorAll('[data-tbview]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+    }));
+    document.addEventListener('visibilitychange', () => { if (!tb3d) return; if (document.hidden || !tb3dOn()) tb3d.stop(); else tb3d.start(); });
     $('one').onclick = () => { if (cur) one(byId.get(cur)); else select(D.notes[0].id, { sound: true }); };
     $('prev').onclick = () => select(Math.max(1, (cur || 2) - 1), { sound: true });
     $('next').onclick = () => select(Math.min(D.notes.length, (cur || 0) + 1), { sound: true });
@@ -547,9 +601,11 @@
     $('mvts').innerHTML = D.movements.map((m) => `<button role="tab" data-k="${m.key}" aria-selected="false">${esc(mvLabel(m.key))}</button>`).join('');
     $('mvts').querySelectorAll('button').forEach((b) => { b.onclick = () => setMvt(b.dataset.k, true); });
     $('infoBody').innerHTML = `<p><b>${esc(D.work)}</b> · ${esc(D.part)}</p><p><span class="badge">要確認あり・第三者監査前</span> ${esc(D.status)}</p><ul class="lim">${D.limitations.map((l) => `<li>${esc(l)}</li>`).join('')}</ul>`;
+    $('tb3dBtn').hidden = D.instrument !== 'trombone' || PRINT;
     syncControls(); wire(); renderScore(); setMvt(D.movements[0].key, false);
+    if (tb3dOn()) setTb3d(true);
     if (PRINT) document.body.classList.add('print');
-    window.__dynamic = { data: D, timeline, select, get cur() { return cur; }, get playing() { return !!playing; }, jumpTo,
+    window.__dynamic = { data: D, timeline, select, get cur() { return cur; }, get playing() { return !!playing; }, get player3d() { return tb3d; }, jumpTo,
       openScore,
       ext: { part: PART, print: PRINT, esc, segRange, mvNum: MV_NUM, stop, setMvt, rerender: renderScore, addSvgHook: (f) => { svgHooks.push(f); } } };
     document.dispatchEvent(new Event('dynamic:ready'));
