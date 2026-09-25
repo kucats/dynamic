@@ -275,8 +275,9 @@
     el.classList.add('on'); const sec = el.closest('.sys'); sec.classList.add('cur');
     if (scroll) {
       const r = sec.getBoundingClientRect(), top = $('bar').getBoundingClientRect().bottom;
+      const cv = $('condVis'), cover = cv && !cv.hidden ? Math.max(0, cv.getBoundingClientRect().bottom - top) : 0;
       const overlay = parseFloat(getComputedStyle(document.body).getPropertyValue('--overlay-bottom')) || 0;   // e.g. an add-on panel
-      if (r.top < top + 4 || r.bottom > innerHeight - overlay - 10) sec.scrollIntoView({ block: overlay ? 'start' : 'center', behavior: 'smooth' });
+      if (r.top < top + cover + 4 || r.bottom > innerHeight - overlay - 10) sec.scrollIntoView({ block: overlay && !cover ? 'start' : 'center', behavior: 'smooth' });
     }
     const sc = el.closest('.sc'), n = byId.get(id), sy = D.systems[n.s];
     if (sc.scrollWidth > sc.clientWidth + 4) {
