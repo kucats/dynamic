@@ -220,3 +220,43 @@ html.sv-open{overflow:hidden}
 .ctx-range{display:flex;gap:8px;align-items:center;padding:8px 12px;font-size:14px}
 .ctx-range input{width:6em;min-width:0;min-height:36px;font:inherit;padding:4px 8px}
 .ctx-actions{display:flex;flex-direction:column;gap:2px}
+
+/* metronome (toggle beside ▶, beat dots in the now row while playing) */
+.metro-btn{display:inline-grid;place-items:center;padding:4px 8px}
+.metro-btn svg{display:block;overflow:visible}
+.metro-btn .mt-body{fill:#eef5ff;stroke:var(--mute);stroke-width:1.6;stroke-linejoin:round}
+.metro-btn .mt-face{stroke:var(--mute);stroke-width:1.2;opacity:.5}
+.metro-btn .mt-arm{stroke:var(--ink);stroke-width:1.8;stroke-linecap:round;fill:var(--ink);transform-origin:12px 17.6px;transform-box:view-box;transition:transform .3s ease-in-out}
+.metro-btn.on{background:var(--blue);border-color:var(--blue);box-shadow:0 3px 10px #0f7cf640}
+.metro-btn.on .mt-body{fill:#fff3;stroke:#fff}
+.metro-btn.on .mt-face{stroke:#fff}
+.metro-btn.on .mt-arm{stroke:#fff;fill:#fff}
+.metro-vis{display:inline-flex;align-items:center;gap:8px;margin-left:auto;padding:2px 10px 2px 8px;border-radius:999px;background:#eef5ff;border:1px solid #cfe2fa;align-self:center;white-space:nowrap}
+.metro-vis[hidden]{display:none}
+.mt-dots{display:inline-flex;align-items:center;gap:5px}
+.mt-dots i{display:block;width:11px;height:11px;border-radius:50%;background:#fff;border:1.5px solid #9dbfe6;transition:background .08s,border-color .08s}
+.mt-dots i.down-slot{border-color:#f0b35c}
+.mt-dots i.on{background:var(--blue);border-color:var(--blue)}
+.mt-dots i.on.down{background:var(--hl);border-color:#e98a00;width:14px;height:14px}
+.mt-dots .mt-num{width:auto;height:auto;border:0;background:none;font:800 12px system-ui,sans-serif;color:var(--blue);font-style:normal}
+.mt-bpm{font-size:13px;font-weight:800;color:var(--blue);font-variant-numeric:tabular-nums;min-width:4.2em}
+.metro-vis.ci{background:#fff3d6;border-color:#f5d08c}
+.metro-vis.ci .mt-bpm{color:var(--bn)}
+.metro-vis.ci .mt-dots i.on{background:var(--bn);border-color:var(--bn)}
+.metro-set kbd{font:700 11px system-ui,sans-serif;border:1px solid #c5d4e4;border-bottom-width:2px;border-radius:5px;padding:0 4px;color:var(--mute)}
+.metro-vol input{width:96px;accent-color:var(--blue)}
+@media (max-width:1024px){
+  .metro-btn{min-height:34px;padding:3px 7px}
+  .metro-vis{flex:0 0 auto;padding:1px 8px 1px 6px;gap:6px}
+  body.metro-playing .ni{display:none}
+  #setBtn{flex:0 0 auto;white-space:nowrap}
+  .mt-dots i{width:9px;height:9px}.mt-dots i.on.down{width:12px;height:12px}.mt-bpm{font-size:12px}
+}
+@media (max-width:760px){
+  .metro-btn{min-height:32px;padding:3px 6px}
+  .metro-btn svg{width:18px;height:18px}
+  .mt-dots{gap:4px}.mt-dots i{width:8px;height:8px}.mt-dots i.on.down{width:10px;height:10px}
+  .mt-bpm{font-size:11px;min-width:3.6em}
+}
+@media (prefers-reduced-motion:reduce){.metro-btn .mt-arm{transition:none}}
+@media print{.metro-vis,.metro-btn{display:none!important}}

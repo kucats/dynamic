@@ -1,9 +1,9 @@
 /* DYNAMIC offline cache: stale-while-revalidate for same-origin GET requests */
-const CACHE = 'dynamic-v8';
+const CACHE = 'dynamic-v9';
 // Full-score page images are cached only after a viewer has opened them, in their own bounded cache.
 const SCORE_CACHE = 'dynamic-score-v1';
 const SCORE_MAX = 120;
-const SHELL = ['./', 'app.js', 'app.css', 'catalog.json', 'reader/', 'reader/app.js', 'reader/app.css', 'reader/parts.json', 'reader/horn-fingerings.json', 'reader/memo.js', 'reader/memo-model.mjs', 'reader/memo.css', 'assets/dynamic-icon.svg', 'assets/dynamic-logo.svg', 'assets/instrument-horn.png', 'assets/instrument-trombone.png', 'manifest.webmanifest'];
+const SHELL = ['./', 'app.js', 'app.css', 'catalog.json', 'reader/', 'reader/app.js', 'reader/app.css', 'reader/parts.json', 'reader/horn-fingerings.json', 'reader/memo.js', 'reader/memo-model.mjs', 'reader/memo.css', 'reader/metronome.mjs', 'assets/dynamic-icon.svg', 'assets/dynamic-logo.svg', 'assets/instrument-horn.png', 'assets/instrument-trombone.png', 'manifest.webmanifest'];
 self.addEventListener('install', (e) => { e.waitUntil(caches.open(CACHE).then((c) => c.addAll(SHELL)).then(() => self.skipWaiting())); });
 self.addEventListener('activate', (e) => {
   e.waitUntil(caches.keys().then((ks) => Promise.all(ks.filter((k) => k !== CACHE && k !== SCORE_CACHE).map((k) => caches.delete(k)))).then(() => self.clients.claim()));
