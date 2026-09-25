@@ -23,6 +23,7 @@ button:focus-visible,input:focus-visible,select:focus-visible,.note:focus-visibl
 .tuner-btn{display:inline-flex;align-items:center;gap:5px}  /* tuner-addon.js; icon only on phones */
 .tuner-btn svg{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .tuner-btn[aria-pressed=true]{background:var(--ink);border-color:var(--ink);color:#fff}
+.tb3d-launch{font-weight:800;min-width:40px;white-space:nowrap}
 .bar{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);box-shadow:0 4px 16px #10233d12}
 .row1{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:8px 16px}
 .grp{display:flex;gap:4px}
