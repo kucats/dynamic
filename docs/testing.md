@@ -10,6 +10,8 @@ Run from the repository root with Python 3.11 or later. Catalog commands operate
 | Fuyomi CLI | `python3 -m tools.fuyomi --help` | Shows standalone commands without importing vEdit |
 | Python syntax | `python3 -m compileall -q tools tests` | No syntax errors |
 | Player JavaScript | `node --check tools/fuyomi/player.js` | No syntax errors |
+| DYNAMIC workflow | `python3 -m unittest discover -s tests -p 'test_dynamic_workflow.py' -v` | Stage transitions, semantic invalidation, source hashes, fencing, atomic writes, independent-audit gates and conservative legacy inventory pass |
+| DYNAMIC workflow readiness | `python3 tools/dynamic/workflow.py check <part-dir> --require-audited` | Fails closed until all source-bound page audits are current; does not publish |
 | DYNAMIC reader data | `python3 tools/dynamic/validate_reader.py` | Notes sit in numbered bars, timelines cover all notes, no path leaks |
 | DYNAMIC reader JavaScript | `node --check public/reader/app.js && node --check public/reader/memo.js && node --check public/reader/memo-model.mjs && node --check public/reader/score-viewer.js && node --check public/reader/trombone3d.js && node --check public/reader/trombone3d-addon.js && node --check public/sw.js` | No syntax errors |
 | Reader anchors + 3D trombone kinematics | `node --test tests/reader/*.test.mjs` | Measure anchors, legacy memo fallback, slide extensions, constant arm bones, reach and bell landmarks pass |

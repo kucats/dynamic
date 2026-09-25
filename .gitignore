@@ -27,3 +27,7 @@ __pycache__/
 
 # DYNAMIC pipeline scratch (rendered source pages, overlays)
 work/
+
+# DYNAMIC workflow local locks / atomic-write scratch
+.workflow.lock
+.workflow-*.tmp

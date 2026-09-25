@@ -30,6 +30,15 @@ The Fuyomi engine is ported into this repository and must run without importing 
 - 3D trombone player is a detachable toy add-on (`public/reader/trombone3d-addon.js` + `trombone3d.*`, see `docs/trombone-3d.md`). It uses only `__dynamic.ext.addNoteHook`, fetches nothing until its button is pressed, and never infers positions from pitch.
 - Deployment publishes `public/` as static assets; `worker/index.js` runs only for `/login`, `/logout`, and `/api/*` (Access login and per-user practice memos, see `docs/reader-memos.md`). Practice memos are personal notes in R2, never audit evidence or reader data.
 
+## DYNAMIC staged workflow (opt-in)
+
+- New tracked transcription uses `tools/dynamic/workflow.py` and `docs/dynamic-workflow.md`: source → bars → pitch → rhythm → independent audit. Freeze the part-wide bar map before pitch work.
+- The historical `tools/dynamic/RUNBOOK.md` describes how existing parts were built; its older pitch/rhythm/bars order is not the new state-transition contract. Existing tools do not automatically write workflow receipts.
+- Existing files and structural validation never imply completed work or independent audit. `status`/`next` are read-only; explicitly initialize and review a part before recording receipts.
+- Source completion checks the uncommitted PDF bytes. Keep private files and paths out of receipts. A receipt seal is not a signature or proof of reviewer independence.
+- Use claim tokens and explicit invalidation; stop superseded workers before touching shared JSON. The workflow lock protects receipts, not arbitrary artifact writers.
+- `check --require-audited` is an opt-in readiness check, not a deployment action. Existing public reader data and Fuyomi remain unchanged until a separately reviewed integration.
+
 ## Catalogs and reproducibility
 
 - `public/catalog.json` indexes composer/work guides and generated HTML/PDF; `project/catalog.json` indexes Fuyomi outputs and audit/playback states.
