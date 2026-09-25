@@ -62,10 +62,10 @@
   const emit = (type, detail) => { for (const f of noteHooks) { try { f(type, detail); } catch (e) { /* an add-on must not break the reader */ } } };
   // ---------- horn fingering aid (general chart, keyed by the F-horn written reading) ----------
   let FG = null;
-  function fingering(n) {           // [first choice, ...alternates]; B♭-side fingerings carry a leading 4
+  function fingering(n) {           // [first choice, ...alternates]; B♭-side fingerings carry a leading 0 (thumb lever)
     if (!FG || !n.f) return [];
     const m = String(n.f[2]), F = FG.sides.F[m] || [], B = FG.sides.Bb[m] || [];
-    const bb = B.map((v) => '4' + v), sw = Number(S.hornSwitch), low = FG.double.lowBb, keepF = FG.double.mostlyBbKeepF;
+    const bb = B.map((v) => '0' + v), sw = Number(S.hornSwitch), low = FG.double.lowBb, keepF = FG.double.mostlyBbKeepF;
     if (S.hornMode === 'F') return F;
     // switch 0 = B♭ nearly throughout (GONLOG); otherwise B♭ from the switch note up and in the low C♯3–F3 range (Yamaha)
     const pickBb = sw === 0 ? !keepF.includes(n.f[2]) : n.f[2] >= sw || (n.f[2] >= low[0] && n.f[2] <= low[1]);
@@ -75,26 +75,26 @@
   }
 
   function fingeringCodeHTML(value) {
-    const code = /^[0-4]+$/.test(String(value)) ? String(value) : '–';
+    const code = /^[0-3]+$/.test(String(value)) ? String(value) : '–';
     if (S.hornFingeringStyle === 'dots' && code !== '–') {
       const active = new Set(code.split(''));
-      return `<span class="fingering-dots" role="img" aria-label="運指 ${esc(code)}">${['4', '3', '2', '1'].map((v) => `<span class="fingering-dot${active.has(v) ? ' on' : ''}"><small>${v}</small><i></i></span>`).join('')}</span>`;
+      return `<span class="fingering-dots" role="img" aria-label="運指 ${esc(code)}">${['0', '3', '2', '1'].map((v) => `<span class="fingering-dot${active.has(v) ? ' on' : ''}"><small>${v}</small><i></i></span>`).join('')}</span>`;
     }
     if (code === '–') return '<span class="fingering-code-empty">–</span>';
     const shape = code.length === 1 ? ' fingering-code-single' : ' fingering-code-combo';
     return `<span class="fingering-code${shape}" role="img" aria-label="運指 ${esc(code)}">${esc(code)}</span>`;
   }
   function fingeringSVG(value, x, y, fs) {
-    const code = /^[0-4]+$/.test(String(value)) ? String(value) : '–';
+    const code = /^[0-3]+$/.test(String(value)) ? String(value) : '–';
     if (code === '–') return textRow('lv', [code, '', 0], x, y, fs);
     if (S.hornFingeringStyle === 'dots') {
-      const valves = ['4', '3', '2', '1'], active = new Set(code.split(''));
+      const valves = ['0', '3', '2', '1'], active = new Set(code.split(''));
       const step = fs * 0.34, r = fs * 0.12, total = step * (valves.length - 1), left = x - total / 2;
       const dots = valves.map((v, i) => {
         const dx = left + i * step, fill = active.has(v) ? ' lv-dot-on' : '';
         return `<text class="lv-dot-label" x="${dx.toFixed(1)}" y="${(y - fs * 0.55).toFixed(1)}" font-size="${Math.max(6, Math.round(fs * 0.22))}">${v}</text><circle class="lv-dot${fill}" cx="${dx.toFixed(1)}" cy="${(y - fs * 0.25).toFixed(1)}" r="${r.toFixed(1)}"/>`;
       }).join('');
-      return `<g class="lv-dotset" role="img" aria-label="運指 ${esc(code)}"><title>運指 ${esc(code)}（左から4・3・2・1。塗りつぶしが押す弁）</title>${dots}</g>`;
+      return `<g class="lv-dotset" role="img" aria-label="運指 ${esc(code)}"><title>運指 ${esc(code)}（左から0・3・2・1。塗りつぶしが押す弁）</title>${dots}</g>`;
     }
     const cy = y - fs * 0.34, ry = fs * 0.4, rx = code.length === 1 ? ry : fingeringCodeWidth(code, fs) / 2;
     const ring = `<ellipse class="lv-ring" cx="${x.toFixed(1)}" cy="${cy.toFixed(1)}" rx="${rx.toFixed(1)}" ry="${ry.toFixed(1)}"/>`;
