@@ -31,12 +31,12 @@
    "pitch": "A3",
    "clef": "treble",
    "bar": 34,
-   "dur": "1/2",
+   "dur": "3/8",
    "off": "0",
    "tie_from_prev": false,
    "sim": false,
    "cl_key": "A",
-   "uncertain": "auto-decode: verify dur/off"
+   "uncertain": "auto-decode: verify dur/off; dur clamped to meter (3/8 bar)"
   },
   {
    "sys": 1,
@@ -129,12 +129,12 @@
    "pitch": "A5",
    "clef": "treble",
    "bar": 37,
-   "dur": "1/2",
+   "dur": "3/8",
    "off": "0",
    "tie_from_prev": false,
    "sim": false,
    "cl_key": "A",
-   "uncertain": "auto-decode: verify dur/off"
+   "uncertain": "auto-decode: verify dur/off; dur clamped to meter (3/8 bar)"
   },
   {
    "sys": 1,
@@ -143,12 +143,12 @@
    "pitch": "G3",
    "clef": "treble",
    "bar": 38,
-   "dur": "1/2",
+   "dur": "3/8",
    "off": "0",
    "tie_from_prev": false,
    "sim": false,
    "cl_key": "A",
-   "uncertain": "auto-decode: verify dur/off"
+   "uncertain": "auto-decode: verify dur/off; dur clamped to meter (3/8 bar)"
   },
   {
    "sys": 1,
@@ -171,12 +171,12 @@
    "pitch": "D4",
    "clef": "treble",
    "bar": 38,
-   "dur": "1/2",
+   "dur": "3/8",
    "off": "0",
    "tie_from_prev": false,
    "sim": false,
    "cl_key": "A",
-   "uncertain": "auto-decode: verify dur/off"
+   "uncertain": "auto-decode: verify dur/off; dur clamped to meter (3/8 bar)"
   },
   {
    "sys": 1,
@@ -255,12 +255,12 @@
    "pitch": "A3",
    "clef": "treble",
    "bar": 40,
-   "dur": "1/2",
+   "dur": "3/8",
    "off": "0",
    "tie_from_prev": false,
    "sim": false,
    "cl_key": "A",
-   "uncertain": "auto-decode: verify dur/off"
+   "uncertain": "auto-decode: verify dur/off; dur clamped to meter (3/8 bar)"
   },
   {
    "sys": 1,
@@ -352,13 +352,13 @@
    "y": 832.2,
    "pitch": "E3",
    "clef": "treble",
-   "bar": 40,
+   "bar": 48,
    "dur": "1/8",
    "off": "0",
    "tie_from_prev": false,
    "sim": false,
    "cl_key": "A",
-   "uncertain": "auto-decode: verify dur/off"
+   "uncertain": "bar corrected to printed segment 48"
   },
   {
    "sys": 2,
@@ -367,12 +367,12 @@
    "pitch": "E6",
    "clef": "treble",
    "bar": 40,
-   "dur": "1/2",
+   "dur": "3/8",
    "off": "0",
    "tie_from_prev": false,
    "sim": false,
    "cl_key": "A",
-   "uncertain": "auto-decode: verify dur/off"
+   "uncertain": "auto-decode: verify dur/off; dur clamped to meter (3/8 bar)"
   },
   {
    "sys": 2,
@@ -493,12 +493,12 @@
    "pitch": "F5",
    "clef": "treble",
    "bar": 45,
-   "dur": "1/2",
+   "dur": "3/8",
    "off": "0",
    "tie_from_prev": false,
    "sim": false,
    "cl_key": "A",
-   "uncertain": "auto-decode: verify dur/off"
+   "uncertain": "auto-decode: verify dur/off; dur clamped to meter (3/8 bar)"
   },
   {
    "sys": 3,
@@ -507,12 +507,12 @@
    "pitch": "A4",
    "clef": "treble",
    "bar": 45,
-   "dur": "1/2",
+   "dur": "3/8",
    "off": "0",
    "tie_from_prev": false,
    "sim": false,
    "cl_key": "A",
-   "uncertain": "auto-decode: verify dur/off"
+   "uncertain": "auto-decode: verify dur/off; dur clamped to meter (3/8 bar)"
   },
   {
    "sys": 3,
@@ -535,12 +535,12 @@
    "pitch": "D4",
    "clef": "treble",
    "bar": 51,
-   "dur": "1/2",
+   "dur": "3/8",
    "off": "0",
    "tie_from_prev": false,
    "sim": false,
    "cl_key": "A",
-   "uncertain": "auto-decode: verify dur/off"
+   "uncertain": "auto-decode: verify dur/off; dur clamped to meter (3/8 bar)"
   },
   {
    "sys": 3,
@@ -605,12 +605,12 @@
    "pitch": "B3",
    "clef": "treble",
    "bar": 57,
-   "dur": "1/2",
+   "dur": "3/8",
    "off": "0",
    "tie_from_prev": false,
    "sim": false,
    "cl_key": "A",
-   "uncertain": "auto-decode: verify dur/off"
+   "uncertain": "auto-decode: verify dur/off; dur clamped to meter (3/8 bar)"
   },
   {
    "sys": 4,
@@ -675,12 +675,12 @@
    "pitch": "B3",
    "clef": "treble",
    "bar": 59,
-   "dur": "1/2",
+   "dur": "3/8",
    "off": "0",
    "tie_from_prev": false,
    "sim": false,
    "cl_key": "A",
-   "uncertain": "auto-decode: verify dur/off"
+   "uncertain": "auto-decode: verify dur/off; dur clamped to meter (3/8 bar)"
   },
   {
    "sys": 4,
@@ -717,12 +717,12 @@
    "pitch": "B5",
    "clef": "treble",
    "bar": 59,
-   "dur": "1/2",
+   "dur": "3/8",
    "off": "0",
    "tie_from_prev": false,
    "sim": false,
    "cl_key": "A",
-   "uncertain": "auto-decode: verify dur/off"
+   "uncertain": "auto-decode: verify dur/off; dur clamped to meter (3/8 bar)"
   },
   {
    "sys": 4,
@@ -731,12 +731,12 @@
    "pitch": "B3",
    "clef": "treble",
    "bar": 60,
-   "dur": "1/2",
+   "dur": "3/8",
    "off": "0",
    "tie_from_prev": false,
    "sim": false,
    "cl_key": "A",
-   "uncertain": "auto-decode: verify dur/off"
+   "uncertain": "auto-decode: verify dur/off; dur clamped to meter (3/8 bar)"
   },
   {
    "sys": 4,
@@ -829,12 +829,12 @@
    "pitch": "B3",
    "clef": "treble",
    "bar": 65,
-   "dur": "1/2",
+   "dur": "3/8",
    "off": "0",
    "tie_from_prev": false,
    "sim": false,
    "cl_key": "A",
-   "uncertain": "auto-decode: verify dur/off"
+   "uncertain": "auto-decode: verify dur/off; dur clamped to meter (3/8 bar)"
   },
   {
    "sys": 5,
@@ -913,12 +913,12 @@
    "pitch": "B3",
    "clef": "treble",
    "bar": 69,
-   "dur": "1/2",
+   "dur": "3/8",
    "off": "0",
    "tie_from_prev": false,
    "sim": false,
    "cl_key": "A",
-   "uncertain": "auto-decode: verify dur/off"
+   "uncertain": "auto-decode: verify dur/off; dur clamped to meter (3/8 bar)"
   },
   {
    "sys": 5,
@@ -955,12 +955,12 @@
    "pitch": "A3",
    "clef": "treble",
    "bar": 75,
-   "dur": "1/2",
+   "dur": "3/8",
    "off": "0",
    "tie_from_prev": false,
    "sim": false,
    "cl_key": "A",
-   "uncertain": "auto-decode: verify dur/off"
+   "uncertain": "auto-decode: verify dur/off; dur clamped to meter (3/8 bar)"
   },
   {
    "sys": 6,
@@ -1207,12 +1207,12 @@
    "pitch": "C5",
    "clef": "treble",
    "bar": 87,
-   "dur": "1/2",
+   "dur": "3/8",
    "off": "0",
    "tie_from_prev": false,
    "sim": false,
    "cl_key": "A",
-   "uncertain": "auto-decode: verify dur/off"
+   "uncertain": "auto-decode: verify dur/off; dur clamped to meter (3/8 bar)"
   },
   {
    "sys": 7,
@@ -1235,12 +1235,12 @@
    "pitch": "C5",
    "clef": "treble",
    "bar": 88,
-   "dur": "1/2",
+   "dur": "3/8",
    "off": "0",
    "tie_from_prev": false,
    "sim": false,
    "cl_key": "A",
-   "uncertain": "auto-decode: verify dur/off"
+   "uncertain": "auto-decode: verify dur/off; dur clamped to meter (3/8 bar)"
   },
   {
    "sys": 7,
@@ -1263,12 +1263,12 @@
    "pitch": "B4",
    "clef": "treble",
    "bar": 89,
-   "dur": "1/2",
+   "dur": "3/8",
    "off": "0",
    "tie_from_prev": false,
    "sim": false,
    "cl_key": "A",
-   "uncertain": "auto-decode: verify dur/off"
+   "uncertain": "auto-decode: verify dur/off; dur clamped to meter (3/8 bar)"
   },
   {
    "sys": 7,
@@ -1291,12 +1291,12 @@
    "pitch": "G5",
    "clef": "treble",
    "bar": 99,
-   "dur": "1/2",
+   "dur": "3/8",
    "off": "0",
    "tie_from_prev": false,
    "sim": false,
    "cl_key": "A",
-   "uncertain": "auto-decode: verify dur/off"
+   "uncertain": "auto-decode: verify dur/off; dur clamped to meter (3/8 bar)"
   },
   {
    "sys": 8,
@@ -1305,12 +1305,12 @@
    "pitch": "C6",
    "clef": "treble",
    "bar": 100,
-   "dur": "1/2",
+   "dur": "3/8",
    "off": "0",
    "tie_from_prev": false,
    "sim": false,
    "cl_key": "A",
-   "uncertain": "auto-decode: verify dur/off"
+   "uncertain": "auto-decode: verify dur/off; dur clamped to meter (3/8 bar)"
   },
   {
    "sys": 8,
@@ -1319,12 +1319,12 @@
    "pitch": "F5",
    "clef": "treble",
    "bar": 102,
-   "dur": "1/2",
+   "dur": "3/8",
    "off": "0",
    "tie_from_prev": false,
    "sim": false,
    "cl_key": "A",
-   "uncertain": "auto-decode: verify dur/off"
+   "uncertain": "auto-decode: verify dur/off; dur clamped to meter (3/8 bar)"
   },
   {
    "sys": 8,
@@ -1333,12 +1333,12 @@
    "pitch": "G5",
    "clef": "treble",
    "bar": 103,
-   "dur": "1/2",
+   "dur": "3/8",
    "off": "0",
    "tie_from_prev": false,
    "sim": false,
    "cl_key": "A",
-   "uncertain": "auto-decode: verify dur/off"
+   "uncertain": "auto-decode: verify dur/off; dur clamped to meter (3/8 bar)"
   },
   {
    "sys": 9,
@@ -1347,12 +1347,12 @@
    "pitch": "B3",
    "clef": "treble",
    "bar": 118,
-   "dur": "1/2",
+   "dur": "3/8",
    "off": "0",
    "tie_from_prev": false,
    "sim": false,
    "cl_key": "A",
-   "uncertain": "auto-decode: verify dur/off"
+   "uncertain": "auto-decode: verify dur/off; dur clamped to meter (3/8 bar)"
   },
   {
    "sys": 9,
@@ -1361,12 +1361,12 @@
    "pitch": "G3",
    "clef": "treble",
    "bar": 120,
-   "dur": "1/2",
+   "dur": "3/8",
    "off": "0",
    "tie_from_prev": false,
    "sim": false,
    "cl_key": "A",
-   "uncertain": "auto-decode: verify dur/off"
+   "uncertain": "auto-decode: verify dur/off; dur clamped to meter (3/8 bar)"
   },
   {
    "sys": 9,
@@ -1487,12 +1487,12 @@
    "pitch": "G5",
    "clef": "treble",
    "bar": 138,
-   "dur": "1/2",
+   "dur": "3/8",
    "off": "0",
    "tie_from_prev": false,
    "sim": false,
    "cl_key": "A",
-   "uncertain": "auto-decode: verify dur/off"
+   "uncertain": "auto-decode: verify dur/off; dur clamped to meter (3/8 bar)"
   },
   {
    "sys": 11,
@@ -1529,12 +1529,12 @@
    "pitch": "E3",
    "clef": "treble",
    "bar": 139,
-   "dur": "1/2",
+   "dur": "3/8",
    "off": "0",
    "tie_from_prev": false,
    "sim": false,
    "cl_key": "A",
-   "uncertain": "auto-decode: verify dur/off"
+   "uncertain": "bar corrected to printed segment 139"
   },
   {
    "sys": 11,
@@ -1542,13 +1542,13 @@
    "y": 3412.2,
    "pitch": "E3",
    "clef": "treble",
-   "bar": 139,
+   "bar": 146,
    "dur": "1/8",
    "off": "0",
    "tie_from_prev": false,
    "sim": false,
    "cl_key": "A",
-   "uncertain": "auto-decode: verify dur/off"
+   "uncertain": "bar corrected to printed segment 146"
   },
   {
    "sys": 11,

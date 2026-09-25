@@ -996,13 +996,13 @@
    "y": 1687.7,
    "pitch": "F6",
    "clef": "treble",
-   "bar": 65,
+   "bar": 57,
    "dur": "1/2",
    "off": "0",
    "tie_from_prev": false,
    "sim": false,
    "cl_key": "A",
-   "uncertain": "auto-decode: verify dur/off"
+   "uncertain": "bar corrected to rest-block segment 57-60"
   },
   {
    "sys": 6,

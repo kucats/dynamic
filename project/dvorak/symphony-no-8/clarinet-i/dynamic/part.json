@@ -1,75 +1,250 @@
 {
-  "id": "dvorak8-clarinet1",
-  "instrument": "clarinet",
-  "title": "ドヴォルザーク 交響曲第8番 クラリネット1番",
-  "subtitle": "第1〜4楽章 · 音名（CDEFGAH）＋実音",
-  "composer": "Antonín Dvořák",
-  "work": "Symphony No. 8 in G major, Op. 88",
-  "part": "Clarinetto I（in A / muta in B）",
-  "source": {
-    "file": "clarinet.pdf (user-supplied Google Drive file, not committed)",
-    "sha256": "af83e05b3228539d796637a6bcc01cc561629d6adbdf0204ef900ab4ba8b1bd5",
-    "pages": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+ "id": "dvorak8-clarinet1",
+ "instrument": "clarinet",
+ "title": "ドヴォルザーク 交響曲第8番 クラリネット1番",
+ "subtitle": "第1〜4楽章 · 音名（CDEFGAH）＋実音",
+ "composer": "Antonín Dvořák",
+ "work": "Symphony No. 8 in G major, Op. 88",
+ "part": "Clarinetto I（in A / muta in B）",
+ "source": {
+  "file": "clarinet.pdf (user-supplied Google Drive file, not committed)",
+  "sha256": "af83e05b3228539d796637a6bcc01cc561629d6adbdf0204ef900ab4ba8b1bd5",
+  "pages": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11
+  ]
+ },
+ "dpi": 300,
+ "default_cl_key": "A",
+ "movements": [
+  {
+   "key": "I",
+   "title": "第1楽章 Allegro con brio",
+   "last": 318,
+   "pages": [
+    1,
+    2,
+    3,
+    4
+   ],
+   "meters": [
+    [
+     1,
+     "4/4"
+    ]
+   ],
+   "tempos": [
+    [
+     1,
+     138
+    ],
+    [
+     127,
+     112
+    ],
+    [
+     143,
+     138
+    ],
+    [
+     239,
+     112
+    ],
+    [
+     251,
+     138
+    ]
+   ],
+   "conduct": [
+    [
+     1,
+     2
+    ]
+   ],
+   "conduct_note": "指揮の振り方はテンポ表示と拍子から決めた練習用の目安で、譜面に書かれた指示ではありません（指揮者によって変わります）。",
+   "cl_key": "A"
   },
-  "dpi": 300,
-  "default_cl_key": "A",
-  "movements": [
-    {
-      "key": "I",
-      "title": "第1楽章 Allegro con brio",
-      "last": 318,
-      "pages": [1, 2, 3, 4],
-      "meters": [[1, "4/4"]],
-      "tempos": [[1, 138], [239, 112], [250, 138]],
-      "conduct": [[1, 2]],
-      "conduct_note": "指揮の振り方はテンポ表示と拍子から決めた練習用の目安で、譜面に書かれた指示ではありません（指揮者によって変わります）。",
-      "cl_key": "A"
-    },
-    {
-      "key": "II",
-      "title": "第2楽章 Adagio",
-      "last": 170,
-      "pages": [4, 5, 6],
-      "meters": [[1, "4/4"]],
-      "tempos": [[1, 80]],
-      "conduct": [[1, 4]],
-      "conduct_note": "指揮の振り方はテンポ表示と拍子から決めた練習用の目安で、譜面に書かれた指示ではありません（指揮者によって変わります）。",
-      "cl_key": "Bb"
-    },
-    {
-      "key": "III",
-      "title": "第3楽章 Allegretto grazioso",
-      "last": 231,
-      "pages": [6, 7, 8],
-      "meters": [[1, "3/8"]],
-      "tempos": [[1, 50], [181, 80]],
-      "conduct": [[1, 1]],
-      "conduct_note": "指揮の振り方はテンポ表示と拍子から決めた練習用の目安で、譜面に書かれた指示ではありません（指揮者によって変わります）。",
-      "cl_key": "A"
-    },
-    {
-      "key": "IV",
-      "title": "第4楽章 Allegro ma non troppo",
-      "last": 389,
-      "pages": [9, 10, 11],
-      "meters": [[1, "2/4"]],
-      "tempos": [[1, 116], [30, 108], [56, 116], [84, 126], [93, 116], [250, 108], [316, 116], [339, 126], [355, 144]],
-      "conduct": [[1, 2], [84, 1], [339, 1]],
-      "conduct_note": "指揮の振り方はテンポ表示と拍子から決めた練習用の目安で、譜面に書かれた指示ではありません（指揮者によって変わります）。",
-      "cl_key": "A"
-    }
-  ],
-  "splits": [
-    {"page": 4, "first_system": 9, "movement": "II", "note": "page 4: mvt I ends at system 8 (bar 318); 'Adagio / muta in B' begins at system 9"},
-    {"page": 6, "first_system": 11, "movement": "III", "note": "page 6: mvt II ends at system 10 (bar 170, fermata); 'Allegretto grazioso' begins at system 11"}
-  ],
-  "status": "Devinの読譜パイプラインが1ページずつ原譜と照合した転記（音高・調号・臨時記号・キュー除外・音価・小節番号）。第三者による独立監査は未実施。不明瞭な音・小節番号は unc でフラグ。",
-  "limitations": [
-    "音名はドイツ式（H＝シ、B♭＝シ♭）。数字はオクターブ（C4＝中央のド）。",
-    "第2楽章冒頭で「muta in B」（B管=B♭管）、第4楽章中盤で再び「muta in B」→「muta in A」の持ち替え指示が印刷されています。transpositions に記録。",
-    "3ページ末〜4ページ冒頭は重複刻（275〜286が両ページに印刷）。p3 末尾の小節番号は暫定。",
-    "多くの小節に長い休符（複小節休符）があり、休符区間の小節番号は印刷された番号（5の倍数）とリハーサル文字から推定しています。±1〜3の誤差を含む区間は cues_excluded / 各ページ meta に記録。",
-    "要確認の音には赤い点線の枠を付けています（unc フラグ）。"
-  ],
-  "pdf": "reader/pdf/Dvorak8_Clarinet1_reading.pdf"
+  {
+   "key": "II",
+   "title": "第2楽章 Adagio",
+   "last": 170,
+   "pages": [
+    4,
+    5,
+    6
+   ],
+   "meters": [
+    [
+     1,
+     "2/4"
+    ]
+   ],
+   "tempos": [
+    [
+     1,
+     40
+    ],
+    [
+     113,
+     54
+    ],
+    [
+     133,
+     40
+    ]
+   ],
+   "conduct": [
+    [
+     1,
+     4
+    ]
+   ],
+   "conduct_note": "指揮の振り方はテンポ表示と拍子から決めた練習用の目安で、譜面に書かれた指示ではありません（指揮者によって変わります）。",
+   "cl_key": "Bb"
+  },
+  {
+   "key": "III",
+   "title": "第3楽章 Allegretto grazioso",
+   "last": 231,
+   "pages": [
+    6,
+    7,
+    8
+   ],
+   "meters": [
+    [
+     1,
+     "3/8"
+    ],
+    [
+     181,
+     "2/4"
+    ]
+   ],
+   "tempos": [
+    [
+     1,
+     75
+    ],
+    [
+     181,
+     160
+    ]
+   ],
+   "conduct": [
+    [
+     1,
+     1
+    ]
+   ],
+   "conduct_note": "指揮の振り方はテンポ表示と拍子から決めた練習用の目安で、譜面に書かれた指示ではありません（指揮者によって変わります）。",
+   "cl_key": "A"
+  },
+  {
+   "key": "IV",
+   "title": "第4楽章 Allegro ma non troppo",
+   "last": 389,
+   "pages": [
+    9,
+    10,
+    11
+   ],
+   "meters": [
+    [
+     1,
+     "2/4"
+    ]
+   ],
+   "tempos": [
+    [
+     1,
+     116
+    ],
+    [
+     26,
+     108
+    ],
+    [
+     59,
+     116
+    ],
+    [
+     75,
+     126
+    ],
+    [
+     93,
+     116
+    ],
+    [
+     253,
+     108
+    ],
+    [
+     323,
+     116
+    ],
+    [
+     337,
+     72
+    ],
+    [
+     339,
+     126
+    ],
+    [
+     356,
+     144
+    ]
+   ],
+   "conduct": [
+    [
+     1,
+     2
+    ],
+    [
+     84,
+     1
+    ],
+    [
+     339,
+     1
+    ]
+   ],
+   "conduct_note": "指揮の振り方はテンポ表示と拍子から決めた練習用の目安で、譜面に書かれた指示ではありません（指揮者によって変わります）。",
+   "cl_key": "A"
+  }
+ ],
+ "splits": [
+  {
+   "page": 4,
+   "first_system": 9,
+   "movement": "II",
+   "note": "page 4: mvt I ends at system 8 (bar 318); 'Adagio / muta in B' begins at system 9"
+  },
+  {
+   "page": 6,
+   "first_system": 11,
+   "movement": "III",
+   "note": "page 6: mvt II ends at system 10 (bar 170, fermata); 'Allegretto grazioso' begins at system 11"
+  }
+ ],
+ "status": "Devinの読譜パイプラインが1ページずつ原譜と照合した転記（音高・調号・臨時記号・キュー除外・音価・小節番号）。第三者による独立監査は未実施。不明瞭な音・小節番号は unc でフラグ。",
+ "limitations": [
+  "音名はドイツ式（H＝シ、B♭＝シ♭）。数字はオクターブ（C4＝中央のド）。",
+  "第2楽章冒頭で「muta in B」（B管=B♭管）、第4楽章中盤で再び「muta in B」→「muta in A」の持ち替え指示が印刷されています。transpositions に記録。",
+  "3ページ末〜4ページ冒頭は重複刻（275〜286が両ページに印刷）。p3 末尾の小節番号は暫定。",
+  "多くの小節に長い休符（複小節休符）があり、休符区間の小節番号は印刷された番号（5の倍数）とリハーサル文字から推定しています。±1〜3の誤差を含む区間は cues_excluded / 各ページ meta に記録。",
+  "要確認の音には赤い点線の枠を付けています（unc フラグ）。",
+  "meters/tempos normalized to pairs schema; values follow horn-ii/trombone-i conventions."
+ ]
 }

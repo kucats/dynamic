@@ -198,13 +198,13 @@
    "y": 1170,
    "pitch": "F4",
    "clef": "treble",
-   "bar": 5,
+   "bar": 4,
    "dur": "1/2",
    "off": "0",
    "tie_from_prev": false,
    "sim": false,
    "cl_key": "A",
-   "uncertain": ""
+   "uncertain": "triplet at 4/5 barline; assigned to bar 4"
   },
   {
    "sys": 1,
@@ -742,7 +742,7 @@
    "sys": 3,
    "x": 2590,
    "y": 1690,
-   "pitch": "%",
+   "pitch": "F4",
    "clef": "treble",
    "bar": 29,
    "dur": "1/1",
@@ -750,7 +750,7 @@
    "tie_from_prev": false,
    "sim": false,
    "cl_key": "A",
-   "uncertain": "whole-bar repeat sign: repeats bar 28 figure"
+   "uncertain": "whole-bar repeat sign: repeats bar 28 figure (pitch estimated)"
   },
   {
    "sys": 4,

@@ -13,7 +13,7 @@
   {
    "sys": 1,
    "x": 934.8,
-   "y": 526.3,
+   "y": 523.3,
    "pitch": "E3",
    "clef": "treble",
    "bar": 55,
@@ -22,7 +22,7 @@
    "tie_from_prev": false,
    "sim": false,
    "cl_key": "A",
-   "uncertain": "auto-decode: verify dur/off"
+   "uncertain": "edge artifact; y estimated"
   },
   {
    "sys": 1,
