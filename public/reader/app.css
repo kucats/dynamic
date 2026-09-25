@@ -57,7 +57,6 @@ button:focus-visible,input:focus-visible,select:focus-visible,.note:focus-visibl
 .mv small{font-size:13px;color:var(--mute);font-weight:500}
 .sys{background:var(--card);border:1px solid var(--line);border-radius:14px;margin:10px 0;padding:6px 8px 2px;scroll-margin-top:140px;transition:box-shadow .2s,border-color .2s}
 .sys.cur{border-color:#56a7ff;box-shadow:0 0 0 3px #56a7ff33}
-.cap{font-size:11.5px;color:var(--mute);padding:0 4px}
 .sc{overflow-x:auto;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch}
 .sc svg{display:block;width:calc(100% * var(--zoom));height:auto;max-width:none}
 .sc image{pointer-events:none}
@@ -72,14 +71,15 @@ button:focus-visible,input:focus-visible,select:focus-visible,.note:focus-visibl
 .lw{fill:var(--w);font-weight:900}.lf{fill:var(--f);font-weight:800}.ls{fill:var(--s);font-weight:700}
 .lv{fill:#7b3fbf;font-weight:900;font-family:system-ui,Arial,sans-serif;letter-spacing:.02em}.cv{color:#7b3fbf}
 .lv-rings,.lv-dotset{fill:#7b3fbf;font-family:system-ui,Arial,sans-serif}
-.lv-ring{fill:#fff;stroke:#9a83ac;stroke-width:1.6}
+.lv-ring{fill:#fff;stroke:#b6a5c4;stroke-width:1.4}
 .lv-ring-digit{text-anchor:middle;font-weight:800}
 .lv-dot-label{text-anchor:middle;fill:#7b3fbf;font-weight:700}
 .lv-dot{fill:#fff;stroke:#8c75a0;stroke-width:1.5}
 .lv-dot.lv-dot-on{fill:#7b3fbf;stroke:#7b3fbf}
 .fingering-style{flex-basis:100%;border-top:1px solid var(--line)!important;padding-top:6px!important}
-.fingering-code{display:inline-flex;align-items:center;gap:2px;vertical-align:middle;white-space:nowrap}
-.fingering-digit{display:inline-grid;place-items:center;width:1.18em;height:1.18em;border:1px solid #b6a5c4;border-radius:50%;font-size:.72em;line-height:1;color:#694d7e;font-weight:800}
+.fingering-code{display:inline-grid;place-items:center;min-width:1.18em;height:1.18em;box-sizing:border-box;padding:0 .18em;border:1px solid #b6a5c4;border-radius:999px;vertical-align:middle;white-space:nowrap;font-size:.72em;line-height:1;color:#694d7e;font-weight:800}
+.fingering-code-single{width:1.18em;min-width:1.18em;padding:0;border-radius:50%}
+.fingering-code-empty{display:inline-block;vertical-align:middle}
 .fingering-dots{display:inline-flex;align-items:flex-end;gap:3px;vertical-align:middle;white-space:nowrap}
 .fingering-dot{display:inline-grid;grid-template-rows:auto 8px;justify-items:center;gap:1px;min-width:9px;line-height:1}
 .fingering-dot small{font-size:8px;color:#806b91;font-weight:700}
@@ -145,7 +145,8 @@ button:focus-visible,input:focus-visible,select:focus-visible,.note:focus-visibl
   #compactExtrasMount .tempo{font-size:12px}#compactExtrasMount .tempo input{width:90px}
   #compactExtrasMount .fsize{font-size:12px}#compactExtrasMount .fsize input{width:82px}
   #compactExtrasMount .barpos span{font-size:11px}
-  .score{padding:6px 4px 80px}.sys{padding:4px 2px 0;border-radius:10px}
+  .score{padding:6px 4px 80px}.sys{padding:3px 2px 0;border-radius:10px;margin:6px 0}
+  .mv{margin:18px 4px 7px;font-size:17px}
 }
 @media print{
   @page{size:A3 portrait;margin:9mm 8mm}

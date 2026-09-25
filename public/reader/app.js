@@ -80,8 +80,9 @@
       const active = new Set(code.split(''));
       return `<span class="fingering-dots" role="img" aria-label="運指 ${esc(code)}">${['4', '3', '2', '1'].map((v) => `<span class="fingering-dot${active.has(v) ? ' on' : ''}"><small>${v}</small><i></i></span>`).join('')}</span>`;
     }
-    if (code === '–') return '<span class="fingering-code">–</span>';
-    return `<span class="fingering-code" aria-label="運指 ${esc(code)}">${[...code].map((d) => `<span class="fingering-digit">${d}</span>`).join('')}</span>`;
+    if (code === '–') return '<span class="fingering-code-empty">–</span>';
+    const shape = code.length === 1 ? ' fingering-code-single' : ' fingering-code-combo';
+    return `<span class="fingering-code${shape}" role="img" aria-label="運指 ${esc(code)}">${esc(code)}</span>`;
   }
   function fingeringSVG(value, x, y, fs) {
     const code = /^[0-4]+$/.test(String(value)) ? String(value) : '–';
@@ -95,17 +96,18 @@
       }).join('');
       return `<g class="lv-dotset" role="img" aria-label="運指 ${esc(code)}"><title>運指 ${esc(code)}（左から4・3・2・1。塗りつぶしが押す弁）</title>${dots}</g>`;
     }
-    const d = fs * 0.82, gap = fs * 0.07, total = code.length * d + (code.length - 1) * gap, left = x - total / 2;
-    const circles = [...code].map((digit, i) => {
-      const cx = left + i * (d + gap) + d / 2, cy = y - fs * 0.34, r = d * 0.48;
-      return `<circle class="lv-ring" cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="${r.toFixed(1)}"/><text class="lv-ring-digit" x="${cx.toFixed(1)}" y="${(y + fs * 0.02).toFixed(1)}" font-size="${Math.round(fs * 0.68)}">${digit}</text>`;
-    }).join('');
-    return `<g class="lv-rings" role="img" aria-label="運指 ${esc(code)}"><title>運指 ${esc(code)}</title>${circles}</g>`;
+    const cy = y - fs * 0.34, ry = fs * 0.4, rx = code.length === 1 ? ry : fingeringCodeWidth(code, fs) / 2;
+    const ring = `<ellipse class="lv-ring" cx="${x.toFixed(1)}" cy="${cy.toFixed(1)}" rx="${rx.toFixed(1)}" ry="${ry.toFixed(1)}"/>`;
+    const digits = `<text class="lv-ring-digit" x="${x.toFixed(1)}" y="${(y + fs * 0.02).toFixed(1)}" font-size="${Math.round(fs * 0.68)}">${esc(code)}</text>`;
+    return `<g class="lv-rings" role="img" aria-label="運指 ${esc(code)}"><title>運指 ${esc(code)}</title>${ring}${digits}</g>`;
+  }
+  function fingeringCodeWidth(code, fontSize) {
+    return code.length === 1 ? fontSize * 0.8 : fontSize * (code.length * 0.4 + 0.3);
   }
   function fingeringWidth(n, fontSize) {
     const code = fingering(n)[0] || '–';
     if (code === '–') return fontSize * 0.72;
-    return S.hornFingeringStyle === 'dots' ? fontSize * 1.35 : fontSize * (code.length * 0.82 + Math.max(0, code.length - 1) * 0.07);
+    return S.hornFingeringStyle === 'dots' ? fontSize * 1.35 : fingeringCodeWidth(code, fontSize);
   }
 
   let D = null, byId = new Map(), cur = null, playing = null, ctx = null, master = null, practiceOsc = [], practiceTimer = null, fontRenderFrame = 0;
@@ -249,9 +251,7 @@
     for (const m of D.movements) {
       html.push(`<h2 class="mv" id="mv-${m.key}">${esc(m.title)} <small>${m.notes}音</small></h2>`);
       for (const sy of D.systems.filter((s) => s.mvt === m.key)) {
-        const labs = sy.segs.map((g) => g[2]).filter(Boolean);
-        const rng = labs.length ? `${labs[0].split('–')[0]}〜${labs[labs.length - 1].split('–').pop()}小節` : '';
-        html.push(`<section class="sys" id="sys-${sy.i}" data-mvt="${sy.mvt}"><div class="cap">原譜 ${sy.page}ページ ${sy.sys}段目 · ${rng}</div><div class="sc">${systemSVG(sy)}${systemHooks.map((hook) => hook(sy)).join('')}</div></section>`);
+        html.push(`<section class="sys" id="sys-${sy.i}" data-mvt="${sy.mvt}"><div class="sc">${systemSVG(sy)}${systemHooks.map((hook) => hook(sy)).join('')}</div></section>`);
       }
     }
     main.innerHTML = html.join('');
@@ -579,7 +579,7 @@
     }));
     $('jump').onsubmit = (e) => { e.preventDefault(); const b = parseInt($('jumpBar').value, 10); if (b) jumpTo(b); };
     $('zoomIn').onclick = () => { S.zoom = Math.min(4, +(S.zoom * 1.25).toFixed(2)); document.documentElement.style.setProperty('--zoom', S.zoom); save(); if (cur) mark(cur, false); };
-    $('zoomOut').onclick = () => { S.zoom = Math.max(1, +(S.zoom / 1.25).toFixed(2)); document.documentElement.style.setProperty('--zoom', S.zoom); save(); if (cur) mark(cur, false); };
+    $('zoomOut').onclick = () => { S.zoom = Math.max(0.5, +(S.zoom / 1.25).toFixed(2)); document.documentElement.style.setProperty('--zoom', S.zoom); save(); if (cur) mark(cur, false); };
     $('setBtn').onclick = () => { const s = $('settings'); s.hidden = !s.hidden; $('setBtn').setAttribute('aria-expanded', String(!s.hidden)); };
     document.querySelectorAll('[data-row]').forEach((c) => c.addEventListener('change', () => {
       S.rows[c.dataset.row] = c.checked;
