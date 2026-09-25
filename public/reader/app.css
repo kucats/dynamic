@@ -109,6 +109,7 @@ button:focus-visible,input:focus-visible,select:focus-visible,.note:focus-visibl
 .practice-actions{display:flex;gap:10px;align-items:center;margin-top:16px}
 .err{max-width:800px;margin:30px auto;padding:16px;background:#fff0f0;border:1px solid #f3b4b4;border-radius:12px}
 @media (max-width:1024px){
+  .bar{background:rgba(255,255,255,.99);backdrop-filter:none;-webkit-backdrop-filter:none}
   .top{gap:9px;padding:7px 12px}
   .ttl p{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .row1{flex-wrap:nowrap;gap:5px;padding:6px 10px;min-height:46px;overflow:hidden}
