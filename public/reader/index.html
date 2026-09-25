@@ -50,9 +50,14 @@
       <label><input type="checkbox" id="follow" checked> 再生中に譜面を追う</label>
       <label><input type="checkbox" id="metro"> 小節頭でクリック音</label>
     </fieldset>
-    <fieldset id="fingerset" hidden><legend>運指（「運指」の行をオンにすると表示）</legend>
+    <fieldset id="fingerset" hidden><legend>運指（「運指」の行で表示）</legend>
       <label>楽器 <select id="hornMode"><option value="double">フルダブル（F／B♭）</option><option value="F">F管シングル</option></select></label>
       <label>B♭側（4）を先にする音 <select id="hornSwitch"><option value="0">運指表どおり</option></select></label>
+      <fieldset class="fingering-style"><legend>運指の書き方</legend>
+        <label><input type="radio" name="fingeringStyle" value="circles" checked> 数字をうすい丸で囲む</label>
+        <label><input type="radio" name="fingeringStyle" value="dots"> 4・3・2・1の点図</label>
+        <span class="fine">点図は左から4・3・2・1。塗りつぶしが押す弁です。</span>
+      </fieldset>
       <span class="fine">1＝人差し指・2＝中指・3＝薬指・0＝開放・4＝親指レバー（B♭側。例：412）。ヤマハの運指表（左側＝第一候補）に基づく目安で、原譜の指示ではありません。</span>
     </fieldset>
     <fieldset><legend>その他</legend>
@@ -77,7 +82,7 @@
       <li>上部スライダーで譜読み字の大きさを変更し、小節番号は下・上・オフを切り替えられます。</li>
       <li>設定でF管の読み替えや実音の行、通し再生の音を切り替えられます。</li>
       <li>練習メモ（対応パートのみ）：右上の「メモ」を押して譜面の場所をタップ、または空白をダブルクリック／ダブルタップすると、その場所にメモを書けます。未ログインならGoogleログインを案内し、ログイン後はアカウントを確認してから譜面に戻ります。</li>
-      <li>ホルンは設定の「運指」行をオンにすると、F管の読みから求めた運指の目安（1＝人差し指、2＝中指、3＝薬指、0＝開放、4＝親指レバーでB♭側。例：412）を表示します。運指はヤマハとGONLOGの運指表に基づきます。フルダブル／F管シングルを選べ、B♭側を先に出す音の高さも変えられます。原譜の指示や奏者の確認済み運指ではありません。</li>
+      <li>ホルンは設定の「運指」行をオンにすると、F管の読みから求めた運指の目安（1＝人差し指、2＝中指、3＝薬指、0＝開放、4＝親指レバーでB♭側。例：412）を表示します。数字を丸で囲む表示と、4・3・2・1の押す弁を点で示す表示を選べます。運指はヤマハとGONLOGの運指表に基づきます。フルダブル／F管シングルを選べ、B♭側を先に出す音の高さも変えられます。原譜の指示や奏者の確認済み運指ではありません。</li>
     </ul>
     <p class="fine">合成音は録音と同期していません。原譜PDFはこのサイトに含めていません。</p>
     <button class="play">閉じる</button>

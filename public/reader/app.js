@@ -17,7 +17,7 @@
 
   // ---------- settings (per viewer, optional) ----------
   const DEF = { rows: { w: true, f: false, s: false }, fontSize: 44, barPosition: 'bottom', sound: 's', tempo: 100, squeeze: true,
-    fromSel: true, follow: true, metro: false, lines: true, hornMode: 'double', hornSwitch: 69, zoom: innerWidth < 760 ? 2.6 : 1 };
+    fromSel: true, follow: true, metro: false, lines: true, hornMode: 'double', hornSwitch: 69, hornFingeringStyle: 'circles', zoom: innerWidth < 760 ? 2.6 : 1 };
   let S = structuredClone(DEF), storedSettings = {};
   try {
     storedSettings = JSON.parse(localStorage.getItem('dynamic-settings') || '{}');
@@ -31,6 +31,7 @@
     S.fontSize = LEGACY_SIZES[params.get('size')] || Math.max(26, Math.min(72, Number(params.get('size')) || 44));
     S.barPosition = 'bottom';
   }
+  if (!['circles', 'dots'].includes(S.hornFingeringStyle)) S.hornFingeringStyle = DEF.hornFingeringStyle;
   const save = () => {
     if (PRINT) return;
     if (D) {
@@ -55,6 +56,40 @@
     return useBb ? [...bb, ...F] : [...F, ...bb];
   }
 
+  function fingeringCodeHTML(value) {
+    const code = /^[0-4]+$/.test(String(value)) ? String(value) : '–';
+    if (S.hornFingeringStyle === 'dots' && code !== '–') {
+      const active = new Set(code.split(''));
+      return `<span class="fingering-dots" role="img" aria-label="運指 ${esc(code)}">${['4', '3', '2', '1'].map((v) => `<span class="fingering-dot${active.has(v) ? ' on' : ''}"><small>${v}</small><i></i></span>`).join('')}</span>`;
+    }
+    if (code === '–') return '<span class="fingering-code">–</span>';
+    return `<span class="fingering-code" aria-label="運指 ${esc(code)}">${[...code].map((d) => `<span class="fingering-digit">${d}</span>`).join('')}</span>`;
+  }
+  function fingeringSVG(value, x, y, fs) {
+    const code = /^[0-4]+$/.test(String(value)) ? String(value) : '–';
+    if (code === '–') return textRow('lv', [code, '', 0], x, y, fs);
+    if (S.hornFingeringStyle === 'dots') {
+      const valves = ['4', '3', '2', '1'], active = new Set(code.split(''));
+      const step = fs * 0.34, r = fs * 0.12, total = step * (valves.length - 1), left = x - total / 2;
+      const dots = valves.map((v, i) => {
+        const dx = left + i * step, fill = active.has(v) ? ' lv-dot-on' : '';
+        return `<text class="lv-dot-label" x="${dx.toFixed(1)}" y="${(y - fs * 0.55).toFixed(1)}" font-size="${Math.max(6, Math.round(fs * 0.22))}">${v}</text><circle class="lv-dot${fill}" cx="${dx.toFixed(1)}" cy="${(y - fs * 0.25).toFixed(1)}" r="${r.toFixed(1)}"/>`;
+      }).join('');
+      return `<g class="lv-dotset" role="img" aria-label="運指 ${esc(code)}"><title>運指 ${esc(code)}（左から4・3・2・1。塗りつぶしが押す弁）</title>${dots}</g>`;
+    }
+    const d = fs * 0.82, gap = fs * 0.07, total = code.length * d + (code.length - 1) * gap, left = x - total / 2;
+    const circles = [...code].map((digit, i) => {
+      const cx = left + i * (d + gap) + d / 2, cy = y - fs * 0.34, r = d * 0.48;
+      return `<circle class="lv-ring" cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="${r.toFixed(1)}"/><text class="lv-ring-digit" x="${cx.toFixed(1)}" y="${(y + fs * 0.02).toFixed(1)}" font-size="${Math.round(fs * 0.68)}">${digit}</text>`;
+    }).join('');
+    return `<g class="lv-rings" role="img" aria-label="運指 ${esc(code)}"><title>運指 ${esc(code)}</title>${circles}</g>`;
+  }
+  function fingeringWidth(n, fontSize) {
+    const code = fingering(n)[0] || '–';
+    if (code === '–') return fontSize * 0.72;
+    return S.hornFingeringStyle === 'dots' ? fontSize * 1.35 : fontSize * (code.length * 0.82 + Math.max(0, code.length - 1) * 0.07);
+  }
+
   let D = null, byId = new Map(), cur = null, playing = null, ctx = null, master = null, practiceOsc = [], practiceTimer = null, fontRenderFrame = 0;
 
   // ---------- label layout ----------
@@ -65,7 +100,7 @@
   }
   function labelWidth(n, fs) {
     let w = 0;
-    for (const [k, , sc] of ROWS) if (S.rows[k]) w = Math.max(w, rowWidth(val(n, k)) * sc);
+    for (const [k, , sc] of ROWS) if (S.rows[k]) w = Math.max(w, k === 'v' ? fingeringWidth(n, fs * sc) / fs : rowWidth(val(n, k)) * sc);
     return w * fs + 8;
   }
   function labelHeight(fs) {
@@ -163,7 +198,7 @@
       for (const [k, cls, sc] of ROWS) {
         if (!S.rows[k]) continue;
         const f = fsl * sc; y += f * 0.95;
-        rows += textRow(cls, val(n, k), cx[i], y, f);
+        rows += k === 'v' ? fingeringSVG(fingering(n)[0] || '–', cx[i], y, f) : textRow(cls, val(n, k), cx[i], y, f);
         if (k === 'w' && n.old) rows += `<text class="lw" x="${(cx[i] + w / 2 - fsl * 0.18).toFixed(1)}" y="${(y - fsl * 0.5).toFixed(1)}" font-size="${Math.round(fsl * 0.4)}" fill="#c0392b">※</text>`;
         y += f * 0.13;
       }
@@ -227,7 +262,7 @@
       $('nowF').innerHTML = S.rows.f || D.showF ? `F管 ${esc(n.f[0])}<sup>${n.f[1]}</sup>` : '';
       $('nowS').innerHTML = `実音 ${esc(n.snd[0])}<sup>${n.snd[1]}</sup>`;
       const fg = fingering(n);
-      $('nowV').innerHTML = S.rows.v && fg.length ? `運指 ${esc(fg[0])}${fg.length > 1 ? `<small>（替え ${esc(fg.slice(1).join('・'))}）</small>` : ''}` : '';
+      $('nowV').innerHTML = S.rows.v && fg.length ? `運指 ${fingeringCodeHTML(fg[0])}${fg.length > 1 ? `<small>（替え ${fg.slice(1).map(fingeringCodeHTML).join('・')}）</small>` : ''}` : '';
     }
     $('nowInfo').textContent = `${mvLabel(n.mvt)} ${n.bar}小節${D.instrument === "trombone" ? "" : " · in " + n.key}${n.tie ? ' · タイの続き' : ''}${n.old ? ' · ヘ音記号は旧記譜' : ''}${n.unc ? ' · 要確認：' + n.unc + '（音は再生しません）' : ''} · ${id}/${D.notes.length}`;
     setMvt(n.mvt, false);
@@ -289,7 +324,7 @@
     $('practiceWritten').textContent = `譜面：${pitch(n.w)} · ${mvLabel(n.mvt)} ${n.bar}小節`;
     $('practiceSounding').textContent = n.unc ? '吹く音：要確認のため未確定' : `吹く音（実音）：${pitch(n.snd)}`;
     const fg = D.instrument === 'trombone' ? [] : fingering(n);
-    $('practiceFingering').textContent = S.rows.v && fg.length ? `運指（目安）：${fg[0]}${fg.length > 1 ? `　替え ${fg.slice(1).join('・')}` : ''}` : '';
+    $('practiceFingering').innerHTML = S.rows.v && fg.length ? `運指（目安）：${fingeringCodeHTML(fg[0])}${fg.length > 1 ? `　替え ${fg.slice(1).map(fingeringCodeHTML).join('・')}` : ''}` : '';
     $('practice').dataset.noteId = n.id;
     $('practicePlay').disabled = !!n.unc;
     $('practicePlay').textContent = n.unc ? '要確認のため再生不可' : '▶ ロングトーン';
@@ -386,6 +421,7 @@
     $('sound').value = S.sound; $('tempo').value = S.tempo; $('tempoV').textContent = S.tempo + '%';
     for (const k of ['squeeze', 'fromSel', 'follow', 'metro', 'lines']) $(k).checked = !!S[k];
     $('hornMode').value = S.hornMode; $('hornSwitch').value = String(S.hornSwitch); $('hornSwitch').disabled = S.hornMode !== 'double';
+    document.querySelectorAll('[name="fingeringStyle"]').forEach((r) => { r.checked = r.value === S.hornFingeringStyle; });
   }
   // ---------- bar context menu / full score ----------
   let viewer = null;
@@ -486,6 +522,10 @@
     const refingering = () => { syncControls(); save(); renderScore(); if (cur) select(cur, { scroll: false }); };
     $('hornMode').onchange = () => { S.hornMode = $('hornMode').value; refingering(); };
     $('hornSwitch').onchange = () => { S.hornSwitch = Number($('hornSwitch').value); refingering(); };
+    document.querySelectorAll('[name="fingeringStyle"]').forEach((r) => r.addEventListener('change', () => {
+      if (!r.checked) return;
+      S.hornFingeringStyle = r.value; refingering();
+    }));
     for (const k of ['squeeze', 'fromSel', 'follow', 'metro']) $(k).onchange = () => { S[k] = $(k).checked; save(); };
     $('lines').onchange = () => { S.lines = $('lines').checked; document.body.classList.toggle('nolines', !S.lines); save(); };
     $('practicePlay').onclick = () => {
