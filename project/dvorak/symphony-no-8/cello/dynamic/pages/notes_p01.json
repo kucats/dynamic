@@ -1693,7 +1693,7 @@
   {
    "sys": 9,
    "x": 2070,
-   "y": 3296,
+   "y": 3300,
    "pitch": "B3",
    "clef": "bass",
    "bar": 37,
@@ -1704,8 +1704,8 @@
   },
   {
    "sys": 9,
-   "x": 2205,
-   "y": 3296,
+   "x": 2280,
+   "y": 3300,
    "pitch": "B3",
    "clef": "bass",
    "bar": 37,
@@ -1716,8 +1716,8 @@
   },
   {
    "sys": 9,
-   "x": 2280,
-   "y": 3296,
+   "x": 2440,
+   "y": 3300,
    "pitch": "B3",
    "clef": "bass",
    "bar": 37,
@@ -1728,8 +1728,8 @@
   },
   {
    "sys": 9,
-   "x": 2360,
-   "y": 3296,
+   "x": 2600,
+   "y": 3300,
    "pitch": "B3",
    "clef": "bass",
    "bar": 37,
@@ -1737,24 +1737,12 @@
    "off": "3/4",
    "tie_from_prev": false,
    "uncertain": "repeated-note offbeat figure; pitches+dur best-effort"
-  },
-  {
-   "sys": 9,
-   "x": 2390,
-   "y": 3296,
-   "pitch": "B3",
-   "clef": "bass",
-   "bar": 38,
-   "dur": "1/8",
-   "off": "0",
-   "tie_from_prev": false,
-   "uncertain": "repeated-note offbeat figure; pitches+dur best-effort"
   }
  ],
  "meta": {
   "bars": [
    1,
-   38
+   37
   ],
   "meters": [
    {
