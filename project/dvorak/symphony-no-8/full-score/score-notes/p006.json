@@ -1,0 +1,56 @@
+{
+  "work": "dvorak-8",
+  "source": "work/db8/Bartos.pdf sha256:f644a29d78440db51cb15d007be6d0f8198e253f9adb53845e9a8334977f7026 (Bartos critical edition)",
+  "page": 6,
+  "system": 1,
+  "bars": "21-27",
+  "dpi": 600,
+  "staff_map": {
+    "1": "Fl.I", "2": "Fl.II (muta in Fl. picc.)", "3": "Ob.I.II", "4": "Cl.I.II.A",
+    "5": "Fag.I.II", "6": "Cor.F I.II", "7": "Cor.F III.IV",
+    "8": "Trbe I.II.F", "9": "Trbni I.II", "10": "Trbni III e Tb",
+    "11": "Timp.G,D", "12": "Viol.I", "13": "Viol.II",
+    "14": "Vle", "15": "Vlc", "16": "Cb"
+  },
+  "clefs": {"4": "treble (Cl in A, 2b)", "5": "bass", "6": "treble (Cor in F)", "7": "treble (Cor in F)", "9": "alto", "10": "bass", "11": "bass", "14": "alto", "15": "bass", "16": "bass"},
+  "convention": "pitch as printed (transposing instruments keep written pitch, as in part pipeline)",
+  "rests": {
+    "comment": "whole-bar rests confirmed on all seven bars for these staves",
+    "staves": [3, 4, 5, 6, 7, 8, 9, 10]
+  },
+  "notes": {
+    "1": {
+      "figure": "b21: the flute 'bird call' — ~5-6 filled notes (~8ths) descending through ledger lines above the staff, ~D6/C6 -> E5/C5 zone; b22-27 rests",
+      "uncertain": "exact pitch sequence of the call (register confirmed, per-note pitch +/-1-2 steps)"
+    },
+    "2": {
+      "figure": "'muta in Fl. picc.' marked at b21. b22-27: ~D5 whole-note pedal, tied across, p. (Open head on D5 line each bar; b24 may carry a second head at bar end.)",
+      "uncertain": "D5 vs E5; whether b24-27 re-articulate or stay tied"
+    },
+    "11": {
+      "figure": "b26-27: D3 roll — 'tr' + tremolo wiggle spanning the bar, whole-note head(s) at D3 (mid-line); pp mark",
+      "uncertain": "one vs two heads across b26-27 boundary"
+    },
+    "12": {
+      "figure": "b22 [half rest][8th rest][~B4/A4 8th] pp; b23 [~D5 half][8th rest][~C5 8th]; b24 [~D5 half][half rest]; b21, b25-27 rests",
+      "uncertain": true
+    },
+    "13": {
+      "figure": "b22 [half rest][8th rest][~G4/F4 8th]; b23 [~A4/G4 half][8th rest][~G4/F4 8th]; b24 [~A4/G4 half][half rest]; b21, b25-27 rests — mirrors Viol.I ~a third lower",
+      "uncertain": true
+    },
+    "14": {
+      "figure": "'arco' marked at b22. b22 [half rest][8th rest][~D4/C4 8th] pp; b23 [~B3/A3 half][8th rest][~A3/G3 8th]; b24 [~E3/D3 half, below staff][half rest]; b21, b25-27 rests",
+      "uncertain": true
+    },
+    "15": {
+      "figure": "b24 [half rest][8th rest][~B2/G2 8th][~C4/D4 open half-ish at bar end]; b25 [8th rest][~E3/D3 8th][~A2/G2 dotted open note]; b21-23, b26-27 rests",
+      "uncertain": true
+    },
+    "16": {
+      "figure": "b24 [half rest][8th rest][~G3/F3 8th][~C4/D4 open half-ish]; b25 [8th rest][~E3/D3 8th][~A2/G2 dotted open note]; b21-23, b26-27 rests — same figure shape as Vlc up ~an octave/steps",
+      "uncertain": true
+    }
+  },
+  "verdict": "b21 = Fl.I bird call answered by staggered string 8th-punctuations (Vl.I/II/Vle arco b22-24, Vlc/Cb b24-25) over the piccolo's sustained D5; Timp D3 roll enters b26; all winds/brass silent b21-27 except the call. String pitches are positional best-reads (+/-1 step); whole sonority ~G/D dominant region"
+}
