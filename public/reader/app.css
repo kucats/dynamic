@@ -187,6 +187,9 @@ html.sv-open{overflow:hidden}
 .sv-tools{display:flex;gap:6px;margin-left:auto}
 .sv-close{font-size:18px;width:44px}
 .sv-stage{flex:1;overflow:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;outline:none;position:relative}
+.sv-stage.spread{display:flex;flex-direction:row;gap:8px;justify-content:center;align-items:flex-start}
+.sv-stage.spread .sv-page{margin:4px 0 12px;flex:0 0 auto}
+.sv-stage.spread .sv-msg{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);margin:0}
 .sv-page{position:relative;margin:4px auto 12px;background:#fff;box-shadow:0 6px 24px #0008;min-height:200px}
 .sv-page img{display:block;width:100%;height:auto}
 .sv-page.loading img{opacity:.25}

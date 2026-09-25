@@ -53,14 +53,17 @@
           <button type="button" class="sv-close" aria-label="閉じる" title="閉じる（Esc）">✕</button>
         </div>
       </header>
-      <div class="sv-stage" tabindex="-1"><div class="sv-page"><img alt="" decoding="async"><svg class="sv-ov" aria-hidden="true"></svg></div><p class="sv-msg" hidden></p></div>
+      <div class="sv-stage" tabindex="-1"><div class="sv-page"><img alt="" decoding="async"><svg class="sv-ov" aria-hidden="true"></svg></div><div class="sv-page" hidden><img alt="" decoding="async"><svg class="sv-ov" aria-hidden="true"></svg></div><p class="sv-msg" hidden></p></div>
       <footer class="sv-foot"></footer>`;
     document.body.appendChild(dlg);
     const $ = (s) => dlg.querySelector(s);
-    const st = { dlg, $, img: $('img'), ov: $('.sv-ov'), stage: $('.sv-stage'), page: $('.sv-page'), msg: $('.sv-msg') };
+    const st = { dlg, $, stage: $('.sv-stage'), msg: $('.sv-msg'), pgs: [] };
+    dlg.querySelectorAll('.sv-page').forEach((root) => {
+      st.pgs.push({ root, img: root.querySelector('img'), ov: root.querySelector('.sv-ov') });
+    });
     $('.sv-close').onclick = () => dlg.close();
-    $('.sv-prev').onclick = () => go(V.pi - 1);
-    $('.sv-next').onclick = () => go(V.pi + 1);
+    $('.sv-prev').onclick = () => turnPage(-1);
+    $('.sv-next').onclick = () => turnPage(+1);
     $('.sv-fit').onclick = () => { V.fit = V.fit === 'page' ? 'width' : 'page'; try { localStorage.setItem('dynamic-score-fit', V.fit); } catch (e) { /* ignore */ } layout(); };
     $('.sv-jump').onsubmit = (e) => {
       e.preventDefault();
@@ -70,8 +73,8 @@
     };
     dlg.addEventListener('keydown', (e) => {
       if (e.target.matches('input,select')) return;
-      if (e.key === 'ArrowRight' || e.key === 'PageDown') { e.preventDefault(); go(V.pi + 1); }
-      else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); go(V.pi - 1); }
+      if (e.key === 'ArrowRight' || e.key === 'PageDown') { e.preventDefault(); turnPage(+1); }
+      else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); turnPage(-1); }
     });
     dlg.addEventListener('close', () => { document.documentElement.classList.remove('sv-open'); V.onclose?.(); });
     // swipe left / right to turn pages (only when the page is not horizontally scrollable)
@@ -80,42 +83,70 @@
     st.stage.addEventListener('pointerup', (e) => {
       if (sx == null) return; const dx = e.clientX - sx, dy = e.clientY - sy; sx = null;
       if (st.stage.scrollWidth > st.stage.clientWidth + 4) return;
-      if (Math.abs(dx) > 70 && Math.abs(dy) < 50) go(V.pi + (dx < 0 ? 1 : -1));
+      if (Math.abs(dx) > 70 && Math.abs(dy) < 50) turnPage(dx < 0 ? 1 : -1);
     });
-    st.img.addEventListener('load', () => { st.msg.hidden = true; st.page.classList.remove('loading'); layout(); scrollToTarget(); prefetch(); });
-    st.img.addEventListener('error', () => { st.page.classList.remove('loading'); note('画像を読み込めませんでした。通信状況を確認してください。'); });
+    st.pgs.forEach((pg) => {
+      pg.img.addEventListener('load', () => { st.msg.hidden = true; pg.root.classList.remove('loading'); layout(); scrollToTarget(); prefetch(); });
+      pg.img.addEventListener('error', () => { pg.root.classList.remove('loading'); note('画像を読み込めませんでした。通信状況を確認してください。'); });
+    });
     new ResizeObserver(() => V && V.d && layout()).observe(st.stage);
     return st;
   }
   function note(t) { V.st.msg.textContent = t; V.st.msg.hidden = false; }
 
+  // Book spread pairing on 0-indexed pages: page 0 alone, then (1,2), (3,4), …
+  // so even printed pages sit on the left and odd on the right.
+  function pairOf(pi) {
+    if (pi === 0) return [0, -1];
+    const L = pi % 2 ? pi : pi - 1;
+    return [L, L + 1];
+  }
+  function visibleIdx() { return V.spread ? pairOf(V.pi) : [V.pi, -1]; }
+  function pageWidth(k) {
+    const q = V.d.pages[k], stage = V.st.stage;
+    return Math.min(stage.clientWidth, (stage.clientHeight - 8) * q.w / q.h);
+  }
   function layout() {
-    const { page, stage, img } = V.st; const p = V.d.pages[V.pi];
+    const { stage } = V.st;
     const byH = V.fit === 'page';
-    const w = byH ? Math.min(stage.clientWidth, (stage.clientHeight - 8) * p.w / p.h) : stage.clientWidth;
-    page.style.width = `${Math.max(200, w)}px`;
-    img.width = p.w; img.height = p.h;
+    const [L, R] = pairOf(V.pi);
+    const spread = byH && R >= 0 && R < V.d.pages.length
+      && pageWidth(L) + pageWidth(R) + 12 <= stage.clientWidth;
+    if (spread !== V.spread) { V.spread = spread; syncImgs(); overlay(); where(); }
+    stage.classList.toggle('spread', !!spread);
+    V.st.pgs.forEach((pg, i) => {
+      const k = visibleIdx()[i];
+      if (k == null || k < 0 || !V.d.pages[k]) { pg.root.hidden = true; return; }
+      pg.root.hidden = false;
+      const q = V.d.pages[k];
+      const w = byH ? pageWidth(k) : stage.clientWidth;
+      pg.root.style.width = `${Math.max(200, w)}px`;
+      pg.img.width = q.w; pg.img.height = q.h;
+    });
     V.st.$('.sv-fit').textContent = byH ? '幅に合わせる' : 'ページ全体';
   }
   function overlay() {
-    const p = V.d.pages[V.pi], o = [];
-    o.push(`<svg viewBox="0 0 ${p.w} ${p.h}">`);
-    const fs = Math.max(18, Math.round(p.w / 64));
-    p.systems.forEach((s) => {
-      for (const [x0, x1, bar] of s.bars) {
-        const on = V.target && V.target.mvt === p.mvt && V.target.bar === bar;
-        o.push(`<rect class="sv-hit${on ? ' on' : ''}" data-mvt="${p.mvt}" data-bar="${bar}" x="${x0}" y="${s.y0}" width="${x1 - x0}" height="${s.y1 - s.y0}"/>`);
-        const tw = fs * (String(bar).length * 0.62 + 0.5);
-        o.push(`<g class="sv-num${on ? ' on' : ''}"><rect x="${x0 + 2}" y="${s.y0 - fs - 6}" width="${tw}" height="${fs + 4}" rx="4"/><text x="${x0 + 2 + tw / 2}" y="${s.y0 - 8}" font-size="${fs}">${bar}</text></g>`);
-      }
-    });
-    o.push('</svg>');
-    const svg = V.st.ov;
-    svg.outerHTML = o.join('').replace('<svg ', '<svg class="sv-ov" aria-hidden="true" ');
-    V.st.ov = V.st.page.querySelector('.sv-ov');
-    V.st.ov.addEventListener('click', (e) => {
-      const r = e.target.closest('[data-bar]'); if (!r) return;
-      V.target = { mvt: r.dataset.mvt, bar: +r.dataset.bar }; overlay(); where();
+    V.st.pgs.forEach((pg, i) => {
+      const k = visibleIdx()[i];
+      if (k == null || k < 0 || !V.d.pages[k]) return;
+      const p = V.d.pages[k], o = [];
+      o.push(`<svg viewBox="0 0 ${p.w} ${p.h}">`);
+      const fs = Math.max(18, Math.round(p.w / 64));
+      p.systems.forEach((s) => {
+        for (const [x0, x1, bar] of s.bars) {
+          const on = V.target && V.target.mvt === p.mvt && V.target.bar === bar;
+          o.push(`<rect class="sv-hit${on ? ' on' : ''}" data-mvt="${p.mvt}" data-bar="${bar}" x="${x0}" y="${s.y0}" width="${x1 - x0}" height="${s.y1 - s.y0}"/>`);
+          const tw = fs * (String(bar).length * 0.62 + 0.5);
+          o.push(`<g class="sv-num${on ? ' on' : ''}"><rect x="${x0 + 2}" y="${s.y0 - fs - 6}" width="${tw}" height="${fs + 4}" rx="4"/><text x="${x0 + 2 + tw / 2}" y="${s.y0 - 8}" font-size="${fs}">${bar}</text></g>`);
+        }
+      });
+      o.push('</svg>');
+      pg.ov.outerHTML = o.join('').replace('<svg ', '<svg class="sv-ov" aria-hidden="true" ');
+      pg.ov = pg.root.querySelector('.sv-ov');
+      pg.ov.addEventListener('click', (e) => {
+        const r = e.target.closest('[data-bar]'); if (!r) return;
+        V.target = { mvt: r.dataset.mvt, bar: +r.dataset.bar }; overlay(); where();
+      });
     });
   }
   function where() {
@@ -124,46 +155,73 @@
     const mv = `${MV_NUM[p.mvt] || p.mvt}楽章`;
     $('.sv-where').textContent = V.target && V.target.mvt === p.mvt && bars.includes(V.target.bar)
       ? `${mv} ${V.target.bar}小節` : `${mv} ${bars[0]}〜${bars[bars.length - 1]}小節`;
-    $('.sv-pg').textContent = `p.${p.printed}（${V.pi + 1}/${V.d.pages.length}）`;
-    $('.sv-prev').disabled = V.pi <= 0; $('.sv-next').disabled = V.pi >= V.d.pages.length - 1;
+    if (V.spread) {
+      const [L, R] = pairOf(V.pi);
+      $('.sv-pg').textContent = `p.${V.d.pages[L].printed}–${V.d.pages[R].printed}（${L + 1}–${R + 1}/${V.d.pages.length}）`;
+      $('.sv-prev').disabled = L <= 0; $('.sv-next').disabled = R >= V.d.pages.length - 1;
+    } else {
+      $('.sv-pg').textContent = `p.${p.printed}（${V.pi + 1}/${V.d.pages.length}）`;
+      $('.sv-prev').disabled = V.pi <= 0; $('.sv-next').disabled = V.pi >= V.d.pages.length - 1;
+    }
     $('.sv-mvt').value = p.mvt;
   }
   function scrollToTarget() {
-    const p = V.d.pages[V.pi], { stage, page } = V.st;
+    const p = V.d.pages[V.pi], { stage } = V.st;
+    const slot = V.st.pgs[Math.max(0, visibleIdx().indexOf(V.pi))];
     let y = 0;
     if (V.target && V.target.mvt === p.mvt) {
       const s = p.systems.find((q) => q.bars.some((b) => b[2] === V.target.bar));
-      if (s) y = s.y0 / p.h * page.clientHeight - 40;
+      if (s) y = s.y0 / p.h * slot.root.clientHeight - 40;
     }
     stage.scrollTo({ top: Math.max(0, y), left: 0 });
   }
   function prefetch() {                  // neighbours only, and only while the viewer is open
-    for (const k of [V.pi + 1, V.pi - 1]) {
+    const ks = V.spread ? [pairOf(V.pi)[0] - 1, pairOf(V.pi)[1] + 1] : [V.pi + 1, V.pi - 1];
+    for (const k of ks) {
       const p = V.d.pages[k]; if (!p || V.pre.has(k)) continue;
       V.pre.add(k); const im = new Image(); im.decoding = 'async'; im.src = new URL(p.img, V.d.base).href;
     }
   }
+  // Assign each visible page element its image (or hide it when out of range).
+  function syncImgs() {
+    V.st.pgs.forEach((pg, i) => {
+      const k = visibleIdx()[i];
+      if (k == null || k < 0 || !V.d.pages[k]) { pg.root.hidden = true; pg.img.removeAttribute('src'); return; }
+      pg.root.hidden = false;
+      const src = new URL(V.d.pages[k].img, V.d.base).href;
+      if (pg.img.src !== src) {
+        pg.root.classList.add('loading');
+        pg.img.removeAttribute('src');
+        pg.img.src = src;
+      } else if (!pg.img.complete) {
+        pg.root.classList.add('loading');
+      } else if (pg.img.naturalWidth > 0) {
+        pg.root.classList.remove('loading');
+      } else {
+        pg.root.classList.remove('loading');
+        note('画像を読み込めませんでした。通信状況を確認してください。');
+      }
+    });
+  }
   function show(pi, target) {
     if (!V.d.pages[pi]) return;
     V.pi = pi; if (target !== undefined) V.target = target;
-    const p = V.d.pages[pi], { img, page } = V.st;
-    const src = new URL(p.img, V.d.base).href;
     V.st.msg.hidden = true;
-    if (img.src !== src) { page.classList.add('loading'); img.removeAttribute('src'); layout(); img.src = src; }
-    else if (!img.complete) { page.classList.add('loading'); }
-    else if (img.naturalWidth > 0) {
-      // open() marks the page as loading while score metadata resolves. If this
-      // page is already cached, setting the same src does not fire another load
-      // event, so clear that temporary state here.
-      page.classList.remove('loading'); layout(); scrollToTarget();
-    } else {
-      page.classList.remove('loading');
-      note('画像を読み込めませんでした。通信状況を確認してください。');
-    }
+    syncImgs();
+    layout(); scrollToTarget();
     overlay(); where();
     V.st.stage.focus({ preventScroll: true });
   }
   function go(pi) { if (V && V.d.pages[pi]) show(pi); }
+  // In spread mode a "turn" moves a whole leaf; otherwise one page.
+  function turnPage(dir) {
+    if (!V || !V.d) return;
+    if (V.spread) {
+      const [L, R] = pairOf(V.pi);
+      const next = dir > 0 ? (R < 0 ? L + 1 : R + 1) : Math.max(0, L - 1);
+      go(next);
+    } else go(V.pi + dir);
+  }
 
   /**
    * Open the score of `work` at movement `mvt`, bar `bar`.
@@ -178,11 +236,11 @@
       V = { st: build(), fit, pre: new Set() };
     }
     V.onclose = opts.onclose;
-    const { dlg, $, page } = V.st;
+    const { dlg, $, pgs } = V.st;
     if (!dlg.open) { dlg.showModal(); document.documentElement.classList.add('sv-open'); }
-    page.classList.add('loading'); V.st.msg.hidden = true;
+    pgs.forEach((pg) => pg.root.classList.add('loading')); V.st.msg.hidden = true;
     let d;
-    try { d = await loadScore(entry); } catch (e) { note(e.message); page.classList.remove('loading'); return; }
+    try { d = await loadScore(entry); } catch (e) { note(e.message); pgs.forEach((pg) => pg.root.classList.remove('loading')); return; }
     if (V.d !== d) {
       V.d = d; V.pre = new Set();
       $('.sv-name').textContent = d.title;
