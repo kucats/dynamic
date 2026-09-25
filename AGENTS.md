@@ -28,6 +28,7 @@ The Fuyomi engine is ported into this repository and must run without importing 
 - Full-score viewer exception (added at the repository owner's request): `public/score/<id>/` may publish compressed, deskewed WebP page derivatives of a conductor's score, built by `tools/dynamic/build_score.py` from `project/**/full-score/score.json`. Never publish the source PDF or raw renders. Bar numbers are detection output until the review sheets are compared with the printed numbers and disagreements are recorded as overrides; `tools/dynamic/validate_score.py` must pass. The viewer must fetch nothing until it is opened.
 - Every reader part must show its audit status and limitations; `tools/dynamic/validate_reader.py` must pass.
 - 3D trombone player is a detachable toy add-on (`public/reader/trombone3d-addon.js` + `trombone3d.*`, see `docs/trombone-3d.md`). It uses only `__dynamic.ext.addNoteHook`, fetches nothing until its button is pressed, and never infers positions from pitch.
+- Tuner is a detachable add-on (`public/reader/tuner-addon.js` + `tuner*`, see `docs/tuner.md`). It fetches nothing and opens no microphone until its button is pressed, never stores or sends audio, and never changes reader data.
 - Deployment publishes `public/` as static assets; `worker/index.js` runs only for `/login`, `/logout`, and `/api/*` (Access login and per-user practice memos, see `docs/reader-memos.md`). Practice memos are personal notes in R2, never audit evidence or reader data.
 
 ## Catalogs and reproducibility
