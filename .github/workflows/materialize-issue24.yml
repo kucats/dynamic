@@ -24,30 +24,27 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Apply checksum-verified patch and publish only to the issue branch
+      - name: Apply checksum-verified focus fix only to the issue branch
         shell: bash
         run: |
           set -euo pipefail
           test "$GITHUB_REF" = refs/heads/fix/issue-24-measure-memos
-          cat .github/agent-staging/issue-24/patch-{1,2,3,4}.b64 | base64 --decode | xz --decompress > "$RUNNER_TEMP/issue-24.patch"
-          echo "99c20be8b1f5aea7a76fc91720a7d805ba1e8dea454989c91f13fc727af7ffad  $RUNNER_TEMP/issue-24.patch" | sha256sum -c -
-          git apply --check --index "$RUNNER_TEMP/issue-24.patch"
-          git apply --index "$RUNNER_TEMP/issue-24.patch"
+          echo 'a179ac7b1a0286809e93b22a18305aed4961442e49c65257964a83785d073452  .github/agent-staging/issue-24/focus.patch' | sha256sum -c -
+          git apply --check --index .github/agent-staging/issue-24/focus.patch
+          git apply --index .github/agent-staging/issue-24/focus.patch
           git rm --cached -r .github/agent-staging/issue-24 .github/workflows/materialize-issue24.yml
-          test "$(git write-tree)" = 00a583343d736bb7a1e7cef222c5a74896c113a7
+          test "$(git write-tree)" = 3b0f895778e80534a4cbfe5a844c973cdad0967c
           git add .github/agent-staging/issue-24 .github/workflows/materialize-issue24.yml
-          git -c user.name='ChatGPT' -c user.email='noreply@openai.com' commit -m 'Make practice memos measure-linked and accessible from bar menus (#24)'
+          git -c user.name='ChatGPT' -c user.email='noreply@openai.com' commit -m 'Keep bar menu open across queued focus-scroll events (#24)'
           git push origin HEAD:refs/heads/fix/issue-24-measure-memos
           mkdir -p "$RUNNER_TEMP/memo-evidence"
           git rev-parse HEAD > "$RUNNER_TEMP/memo-evidence/SOURCE_COMMIT.txt"
-          # The connector removes these staging files after verification, not the job token.
-          # Test the exact clean source tree that will be the final PR head.
           git rm -r .github/agent-staging/issue-24 .github/workflows/materialize-issue24.yml
           git write-tree | tee "$RUNNER_TEMP/memo-evidence/TESTED_TREE.txt"
-          test "$(git write-tree)" = 00a583343d736bb7a1e7cef222c5a74896c113a7
+          test "$(git write-tree)" = 3b0f895778e80534a4cbfe5a844c973cdad0967c
       - name: Install bounded test dependencies
         run: |
-          python -m pip install --disable-pip-version-check playwright==1.57.0 pillow pypdf reportlab
+          python -m pip install --disable-pip-version-check playwright==1.57.0 pillow pypdf reportlab opencv-python-headless
           python -m playwright install --with-deps chromium
       - name: Unit tests and data guards
         shell: bash
