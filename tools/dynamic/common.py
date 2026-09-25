@@ -67,6 +67,9 @@ def label(L, a, o):
 # horn crook -> (letter steps, semitones) from written to sounding pitch
 HORN_KEYS = {'F': (-4, -7), 'E': (-5, -8), 'Eb': (-5, -9), 'D': (-6, -10), 'C': (-7, -12), 'G': (-3, -5), 'Bb': (-1, -2)}
 
+# clarinet -> (letter steps, semitones) from written to sounding pitch
+CLARINET_KEYS = {'A': (-2, -3), 'Bb': (-1, -2)}
+
 GERMAN = {'C': 'C', 'D': 'D', 'E': 'E', 'F': 'F', 'G': 'G', 'A': 'A', 'B': 'H'}
 
 

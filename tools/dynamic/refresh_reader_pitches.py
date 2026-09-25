@@ -16,7 +16,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from common import HORN_KEYS, TROMBONE_POS, label, label_german, parse_pitch, transpose  # noqa: E402
+from common import CLARINET_KEYS, HORN_KEYS, TROMBONE_POS, label, label_german, parse_pitch, transpose  # noqa: E402
 
 OUT = ROOT / "public/reader/data"
 
@@ -82,6 +82,15 @@ def refresh(part_dir: Path) -> tuple[str, int, int]:
                 written = label_german(letter, accidental, written_octave)
                 fields = {"key": "C", "w": written, "f": written, "snd": written,
                           "pos": TROMBONE_POS.get(written[2])}
+            elif instrument == "clarinet":
+                key_name = source.get("cl_key") or cfg.get("default_cl_key", "A")
+                if key_name not in CLARINET_KEYS:
+                    raise ValueError(f"{part_dir}: unsupported clarinet key {key_name!r}")
+                letter_steps, semitones = CLARINET_KEYS[key_name]
+                sounding = transpose(letter, accidental, written_octave, letter_steps, semitones)
+                f_side = transpose(*sounding, 1, 2)
+                fields = {"key": key_name, "w": label(letter, accidental, written_octave),
+                          "f": label(*f_side), "snd": label(*sounding)}
             else:
                 key_name = source.get("horn_key") or cfg.get("default_horn_key", "F")
                 if key_name not in HORN_KEYS:
