@@ -133,6 +133,12 @@ def exercise(page, fixture, out, name, offline, touch):
     expect(page.locator('#sys-3 .memo-card[data-memo="legacy"]')).to_have_count(1)
     expect(page.locator('.memo-card[data-memo="unknown"]')).to_have_count(0)
     assert_geometry(page)
+    compact = page.viewport_size['width'] <= 1024
+    if compact:
+        toolbar_box = page.locator('#bar').bounding_box()
+        assert toolbar_box['height'] <= 90, f"compact toolbar too tall: {toolbar_box}"
+        assert page.locator('#readerExtras').evaluate("el => el.parentElement.id") == 'compactExtrasMount'
+        expect(page.locator('#settings')).not_to_be_visible()
     # Actual mouse/touch click on the bar, not a pen/toolbar or arbitrary-coordinate editor.
     open_bar(page, pointer=True, touch=touch)
     # A focus-generated scroll event already queued at the current position
@@ -167,12 +173,26 @@ def exercise(page, fixture, out, name, offline, touch):
     page.locator('#sys-3 .memo-band').scroll_into_view_if_needed()
     page.screenshot(path=str(out / f'{name}-saved.png'))
     # Zoom/reflow/bar-number visibility never change bar identity or cover notation.
+    opened_settings = False
+    if not page.locator('[data-bar-pos=top]').is_visible():
+        page.locator('#setBtn').click()
+        expect(page.locator('#settings')).to_be_visible()
+        opened_settings = True
+        if compact:
+            settings_box = page.locator('#settings').bounding_box()
+            assert settings_box['y'] >= -1, settings_box
+            assert settings_box['y'] + settings_box['height'] <= page.viewport_size['height'] + 1, settings_box
+            assert settings_box['height'] <= page.viewport_size['height'] * .76, settings_box
+            page.screenshot(path=str(out / f'{name}-settings.png'))
     for pos in ['top', 'off', 'bottom']:
         page.locator(f'[data-bar-pos={pos}]').click()
         assert_geometry(page)
     page.locator('#zoomIn').click()
     assert_geometry(page)
     page.locator('#zoomOut').click()
+    if opened_settings:
+        page.locator('#setBtn').click()
+        expect(page.locator('#settings')).not_to_be_visible()
     # Existing legacy metadata is not exposed or silently destroyed by editing text.
     page.locator('[data-memo=legacy]').click()
     page.locator('#memoText').fill('更新したメモ')
@@ -257,7 +277,7 @@ def main():
     try:
         with sync_playwright() as p:
             browser = p.chromium.launch(**({'executable_path': args.browser} if args.browser else {}), args=['--no-sandbox'])
-            for name, width, height, touch in [('desktop', 1440, 1000, False), ('mobile', 390, 844, True)]:
+            for name, width, height, touch in [('desktop', 1440, 1000, False), ('tablet', 820, 1180, True), ('mobile', 390, 844, True)]:
                 context = browser.new_context(viewport={'width': width, 'height': height}, has_touch=touch, is_mobile=touch, reduced_motion='reduce', service_workers='block')
                 page = context.new_page(); page.set_default_timeout(8000)
                 errors, requests = [], []

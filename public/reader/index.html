@@ -21,18 +21,20 @@
 <nav class="bar" id="bar" aria-label="操作">
   <div class="row1">
     <div class="mvts" id="mvts" role="tablist" aria-label="楽章"></div>
-    <div class="grp">
+    <div class="grp transport" role="group" aria-label="再生操作">
       <button id="play" class="play" title="再生／停止（スペースキー）">▶ 再生</button>
       <button id="prev" title="前の音（←）" aria-label="前の音">‹</button>
-      <button id="one" title="選んだ音を鳴らす" aria-label="選んだ音を鳴らす">♪</button>
       <button id="next" title="次の音（→）" aria-label="次の音">›</button>
     </div>
-    <form id="jump" class="jump"><input id="jumpBar" type="number" inputmode="numeric" min="1" placeholder="小節" aria-label="小節番号"><button>移動</button></form>
-    <button id="scoreBtn" type="button" title="選んだ小節の総譜を開く" aria-haspopup="dialog">総譜</button>
-    <label class="fsize">譜読み字 <input id="fontSize" type="range" min="26" max="72" step="2" value="44"><output id="fontSizeV">44</output></label>
-    <div class="barpos" role="group" aria-label="小節番号の位置"><span>小節番号</span><button type="button" data-bar-pos="bottom" aria-pressed="true" aria-label="小節番号を下に表示">下</button><button type="button" data-bar-pos="top" aria-pressed="false" aria-label="小節番号を上に表示">上</button><button type="button" data-bar-pos="off" aria-pressed="false" aria-label="小節番号を非表示">オフ</button></div>
-    <label class="tempo">テンポ <input id="tempo" type="range" min="40" max="140" step="5" value="100"><output id="tempoV">100%</output></label>
-    <div class="grp zoom" role="group" aria-label="譜面の拡大縮小"><button id="zoomOut" aria-label="縮小">－</button><button id="zoomIn" aria-label="拡大">＋</button></div>
+    <div id="readerExtras" class="reader-extras">
+      <button id="one" title="選んだ音を鳴らす" aria-label="選んだ音を鳴らす">♪</button>
+      <form id="jump" class="jump"><input id="jumpBar" type="number" inputmode="numeric" min="1" placeholder="小節" aria-label="小節番号"><button>移動</button></form>
+      <button id="scoreBtn" type="button" title="選んだ小節の総譜を開く" aria-haspopup="dialog">総譜</button>
+      <label class="fsize">譜読み字 <input id="fontSize" type="range" min="26" max="72" step="2" value="44"><output id="fontSizeV">44</output></label>
+      <div class="barpos" role="group" aria-label="小節番号の位置"><span>小節番号</span><button type="button" data-bar-pos="bottom" aria-pressed="true" aria-label="小節番号を下に表示">下</button><button type="button" data-bar-pos="top" aria-pressed="false" aria-label="小節番号を上に表示">上</button><button type="button" data-bar-pos="off" aria-pressed="false" aria-label="小節番号を非表示">オフ</button></div>
+      <label class="tempo">テンポ <input id="tempo" type="range" min="40" max="140" step="5" value="100"><output id="tempoV">100%</output></label>
+      <div class="grp zoom" role="group" aria-label="譜面の拡大縮小"><button id="zoomOut" aria-label="縮小">－</button><button id="zoomIn" aria-label="拡大">＋</button></div>
+    </div>
     <button id="setBtn" class="ghost" aria-haspopup="true" aria-expanded="false">設定</button>
   </div>
   <div class="now" aria-live="polite">
@@ -41,6 +43,7 @@
     <span id="barNow" class="bnow"></span>
   </div>
   <div id="settings" class="settings" hidden>
+    <fieldset id="compactExtras" class="compact-extras" hidden><legend>表示・移動</legend><div id="compactExtrasMount"></div></fieldset>
     <fieldset id="rowset"></fieldset>
     <fieldset><legend>音</legend>
       <label id="soundWrap">鳴らす音 <select id="sound"><option value="s">実音</option><option value="w">記譜どおり</option><option value="f">F管読み</option></select></label>

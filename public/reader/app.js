@@ -41,6 +41,20 @@
     try { localStorage.setItem('dynamic-settings', JSON.stringify(S)); } catch (e) { /* ignore */ }
   };
 
+  const compactToolbar = matchMedia('(max-width:1024px)');
+  function syncToolbarLayout() {
+    const extras = $('readerExtras'), mount = $('compactExtrasMount'), fieldset = $('compactExtras'), settingsButton = $('setBtn');
+    if (!extras || !mount || !fieldset || !settingsButton) return;
+    if (compactToolbar.matches) {
+      if (extras.parentElement !== mount) mount.appendChild(extras);
+      fieldset.hidden = false;
+    } else {
+      if (extras.parentElement !== settingsButton.parentElement) settingsButton.before(extras);
+      fieldset.hidden = true;
+    }
+  }
+  compactToolbar.addEventListener?.('change', syncToolbarLayout);
+
   const systemHooks = [];             // extensions append content below each system
   const barMenuHooks = [];            // extensions contribute actions for the selected bar
   const svgHooks = [];                // extensions may draw extra SVG per system
@@ -641,7 +655,7 @@
     $('mvts').innerHTML = D.movements.map((m) => `<button role="tab" data-k="${m.key}" aria-selected="false">${esc(mvLabel(m.key))}</button>`).join('');
     $('mvts').querySelectorAll('button').forEach((b) => { b.onclick = () => setMvt(b.dataset.k, true); });
     $('infoBody').innerHTML = `<p><b>${esc(D.work)}</b> · ${esc(D.part)}</p><p><span class="badge">要確認あり・第三者監査前</span> ${esc(D.status)}</p><ul class="lim">${D.limitations.map((l) => `<li>${esc(l)}</li>`).join('')}</ul>`;
-    syncControls(); wire(); renderScore(); setMvt(D.movements[0].key, false);
+    syncToolbarLayout(); syncControls(); wire(); renderScore(); setMvt(D.movements[0].key, false);
     if (PRINT) document.body.classList.add('print');
     window.__dynamic = { data: D, timeline, select, get cur() { return cur; }, get playing() { return !!playing; }, jumpTo,
       openScore,
