@@ -117,11 +117,12 @@ button:focus-visible,input:focus-visible,select:focus-visible,.note:focus-visibl
   .mvts button{flex:0 0 auto;min-height:34px;padding:4px 10px}
   .transport{gap:2px}
   .transport button,#setBtn{min-height:34px}
-  .now{flex-wrap:nowrap;gap:4px 10px;padding:0 10px 5px;overflow:hidden;min-height:30px;align-items:center}
+  .now{flex-wrap:nowrap;gap:4px 10px;padding:0 10px 3px;overflow:hidden;min-height:27px;align-items:center;line-height:1.2}
   .now>span{white-space:nowrap}
-  .nw{min-width:auto}
-  .ni{min-width:0;overflow:hidden;text-overflow:ellipsis}
-  .bnow{flex:0 0 auto}
+  .nw{min-width:auto;font-size:20px}
+  .nf,.nv{font-size:14px}.ns{font-size:13px}
+  .ni{font-size:11px;min-width:0;overflow:hidden;text-overflow:ellipsis}
+  .bnow{flex:0 0 auto;font-size:12px}
   .score{padding-inline:8px}
   .settings{position:fixed;z-index:50;left:max(8px,env(safe-area-inset-left));right:max(8px,env(safe-area-inset-right));bottom:max(8px,env(safe-area-inset-bottom));max-height:min(72dvh,640px);overflow:auto;overscroll-behavior:contain;border:1px solid var(--line);border-radius:16px;box-shadow:0 18px 60px #10233d55;padding:14px;background:#fff;gap:12px 18px}
   .settings fieldset{align-items:flex-start}
