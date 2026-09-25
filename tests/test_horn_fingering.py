@@ -22,13 +22,13 @@ OPEN = {
 }
 
 
-# Yamaha full-double first choice per F-horn written pitch (4 = thumb valve / B♭ side)
+# Yamaha full-double first choice per F-horn written pitch (leading 0 = thumb lever / B♭ side)
 YAMAHA_DOUBLE = {
-    42: "123", 43: "13", 44: "23", 45: "12", 46: "1", 47: "2", 48: "0", 49: "423", 50: "412", 51: "41",
-    52: "42", 53: "40", 54: "2", 55: "0", 56: "23", 57: "12", 58: "1", 59: "2", 60: "0", 61: "12",
-    62: "1", 63: "2", 64: "0", 65: "1", 66: "2", 67: "0", 68: "23", 69: "412", 70: "41", 71: "42",
-    72: "40", 73: "423", 74: "412", 75: "41", 76: "42", 77: "40", 78: "42", 79: "40", 80: "423",
-    81: "412", 82: "41", 83: "42", 84: "40",
+    42: "123", 43: "13", 44: "23", 45: "12", 46: "1", 47: "2", 48: "0", 49: "023", 50: "012", 51: "01",
+    52: "02", 53: "00", 54: "2", 55: "0", 56: "23", 57: "12", 58: "1", 59: "2", 60: "0", 61: "12",
+    62: "1", 63: "2", 64: "0", 65: "1", 66: "2", 67: "0", 68: "23", 69: "012", 70: "01", 71: "02",
+    72: "00", 73: "023", 74: "012", 75: "01", 76: "02", 77: "00", 78: "02", 79: "00", 80: "023",
+    81: "012", 82: "01", 83: "02", 84: "00",
 }
 
 
@@ -41,7 +41,7 @@ def first_choice(midi: int, mode: str = "double", switch: int | None = None) -> 
     low, keep_f = CHART["double"]["lowBb"], CHART["double"]["mostlyBbKeepF"]
     pick_b = midi not in keep_f if sw == 0 else midi >= sw or low[0] <= midi <= low[1]
     use_b = F[0] == "123" or (pick_b and B[0] != "123")
-    return "4" + B[0] if use_b else F[0]
+    return "0" + B[0] if use_b else F[0]
 
 
 def lowered(fingering: str) -> int:
@@ -89,10 +89,12 @@ class HornFingeringTests(unittest.TestCase):
     def test_mostly_bb_mode_keeps_c_and_b_on_f(self):
         for midi in range(49, 85):
             got = first_choice(midi, switch=0)
+            # B♭-side codes carry a leading 0 (thumb lever) plus valve digits; an F-side open is the lone "0".
+            on_bb = got.startswith("0") and len(got) > 1
             if midi in (54, 59, 60, 71, 72):
-                self.assertFalse(got.startswith("4"), CHART["names"][str(midi)])
+                self.assertFalse(on_bb, CHART["names"][str(midi)])
             else:
-                self.assertTrue(got.startswith("4"), CHART["names"][str(midi)])
+                self.assertTrue(on_bb, CHART["names"][str(midi)])
 
     def test_every_horn_note_has_a_fingering(self):
         parts = json.loads((ROOT / "public/reader/parts.json").read_text(encoding="utf-8"))["parts"]
