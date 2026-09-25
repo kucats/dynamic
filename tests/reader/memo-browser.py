@@ -178,6 +178,12 @@ def exercise(page, fixture, out, name, offline, touch):
         page.locator('#setBtn').click()
         expect(page.locator('#settings')).to_be_visible()
         opened_settings = True
+        if compact:
+            settings_box = page.locator('#settings').bounding_box()
+            assert settings_box['y'] >= -1, settings_box
+            assert settings_box['y'] + settings_box['height'] <= page.viewport_size['height'] + 1, settings_box
+            assert settings_box['height'] <= page.viewport_size['height'] * .76, settings_box
+            page.screenshot(path=str(out / f'{name}-settings.png'))
     for pos in ['top', 'off', 'bottom']:
         page.locator(f'[data-bar-pos={pos}]').click()
         assert_geometry(page)
