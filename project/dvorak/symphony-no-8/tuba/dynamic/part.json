@@ -1,0 +1,161 @@
+{
+ "id": "dvorak8-tuba",
+ "instrument": "tuba",
+ "title": "交響曲第8番 — Tuba",
+ "movements": [
+  {
+   "key": "I",
+   "title": "Allegro con brio",
+   "last": 318,
+   "pages": [
+    16,
+    17,
+    18
+   ],
+   "meters": [
+    {
+     "bar": 1,
+     "meter": "4/4"
+    }
+   ],
+   "tempos": [
+    {
+     "bar": 1,
+     "text": "Allegro con brio",
+     "mm": null
+    },
+    {
+     "bar": 143,
+     "text": "Tempo Imo",
+     "mm": null
+    },
+    {
+     "bar": 239,
+     "text": "Poco meno mosso",
+     "mm": null
+    },
+    {
+     "bar": 251,
+     "text": "Tempo I",
+     "mm": null
+    }
+   ]
+  },
+  {
+   "key": "II",
+   "title": "Adagio",
+   "last": 0,
+   "pages": [
+    18
+   ],
+   "tacet": true,
+   "meters": [],
+   "tempos": []
+  },
+  {
+   "key": "III",
+   "title": "Allegro grazioso",
+   "last": 0,
+   "pages": [
+    18
+   ],
+   "tacet": true,
+   "meters": [],
+   "tempos": []
+  },
+  {
+   "key": "IV",
+   "title": "Allegro, ma non troppo",
+   "last": 389,
+   "pages": [
+    18,
+    19,
+    20
+   ],
+   "meters": [
+    {
+     "bar": 1,
+     "meter": "2/4"
+    }
+   ],
+   "tempos": [
+    {
+     "bar": 1,
+     "text": "Allegro, ma non troppo",
+     "mm": 116
+    },
+    {
+     "bar": 26,
+     "text": "Un poco meno mosso",
+     "mm": 108
+    },
+    {
+     "bar": 58,
+     "text": "Un poco più mosso",
+     "mm": 116
+    },
+    {
+     "bar": 75,
+     "text": "Più mosso",
+     "mm": 126
+    },
+    {
+     "bar": 93,
+     "text": "Tempo I",
+     "mm": 116
+    },
+    {
+     "bar": 253,
+     "text": "Tempo I, Meno mosso",
+     "mm": 108
+    },
+    {
+     "bar": 339,
+     "text": "Tempo I",
+     "mm": 126
+    },
+    {
+     "bar": 356,
+     "text": "Più animato",
+     "mm": 144
+    }
+   ]
+  }
+ ],
+ "splits": [
+  {
+   "page": 18,
+   "first_system": 4,
+   "movement": "IV",
+   "note": "systems 1-3 = mvt I bars 297-318; II/III Tacet text; systems 4+ = mvt IV"
+  }
+ ],
+ "status": {
+  "bars": "mapped vs printed numbers + rehearsal letters; interior equal-width segments flagged where ambiguous",
+  "notes": "pitches candidates only — all flagged uncertain pending pitch audit",
+  "rhythm": "durations placeholder 1/8 on dense runs; rests/multirests confirmed vs counts"
+ },
+ "limitations": [
+  "All note pitches marked uncertain — not yet audited at note level.",
+  "Cue passages (Timp., Ob.I, Violin, Trbne III, Trbe., Viol.I, Fl.I) identified and excluded.",
+  "mvt II/III tacet.",
+  "Durations/offsets are placeholders on fast runs; meters/tempos/keys/rehearsal letters are verified."
+ ],
+ "source": {
+  "file": "work/trombone.pdf",
+  "sha256": "da7e2e7c0b452d777f94c490db09a4e37bc455ffef0da7d83a94ac25f5d2b0cf",
+  "pages": {
+   "I": [
+    16,
+    17,
+    18
+   ],
+   "IV": [
+    18,
+    19,
+    20
+   ]
+  }
+ },
+ "dpi": 300
+}
