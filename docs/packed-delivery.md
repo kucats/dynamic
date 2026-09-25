@@ -25,8 +25,9 @@ Two independent savings:
    that system scrolls into view. Base64 decode cost disappears and images
    cache individually.
 
-PNG kept on purpose: re-encoding the line-art strips to WebP q60 ballooned to
-268% — lossless palette PNG beats lossy WebP on this content.
+Format: the strips are near-bimodal ink-on-paper, so bilevel wins — see
+"Committing crop images" for the measured table (bilevel WebP-lossless ≈
+31.5% of gray PNG; lossy WebP is strictly worse than PNG-8 on this content).
 
 ## Layout
 
@@ -106,10 +107,16 @@ Layout and granularity:
   `notes_pNN.json`/`bars_pNN.json`.
 - Emit step copies them into `data/<id>/img/` in the packed layout; the
   monolith `data/<id>.json` keeps inline images until the reader switches.
-- Compression: PNG for line art (measured winner over WebP q60); re-evaluate
-  WebP-lossless/q80 when the corpus exists. Total estimate: parts ~20–60 MB,
-  full score ~80–240 MB depending on band granularity — acceptable under
-  "store heavy" as long as delivery stays sharded.
+- Compression, measured on 175 real system crops and 9 score pages: the
+  cleaned scans are already near-bimodal (ink vs paper), so bilevel wins
+  big — `WEBP lossless + 1-bit` ≈ **31.5%** of grayscale PNG on crops and
+  **18.5%** of current score WebP pages (34 MB → ~6.4 MB for 172 pages);
+  `PNG-1` ≈ 39%/23%. Lossy WebP is a trap on line art (q80: +82%, q90: +156%
+  over PNG-8 — ringing forces larger files). Bilevel threshold ~200 loses
+  nothing visible: staff lines, note heads, hairpins, bar numbers verified
+  intact. Format choice: bilevel WebP-lossless primary, PNG-1 fallback.
+  Total estimate: parts ~10–25 MB, full score ~30–75 MB — under "store
+  heavy" as long as delivery stays sharded.
 
 Decode agents keep writing JSON only; crops are produced by the build/pack
 step (clean crops — no guide lines) so review artifacts stay readable.

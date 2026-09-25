@@ -19,6 +19,12 @@ Sharding:
   --shard page     one notes file per page     (score: load the open page only)
   --shard all      single notes file           (whole part in one fetch)
 
+Images: cleaned line-art is near-bimodal, so bilevel wins — measured ~31%
+of grayscale PNG as 1-bit WebP-lossless (lossy WebP is strictly worse on
+this content). `--img webp` (default) writes 1-bit WebP-lossless when
+Pillow is available, `--img png` writes 1-bit PNG, `--img raw` keeps the
+source bytes.
+
 Usage:
   python3 pack_notes.py public/reader/data/dvorak8-trombone1.json \
       --out work/pack/trombone1 --shard system
@@ -78,7 +84,16 @@ def main():
     ap.add_argument("data", type=Path)
     ap.add_argument("--out", type=Path, required=True)
     ap.add_argument("--shard", choices=["system", "page", "all"], default="system")
+    ap.add_argument("--img", choices=["webp", "png", "raw"], default="webp")
+    ap.add_argument("--threshold", type=int, default=200)
     a = ap.parse_args()
+
+    try:
+        import io
+        from PIL import Image
+        have_pil = True
+    except ImportError:
+        have_pil = False
 
     data = json.loads(a.data.read_text(encoding="utf-8"))
     a.out.mkdir(parents=True, exist_ok=True)
@@ -94,6 +109,17 @@ def main():
             ext = "png" if "png" in head else "webp" if "webp" in head else "bin"
             name = f"{s.get('i', len(systems)):03d}.{ext}"
             blob = base64.b64decode(b64)
+            if have_pil and a.img != "raw":
+                im = Image.open(io.BytesIO(blob)).convert("L")
+                bw = im.point(lambda v: 255 if v >= a.threshold else 0, "1")
+                buf = io.BytesIO()
+                if a.img == "webp":
+                    bw.convert("L").save(buf, "WEBP", lossless=True)
+                    name = name.rsplit(".", 1)[0] + ".webp"
+                else:
+                    bw.save(buf, "PNG", optimize=True)
+                    name = name.rsplit(".", 1)[0] + ".png"
+                blob = buf.getvalue()
             img_bytes += len(blob)
             (a.out / "img" / name).write_bytes(blob)
             s["img"] = f"img/{name}"
