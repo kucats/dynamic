@@ -20,6 +20,9 @@ button:focus-visible,input:focus-visible,select:focus-visible,.note:focus-visibl
 .ttl p{margin:0;color:var(--mute);font-size:13px}
 .toplinks{display:flex;gap:6px}
 .toplinks a{display:inline-flex;align-items:center;border:1px solid #c5d4e4;border-radius:10px;padding:6px 11px;text-decoration:none;color:var(--ink);min-height:36px}
+.tuner-btn{display:inline-flex;align-items:center;gap:5px}  /* tuner-addon.js; icon only on phones */
+.tuner-btn svg{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.tuner-btn[aria-pressed=true]{background:var(--ink);border-color:var(--ink);color:#fff}
 .bar{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);box-shadow:0 4px 16px #10233d12}
 .row1{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:8px 16px}
 .grp{display:flex;gap:4px}
@@ -136,6 +139,7 @@ button:focus-visible,input:focus-visible,select:focus-visible,.note:focus-visibl
 @media (max-width:760px){
   .top{gap:7px;padding:6px 8px}.brand span{display:none}.brand img{width:30px;height:30px}.ttl h1{font-size:14px}.ttl p{display:none}
   .toplinks{gap:3px}.toplinks a,.toplinks button{min-height:32px;padding:4px 8px;font-size:12px}
+  .tuner-btn span{display:none}.tuner-btn{padding-inline:7px}
   .row1{padding:5px 6px;gap:4px;min-height:44px}
   .mvts{gap:3px}.mvts button{min-height:32px;padding:3px 9px;font-size:12px}
   .transport button,#setBtn{min-height:32px;padding:4px 7px}
