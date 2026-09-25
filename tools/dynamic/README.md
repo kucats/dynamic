@@ -11,6 +11,7 @@
 | `barlines.py` / `bars_overlay.py` | 縦線（小節線）の自動検出・多小節休み判定・小節番号の推定と確認図 |
 | `score_staves.py` | 総譜ページの五線検出・段→システムの割り付け（`public/score/<id>/index.json` のバンドを利用。休みの段は省略されるため段→楽器の対応はシステムごとに左マージンの楽器名で決める） |
 | `score_zoom.py` | 総譜の1段だけを拡大した音高ガイド付き図（treble/bass/altoガイド＋index由来の小節線・小節番号を重畳） |
+| `pack_notes.py` | 閲覧データを軽量配信用に分割（行配列パック＋画像分離＋システム/ページ単位の音符シャード。`docs/packed-delivery.md`） |
 | `build_reader.py` | `project/**/dynamic/` のデータ＋原譜から `public/reader/data/<id>.json` を生成 |
 | `refresh_reader_pitches.py` | PDFなしで、レビュー済みの音高・要確認フラグを既存の閲覧データへ反映（小節・音価・タイを照合） |
 | `validate_reader.py` | 閲覧データの整合性検査（小節番号と音符、タイムライン、画像形式、パス漏れ） |

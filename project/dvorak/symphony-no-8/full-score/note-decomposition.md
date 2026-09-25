@@ -113,6 +113,10 @@ Either path is cheap enough that data size should not drive the decision; the
 deciding factor is transcription bookkeeping (instrument map + transposition
 per staff on the score) vs pipeline reuse (parts).
 
+Delivery format for both paths (packed rows + per-page/per-system shards +
+extracted images; ~40 B/event, first paint ~2–5% of the monolith):
+`docs/packed-delivery.md`.
+
 ## What still has to be built / collected
 
 | Item | Status |
