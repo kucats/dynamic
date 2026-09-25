@@ -67,11 +67,17 @@
     R = window.__dynamic;
     if (!R || !R.ext || R.ext.print || !R.ext.addNoteHook || R.data.instrument !== 'trombone') return;
     btn = document.createElement('button');
-    btn.type = 'button'; btn.id = 'tb3dBtn'; btn.className = 'ghost'; btn.textContent = '3D';
-    btn.title = '3Dの奏者でスライドの動きを見る'; btn.setAttribute('aria-pressed', 'false');
+    btn.type = 'button'; btn.id = 'tb3dBtn'; btn.className = 'ghost tb3d-launch'; btn.textContent = '3D';
+    btn.title = '3Dトロンボーンでスライドの動きを見る'; btn.setAttribute('aria-label', '3Dトロンボーン'); btn.setAttribute('aria-pressed', 'false');
     btn.onclick = () => setOpen(!open);
-    const anchor = document.getElementById('scoreBtn');
-    anchor ? anchor.after(btn) : document.querySelector('.row1')?.append(btn);
+    // The score button moves into the compact settings sheet on tablet/phone.
+    // Keep the 3D entry in the always-visible header so the add-on remains discoverable.
+    const links = document.querySelector('.toplinks'), info = document.getElementById('infoBtn');
+    if (links) links.insertBefore(btn, info?.parentElement === links ? info : null);
+    else {
+      const anchor = document.getElementById('scoreBtn');
+      anchor ? anchor.after(btn) : document.querySelector('.row1')?.append(btn);
+    }
     const cur = R.cur && R.data.notes.find((n) => n.id === R.cur); if (cur) lastNote = cur;
     R.ext.addNoteHook(onNote);
     document.addEventListener('visibilitychange', () => { if (!player || !open) return; if (document.hidden) player.stop(); else player.start(); });
