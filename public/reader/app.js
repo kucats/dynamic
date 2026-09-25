@@ -235,9 +235,7 @@
     for (const m of D.movements) {
       html.push(`<h2 class="mv" id="mv-${m.key}">${esc(m.title)} <small>${m.notes}音</small></h2>`);
       for (const sy of D.systems.filter((s) => s.mvt === m.key)) {
-        const labs = sy.segs.map((g) => g[2]).filter(Boolean);
-        const rng = labs.length ? `${labs[0].split('–')[0]}〜${labs[labs.length - 1].split('–').pop()}小節` : '';
-        html.push(`<section class="sys" id="sys-${sy.i}" data-mvt="${sy.mvt}"><div class="cap">原譜 ${sy.page}ページ ${sy.sys}段目 · ${rng}</div><div class="sc">${systemSVG(sy)}${systemHooks.map((hook) => hook(sy)).join('')}</div></section>`);
+        html.push(`<section class="sys" id="sys-${sy.i}" data-mvt="${sy.mvt}"><div class="sc">${systemSVG(sy)}${systemHooks.map((hook) => hook(sy)).join('')}</div></section>`);
       }
     }
     main.innerHTML = html.join('');
@@ -565,7 +563,7 @@
     }));
     $('jump').onsubmit = (e) => { e.preventDefault(); const b = parseInt($('jumpBar').value, 10); if (b) jumpTo(b); };
     $('zoomIn').onclick = () => { S.zoom = Math.min(4, +(S.zoom * 1.25).toFixed(2)); document.documentElement.style.setProperty('--zoom', S.zoom); save(); if (cur) mark(cur, false); };
-    $('zoomOut').onclick = () => { S.zoom = Math.max(1, +(S.zoom / 1.25).toFixed(2)); document.documentElement.style.setProperty('--zoom', S.zoom); save(); if (cur) mark(cur, false); };
+    $('zoomOut').onclick = () => { S.zoom = Math.max(0.5, +(S.zoom / 1.25).toFixed(2)); document.documentElement.style.setProperty('--zoom', S.zoom); save(); if (cur) mark(cur, false); };
     $('setBtn').onclick = () => { const s = $('settings'); s.hidden = !s.hidden; $('setBtn').setAttribute('aria-expanded', String(!s.hidden)); };
     document.querySelectorAll('[data-row]').forEach((c) => c.addEventListener('change', () => {
       S.rows[c.dataset.row] = c.checked;
