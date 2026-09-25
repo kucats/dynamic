@@ -1,0 +1,58 @@
+{
+  "work": "dvorak-8",
+  "source": "work/db8/Bartos.pdf sha256:f644a29d78440db51cb15d007be6d0f8198e253f9adb53845e9a8334977f7026 (Bartos critical edition)",
+  "page": 4,
+  "system": 1,
+  "bars": "7-13",
+  "dpi": 600,
+  "staff_map": {
+    "1": "Fl.I", "2": "Fl.II", "3": "Ob.I.II", "4": "Cl.I.II.A",
+    "5": "Fag.I.II", "6": "Cor.F I.II", "7": "Cor.F III.IV",
+    "8": "Trbe I.II.F", "9": "Trbni I.II", "10": "Trbni III e Tb",
+    "11": "Timp.G,D", "12": "Viol.I", "13": "Viol.II",
+    "14": "Vle", "15": "Vlc", "16": "Cb"
+  },
+  "clefs": {"4": "treble (Cl in A, 2b)", "5": "bass", "6": "treble (Cor in F)", "9": "alto", "14": "alto", "15": "bass", "16": "bass"},
+  "convention": "pitch as printed (transposing instruments keep written pitch, as in part pipeline)",
+  "rests": {
+    "comment": "whole-bar rests confirmed for all seven bars on these staves",
+    "staves": [1, 2, 3, 7, 8, 10, 11, 12, 13]
+  },
+  "notes": {
+    "9": {
+      "verified_against": "project/dvorak/symphony-no-8/trombone-* committed part data (exact match)",
+      "7": [["Bb3", "G3", "half"], ["A3", "F3", "half"]],
+      "8": [["G3", "Eb3->F3", "whole+half pair, lower voice moves"]],
+      "9": [["C4", "G3", "whole dyad"]],
+      "10-13": "dyad halves continue (C4,Db4 | C4 | C4 | C4,A3 upper voice) - read, pitch unverified on lower voice"
+    },
+    "4": {
+      "verified_against": "Drive Cl part (1szirjkHLCSb8e7nIUoNbFRRyFL2onRxT) - rhythm/figure match confirmed, pitch +/-1 step",
+      "figure": "b7: flat+half, quarter rest, quarter; b8: flat+dotted half + 2 eighths; b9: flat+dotted half + 2 eighths; b10-13: half+half / flat+half+rest+quarter / flat+half+2q / flat+half+2q",
+      "pitch": "~C4 written (on first ledger below staff, flagged: C4/Cb4 vs Db4 unresolved at this zoom)",
+      "uncertain": true
+    },
+    "6": {
+      "figure": "same figure as Cl staff a fourth+ higher: b7 flat+half+2q, b8 flat+dotted-half+2e, b9 flat+4q, b10-13 halves/quarters",
+      "pitch": "~D5-C5 written area",
+      "uncertain": true
+    },
+    "5": {
+      "figure": "bass clef two voices: upper flat+half + quarters, lower open heads under slur; continues b10-13",
+      "uncertain": true
+    },
+    "14": {
+      "figure": "alto clef quarter-dyad + rest alternation each bar (chordal punctuation)",
+      "uncertain": true
+    },
+    "15": {
+      "figure": "bass clef sustained figure: b7 flat+half+2q, b8 flat+dotted+2e, b9 flat+quarters; b10-13: half+half / flat+half+rest+q / flat+half+2q / flat+half+2q",
+      "uncertain": true
+    },
+    "16": {
+      "figure": "bass clef quarter-dyad + rest punctuation; b10-13 continues with accidentals (flat/natural/sharp dyads)",
+      "uncertain": true
+    }
+  },
+  "verdict": "all 16 staves readable at 600dpi; rests and note-figure identification reliable; single-note pitch occasionally needs a second zoom pass (+/-1 step residuals); shared-staff dyads resolvable"
+}

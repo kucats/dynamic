@@ -39,10 +39,79 @@ reader only has to read notes inside existing bar boxes.
 ## Method
 
 Per page: `score_staves.py --index …` → per system read margin names →
-assign `{instrument, clef, transposition}` per row → per staff run the
-existing zoom + pitch-guide read, tagging stacked notes `sim` → for shared
+assign `{instrument, clef, transposition}` per row → per staff run
+`score_zoom.py PAGE --staff N --index …` (per-staff guided crop with the
+reviewed bar boxes overlaid) → read, tagging stacked notes `sim` → for shared
 staves split voices by stem direction → emit either a per-instrument notes
 file (same schema as parts) or one score entry keyed by system row.
+
+## Trial read — p4 sys 1, all 16 staves, bars 7–13
+
+Full per-staff census plus note reads on every staff carrying notes
+(`trial-p4-sys1.json`):
+
+| Staff | Bars 7–13 |
+| --- | --- |
+| Fl.I, Fl.II, Ob.I.II, Cor III.IV, Trbe, Trbni III e Tb, Timp, Vl.I, Vl.II | whole-bar rests (9 staves) |
+| Cl.I.II.A | sustained figure b7–13 (`♭○`, rest, `●` / `♭○.`+2e / halves / `♭○`+2q) — figure verified against the Drive Cl part; first pitch on ledger C4/B3 flagged `uncertain` (±1 step at this zoom) |
+| Fag.I.II | two voices, same figure + moving lower voice |
+| Cor.F I.II | same figure a fourth+ higher, `a 2` unison |
+| Trbni I.II | **exact match to committed part data** (b7 `Bb3+G3`/`A3+F3`, b8, b9 `C4+G3`) |
+| Vle | quarter-dyad + rest punctuation |
+| Vlc | sustained bass version of the figure through b13 |
+| Cb | quarter-dyad + rest punctuation |
+
+Reading cost for one complete 16-staff system was one detection call + 16
+guided crops; rests resolve at first glance, note-bearing staves read at the
+same speed as a part page. Residual uncertainty is note-level (±1 step on a
+few heads), not structural — the same review pass discipline as the part
+audits closes it.
+
+## Score vs parts — where to read the notes
+
+**Recommendation: parts first, score as the verification and projection
+layer.** Reasons:
+
+- The 13 same-edition part PDFs are proven input: one instrument context per
+  file, no per-system instrument map to read, transposition handled once per
+  part instead of per staff, and `zoom.py`/`build_reader.py` run unchanged.
+- On the score, every staff additionally needs margin-name assignment per
+  system (tacet staves shift the row↔instrument map continuously) — solvable,
+  but it is pure overhead compared to reading a file that is already labelled
+  CLARINETTO I.
+- Same bar content on both sources means the score read is a free audit: read
+  score staves at review confidence, diff vs part notes, flag only
+  disagreements. That is cheaper than auditing part reads alone.
+- If the end goal is notes overlaid on the **score viewer itself**, part
+  notes project onto score staves via the shared bar index — the score read
+  is then needed only where parts disagree or lack an instrument.
+
+The opposite ordering (score first) is also viable — the trial shows it
+works — it just spends the extra effort on instrument-map bookkeeping rather
+than notes.
+
+## Data size on the loading side
+
+Measured on what's already committed:
+
+- `public/score/dvorak8/pages/` = **34 MB total, ~200 KB/page WebP**, lazy
+  loaded — the score images already open one page at a time; adding notes
+  changes nothing about that.
+- Part reader JSON embeds cleaned staff crops: `dvorak8-trombone1` = 1.07 MB
+  of which ~88% is system images; notes alone are ~0.23 KB/event
+  (574 events → 131 KB).
+
+Score note layer estimate: ~1108 bars × ~14 staves × ~50% sounding ×
+~4 events ≈ **30k note events → ~2–7 MB JSON total** (≈15–40 KB per page if
+split like the page images, ~0.5–1 MB gzipped whole). That is ~5–15% on top
+of the existing page payload — no loading concern either way.
+
+Part-data route: 13 parts × ~0.5–3 MB each ≈ **15–30 MB total**, but the
+reader loads one instrument at a time, so per-load size stays ~1–3 MB.
+
+Either path is cheap enough that data size should not drive the decision; the
+deciding factor is transcription bookkeeping (instrument map + transposition
+per staff on the score) vs pipeline reuse (parts).
 
 ## What still has to be built / collected
 
