@@ -193,3 +193,10 @@ test('non-API paths fall through to static assets', async () => {
   assert.equal(await (await handle(req('/reader/'), env, opts)).text(), 'static');
   assert.equal((await handle(req('/api/nope'), env, opts)).status, 404);
 });
+
+test('bar-linked memo accepts only movement/bar from the new UI without placement or rehearsal', () => {
+  const [m, error] = cleanMemo({ text: '前の小節で吸う', kind: 'issue', anchor: { mvt: 'I', bar: 59 } });
+  assert.equal(error, null);
+  assert.deepEqual(m.anchor, { mvt: 'I', bar: 59, page: null, sys: null, x: null, y: null, note: null });
+  assert.equal(m.rehearsal, '');
+});

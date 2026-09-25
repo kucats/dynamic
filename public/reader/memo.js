@@ -1,212 +1,193 @@
-/* DYNAMIC 譜読みアプリ — practice memos (per signed-in user, per part).
- * Kept apart from app.js: it only uses the small `__dynamic.ext` hook surface.
- * Storage and timestamps live on the Worker (/api/memos/<part>); see docs/reader-memos.md. */
+/* DYNAMIC 譜読みアプリ — per-user, per-part, measure-linked practice memos.
+ * Uses only __dynamic.ext; never changes score data, audit status or playback. */
+import { resolveMemoAnchor, memoPosition } from './memo-model.mjs';
+
 (() => {
   'use strict';
   const $ = (id) => document.getElementById(id);
   const KIND_LABEL = { note: 'メモ', issue: '課題', good: 'できた' };
-  const M = { enabled: false, loggedIn: false, email: '', memos: [], pen: false, editing: null, anchor: null, busy: false };
-  let R, X, D;   // reader API, its ext hooks, part data
-
+  const INTENT_KEY = 'dynamic-memo-intent';
+  const M = { enabled: false, loggedIn: false, email: '', memos: [], editing: null, anchor: null, busy: false, pending: null };
+  let R, X, D;
   const fmtTime = (iso) => { try { return new Date(iso).toLocaleString('ja-JP', { dateStyle: 'medium', timeStyle: 'short' }); } catch (e) { return iso; } };
   const mvtOrder = (k) => { const i = D.movements.findIndex((m) => m.key === k); return i < 0 ? 99 : i; };
+  const canonical = (m) => resolveMemoAnchor(D, m.anchor);
+  const memoPos = (m) => memoPosition(D, m.anchor);
+  const kindOf = (m) => Object.hasOwn(KIND_LABEL, m.kind) ? m.kind : 'note';
+  const sorted = (memos) => [...memos].sort((a, b) => mvtOrder(a.anchor?.mvt) - mvtOrder(b.anchor?.mvt)
+    || (canonical(a)?.bar || 0) - (canonical(b)?.bar || 0) || String(a.createdAt).localeCompare(b.createdAt) || String(a.id).localeCompare(b.id));
   function memoLabel(memo) {
-    const a = memo.anchor || {};
-    return `${X.mvNum[a.mvt] || a.mvt}楽章${a.bar ? ` ${a.bar}小節` : ''}${memo.rehearsal ? ` · 練習記号${memo.rehearsal}` : ''}`;
+    const a = canonical(memo) || memo.anchor || {};
+    return `${X.mvNum[a.mvt] || a.mvt || '不明'}楽章${a.bar ? ` ${a.bar}小節` : ''}`;
   }
+  const atBar = (anchor) => M.memos.filter((m) => { const a = canonical(m); return a && a.mvt === anchor.mvt && a.bar === anchor.bar; });
 
-  // ---------- anchors ----------
-  function barAt(sy, x) {                 // printed bar under an image x (first bar of a multi-rest)
-    let best = null, dist = Infinity;
-    for (const [xa, xb, lab] of sy.segs) {
-      if (!lab) continue;
-      const d = x < xa ? xa - x : x >= xb ? x - xb + 1 : 0;
-      if (d < dist) { dist = d; best = X.segRange(lab)[0]; }
-    }
-    return best;
-  }
-  /** Where to draw a memo: its own staff when page/system still match, else the start of its bar. */
-  function memoPos(memo) {
-    const a = memo.anchor || {};
-    let sy = D.systems.find((s) => s.mvt === a.mvt && s.page === a.page && s.sys === a.sys);
-    if (sy && Number.isFinite(a.x)) return { s: sy.i, x: Math.min(sy.w - 20, Math.max(20, a.x)), y: Number.isFinite(a.y) ? a.y : 30 };
-    for (sy of D.systems.filter((s) => s.mvt === a.mvt)) {
-      for (const [xa, , lab] of sy.segs) {
-        if (!lab || !a.bar) continue; const [lo, hi] = X.segRange(lab);
-        if (a.bar >= lo && a.bar <= hi) return { s: sy.i, x: xa + 30, y: 30 };
-      }
-    }
-    return null;
-  }
-  function anchorFrom(svg, clientX, clientY) {
-    const sy = D.systems[+svg.closest('.sys').id.slice(4)];
-    const pt = svg.createSVGPoint(); pt.x = clientX; pt.y = clientY;
-    const p = pt.matrixTransform(svg.getScreenCTM().inverse());
-    const x = Math.round(Math.max(0, Math.min(sy.w, p.x))), y = Math.round(p.y - Number(svg.dataset.top || 0));
-    let note = null, nd = 90;
-    for (const n of D.notes) if (n.s === sy.i && Math.abs(n.x - x) < nd) { nd = Math.abs(n.x - x); note = n.id; }
-    return { mvt: sy.mvt, bar: barAt(sy, x), page: sy.page, sys: sy.sys, x, y, note };
-  }
-  function pins(sy, { topBand, H }) {
-    const o = [];
-    for (const memo of M.memos) {
+  // Fixed rows BELOW the score/reading labels. Grid boundaries are original barlines;
+  // repeated memos stack in their cell, and multi-rest memos retain exact bar labels.
+  function memoBand(sy) {
+    const groups = new Map();
+    for (const memo of sorted(M.memos)) {
       const at = memoPos(memo); if (!at || at.s !== sy.i) continue;
-      const y = Math.max(66, Math.min(H - 4, topBand + at.y)), lab = memo.rehearsal ? memo.rehearsal.slice(0, 2) : '✎';
-      o.push(`<g class="memo-pin k-${X.esc(memo.kind || 'note')}" data-memo="${X.esc(memo.id)}" tabindex="0" role="button" aria-label="${X.esc(memoLabel(memo))}のメモ：${X.esc(memo.text.slice(0, 40))}">`
-        + `<title>${X.esc(memo.text)}</title><path d="M${at.x} ${y} l-14 -18 a30 30 0 1 1 28 0 z"/>`
-        + `<text x="${at.x}" y="${y - 33}">${X.esc(lab)}</text></g>`);
+      if (!groups.has(at.segment)) groups.set(at.segment, []);
+      groups.get(at.segment).push(memo);
     }
-    return o.join('');
+    if (!groups.size) return '';
+    const edges = [...new Set([0, sy.w, ...sy.segs.flatMap(([xa, xb]) => [xa, xb])])].sort((a, b) => a - b);
+    const columns = edges.slice(1).map((x, i) => `${(x - edges[i]) / sy.w * 100}%`).join(' ');
+    const cells = [...groups].map(([segment, memos]) => {
+      const [xa, xb] = sy.segs[segment];
+      const cards = memos.map((m) => `<button type="button" class="memo-card k-${kindOf(m)}" data-memo="${X.esc(m.id)}" aria-haspopup="dialog" aria-label="${X.esc(memoLabel(m))}のメモを編集：${X.esc(m.text.slice(0, 80))}">`
+        + `<span class="memo-card-label">${canonical(m).bar}小節 · ${KIND_LABEL[kindOf(m)]}</span><span class="memo-card-text">${X.esc(m.text)}</span></button>`).join('');
+      return `<div class="memo-cell" style="grid-column:${edges.indexOf(xa) + 1}/${edges.indexOf(xb) + 1};grid-row:1">${cards}</div>`;
+    }).join('');
+    return `<div class="memo-band" role="group" aria-label="この段の練習メモ" style="grid-template-columns:${columns}">${cells}</div>`;
   }
 
   // ---------- API ----------
   async function api(path, opt = {}) {
     const res = await fetch(path, { credentials: 'same-origin', ...opt, headers: { Accept: 'application/json', ...(opt.body ? { 'Content-Type': 'application/json' } : {}) } });
     let body = null; try { body = await res.json(); } catch (e) { /* non-JSON */ }
-    if (res.status === 401) { M.loggedIn = false; M.email = ''; M.memos = []; if (X) X.rerender(); sync(); }
+    if (res.status === 401) { M.loggedIn = false; M.email = ''; M.memos = []; X.rerender(); sync(); }
     if (!res.ok) throw new Error((body && body.error) || `保存できませんでした（${res.status}）`);
     return body;
   }
   const memoPath = (id) => `/api/memos/${encodeURIComponent(X.part)}${id ? '/' + encodeURIComponent(id) : ''}`;
   const loginUrl = () => `/login?return=${encodeURIComponent(location.pathname + location.search)}`;
-
-  // ---------- UI ----------
   function sync() {
-    $('memoPen').hidden = !M.enabled; $('memoListBtn').hidden = !M.enabled || !M.loggedIn;
-    $('memoPen').setAttribute('aria-pressed', String(M.pen));
-    $('memoPen').title = M.loggedIn ? 'ペンを押してから、メモを書きたい場所をタップ' : 'ログインするとメモを書けます';
-    const status = $('memoStatus');
-    status.hidden = !M.enabled;
-    status.textContent = M.loggedIn ? `ログイン中：${M.email}` : 'メモ：未ログイン';
-    status.title = M.loggedIn ? `${M.email} でログイン中` : '「メモ」を押すとGoogleアカウントでログインできます';
-    status.classList.toggle('is-logged-in', M.loggedIn);
+    $('memoSettings').hidden = !M.enabled;
+    $('memoListBtn').hidden = !M.loggedIn;
+    $('memoStatus').textContent = M.loggedIn ? `ログイン中：${M.email}` : 'メモ：未ログイン（小節のメニューからログイン）';
+    $('memoStatus').classList.toggle('is-logged-in', M.loggedIn);
     $('memoCount').textContent = M.memos.length ? ` ${M.memos.length}` : '';
-    document.body.classList.toggle('memo-mode', M.pen);
   }
-  function askLogin() { if (!$('memoLoginPrompt').open) $('memoLoginPrompt').showModal(); }
-  function setPen(on) {
-    M.pen = on && M.loggedIn; sync();
-    if (M.pen) $('nowInfo').textContent = 'メモを書きたい場所をタップしてください（もう一度 ✎ か Esc で取り消し）。';
+  function askLogin(anchor) {
+    M.pending = anchor || null;
+    if (!$('memoLoginPrompt').open) $('memoLoginPrompt').showModal();
   }
   function openMemo(memo, anchor) {
-    X.stop(); setPen(false);
-    M.editing = memo || null; M.anchor = memo ? memo.anchor : anchor;
-    const a = M.anchor;
-    $('memoTitle').textContent = memo ? '練習メモを編集' : '練習メモを書く';
-    $('memoWhere').textContent = `${memoLabel({ anchor: a })}${a.page ? ` · 原譜${a.page}ページ${a.sys}段目` : ''}`;
-    $('memoReh').value = memo ? memo.rehearsal || '' : '';
+    if (M.busy) return;
+    if (!M.loggedIn) { askLogin(memo ? canonical(memo) : anchor); return; }
+    X.stop();
+    M.editing = memo || null;
+    // Legacy unresolved notes stay editable in the list without inventing a bar.
+    M.anchor = memo ? canonical(memo) || memo.anchor : anchor;
+    $('memoTitle').textContent = memo ? '練習メモを編集' : `この${M.anchor.bar}小節目にメモを追加`;
+    $('memoWhere').textContent = memoLabel({ anchor: M.anchor }) + (memo && !memoPos(memo) ? ' · 位置不明（元の記録を保持）' : ' · 小節の下に表示');
     $('memoText').value = memo ? memo.text : '';
-    document.querySelectorAll('[name=memoKind]').forEach((r) => { r.checked = r.value === ((memo && memo.kind) || 'note'); });
+    document.querySelectorAll('[name=memoKind]').forEach((r) => { r.checked = r.value === (memo ? kindOf(memo) : 'note'); });
     $('memoMeta').textContent = memo ? `作成 ${fmtTime(memo.createdAt)}${memo.updatedAt !== memo.createdAt ? ` · 更新 ${fmtTime(memo.updatedAt)}` : ''}` : '保存すると日時も記録されます。';
     $('memoDelete').hidden = !memo; $('memoErr').hidden = true;
     if (!$('memo').open) $('memo').showModal();
     $('memoText').focus();
   }
   const showErr = (msg) => { $('memoErr').textContent = msg; $('memoErr').hidden = false; };
+  function busy(on) {
+    M.busy = on;
+    $('memoForm').querySelectorAll('input,textarea,button').forEach((el) => { el.disabled = on; });
+  }
   async function save() {
     if (M.busy) return;
     const text = $('memoText').value.trim();
     if (!text) { showErr('メモを入力してください。'); return; }
-    const kind = (document.querySelector('[name=memoKind]:checked') || {}).value || 'note';
-    const body = JSON.stringify({ text, rehearsal: $('memoReh').value.trim(), kind, anchor: M.anchor });
-    M.busy = true; $('memoSave').disabled = true;
+    const kind = document.querySelector('[name=memoKind]:checked')?.value || 'note';
+    const editing = M.editing;
+    const fields = { text, kind, anchor: M.anchor };
+    // No rehearsal input or new rehearsal field; retain old metadata on an edit.
+    if (editing?.rehearsal) fields.rehearsal = editing.rehearsal;
+    const body = JSON.stringify(fields);
+    busy(true);
     try {
-      const saved = M.editing ? await api(memoPath(M.editing.id), { method: 'PUT', body }) : await api(memoPath(), { method: 'POST', body });
+      const saved = await api(memoPath(editing?.id), { method: editing ? 'PUT' : 'POST', body });
       M.memos = M.memos.filter((m) => m.id !== saved.id).concat(saved);
       $('memo').close(); X.rerender(); sync();
       $('nowInfo').textContent = `${memoLabel(saved)}にメモを保存しました（${fmtTime(saved.updatedAt)}）。`;
-    } catch (e) { showErr(e.message); } finally { M.busy = false; $('memoSave').disabled = false; }
+    } catch (e) { showErr(e.message); } finally { busy(false); }
   }
   async function remove() {
     if (!M.editing || M.busy || !confirm('このメモを削除しますか？')) return;
-    M.busy = true;
+    const id = M.editing.id;
+    busy(true);
     try {
-      await api(memoPath(M.editing.id), { method: 'DELETE' });
-      M.memos = M.memos.filter((m) => m.id !== M.editing.id);
+      await api(memoPath(id), { method: 'DELETE' });
+      M.memos = M.memos.filter((m) => m.id !== id);
       $('memo').close(); X.rerender(); sync();
-    } catch (e) { showErr(e.message); } finally { M.busy = false; }
+    } catch (e) { showErr(e.message); } finally { busy(false); }
   }
-  function renderList() {
-    const esc = X.esc;
-    const sorted = [...M.memos].sort((a, b) => mvtOrder(a.anchor.mvt) - mvtOrder(b.anchor.mvt) || (a.anchor.bar || 0) - (b.anchor.bar || 0) || String(a.createdAt).localeCompare(b.createdAt));
+  function showList(anchor = null) {
+    const esc = X.esc, items = sorted(anchor ? atBar(anchor) : M.memos);
+    $('memoListTitle').textContent = anchor ? `${memoLabel({ anchor })}のメモ` : '練習メモ一覧';
     $('memoAccount').innerHTML = `${esc(M.email)} でログイン中 · <a href="/logout">ログアウト</a>`;
-    $('memoItems').innerHTML = sorted.length ? sorted.map((m) => `<li class="k-${esc(m.kind || 'note')}"><div class="mi-h"><b>${esc(memoLabel(m))}</b><span class="mi-k">${KIND_LABEL[m.kind] || 'メモ'}</span>${memoPos(m) ? '' : '<span class="mi-k warn">位置不明</span>'}</div>`
+    $('memoItems').innerHTML = items.length ? items.map((m) => `<li class="k-${kindOf(m)}"><div class="mi-h"><b>${esc(memoLabel(m))}</b><span class="mi-k">${KIND_LABEL[kindOf(m)]}</span>${memoPos(m) ? '' : '<span class="mi-k warn">位置不明</span>'}</div>`
       + `<p class="mi-t">${esc(m.text)}</p><div class="mi-f"><span>作成 ${esc(fmtTime(m.createdAt))}${m.updatedAt !== m.createdAt ? ` · 更新 ${esc(fmtTime(m.updatedAt))}` : ''}</span>`
-      + `<span><button type="button" data-go="${esc(m.id)}">移動</button><button type="button" data-edit="${esc(m.id)}">編集</button></span></div></li>`).join('')
-      : '<li class="empty">まだメモはありません。✎ を押して譜面の場所をタップしてください。</li>';
+      + `<span><button type="button" data-go="${esc(m.id)}"${memoPos(m) ? '' : ' disabled'}>移動</button><button type="button" data-edit="${esc(m.id)}">編集</button></span></div></li>`).join('')
+      : '<li class="empty">まだメモはありません。小節をクリックして「この小節にメモを追加」を選んでください。</li>';
+    if (!$('memoList').open) $('memoList').showModal();
   }
   function goTo(id) {
-    const memo = M.memos.find((m) => m.id === id); const at = memo && memoPos(memo); if (!at) return;
-    X.setMvt(memo.anchor.mvt, false);
+    const memo = M.memos.find((m) => m.id === id), at = memo && memoPos(memo); if (!at) return;
+    X.setMvt(at.anchor.mvt, false);
     const sec = $('sys-' + at.s); sec.scrollIntoView({ block: 'center', behavior: 'smooth' });
-    const pin = sec.querySelector(`.memo-pin[data-memo="${CSS.escape(id)}"]`);
-    if (pin) { pin.classList.add('flash'); setTimeout(() => pin.classList.remove('flash'), 1800); }
-    const sc = sec.querySelector('.sc'), sy = D.systems[at.s];
+    const card = sec.querySelector(`.memo-card[data-memo="${CSS.escape(id)}"]`);
+    if (card) { card.classList.add('flash'); card.focus({ preventScroll: true }); setTimeout(() => card.classList.remove('flash'), 1800); }
+    const sc = sec.querySelector('.sc'), sy = D.systems.find((s) => s.i === at.s);
     if (sc.scrollWidth > sc.clientWidth + 4) sc.scrollTo({ left: at.x / sy.w * sc.scrollWidth - sc.clientWidth / 2, behavior: 'smooth' });
   }
-  const byPin = (el) => M.memos.find((x) => x.id === el.dataset.memo);
-
+  function menuActions(hit) {
+    const anchor = { mvt: hit.mvt, bar: hit.bar };
+    if (!memoPosition(D, anchor)) return [];
+    const actions = [{ label: `この${hit.bar}小節目にメモを追加`, run: () => openMemo(null, anchor) }];
+    if (M.loggedIn) {
+      const count = atBar(anchor).length;
+      if (count) actions.push({ label: `この小節のメモを見る（${count}件）`, run: () => showList(anchor) });
+      actions.push({ label: '練習メモ一覧', run: () => showList() });
+    }
+    return actions;
+  }
   function wire() {
-    const score = $('score');
-    const at = (e) => { const svg = e.target.closest('.sc svg'); return svg ? anchorFrom(svg, e.clientX, e.clientY) : null; };
-    $('memoPen').onclick = () => {
-      if (!M.loggedIn) { askLogin(); return; }
-      setPen(!M.pen);
+    $('memoLoginGo').onclick = () => {
+      try { if (M.pending) sessionStorage.setItem(INTENT_KEY, JSON.stringify({ part: X.part, anchor: M.pending })); } catch (e) { /* optional */ }
+      $('memoLoginPrompt').close(); location.assign(loginUrl());
     };
-    $('memoLoginGo').onclick = () => { $('memoLoginPrompt').close(); location.assign(loginUrl()); };
-    $('memoListBtn').onclick = () => { renderList(); $('memoList').showModal(); };
-    // Capture phase: memo pins and pen placement win over note playback in app.js.
-    score.addEventListener('click', (e) => {
-      const pin = e.target.closest('.memo-pin');
-      if (pin) { e.stopImmediatePropagation(); const m = byPin(pin); if (m) openMemo(m); return; }
-      if (!M.pen) return;
-      const a = at(e); if (!a) return;
-      e.stopImmediatePropagation(); e.preventDefault(); openMemo(null, a);
+    $('memoListBtn').onclick = () => showList();
+    // Only existing memo cards intercept clicks. There is no pen/free-placement mode.
+    $('score').addEventListener('click', (e) => {
+      const card = e.target.closest('.memo-card'); if (!card) return;
+      e.stopImmediatePropagation();
+      const memo = M.memos.find((m) => m.id === card.dataset.memo); if (memo) openMemo(memo);
     }, true);
-    // Shortcut: double-click / double-tap an empty spot (not a note) on the score.
-    score.addEventListener('dblclick', (e) => {
-      if (e.target.closest('.note,.memo-pin')) return;
-      const a = at(e); if (!a) return;
-      e.preventDefault();
-      if (M.loggedIn) openMemo(null, a); else askLogin();
-    });
-    let lastTap = null;
-    score.addEventListener('touchend', (e) => {
-      if (M.pen || e.changedTouches.length !== 1 || e.target.closest('.note,.memo-pin')) { lastTap = null; return; }
-      const t = e.changedTouches[0], now = Date.now();
-      if (lastTap && now - lastTap.t < 350 && Math.hypot(t.clientX - lastTap.x, t.clientY - lastTap.y) < 30) {
-        const svg = e.target.closest('.sc svg'); lastTap = null;
-        if (svg) { e.preventDefault(); if (M.loggedIn) openMemo(null, anchorFrom(svg, t.clientX, t.clientY)); else askLogin(); }
-      } else lastTap = { t: now, x: t.clientX, y: t.clientY };
-    });
-    score.addEventListener('keydown', (e) => {
-      const pin = e.target.closest('.memo-pin');
-      if (pin && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); const m = byPin(pin); if (m) openMemo(m); }
-    });
     $('memoForm').addEventListener('submit', (e) => { e.preventDefault(); save(); });
-    $('memoCancel').onclick = () => $('memo').close();
+    $('memo').addEventListener('cancel', (e) => { if (M.busy) e.preventDefault(); });
+    $('memoCancel').onclick = () => { if (!M.busy) $('memo').close(); };
     $('memoDelete').onclick = remove;
     $('memoItems').addEventListener('click', (e) => {
       const go = e.target.closest('[data-go]'), ed = e.target.closest('[data-edit]');
       if (go) { $('memoList').close(); goTo(go.dataset.go); }
       if (ed) { const m = M.memos.find((x) => x.id === ed.dataset.edit); $('memoList').close(); if (m) openMemo(m); }
     });
-    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && M.pen) setPen(false); });
   }
-
   async function start() {
-    R = window.__dynamic; X = R && R.ext; if (!X || X.print) return;
+    R = window.__dynamic; X = R?.ext;
+    if (!X || X.print || !X.addBarMenuHook || !X.addSystemHook) return;
     D = R.data;
     let me = null;
     try { const res = await fetch('/api/me', { credentials: 'same-origin', headers: { Accept: 'application/json' } }); if (res.ok) me = await res.json(); } catch (e) { /* static preview or offline */ }
-    if (!me || !me.enabled || !(me.memoParts || []).includes(X.part)) return;
+    if (!me?.enabled || !(me.memoParts || []).includes(X.part)) return;
     M.enabled = true; M.loggedIn = !!me.loggedIn; M.email = me.email || '';
-    $('rehList').innerHTML = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').map((c) => `<option value="${c}">`).join('');
-    X.addSvgHook(pins); wire();
+    wire();
     if (M.loggedIn) {
-      try { M.memos = (await api(memoPath())).memos || []; X.rerender(); } catch (e) { $('nowInfo').textContent = `メモを読み込めませんでした：${e.message}`; }
+      try { M.memos = (await api(memoPath())).memos || []; } catch (e) { $('nowInfo').textContent = `メモを読み込めませんでした：${e.message}`; }
     }
-    sync();
+    X.addSystemHook(memoBand); X.addBarMenuHook(menuActions); X.rerender(); sync();
+    if (M.loggedIn) {
+      try {
+        const pending = JSON.parse(sessionStorage.getItem(INTENT_KEY) || 'null');
+        if (pending?.part === X.part) {
+          sessionStorage.removeItem(INTENT_KEY);
+          const at = memoPosition(D, pending.anchor);
+          if (at) { X.setMvt(at.anchor.mvt, false); R.jumpTo(at.anchor.bar); openMemo(null, at.anchor); }
+        }
+      } catch (e) { /* optional navigation hint */ }
+    }
   }
   if (window.__dynamic) start(); else document.addEventListener('dynamic:ready', start, { once: true });
 })();
