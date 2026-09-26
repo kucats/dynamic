@@ -1,0 +1,89 @@
+{
+  "work": "dvorak-8",
+  "source": "work/db8/Bartos.pdf sha256:f644a29d78440db51cb15d007be6d0f8198e253f9adb53845e9a8334977f7026 (Bartos critical edition)",
+  "page": 5,
+  "system": 1,
+  "bars": "14-20",
+  "dpi": 600,
+  "staff_map": {
+    "1": "Fl.I", "2": "Fl.II", "3": "Ob.I.II", "4": "Cl.I.II.A",
+    "5": "Fag.I.II", "6": "Cor.F I.II", "7": "Cor.F III.IV",
+    "8": "Trbe I.II.F", "9": "Trbni I.II", "10": "Trbni III e Tb",
+    "11": "Timp.G,D", "12": "Viol.I", "13": "Viol.II",
+    "14": "Vle", "15": "Vlc", "16": "Cb"
+  },
+  "clefs": {"4": "treble (Cl in A, 2b)", "5": "bass", "6": "treble (Cor in F)", "7": "treble (Cor in F)", "9": "alto", "10": "bass", "11": "bass", "14": "alto", "15": "bass", "16": "bass"},
+  "convention": "pitch as printed (transposing instruments keep written pitch, as in part pipeline)",
+  "rests": {
+    "comment": "whole-bar rests confirmed on all seven bars for these staves",
+    "staves": [2, 3, 8]
+  },
+  "notes": {
+    "1": {
+      "figure": "b14-17 whole rests; b18 [G5 half][B5 half]; b19 4x [16th-rest, B5 16th, triad-chord 8th] (the flute 'bird call'); b20 [quarter rest][B5 quarter][rests]",
+      "verified_against": "external YSSO flute audition part (different edition): b18 G5->B5 halves and b19 call-figure shape confirmed",
+      "uncertain": "b19 triad chord members ({G5,B5,D6} vs {A5,C6,E6} at this zoom); b20 rhythm"
+    },
+    "4": {
+      "figure": "b14 Eb4 half x2; b15-17 Eb4 whole; b18 Eb4 quarter + rests",
+      "uncertain": true
+    },
+    "5": {
+      "figure": "bass clef, two voices. b14 up [Bb3 h][D4-ish h] / low [G3-ish h][B2-C3-ish h]; b15-16 ~D3 whole each; b17 ~A2/G2 whole (low); b18 quarter rest + half rest (no clear head); b19-20 rests",
+      "uncertain": true
+    },
+    "6": {
+      "verified_against": "project/dvorak/symphony-no-8/horn-ii committed part data (exact match b14-18)",
+      "14": [["F4", "half"], ["G4", "half"]],
+      "15": [["A4", "whole"]],
+      "16": [["A4", "whole"]],
+      "17": [["A4", "whole"]],
+      "18": [["A4", "quarter"], ["quarter rest"], ["half rest"]],
+      "19": "rest", "20": "rest",
+      "note": "'a 2' marking = both horns unison; horn-ii committed notes for 'bars 19-27' belong to mvt II (Eb area), not this page"
+    },
+    "7": {
+      "figure": "b17 A3 whole (low voice) + whole rest (upper voice); b18 A3 quarter + quarter rest + half rest; all other bars rests",
+      "uncertain": "A3 read is solid; upper-voice rest layout assumed"
+    },
+    "9": {
+      "verified_against": "project/dvorak/symphony-no-8/trombone-i committed part data (exact match, upper voice)",
+      "14": [["G3 + D3", "half"], ["G3 + Db3-ish", "half"]],
+      "15": [["Bb3 + G3", "whole"]],
+      "16": [["A3", "half"], ["B3", "quarter"], ["C4", "quarter"], {"lower": "~F3/G3 half -> E3-ish quarter"}],
+      "17": [["B3 + G3", "whole, tied into 18"]],
+      "18": [["B3 + G3", "quarter"], ["quarter rest"], ["half rest"]],
+      "19": "rest", "20": "rest",
+      "uncertain": "lower (Trbni II) voice pitches; Db3 in b14"
+    },
+    "10": {
+      "figure": "bass clef, Trbni III e Tb shared staff. b16 whole rests; b17 {F2 + F1-ish} whole-note dyad (tuba ledger stack ~D2/B1 positions bow ~+13px); b18 {F2 + F1/G1-ish} filled quarter/eighth + quarter rest + half rest; b14-15,19-20 rests",
+      "uncertain": "low voice pitch F1 vs G1/E1 (staff bow); exact rhythm in b18"
+    },
+    "11": {
+      "figure": "b17 G2 whole with 'tr' tremolo mark + ppp (the timpani G roll); b18 G2 quarter + quarter rest + half rest; all other bars rests",
+      "uncertain": "G2 read solid (timpani tuned G,D)"
+    },
+    "12": {
+      "figure": "b17 [half rest][~D5 half, slur, pp]; b18 [~D5 half][~D5 half] (tie/slur over both); b19 [~D5/E5 filled quarter][quarter rest][half rest]; b14-16,20 rests",
+      "uncertain": "pitch zone D5/C5/E5 (reads at the staff top, +/-1 step)"
+    },
+    "13": {
+      "figure": "b17 [half rest][~B4 half, slur, pp]; b18 [~B4 half][~B4 half]; b19 [~D5 quarter][rests]; b14-16,20 rests — mirrors Viol.I a third lower ({B4+D5} held dyad)",
+      "uncertain": true
+    },
+    "14": {
+      "figure": "alto clef divisi pizz dyad 8ths, echoing Cb: b14 [{G3+D3} 8th][rest][{Bb3+F3} 8th w/ flat][rest]; b15 [8th rest][~B3-ish 8th w/ flat-ish][8th rest][half rest]; b16 ~3 dyad 8ths + rests; b17 ~1-2 dyads + half rest; b18-20 rests",
+      "uncertain": true
+    },
+    "15": {
+      "figure": "b14 [Bb3 half w/ flat][Bb3/B3 half] slurred; b15-17 ~D4 whole each (C4/D4 boundary; ppp at 17); b18 ~D4 quarter + quarter rest + half rest; b19-20 rests",
+      "uncertain": "D4 vs C4 on the sustained note; second Bb3 in b14 (no natural sign visible)"
+    },
+    "16": {
+      "figure": "bass clef pizz 8th-note punctuation: b14 [G3 8th][8th rest][Eb4-ish 8th w/ flat][8th rest]; b15 [~B3 8th][rest][~D4 8th][rest]; b16 same shape (~B3 / ~D4); b17 [~G3 8th][8th rest][half rest]; b18-20 rests",
+      "uncertain": true
+    }
+  },
+  "verdict": "16 staves; committed trombone-i and horn-ii part data verify the decode (exact match on those voices). Harmonic cross-check consistent: b17-18 held sonority ~{Vl D5/B4 + Tbn {G3,B3} + Tb {F2,F1} + Vlc ~D4 + Vle/Cb Bb-dominant 8ths + Timp G2 roll} = Bb/Eb cadence zone approaching the bird-call tutti"
+}
