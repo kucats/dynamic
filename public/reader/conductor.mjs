@@ -103,8 +103,8 @@ const ICTUS = {
 };
 export const ictus = (n, k) => (ICTUS[n] || ICTUS[4])[k % (ICTUS[n] || ICTUS[4]).length];
 
-// Show the conductor's left/right by default; the optional players' view mirrors it.
-export const displayX = (x, mirror = false) => mirror ? -x : x;
+// The audience sees the conductor's left/right reversed; mirror shows the conductor's view.
+export const displayX = (x, mirror = false) => mirror ? x : -x;
 
 const smooth = (p) => p * p * (3 - 2 * p);
 

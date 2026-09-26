@@ -290,6 +290,10 @@ html.sv-open{overflow:hidden}
 .cv-gauge{height:5px;margin-top:3px;border-radius:3px;background:#fbe7cd;visibility:hidden;overflow:hidden}
 .cv-gauge.on{visibility:visible}
 .cv-gauge-fill{display:block;height:100%;width:0;background:#e98a00;border-radius:3px}
+.cv-next,.cv-gauge{margin-right:28px}
+.cv-flip{position:absolute;right:7px;bottom:6px;width:26px;height:26px;display:grid;place-items:center;padding:3px;border:1px solid var(--line);border-radius:7px;background:#fff;color:var(--mute);pointer-events:auto;cursor:pointer}
+.cv-flip:hover,.cv-flip:focus-visible{color:var(--blue);border-color:var(--blue);background:#eef6ff}
+.cv-flip svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
 @media (max-width:1024px){.cond-btn{min-height:34px;padding:3px 7px}}
 @media (max-width:760px){.cond-btn{min-height:32px;padding:3px 6px}.cond-btn svg{width:18px;height:18px}.cond-vis{width:140px;padding:4px 8px 6px;font-size:11px}.cv-in{font-size:15px}}
 @media (prefers-reduced-motion:reduce){.metro-btn .mt-arm{transition:none}}

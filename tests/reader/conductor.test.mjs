@@ -60,8 +60,8 @@ test('baton tip lands on each ictus at the beat and rebounds between beats', () 
   assert.ok(ictus(4, 0).y > ictus(4, 1).y && ictus(4, 1).y > ictus(4, 2).y && ictus(4, 2).y > ictus(4, 3).y,
     'in 4 rises from downbeat through left and right to the upbeat');
   assert.equal(ictus(4, 3).x, 0, 'beat 4 returns to the centre');
-  assert.ok(displayX(ictus(4, 1).x) < 0 && displayX(ictus(4, 2).x) > 0, 'default shows the conductor view');
-  assert.ok(displayX(ictus(4, 1).x, true) > 0 && displayX(ictus(4, 2).x, true) < 0, 'players view mirrors it');
+  assert.ok(displayX(ictus(4, 1).x) > 0 && displayX(ictus(4, 2).x) < 0, 'default shows the audience view');
+  assert.ok(displayX(ictus(4, 1).x, true) < 0 && displayX(ictus(4, 2).x, true) > 0, 'conductor view mirrors it');
   assert.equal(guide(3, 8).length, 25);
 });
 
