@@ -1,4 +1,6 @@
-import cv2, numpy as np, json, sys
+import cv2, numpy as np, json, sys, os
+sys.path.insert(0,os.path.dirname(os.path.abspath(__file__)))
+from common import staves_override
 LET='CDEFGAB'
 def staves_of(B):
     H,W=B.shape
@@ -34,7 +36,7 @@ def pname(step):  # step 0 = E4 (treble bottom line)
 def run(p):
     im=cv2.imread(f'work/p{p}.png',0); B=(im<140)
     b=B.astype(np.uint8)
-    ST=staves_of(B)
+    ST=staves_override(p,staves_of_style=True) or staves_of(B)
     # filled heads
     k=cv2.getStructuringElement(cv2.MORPH_ELLIPSE,(15,13))
     op=cv2.morphologyEx(b,cv2.MORPH_OPEN,k)

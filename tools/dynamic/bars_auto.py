@@ -1,7 +1,7 @@
 import cv2, json, sys, os
 
 sys.path.insert(0, os.path.dirname(__file__))
-from common import staves
+from common import staves, staves_override
 from barlines import barlines, is_multirest
 
 p = int(sys.argv[1])
@@ -10,8 +10,9 @@ note_xs = []
 cj = f'work/cand_p{p}.json'
 if os.path.exists(cj):
     note_xs = [c['x'] for c in json.load(open(cj))['cands']]
+ST = staves_override(p) or staves(B)
 out = {}
-for i, s in enumerate(staves(B), 1):
+for i, s in enumerate(ST, 1):
     xs, x0, x1 = barlines(B, s, note_xs)
     edges = [x0] + xs + [x1]
     segs = []

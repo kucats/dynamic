@@ -9,10 +9,11 @@ Default X range: whole width in two halves -> writes OUT_a.png and OUT_b.png
 import cv2, json, sys, numpy as np
 import os; sys.path.insert(0,os.path.dirname(os.path.abspath(__file__)))
 from cand import staves_of, staff_y
+from common import staves_override
 LET='CDEFGAB'
 p=int(sys.argv[1]); s=int(sys.argv[2])
 im=cv2.imread(f'work/p{p}.png',0); B=im<140
-ST=staves_of(B); st=ST[s-1]
+ST=staves_override(p,staves_of_style=True) or staves_of(B); st=ST[s-1]
 cj=json.load(open(f'work/cand_p{p}.json'))
 def render(x0,x1,out):
     top=int(min(st['l'][0],st['r'][0]))-170; bot=int(max(st['l'][4],st['r'][4]))+150

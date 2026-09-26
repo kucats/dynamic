@@ -1,8 +1,8 @@
 import cv2,json,sys
 p=int(sys.argv[1]); src=sys.argv[2] if len(sys.argv)>2 else f'work/bars_auto_p{p}.json'
 d=json.load(open(src)); im=cv2.cvtColor(cv2.imread(f'work/p{p}.png',0),cv2.COLOR_GRAY2BGR)
-import os,sys as _s; _s.path.insert(0,os.path.dirname(__file__)); from common import staves
-ST=staves(cv2.imread(f'work/p{p}.png',0)<140)
+import os,sys as _s; _s.path.insert(0,os.path.dirname(__file__)); from common import staves, staves_override
+ST=staves_override(p) or staves(cv2.imread(f'work/p{p}.png',0)<140)
 for k,segs in d.items():
     s=ST[int(k)-1]
     for i,g in enumerate(segs):
