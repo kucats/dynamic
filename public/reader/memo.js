@@ -6,6 +6,7 @@ import { resolveMemoAnchor, memoPosition } from './memo-model.mjs';
   'use strict';
   const $ = (id) => document.getElementById(id);
   const KIND_LABEL = { note: 'メモ', issue: '課題', good: 'できた' };
+  const QUICK_MARK_KIND = { '◎': 'good', '○': 'good', '△': 'issue', '×': 'issue' };
   const INTENT_KEY = 'dynamic-memo-intent';
   const M = { enabled: false, loggedIn: false, email: '', memos: [], editing: null, anchor: null, busy: false, pending: null };
   let R, X, D;
@@ -21,6 +22,8 @@ import { resolveMemoAnchor, memoPosition } from './memo-model.mjs';
     return `${X.mvNum[a.mvt] || a.mvt || '不明'}楽章${a.bar ? ` ${a.bar}小節` : ''}`;
   }
   const atBar = (anchor) => M.memos.filter((m) => { const a = canonical(m); return a && a.mvt === anchor.mvt && a.bar === anchor.bar; });
+  const latestMark = (anchor) => atBar(anchor).filter((m) => QUICK_MARK_KIND[m.text] === m.kind)
+    .reduce((latest, m) => !latest || String(m.createdAt) >= String(latest.createdAt) ? m : latest, null);
 
   // Fixed rows BELOW the score/reading labels. Grid boundaries are original barlines;
   // repeated memos stack in their cell, and multi-rest memos retain exact bar labels.
@@ -103,6 +106,21 @@ import { resolveMemoAnchor, memoPosition } from './memo-model.mjs';
       $('nowInfo').textContent = `${memoLabel(saved)}にメモを保存しました（${fmtTime(saved.updatedAt)}）。`;
     } catch (e) { showErr(e.message); } finally { busy(false); }
   }
+  async function saveMark(anchor, mark) {
+    if (M.busy || !M.loggedIn || !QUICK_MARK_KIND[mark]) return;
+    M.busy = true;
+    try {
+      const saved = await api(memoPath(), { method: 'POST', body: JSON.stringify({ text: mark, kind: QUICK_MARK_KIND[mark], anchor }) });
+      M.memos.push(saved);
+      X.rerender(); sync();
+      $('nowInfo').textContent = `${memoLabel(saved)}に${mark}を記録しました（${fmtTime(saved.createdAt)}）。`;
+    } catch (e) { $('nowInfo').textContent = `${mark}を記録できませんでした：${e.message}`; }
+    finally {
+      M.busy = false;
+      // The menu can be reopened while the request is in flight.
+      document.querySelectorAll('#ctx .ctx-quick button').forEach((button) => { button.disabled = false; });
+    }
+  }
   async function remove() {
     if (!M.editing || M.busy || !confirm('このメモを削除しますか？')) return;
     const id = M.editing.id;
@@ -137,6 +155,11 @@ import { resolveMemoAnchor, memoPosition } from './memo-model.mjs';
     if (!memoPosition(D, anchor)) return [];
     const actions = [{ label: `この${hit.bar}小節目にメモを追加`, run: () => openMemo(null, anchor) }];
     if (M.loggedIn) {
+      const current = latestMark(anchor)?.text;
+      actions.unshift({ position: 'top', label: `${hit.bar}小節目の練習印`, group: Object.keys(QUICK_MARK_KIND).map((mark) => ({
+        label: mark, title: `${hit.bar}小節目に${mark}を記録`, pressed: current === mark, disabled: M.busy,
+        run: () => saveMark(anchor, mark),
+      })) });
       const count = atBar(anchor).length;
       if (count) actions.push({ label: `この小節のメモを見る（${count}件）`, run: () => showList(anchor) });
       actions.push({ label: '練習メモ一覧', run: () => showList() });

@@ -150,9 +150,27 @@ def exercise(page, fixture, out, name, offline, touch):
     vp = page.viewport_size
     assert box['x'] >= 0 and box['x'] + box['width'] <= vp['width'] + 1
     assert box['y'] >= 0 and box['y'] + box['height'] <= vp['height'] + 1
-    buttons = page.locator('#ctx button').evaluate_all('els=>els.map(e=>e.getBoundingClientRect().top)')
+    expect(page.locator('#ctx .ctx-actions > .ctx-quick')).to_have_count(1)
+    expect(page.locator('#ctx .ctx-quick button')).to_have_count(4)
+    assert page.locator('#ctx .ctx-actions').evaluate('el => el.firstElementChild.classList.contains("ctx-quick")')
+    buttons = page.locator('#ctx .ctx-actions > button').evaluate_all('els=>els.map(e=>e.getBoundingClientRect().top)')
     assert all(a < b for a, b in zip(buttons, buttons[1:])), 'menu must be vertical'
     page.screenshot(path=str(out / f'{name}-menu.png'))
+    expect(page.locator('#ctx .ctx-quick').get_by_role('menuitemradio', name='59小節目に◎を記録')).to_be_focused()
+    page.keyboard.press('Enter')
+    assert next(c for c in reversed(fixture.calls) if c['method'] == 'POST')['body']['text'] == '◎'
+    open_bar(page)
+    page.locator('#ctx .ctx-quick').get_by_role('menuitemradio', name='59小節目に×を記録').click()
+    mark_write = next(c for c in reversed(fixture.calls) if c['method'] == 'POST')
+    assert mark_write['body'] == {'text': '×', 'kind': 'issue', 'anchor': {'mvt': 'I', 'bar': 59}}
+    expect(page.locator('#sys-3 .memo-card')).to_have_count(3)
+    open_bar(page)
+    expect(page.locator('#ctx .ctx-quick').get_by_role('menuitemradio', name='59小節目に×を記録')).to_have_attribute('aria-checked', 'true')
+    page.locator('#ctx .ctx-quick').get_by_role('menuitemradio', name='59小節目に△を記録').click()
+    expect(page.locator('#sys-3 .memo-card')).to_have_count(4)
+    assert [m['text'] for m in fixture.memos if m['text'] in ('◎', '×', '△')] == ['◎', '×', '△']
+    open_bar(page)
+    expect(page.locator('#ctx .ctx-quick').get_by_role('menuitemradio', name='59小節目に△を記録')).to_have_attribute('aria-checked', 'true')
     action(page, 'この59小節目にメモを追加')
     expect(page.locator('#memoTitle')).to_have_text('この59小節目にメモを追加')
     expect(page.locator('#memoText')).to_be_focused()
@@ -167,7 +185,7 @@ def exercise(page, fixture, out, name, offline, touch):
     assert set(write['body']) == {'text', 'kind', 'anchor'}, write
     assert write['body']['anchor'] == {'mvt': 'I', 'bar': 59}
     assert write['body']['kind'] == 'good'
-    expect(page.locator('#sys-3 .memo-card')).to_have_count(2)
+    expect(page.locator('#sys-3 .memo-card')).to_have_count(5)
     expect(page.locator('.memo-card img')).to_have_count(0)
     assert_geometry(page)
     page.locator('#sys-3 .memo-band').scroll_into_view_if_needed()
@@ -206,6 +224,7 @@ def exercise(page, fixture, out, name, offline, touch):
     for bad in ['60', '77', '65.5', '']:
         number.fill(bad)
         expect(page.locator('#ctx .ctx-score')).to_be_disabled()
+        expect(page.locator('#ctx .ctx-quick')).to_have_count(0)
         assert 'メモを追加' not in page.locator('#ctx').inner_text()
     number.fill('65')
     action(page, 'この65小節目にメモを追加')
@@ -235,6 +254,12 @@ def exercise(page, fixture, out, name, offline, touch):
     expect(page.locator('#memoList')).to_contain_text('位置不明')
     expect(page.locator('[data-go=unknown]')).to_be_disabled()
     page.locator('#memoList form > button').click()
+    open_bar(page)
+    before_failed_mark = len(fixture.memos)
+    fixture.fail = 500
+    page.locator('#ctx .ctx-quick').get_by_role('menuitemradio', name='59小節目に○を記録').click()
+    expect(page.locator('#nowInfo')).to_contain_text('記録できませんでした')
+    assert len(fixture.memos) == before_failed_mark
     # Note playback and the long-tone gesture still belong to the reader.
     note = page.locator('#sys-3 .note').first
     note_id = int(note.get_attribute('data-id'))
@@ -257,6 +282,7 @@ def exercise(page, fixture, out, name, offline, touch):
     expect(page.locator('.memo-card')).to_have_count(0)
     page.locator('#memoCancel').click()
     open_bar(page)
+    expect(page.locator('#ctx .ctx-quick')).to_have_count(0)
     action(page, 'この59小節目にメモを追加')
     expect(page.locator('#memoLoginPrompt')).to_be_visible()
     page.locator('#memoLoginPrompt button[type=submit]').click()
@@ -318,6 +344,7 @@ def main():
                         if mode == 'print': assert not fixture.calls
                         else:
                             open_bar(page)
+                            expect(page.locator('#ctx .ctx-quick')).to_have_count(0)
                             assert 'メモを追加' not in page.locator('#ctx').inner_text()
                     results.append({'scenario': mode, 'result': 'PASS'}); context.close()
                 # Existing full-score action retains its exact selected movement/bar, lazy loader intact.

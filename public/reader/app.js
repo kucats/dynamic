@@ -625,12 +625,27 @@
       const target = { ...hit, bar: selected };
       const extra = valid ? barMenuHooks.flatMap((hook) => hook(target) || []) : [];
       const items = [
+        ...extra.filter((item) => item.position === 'top'),
         { label: `${valid ? selected : '—'}小節目のスコアを見る`, cls: 'ctx-score', disabled: !valid, run: () => openScore(hit.mvt, selected) },
-        ...extra,
+        ...extra.filter((item) => item.position !== 'top'),
         { label: 'この小節から再生', disabled: !valid || !D.notes.some((n) => n.mvt === hit.mvt && n.bar >= selected), run: () => { setMvt(hit.mvt, false); jumpTo(selected); play(); } },
         { label: '閉じる', run: () => {} },
       ];
       actions.replaceChildren(...items.map((item) => {
+        if (item.group) {
+          const group = document.createElement('div');
+          group.className = 'ctx-quick'; group.setAttribute('role', 'group'); group.setAttribute('aria-label', item.label);
+          for (const option of item.group) {
+            const button = document.createElement('button');
+            button.type = 'button'; button.textContent = option.label; button.title = option.title || option.label;
+            button.disabled = !!option.disabled; button.setAttribute('role', 'menuitemradio');
+            button.setAttribute('aria-label', option.title || option.label);
+            button.setAttribute('aria-checked', option.pressed ? 'true' : 'false');
+            button.onclick = () => { closeCtx(); option.run(); };
+            group.append(button);
+          }
+          return group;
+        }
         const button = document.createElement('button');
         button.type = 'button'; button.textContent = item.label;
         button.className = item.cls || ''; button.disabled = !!item.disabled;
@@ -645,7 +660,7 @@
     const r = m.getBoundingClientRect();
     m.style.left = `${Math.max(8, Math.min(e.clientX, innerWidth - r.width - 8))}px`;
     m.style.top = `${Math.max(8, Math.min(e.clientY, innerHeight - r.height - 8))}px`;
-    m.querySelector('.ctx-score').focus({ preventScroll: true });
+    m.querySelector('button:not(:disabled)')?.focus({ preventScroll: true });
     m.onkeydown = (ev) => {
       if (!['ArrowDown', 'ArrowUp', 'Home', 'End'].includes(ev.key) || ev.target.matches('input')) return;
       const buttons = [...m.querySelectorAll('button:not(:disabled)')];
