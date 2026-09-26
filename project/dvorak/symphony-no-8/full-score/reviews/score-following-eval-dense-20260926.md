@@ -36,6 +36,7 @@ Accuracy = |estimated audio time − anchor audio time| at emitted positions.
 | event-seq global DTW, onset pc-sets (top-4 CQT) | dense-tutti | 3 % @8 s | 19 % @8 s, 40 % @20 s | **66 % @8 s, 100 % @20 s, med 5.2 s** | 6 % |
 | event-seq global DTW, midi pitch sets | dense-tutti | 3 % | 0 % | 52 % @8 s, med 7.7 s | 7 % |
 | event-seq subsequence (40-event windows) | dense-tutti | 1–7 % @8 s all mvts — short windows not discriminative | | | |
+| banded tracker (24 s window, ±12 s radius, tempo prediction) | dense-tutti | 5–9 % coverage, locks onto wrong positions — local chroma gates can't distinguish look-alike passages | | | |
 
 ## Conclusions (honest)
 
@@ -54,10 +55,14 @@ Accuracy = |estimated audio time − anchor audio time| at emitted positions.
 
 ## Next steps (in order)
 
-1. Banded tracker: anchors as prior → per-frame banded multi-speed chroma DTW
-   (essentially PhraseMatcher seeded by acquisition) — measure track coverage.
+1. ~~Banded tracker~~ tried (row above): pure local chroma tracking is too
+   weak on this recording. The viable acquisition = periodic GLOBAL
+   re-alignment of accumulated audio (one DTW per ~30 s of audio is cheap;
+   incremental DTW variants exist for realtime), matching #53's
+   手動指定優先 + 候補提示 design.
 2. Event matcher with better obs features: onset-strength weighting, bass +
-   melody split channels (bass onsets are steadier in tutti).
+   melody split channels (bass onsets are steadier in tutti). mvt III shows
+   the event-DTW path works when texture is sparse.
 3. Reader integration: WebAudio onset+pitch worker fed by the per-part
    following profiles already emitted for all 21 parts
    (`public/reader/following/dvorak8-*.json` in eval staging).
