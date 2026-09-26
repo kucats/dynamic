@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import { autoPattern, patternFor, parseMeter, planAt, conductGrid, tipAt, nextChange, ictus, guide } from '../../public/reader/conductor.mjs';
+import { autoPattern, patternFor, parseMeter, planAt, conductGrid, tipAt, nextChange, ictus, guide, displayX } from '../../public/reader/conductor.mjs';
 
 const near = (a, b, e = 1e-9) => Math.abs(a - b) < e;
 const spw = (q) => 240 / q;   // seconds per whole note from a quarter-note tempo
@@ -57,6 +57,11 @@ test('baton tip lands on each ictus at the beat and rebounds between beats', () 
     }
   }
   assert.ok(ictus(4, 1).x < 0 && ictus(4, 2).x > 0, 'in 4 goes left then right (conductor view)');
+  assert.ok(ictus(4, 0).y > ictus(4, 1).y && ictus(4, 1).y > ictus(4, 2).y && ictus(4, 2).y > ictus(4, 3).y,
+    'in 4 rises from downbeat through left and right to the upbeat');
+  assert.equal(ictus(4, 3).x, 0, 'beat 4 returns to the centre');
+  assert.ok(displayX(ictus(4, 1).x) > 0 && displayX(ictus(4, 2).x) < 0, 'default shows the audience view');
+  assert.ok(displayX(ictus(4, 1).x, true) < 0 && displayX(ictus(4, 2).x, true) > 0, 'conductor view mirrors it');
   assert.equal(guide(3, 8).length, 25);
 });
 

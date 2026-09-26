@@ -413,7 +413,7 @@
   let condMod = null;
   const SVGNS = 'http://www.w3.org/2000/svg';
   const COND_SRC = { plan: '曲ごとの目安', auto: 'テンポから自動', forced: '固定' };
-  const condX = (x) => (S.condMirror ? x : -x);   // default: seen from the players' side
+  const condX = (x) => condMod.displayX(x, S.condMirror);
   const condPath = (pts) => pts.map((q, i) => `${i ? 'L' : 'M'}${condX(q.x).toFixed(3)} ${q.y.toFixed(3)}`).join('');
   function condPattern(n) {
     const vis = $('condVis');
@@ -471,9 +471,12 @@
   function syncCond() {
     const b = $('condBtn'); b.setAttribute('aria-pressed', String(!!S.cond)); b.classList.toggle('on', !!S.cond);
     $('cond').checked = !!S.cond; $('condMode').value = String(S.condMode); $('condMirror').checked = !!S.condMirror;
+    const flip = $('condFlip'), label = S.condMirror ? '客席側の向きに切り替える' : '指揮者側の向きに切り替える';
+    flip.setAttribute('aria-label', label); flip.title = label; flip.setAttribute('aria-pressed', String(!!S.condMirror));
     if (!S.cond || !playing) $('condVis').hidden = true;
   }
   function setCond(on) { S.cond = on; save(); syncCond(); }
+  function setCondMirror(on) { S.condMirror = on; save(); syncCond(); }
   // Conducting grid for this playback: pattern per bar follows the score tempo, not the practice-tempo slider.
   function condGrid(mv, bars, st, lead, t0, tf = S.tempo / 100) {
     const m = D.movements.find((x) => x.key === mv);
@@ -736,7 +739,8 @@
         playing.cond = { ...condGrid(c.mv, c.bars, c.st, c.lead, c.t0, c.tf), raf: c.raf };
       }
     };
-    $('condMirror').onchange = () => { S.condMirror = $('condMirror').checked; save(); };
+    $('condMirror').onchange = () => setCondMirror($('condMirror').checked);
+    $('condFlip').onclick = () => setCondMirror(!S.condMirror);
     $('lines').onchange = () => { S.lines = $('lines').checked; document.body.classList.toggle('nolines', !S.lines); save(); };
     $('practicePlay').onclick = () => {
       const n = byId.get(Number($('practice').dataset.noteId)); if (!n) return;

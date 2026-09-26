@@ -45,12 +45,13 @@
     <span id="metroVis" class="metro-vis" hidden aria-hidden="true"><span class="mt-dots"></span><span class="mt-bpm"></span></span>
     <span id="barNow" class="bnow"></span>
   </div>
-  <div id="condVis" class="cond-vis" hidden aria-hidden="true">
+  <div id="condVis" class="cond-vis" hidden>
     <svg class="cv-svg" viewBox="-0.95 0.1 1.9 0.96"><path class="cv-guide"/><g class="cv-marks"></g><path class="cv-trail"/><circle class="cv-ring" r=".09"/><circle class="cv-tip" r=".055"/></svg>
     <div class="cv-head"><b class="cv-in"></b><span class="cv-count"></span></div>
     <div class="cv-sub"></div>
     <div class="cv-next"></div>
     <div class="cv-gauge" aria-hidden="true"><i class="cv-gauge-fill"></i></div>
+    <button id="condFlip" class="cv-flip" type="button" aria-label="指揮者側の向きに切り替える" title="指揮者側の向きに切り替える" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5 9.5 3h5L16 5H19a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z"/><path d="M8.1 12a4 4 0 0 1 6.8-2.8M15.9 12a4 4 0 0 1-6.8 2.8M14.9 7.6v2.2h-2.2M9.1 16.4v-2.2h2.2"/></svg></button>
   </div>
   <div id="settings" class="settings" hidden>
     <fieldset id="compactExtras" class="compact-extras" hidden><legend>表示・移動</legend><div id="compactExtrasMount"></div></fieldset>

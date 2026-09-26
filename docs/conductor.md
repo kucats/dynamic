@@ -19,7 +19,10 @@ A plan must carry `conduct_note`; `tools/dynamic/validate_reader.py` rejects a p
 Conducting plans are practice guides chosen from the tempo marks and meter — they are not score readings,
 not audit evidence, and conductors differ. Irregular meters (5/8, 7/8) are shown one beat per bar.
 
-The panel shows the players' view by default (in 4: 2 to the right, 3 to the left); “指揮者の側から見た向き” mirrors it.
+The panel shows the audience's view by default: in 4, beat 1 is down, beat 2 appears on the right,
+beat 3 on the left, and beat 4 up at the centre. The small camera-flip button at the lower right
+switches views during playback; “指揮者の側から見た向き” in settings makes beat 2 appear on the left
+and beat 3 on the right, as seen by the conductor.
 
 ## Current plans
 

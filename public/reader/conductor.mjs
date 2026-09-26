@@ -97,11 +97,14 @@ const ICTUS = {
   1: [{ x: 0, y: 0.9, h: 0.72 }],
   2: [{ x: -0.04, y: 0.9, h: 0.42 }, { x: 0.36, y: 0.8, h: 0.62 }],
   3: [{ x: -0.04, y: 0.9, h: 0.3 }, { x: 0.58, y: 0.8, h: 0.34 }, { x: 0.3, y: 0.52, h: 0.42 }],
-  4: [{ x: 0, y: 0.9, h: 0.26 }, { x: -0.58, y: 0.76, h: 0.26 }, { x: 0.62, y: 0.8, h: 0.3 }, { x: 0.3, y: 0.52, h: 0.42 }],
+  4: [{ x: 0, y: 0.9, h: 0.26 }, { x: -0.58, y: 0.76, h: 0.26 }, { x: 0.62, y: 0.55, h: 0.22 }, { x: 0, y: 0.16, h: 0.4 }],
   6: [{ x: 0, y: 0.9, h: 0.2 }, { x: -0.3, y: 0.83, h: 0.14 }, { x: -0.62, y: 0.76, h: 0.3 },
     { x: 0.34, y: 0.82, h: 0.16 }, { x: 0.66, y: 0.77, h: 0.28 }, { x: 0.3, y: 0.52, h: 0.42 }],
 };
 export const ictus = (n, k) => (ICTUS[n] || ICTUS[4])[k % (ICTUS[n] || ICTUS[4]).length];
+
+// The audience sees the conductor's left/right reversed; mirror shows the conductor's view.
+export const displayX = (x, mirror = false) => mirror ? x : -x;
 
 const smooth = (p) => p * p * (3 - 2 * p);
 
