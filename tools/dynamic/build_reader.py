@@ -168,7 +168,8 @@ def build(part_dir: Path, pdf: Path, work: Path) -> dict:
                        bar=n["bar"], off=float(Fraction(n["off"])), dur=float(Fraction(n["dur"])),
                        tie=bool(n.get("tie_from_prev")), unc=n.get("uncertain") or "", old=old, p=n["pitch"],
                        sim=bool(n.get("sim")))
-            if cfg.get("instrument") == "trombone":        # non-transposing; German names + slide position
+            instr = n.get("instrument") or cfg.get("instrument")
+            if instr == "trombone":        # non-transposing; German names + slide position
                 w_ = label_german(L, a, wo)
                 rec.update(key="C", w=w_, f=w_, snd=w_, pos=TROMBONE_POS.get(w_[2]))
             elif cfg.get("instrument") == "clarinet":      # in A / Bb; 'f' = how a Bb clarinet reads it
