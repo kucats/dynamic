@@ -1,0 +1,129 @@
+{
+ "id": "karelia-suite-viola",
+ "instrument": "viola",
+ "title": "Sibelius Karelia Suite Op.11 — Viola",
+ "subtitle": "I. Intermezzo · II. Ballade · III. Alla marcia (alto clef)",
+ "composer": "Jean Sibelius",
+ "work": "Karelia Suite, Op. 11",
+ "part": "Viola (alto clef)",
+ "source": {
+  "file": "karelia-viola.pdf (user-supplied, not committed)",
+  "sha256": "9ae77cffd0edab9acb11bff30797d7dc036d868902570b402f7ae679bc93fda9",
+  "pages": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6
+  ]
+ },
+ "dpi": 300,
+ "movements": [
+  {
+   "key": "I",
+   "title": "I. Intermezzo",
+   "last": 152,
+   "pages": [
+    1,
+    2
+   ],
+   "meters": [
+    [
+     1,
+     "2/4"
+    ]
+   ],
+   "tempos": [
+    [
+     1,
+     96
+    ]
+   ],
+   "conduct": [
+    [
+     1,
+     2
+    ]
+   ],
+   "conduct_note": "Conduct values are practice guides derived from meter and tempo, not markings printed in the part."
+  },
+  {
+   "key": "II",
+   "title": "II. Ballade",
+   "last": 124,
+   "pages": [
+    3,
+    4
+   ],
+   "meters": [
+    [
+     1,
+     "3/4"
+    ]
+   ],
+   "tempos": [
+    [
+     1,
+     72
+    ]
+   ],
+   "conduct": [
+    [
+     1,
+     3
+    ]
+   ],
+   "conduct_note": "Conduct values are practice guides derived from meter and tempo, not markings printed in the part."
+  },
+  {
+   "key": "III",
+   "title": "III. Alla marcia",
+   "last": 192,
+   "pages": [
+    4,
+    5,
+    6
+   ],
+   "meters": [
+    [
+     1,
+     "2/4"
+    ]
+   ],
+   "tempos": [
+    [
+     1,
+     104
+    ]
+   ],
+   "conduct": [
+    [
+     1,
+     2
+    ]
+   ],
+   "conduct_note": "Conduct values are practice guides derived from meter and tempo, not markings printed in the part."
+  }
+ ],
+ "splits": [
+  {
+   "page": 4,
+   "first_system": 6,
+   "movement": "III",
+   "note": "page 4: movement II ends at system 5; 'III. Alla marcia.' starts at system 6"
+  }
+ ],
+ "status": "Machine-assisted first-pass transcription: detector-proposed note positions and bar bounds were confirmed or flagged page-by-page. No independent note-level audit yet.",
+ "limitations": [
+  "Pitches are detector candidates snapped to the staff lattice; entries flagged in the uncertain field (beam-adjacent, weak head, grid-interpolated, rhythm overflow) need a note-level audit before playback use.",
+  "Bar numbers restart at rehearsal letters in the source; the labels in this data count continuously per movement instead. Letter positions in meta.repeats are approximate.",
+  "Multi-bar rests are stored as en-dash ranges in bars labels (e.g. 1–13 at mvt II start, 66–106 = the printed \"41\" rest in mvt III).",
+  "Volta endings in mvt II (1./2.) and mvt III (1.) and the mvt II repeat structure are noted approximately; playback order not encoded.",
+  "Cue notes (Cor. ingl. cues in mvt II p4) are flagged/sim-marked where detected rather than fully excluded.",
+  "Ties are not detected; tie_from_prev is always false.",
+  "Tempo mm values (96/72/104) are practice estimates; the part prints no metronome marks.",
+  "Bar segmentation on the narrow-bar systems (mvt I F/G sections, mvt III systems) is interpolated from column candidates and counts may be off by ±1-2 bars per system."
+ ],
+ "pdf": null
+}
