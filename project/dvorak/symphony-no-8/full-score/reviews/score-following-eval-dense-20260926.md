@@ -21,6 +21,10 @@ anchors in `alignment-tampacentralpark.json`, whose mvt-I tail was polluted
 misrouted events; fixed source: filename page number is authoritative, not
 `d.page`).
 
+Round 2 added `alignment-tampacentralpark-hybrid.json`: same anchor layout,
+built from the 24-dim hybrid feature DTW — currently the reference anchor
+set (v1 kept for cross-method comparison).
+
 ## Methods tried and results
 
 Accuracy = |estimated audio time − anchor audio time| at emitted positions.
@@ -38,8 +42,42 @@ Accuracy = |estimated audio time − anchor audio time| at emitted positions.
 | event-seq subsequence (40-event windows) | dense-tutti | 1–7 % @8 s all mvts — short windows not discriminative | | | |
 | banded tracker (24 s window, ±12 s radius, tempo prediction) | dense-tutti | 5–9 % coverage, locks onto wrong positions — local chroma gates can't distinguish look-alike passages | | | |
 
+## Round 2 — more methods (hybrid feature, subseq DTW, IOI, contours)
+
+New feature found: **hybrid 24-dim `[sustain chroma; per-pc attack novelty × 0.5]`**
+— chroma alone captures sustained harmony but blurs attacks on phone audio;
+adding an exponentially decaying (~0.4 s) per-pitch-class onset channel
+sharpened the global DTW enough that it is now the best method AND the new
+anchor source (`alignment-tampacentralpark-hybrid.json`).
+
+Accuracy = |estimated − v1 chroma anchor| at each bar — i.e. for the hybrid
+rows this measures **cross-method agreement between two independent DTW
+alignments**, not self-agreement. Global (whole-movement) methods:
+
+| method | I | II | III | IV |
+|---|---|---|---|---|
+| **hybrid global DTW w=0.5** | **med 3.6 s, 68 % @8 s, 77 % @20 s** | **med 2.4 s, 82 % @8 s, 92 % @20 s** | **med 3.0 s, 76 % @8 s, 100 % @20 s** | **med 11.6 s, 41 % @8 s, 79 % @20 s** |
+| hybrid global DTW w=1.0 | med 3.4 s, 69 % @8 s | med 6.6 s | med 5.4 s | med 64 s |
+| hybrid global DTW w=2.0 | med 12.2 s | med 26.8 s | med 18.6 s | med 57 s |
+| pc-novelty-only DTW | med 45 s | med 51 s | med 9.4 s, 80 % @20 s | med 68 s |
+| bass-contour DTW (lowest bin <~250 Hz) | med 91 s | med 42 s | med 30 s | med 32 s |
+| melody-contour DTW (top bin) | med 50 s | med 49 s | med 40 s | med 227 s |
+| onset-density envelope DTW | degenerate — fails | | | |
+
+Local/causal acquisition methods (what realtime actually needs):
+
+| method | result |
+|---|---|
+| banded tracker on hybrid feature (24 s win, ±12 s) | coverage 0–3 % — still cannot lock |
+| subsequence DTW, 60 s hybrid windows ×10/mvt | 0 % @20 s all mvts; margins ≈0 — 60 s windows are NOT placeable on this audio |
+| IOI rhythm-pattern NCC (30 onsets, tempo-normalized) | ≤17 % @20 s — fails |
+
 ## Conclusions (honest)
 
+- Two INDEPENDENT global alignments (12-dim chroma DTW vs 24-dim hybrid
+  DTW) agree within ~3–4 s median at bar level across all four movements
+  (77–100 % within 20 s). That cross-method agreement is the strongest
+  evidence so far that the dense anchors are trustworthy at ±a few bars.
 - Dense reference fixes the codew bottleneck *partially*: the only reliable
   tracking now comes from global/chunked alignment, not short causal windows.
 - Phone-mic tutti audio has too few clean onsets (≈1.5/s detected vs 3.6/s
@@ -60,13 +98,19 @@ Accuracy = |estimated audio time − anchor audio time| at emitted positions.
    re-alignment of accumulated audio (one DTW per ~30 s of audio is cheap;
    incremental DTW variants exist for realtime), matching #53's
    手動指定優先 + 候補提示 design.
-2. Event matcher with better obs features: onset-strength weighting, bass +
-   melody split channels (bass onsets are steadier in tutti). mvt III shows
-   the event-DTW path works when texture is sparse.
+2. ~~Event matcher with bass + melody split channels~~ tried (round 2):
+   bass/melody contours alone are too weak; onset-strength weighting DID
+   pay off inside the hybrid feature. Remaining untried in this line:
+   hybrid-feature event-DTW (attack-channel onset events only) and a
+   coarse-to-fine acquire (global DTW on first ~2–3 min of buffered audio,
+   then local maintenance).
 3. Reader integration: WebAudio onset+pitch worker fed by the per-part
    following profiles already emitted for all 21 parts
-   (`public/reader/following/dvorak8-*.json` in eval staging).
+   (`public/reader/following/dvorak8-*.json` in eval staging), with the
+   periodic re-alignment loop as the acquisition mechanism.
 
 Eval harness (work/, not committed): build_dense.py, build_anchors_v2.py,
+build_anchors_v3.py (hybrid anchors), methods2.py, methods3.py,
+banded_track.py, banded_track2.py, subseq_eval.py, ioi_eval.py,
 event_eval.py, event_eval2.py, event_eval3.py, slide_eval.py, score_trace.py,
 extract_slices.py; replay driver = codex tools/dynamic/following_replay.mjs.
