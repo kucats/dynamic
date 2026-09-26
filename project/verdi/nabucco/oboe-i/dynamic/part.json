@@ -1,0 +1,21 @@
+{
+ "id": "verdi-nabucco-oboe1",
+ "instrument": "oboe",
+ "title": "ヴェルディ《ナブッコ》序曲 オーボエ1番",
+ "subtitle": "Sinfonia · 音名（CDEFGAB）",
+ "composer": "Giuseppe Verdi",
+ "work": "Nabucco — Sinfonia",
+ "part": "Oboe I（「OBOE I. - CORNO INGLESE」結合譜のオーボエ1段）",
+ "source": {"file": "オーボエ1・2・EH.pdf (user-supplied, not committed)", "sha256": "5dde18158ff2e242111257f9994ede1063e3456c66c5bfd8e7a54169c13dfa79", "pages": [1, 2, 3, 4]},
+ "dpi": 300,
+ "movements": [{"key": "S", "short": "序曲", "title": "Sinfonia（序曲）", "last": 329, "pages": [1, 2, 3, 4],
+   "meters": [[1, "4/4"], [54, "3/8"], [108, "2/2"]],
+   "tempos": [[1, 66], [24, 138], [51, 66], [54, 50], [108, 160], [270, 184]]}],
+ "status": "機械検出＋ページ目視の半自動採譜。音高は符頭検出ベースで概ね確度が高いが、リズム・小節割当（特に3/8 Andantino内部）は推定で uncertain フラグ付き。奏者による監修は未実施。",
+ "limitations": [
+  "このPDFは「OBOE I. - CORNO INGLESE」の結合譜で、オーボエ2番の独立した段はありません（第2オーボエはオーボエ1段にユニゾン/a2として含まれる可能性）。",
+  "小節番号は印刷されていないため、序曲の最初を1小節目として数えた通し番号です（1ページ目1〜107）。練習記号A=70、B=89をアンカーに推定。",
+  "臨時記号・タイ・装飾は可読性の限界があるため疑わしいものに uncertain を付け、再生から除外しています。",
+  "3/8部・2/2部の各小節の音価は概略推定です。"
+ ]
+}
