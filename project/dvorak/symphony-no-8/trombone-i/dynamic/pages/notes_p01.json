@@ -200,7 +200,7 @@
    "dur": "1/2",
    "off": "1/2",
    "tie_from_prev": false,
-   "uncertain": "flat printed; D-flat neighbour note"
+   "verified": "score cross-check (Bartos score staff, 2026-09-26)"
   },
   {
    "sys": 2,
@@ -764,7 +764,7 @@
    "dur": "1/4",
    "off": "3/4",
    "tie_from_prev": false,
-   "uncertain": "no sign printed; sharp carried from D#4 earlier in bar"
+   "verified": "score cross-check (Bartos score staff, 2026-09-26)"
   },
   {
    "sys": 7,
@@ -1088,7 +1088,7 @@
    "dur": "1/4",
    "off": "1/2",
    "tie_from_prev": false,
-   "uncertain": "sharp carried"
+   "verified": "score cross-check (Bartos score staff, 2026-09-26)"
   },
   {
    "sys": 8,
@@ -1100,7 +1100,7 @@
    "dur": "1/8",
    "off": "7/8",
    "tie_from_prev": false,
-   "uncertain": "sharp carried"
+   "verified": "score cross-check (Bartos score staff, 2026-09-26)"
   },
   {
    "sys": 8,
@@ -1136,7 +1136,7 @@
    "dur": "1/4",
    "off": "1/2",
    "tie_from_prev": false,
-   "uncertain": "sharp carried"
+   "verified": "score cross-check (Bartos score staff, 2026-09-26)"
   },
   {
    "sys": 8,
@@ -1148,7 +1148,7 @@
    "dur": "1/8",
    "off": "7/8",
    "tie_from_prev": false,
-   "uncertain": "sharp carried"
+   "verified": "score cross-check (Bartos score staff, 2026-09-26)"
   },
   {
    "sys": 8,

@@ -226,9 +226,9 @@
    "clef": "G",
    "bar": 103,
    "tie_from_prev": false,
-   "uncertain": "sharp slightly low; B#4 (courtesy natural on B in next bar supports it)",
    "dur": "1/4",
-   "off": "1/4"
+   "off": "1/4",
+   "verified": "score cross-check (Bartos score staff, 2026-09-26)"
   },
   {
    "sys": 2,
@@ -1162,9 +1162,9 @@
    "clef": "G",
    "bar": 192,
    "tie_from_prev": false,
-   "uncertain": "small accidental before note read as natural",
    "dur": "1/12",
-   "off": "0/12"
+   "off": "0/12",
+   "verified": "score cross-check (Bartos score staff, 2026-09-26)"
   },
   {
    "sys": 8,

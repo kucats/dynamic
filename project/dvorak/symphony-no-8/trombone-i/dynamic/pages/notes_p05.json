@@ -1380,7 +1380,7 @@
    "dur": "1/16",
    "off": "7/16",
    "tie_from_prev": false,
-   "uncertain": "16th rest before it read from a flag-like rest glyph"
+   "verified": "score cross-check (Bartos score staff, 2026-09-26)"
   },
   {
    "sys": 10,

@@ -726,9 +726,9 @@
    "clef": "G",
    "bar": 45,
    "tie_from_prev": false,
-   "uncertain": "follows Cor.I cue in bars 42-44; could still be cue (no rest printed, so taken as Horn II)",
    "dur": "3/4",
-   "off": "0"
+   "off": "0",
+   "verified": "score cross-check (Bartos score staff, 2026-09-26)"
   },
   {
    "sys": 6,

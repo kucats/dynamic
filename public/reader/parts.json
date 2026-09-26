@@ -52,21 +52,25 @@
     {
      "key": "I",
      "title": "第1楽章 Allegro con brio",
+     "short": null,
      "notes": 384
     },
     {
      "key": "II",
      "title": "第2楽章 Adagio",
+     "short": null,
      "notes": 124
     },
     {
      "key": "III",
      "title": "第3楽章 Allegretto grazioso",
+     "short": null,
      "notes": 56
     },
     {
      "key": "IV",
      "title": "第4楽章 Allegro ma non troppo",
+     "short": null,
      "notes": 357
     }
    ],
@@ -105,11 +109,13 @@
     {
      "key": "I",
      "title": "第1楽章 Allegro con brio",
+     "short": null,
      "notes": 305
     },
     {
      "key": "IV",
      "title": "第4楽章 Allegro ma non troppo",
+     "short": null,
      "notes": 269
     }
    ],
