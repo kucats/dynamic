@@ -133,6 +133,21 @@ class WorkLibraryTests(unittest.TestCase):
         a["rows"].append(row)
         self.assertEqual(self.resolve()["status"], "ambiguous")
 
+    def test_different_source_measures_claiming_same_location_are_ambiguous(self):
+        a = self.d["alignments"][0]
+        row = self.group(["s2"], ["loc1"], rid="source-location-conflict")
+        approve(a, row)
+        a["rows"].append(row)
+        self.assertEqual(self.resolve()["status"], "ambiguous")
+
+    def test_other_member_of_source_group_has_conflicting_review(self):
+        self.change_rows(0, [self.group(["s1", "s2"], ["loc1", "loc2"])])
+        a = self.d["alignments"][0]
+        row = self.group(["s2"], ["loc3"], rid="source-group-conflict")
+        approve(a, row)
+        a["rows"].append(row)
+        self.assertEqual(self.resolve("s1")["status"], "ambiguous")
+
     def test_conflicting_target_reviews(self):
         a = self.d["alignments"][1]
         row = self.group(["t2"], ["loc1"], rid="conflict")

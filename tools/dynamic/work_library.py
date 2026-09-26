@@ -318,6 +318,12 @@ class Library:
         if row["relation"] == "source_only":
             return dict(out, status="absent")
         wanted = set(row["target"])
+        # The complete source group must be unambiguous in both directions.
+        # A second local measure claiming the same location is not an exact alias.
+        if any(r["id"] != row["id"] and r["status"] == "reviewed" and
+               (wanted.intersection(r["target"]) or set(row["source"]).intersection(r["source"]))
+               for r in a["rows"]):
+            return dict(out, status="ambiguous")
         targets = [r for r in b["rows"] if wanted.intersection(r["target"]) and r["status"] != "rejected"]
         approved = [r for r in targets if r["status"] == "reviewed"]
         if not approved:
