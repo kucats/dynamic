@@ -1,0 +1,92 @@
+{
+ "id": "sibelius-karelia-flute-ii",
+ "instrument": "Flauto II",
+ "title": "Karelia Suite",
+ "subtitle": "Op. 11",
+ "composer": "Jean Sibelius",
+ "work": "karelia-suite",
+ "part": "flute-ii",
+ "source": {
+  "file": "karelia-flute.pdf",
+  "sha256": "a7b5a67f1c8dc5fbbec294e55367ea6bfbd1f88733c63aae9a508001727d4d70",
+  "pages": [
+   4,
+   5,
+   6
+  ]
+ },
+ "dpi": 340,
+ "movements": [
+  {
+   "key": "I",
+   "title": "Intermezzo",
+   "last": 174,
+   "pages": [
+    4
+   ],
+   "meters": [
+    [
+     1,
+     "2/4"
+    ]
+   ],
+   "tempos": [
+    [
+     1,
+     "Moderato"
+    ],
+    [
+     49,
+     "Un pochett. string. al"
+    ],
+    [
+     53,
+     "Meno"
+    ],
+    [
+     140,
+     "Più moderato"
+    ]
+   ],
+   "conduct": "3 flats",
+   "conduct_note": "mvt I ends p4 bar174 (fermata); 'II. Ballade tacet.' printed at page foot"
+  },
+  {
+   "key": "II",
+   "title": "Ballade",
+   "last": 0,
+   "pages": [],
+   "meters": [],
+   "tempos": [],
+   "conduct": "tacet",
+   "conduct_note": "tacet ('II. Ballade tacet.' printed at foot of p4)"
+  },
+  {
+   "key": "III",
+   "title": "Alla marcia",
+   "last": 293,
+   "pages": [
+    5,
+    6
+   ],
+   "meters": [
+    [
+     1,
+     "2/4"
+    ]
+   ],
+   "tempos": [
+    [
+     1,
+     "Moderato"
+    ],
+    [
+     287,
+     "Poco largamente"
+    ]
+   ],
+   "conduct": "3 sharps; 2 flats at A(68); 3 sharps at C(~176)",
+   "conduct_note": "flute enters bar156 at B; ends p6; bar boundaries best-effort (see meta.repeats)"
+  }
+ ]
+}
