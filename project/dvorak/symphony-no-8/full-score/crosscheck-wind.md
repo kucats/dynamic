@@ -4,7 +4,7 @@ Dvorak 8, mvt I. Score side: `full-score/score-notes/p005.json`+`p006.json` (bra
 
 Both sides record **written pitch**, so no transposition is applied (Cl in A / Cor in F / Trbe in F cancel out; Trbni/Cb are concert). Score Trbni I.II staff is alto clef — same convention as the part decode. `unc` = notes the part decode itself flagged uncertain/auto-draft; cue notes already excluded by the part decode are ignored.
 
-**Bars compared: 147 | agreeing: 116 | disagreements: 28 (+ 48 informational rest-vs-flagged-candidate rows)**
+**Bars compared: 147 | agreeing: 116 | disagreements: 28 (+ 48 informational rows: rest-vs-flagged-candidate, missing-voice partials, ambiguity-resolved, score-unstated)**
 
 Severity: **high** = confident part data contradicts the score read; **medium** = one side flagged uncertain; **low** = adjacent-pitch (±1-2 semitone) mismatch consistent with a positional misread; **info** = not a true conflict (part shows only flagged-uncertain candidates, the missing voice's part was never decoded, or the score made no claim). Trial (b7-13) score reads marked 'ambiguity range' count as agree* when a part pitch resolves one of the stated options.
 
