@@ -30,10 +30,11 @@ try:
 except FileNotFoundError:
     notes = []
     print('no final file; labels guessed from scratch')
-xs_ref = [c['x'] for c in cands] if cands else [n['x'] for n in notes]
 out = {}
 for i, s in enumerate(ST):
     sn = i + 1
+    xs_ref = ([c['x'] for c in cands if c.get('sys') == sn] if cands
+              else [n['x'] for n in notes if n.get('sys') == sn])
     xs, x0, x1 = barlines(B, s, xs_ref)
     bnds = [x0] + xs + [x1]
     segs = []
