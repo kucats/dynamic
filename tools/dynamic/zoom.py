@@ -1,4 +1,4 @@
-"""Guides: treble names (red/green), (bass) in grey, [alto] in purple.
+"""Guides: treble names (red/green), (bass) in grey, [alto] in purple, <tenor> in cyan.
 Usage: python3 work/zoom.py PAGE SYS [X0 X1] [OUT]
 Writes a zoomed crop of one system of page PAGE (300dpi image work/pPAGE.png) with:
  - left margin pitch guides: treble-clef names (red/green) and bass-clef names (grey, in brackets)
@@ -18,7 +18,7 @@ def render(x0,x1,out):
     top=int(min(st['l'][0],st['r'][0]))-170; bot=int(max(st['l'][4],st['r'][4]))+150
     top=max(0,top); bot=min(im.shape[0],bot)
     c=cv2.cvtColor(im[top:bot,x0:x1],cv2.COLOR_GRAY2BGR)
-    pad=215
+    pad=285
     c=cv2.copyMakeBorder(c,40,0,pad,0,cv2.BORDER_CONSTANT,value=(255,255,255))
     xm=(x0+x1)/2
     bl=staff_y(st,xm,4); sp=(staff_y(st,xm,4)-staff_y(st,xm,0))/4
@@ -31,7 +31,9 @@ def render(x0,x1,out):
         cv2.putText(c,'('+bn+')',(52,y+5),cv2.FONT_HERSHEY_SIMPLEX,0.4,(120,120,120),1)
         da=3+k; an=LET[da%7]+str(3+da//7)          # alto clef (C clef on the middle line)
         cv2.putText(c,'['+an+']',(112,y+5),cv2.FONT_HERSHEY_SIMPLEX,0.4,(170,0,170),1)
-        cv2.line(c,(170,y),(pad-2,y),colr,1)
+        dt=1+k; dn=LET[dt%7]+str(3+dt//7)          # tenor clef (C clef on the 4th line)
+        cv2.putText(c,'<'+dn+'>',(172,y+5),cv2.FONT_HERSHEY_SIMPLEX,0.4,(200,150,0),1)
+        cv2.line(c,(240,y),(pad-2,y),colr,1)
     for x in range((x0//100+1)*100,x1,100):
         X=x-x0+pad; cv2.line(c,(X,0),(X,14),(200,0,0),1)
         cv2.putText(c,str(x),(X-18,32),cv2.FONT_HERSHEY_SIMPLEX,0.45,(200,0,0),1)

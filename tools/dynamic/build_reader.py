@@ -129,7 +129,12 @@ def build(part_dir: Path, pdf: Path, work: Path) -> dict:
 
     cfg = json.loads((part_dir / "part.json").read_text(encoding="utf-8"))
     pages = sorted({p for m in cfg["movements"] for p in m["pages"]})
-    splits = {s["page"]: s for s in cfg.get("splits", [])}
+    splits: dict[int, list[dict]] = {}
+    for s in cfg.get("splits", []):
+        splits.setdefault(s["page"], []).append(s)
+    for sl in splits.values():
+        sl.sort(key=lambda e: e["first_system"])
+    mvt_horn_key = {m["key"]: m["horn_key"] for m in cfg["movements"] if m.get("horn_key")}
     systems, notes = [], []
     dpi = cfg.get("dpi", 300)
     wdir = work / cfg["id"]
@@ -143,8 +148,9 @@ def build(part_dir: Path, pdf: Path, work: Path) -> dict:
         sys_index = {}
         for si, s in enumerate(ST, 1):
             mv = mv_here[0]
-            if page in splits and si >= splits[page]["first_system"]:
-                mv = splits[page]["movement"]
+            for sp in splits.get(page, []):
+                if si >= sp["first_system"]:
+                    mv = sp["movement"]
             crop, top = crop_system(im, s, si == 1, cx)
             segs = [[round(g["xa"] - cx[0]), round(g["xb"] - cx[0]), g.get("label", "")]
                     for g in bars.get(str(si), [])]
@@ -164,8 +170,11 @@ def build(part_dir: Path, pdf: Path, work: Path) -> dict:
             if cfg.get("instrument") == "trombone":        # non-transposing; German names + slide position
                 w_ = label_german(L, a, wo)
                 rec.update(key="C", w=w_, f=w_, snd=w_, pos=TROMBONE_POS.get(w_[2]))
+            elif cfg.get("instrument") == "cello":          # non-transposing strings; solfège labels
+                w_ = label(L, a, wo)
+                rec.update(key="C", w=w_, f=w_, snd=w_)
             else:
-                key = n.get("horn_key") or cfg.get("default_horn_key", "F")
+                key = n.get("horn_key") or mvt_horn_key.get(sy["mvt"]) or cfg.get("default_horn_key", "F")
                 dl, ds = HORN_KEYS[key]
                 s_ = transpose(L, a, wo, dl, ds)
                 f_ = transpose(*s_, 4, 7)
