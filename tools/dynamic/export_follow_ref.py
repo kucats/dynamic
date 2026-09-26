@@ -55,7 +55,8 @@ def off_beats(o):
     if o in (None, ""):
         return 0.0
     try:
-        return float(Fraction(str(o)))
+        # source `off` is a fraction of a WHOLE note; convert to beats
+        return float(Fraction(str(o))) * 4
     except (ValueError, ZeroDivisionError):
         return 0.0
 
@@ -105,7 +106,13 @@ def collect(work_rel):
                 page2mvt.setdefault(p, []).append(k)
         for nf in sorted(dyn.glob("pages/notes_p*.json")):
             d = json.loads(nf.read_text())
-            cand = page2mvt.get(d.get("page"), list(mvts))
+            # filename page number is authoritative (d["page"] is the source
+            # PDF page and does not match part.json's logical pages)
+            try:
+                page_num = int(nf.stem.rsplit("_p", 1)[1])
+            except (IndexError, ValueError):
+                page_num = d.get("page")
+            cand = page2mvt.get(page_num, list(mvts))
             mb = d.get("meta", {}).get("bars")
             segs = []
             if isinstance(mb, dict):
