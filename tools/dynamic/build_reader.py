@@ -188,6 +188,10 @@ def build(part_dir: Path, pdf: Path, work: Path) -> dict:
                 dl, ds = TRUMPET_KEYS[key]
                 s_ = transpose(L, a, wo, dl, ds)
                 rec.update(key=key, w=label(L, a, wo), f=label(*s_), snd=label(*s_))
+            elif cfg.get("instrument") == "english-horn":   # in F: sounds a fifth below written
+                dl, ds = HORN_KEYS["F"]
+                s_ = transpose(L, a, wo, dl, ds)
+                rec.update(key="F", w=label(L, a, wo), f=label(L, a, wo), snd=label(*s_))
             elif cfg.get("instrument") != "horn":          # non-transposing instruments (violin, etc.)
                 w_ = label(L, a, wo)
                 rec.update(key="C", w=w_, f=w_, snd=w_)

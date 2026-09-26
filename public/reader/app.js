@@ -13,7 +13,8 @@
     viola: [['w', 'lw', 1.0, '音名', 'cw', true]],
     cello: [['w', 'lw', 1.0, '記譜ドレミ', 'cw', true]],
     violin: [['w', 'lw', 1.0, '音名', 'cw', true]],
-  };
+    oboe: [['w', 'lw', 1.0, '記譜ドレミ', 'cw', true]],
+    'english-horn': [['w', 'lw', 1.0, '記譜ドレミ', 'cw', true], ['s', 'ls', 0.64, '実音', 'cs', false]],  };
   let ROWS = ROWSETS.horn;
   const val = (n, k) => (k === 'w' ? n.w : k === 'f' ? n.f : k === 's' ? n.snd : k === 'v' ? [fingering(n)[0] || '–', '', 0] : [String(n.pos ?? '–'), '', 0]);
   const MV_NUM = { I: 1, II: 2, III: 3, IV: 4 };
@@ -305,7 +306,7 @@
       const fg = fingering(n);
       $('nowV').innerHTML = S.rows.v && fg.length ? `運指 ${fingeringCodeHTML(fg[0])}${fg.length > 1 ? `<small>（替え ${fg.slice(1).map(fingeringCodeHTML).join('・')}）</small>` : ''}` : '';
     }
-    $('nowInfo').textContent = `${mvLabel(n.mvt)} ${n.bar}小節${D.instrument === "trombone" || D.instrument === "cello" ? "" : " · in " + n.key}${n.tie ? ' · タイの続き' : ''}${n.old ? ' · ヘ音記号は旧記譜' : ''}${n.unc ? ' · 要確認：' + n.unc + '（音は再生しません）' : ''} · ${id}/${D.notes.length}`;
+    $('nowInfo').textContent = `${mvLabel(n.mvt)} ${n.bar}小節${D.instrument === "trombone" || D.instrument === "cello" || D.instrument === "oboe" ? "" : " · in " + n.key}${n.tie ? ' · タイの続き' : ''}${n.old ? ' · ヘ音記号は旧記譜' : ''}${n.unc ? ' · 要確認：' + n.unc + '（音は再生しません）' : ''} · ${id}/${D.notes.length}`;
     setMvt(n.mvt, false);
     emit('select', { note: n });
     if (sound && !playing) one(n);
@@ -805,7 +806,7 @@
     else S.rows = Object.fromEntries(ROWS.map(([k]) => [k, params.get('rows').includes(k)]));
     $('rowset').innerHTML = '<legend>表示する行</legend>' + ROWS.map(([k, , , lab, c]) => `<label><input type="checkbox" data-row="${k}"> <b class="${c}">${lab}</b></label>`).join('');
     $('soundWrap').hidden = ['trombone', 'viola'].includes(D.instrument);
-    $('fingerset').hidden = ['trombone', 'viola', 'cello'].includes(D.instrument) || !FG;
+    $('fingerset').hidden = ['trombone', 'viola', 'cello', 'oboe', 'english-horn'].includes(D.instrument) || !FG;
     document.title = `${D.title} — DYNAMIC 譜読みアプリ`;
     $('title').textContent = D.title; $('subtitle').textContent = D.subtitle;
     if (D.pdf) { $('pdfLink').hidden = false; $('pdfLink').href = '../' + D.pdf; }
