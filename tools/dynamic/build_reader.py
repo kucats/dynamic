@@ -171,6 +171,9 @@ def build(part_dir: Path, pdf: Path, work: Path) -> dict:
                 s_ = transpose(L, a, wo, dl, ds)
                 f_ = transpose(*s_, 1, 2)
                 rec.update(key=key, w=label(L, a, wo), f=label(*f_), snd=label(*s_))
+            elif cfg.get("instrument") == "viola":         # non-transposing, alto clef, sounds as written
+                w_ = label(L, a, wo)
+                rec.update(key="C", w=w_, f=w_, snd=w_)
             else:
                 key = n.get("horn_key") or cfg.get("default_horn_key", "F")
                 dl, ds = HORN_KEYS[key]

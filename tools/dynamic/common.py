@@ -36,7 +36,13 @@ def staves(B):
     allst.sort(key=lambda s: s[0])
     merged: list[list[list[float]]] = []
     for s in allst:
-        if merged and abs(merged[-1][0][0] - s[0]) < 80:
+        # Compare to the running mean, not the first detection: on skewed pages the
+        # same staff's top line shifts across column probes and can drift >80px from
+        # the first sample while staying close to the group's average. Threshold 200:
+        # skew-shifted duplicates observed up to ~124px apart, real adjacent systems
+        # are >=~249px apart.
+        top_mean = sum(g[0] for g in merged[-1]) / len(merged[-1]) if merged else 0
+        if merged and abs(top_mean - s[0]) < 200:
             merged[-1].append(s)
         else:
             merged.append([s])

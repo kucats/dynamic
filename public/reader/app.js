@@ -10,6 +10,7 @@
     horn: [['w', 'lw', 1.0, '記譜ドレミ', 'cw', true], ['f', 'lf', 0.78, 'F管の読み替え', 'cf', false], ['s', 'ls', 0.64, '実音', 'cs', false], ['v', 'lv', 0.8, '運指', 'cv', false]],
     trombone: [['w', 'lw', 1.0, '音名', 'cw', true], ['p', 'lp', 0.8, 'ポジション', 'cp', true]],
     clarinet: [['w', 'lw', 1.0, '記譜ドレミ', 'cw', true], ['f', 'lf', 0.78, 'B♭管の読み替え', 'cf', false], ['s', 'ls', 0.64, '実音', 'cs', false]],
+    viola: [['w', 'lw', 1.0, '音名', 'cw', true]],
   };
   let ROWS = ROWSETS.horn;
   const val = (n, k) => (k === 'w' ? n.w : k === 'f' ? n.f : k === 's' ? n.snd : k === 'v' ? [fingering(n)[0] || '–', '', 0] : [String(n.pos ?? '–'), '', 0]);
@@ -292,6 +293,8 @@
     $('nowW').innerHTML = `${esc(n.w[0])}<sup>${n.w[1]}</sup>${n.old ? '<small>※</small>' : ''}`;
     if (D.instrument === 'trombone') {
       $('nowF').innerHTML = `ポジション ${n.pos ?? '–'}`; $('nowS').innerHTML = '';
+    } else if (D.instrument === 'viola') {
+      $('nowF').innerHTML = ''; $('nowS').innerHTML = ''; $('nowV').innerHTML = '';
     } else {
       $('nowF').innerHTML = S.rows.f || D.showF ? `${D.instrument === 'clarinet' ? 'B♭管' : 'F管'} ${esc(n.f[0])}<sup>${n.f[1]}</sup>` : '';
       $('nowS').innerHTML = `実音 ${esc(n.snd[0])}<sup>${n.snd[1]}</sup>`;
@@ -356,7 +359,7 @@
     const pitch = (p) => `${p[0]}${p[1]}`;
     $('practiceWritten').textContent = `譜面：${pitch(n.w)} · ${mvLabel(n.mvt)} ${n.bar}小節`;
     $('practiceSounding').textContent = n.unc ? '吹く音：要確認のため未確定' : `吹く音（実音）：${pitch(n.snd)}`;
-    const fg = D.instrument === 'trombone' || D.instrument === 'clarinet' ? [] : fingering(n);
+    const fg = ['trombone', 'clarinet', 'viola'].includes(D.instrument) ? [] : fingering(n);
     $('practiceFingering').innerHTML = S.rows.v && fg.length ? `運指（目安）：${fingeringCodeHTML(fg[0])}${fg.length > 1 ? `　替え ${fg.slice(1).map(fingeringCodeHTML).join('・')}` : ''}` : '';
     $('practice').dataset.noteId = n.id;
     $('practicePlay').disabled = !!n.unc;
@@ -772,7 +775,7 @@
     D.notes.forEach((n) => { byId.set(n.id, n); const k = n.mvt + ':' + n.bar; if (!mvtNotes.has(k)) mvtNotes.set(k, []); mvtNotes.get(k).push(n.id); });
     ROWS = ROWSETS[D.instrument] || ROWSETS.horn;
     if (D.instrument === 'clarinet') $('sound').querySelector('option[value="f"]').textContent = 'B♭管読み';
-    if (D.instrument !== 'trombone' && D.instrument !== 'clarinet') {
+    if (!['trombone', 'clarinet', 'viola'].includes(D.instrument)) {
       try { const r = await fetch('horn-fingerings.json'); if (r.ok) FG = await r.json(); } catch (e) { /* fingering row shows – */ }
       if (FG) {
         const names = FG.names || {};
@@ -797,8 +800,8 @@
     } else if (!params.get('rows')) S.rows = Object.fromEntries(ROWS.map(([k, , , , , on]) => [k, on]));
     else S.rows = Object.fromEntries(ROWS.map(([k]) => [k, params.get('rows').includes(k)]));
     $('rowset').innerHTML = '<legend>表示する行</legend>' + ROWS.map(([k, , , lab, c]) => `<label><input type="checkbox" data-row="${k}"> <b class="${c}">${lab}</b></label>`).join('');
-    $('soundWrap').hidden = D.instrument === 'trombone';
-    $('fingerset').hidden = D.instrument === 'trombone' || !FG;
+    $('soundWrap').hidden = D.instrument === 'trombone' || D.instrument === 'viola';
+    $('fingerset').hidden = D.instrument === 'trombone' || D.instrument === 'viola' || !FG;
     document.title = `${D.title} — DYNAMIC 譜読みアプリ`;
     $('title').textContent = D.title; $('subtitle').textContent = D.subtitle;
     if (D.pdf) { $('pdfLink').hidden = false; $('pdfLink').href = '../' + D.pdf; }
