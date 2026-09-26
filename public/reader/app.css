@@ -170,6 +170,9 @@ button:focus-visible,input:focus-visible,select:focus-visible,.note:focus-visibl
 .ctx button:hover,.ctx button:focus-visible{background:#eaf3ff}
 .ctx button[disabled]{color:var(--mute);cursor:default;background:transparent}
 .ctx .ctx-score{color:var(--blue)}
+.ctx-quick{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px;padding:4px 5px 6px}
+.ctx .ctx-quick button{text-align:center;min-height:44px;padding:5px;font-size:23px;line-height:1}
+.ctx .ctx-quick button[aria-checked="true"]{background:#e4f2ff;outline:2px solid var(--blue);outline-offset:-2px}
 .sys svg{cursor:context-menu}
 /* full-score viewer (score-viewer.js) */
 html.sv-open{overflow:hidden}
