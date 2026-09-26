@@ -1,0 +1,293 @@
+{
+ "1": [
+  {
+   "xa": 751,
+   "xb": 1251,
+   "label": "1–8"
+  },
+  {
+   "xa": 1251,
+   "xb": 1776,
+   "label": "9"
+  },
+  {
+   "xa": 1776,
+   "xb": 2050,
+   "label": "10"
+  },
+  {
+   "xa": 2050,
+   "xb": 2724,
+   "label": "11"
+  },
+  {
+   "xa": 2724,
+   "xb": 2890,
+   "label": "12"
+  },
+  {
+   "xa": 2890,
+   "xb": 3480,
+   "label": "13–15"
+  }
+ ],
+ "2": [
+  {
+   "xa": 811,
+   "xb": 1527,
+   "label": "16"
+  },
+  {
+   "xa": 1527,
+   "xb": 2024,
+   "label": "17"
+  },
+  {
+   "xa": 2024,
+   "xb": 2626,
+   "label": "18"
+  },
+  {
+   "xa": 2626,
+   "xb": 3167,
+   "label": "19"
+  }
+ ],
+ "3": [
+  {
+   "xa": 80,
+   "xb": 1164,
+   "label": "20"
+  },
+  {
+   "xa": 1164,
+   "xb": 1668,
+   "label": "21"
+  },
+  {
+   "xa": 1668,
+   "xb": 2390,
+   "label": "22"
+  },
+  {
+   "xa": 2390,
+   "xb": 3188,
+   "label": "23"
+  }
+ ],
+ "4": [
+  {
+   "xa": 80,
+   "xb": 1166,
+   "label": "24"
+  },
+  {
+   "xa": 1166,
+   "xb": 1810,
+   "label": "25"
+  },
+  {
+   "xa": 1810,
+   "xb": 2480,
+   "label": "26"
+  },
+  {
+   "xa": 2480,
+   "xb": 3192,
+   "label": "27"
+  }
+ ],
+ "5": [
+  {
+   "xa": 86,
+   "xb": 1176,
+   "label": "28"
+  },
+  {
+   "xa": 1176,
+   "xb": 1816,
+   "label": "29"
+  },
+  {
+   "xa": 1816,
+   "xb": 2478,
+   "label": "30"
+  },
+  {
+   "xa": 2478,
+   "xb": 3202,
+   "label": "31"
+  }
+ ],
+ "6": [
+  {
+   "xa": 80,
+   "xb": 1226,
+   "label": "32"
+  },
+  {
+   "xa": 1226,
+   "xb": 1856,
+   "label": "33"
+  },
+  {
+   "xa": 1856,
+   "xb": 2516,
+   "label": "34"
+  },
+  {
+   "xa": 2516,
+   "xb": 3195,
+   "label": "35"
+  }
+ ],
+ "7": [
+  {
+   "xa": 80,
+   "xb": 1121,
+   "label": "36"
+  },
+  {
+   "xa": 1121,
+   "xb": 1880,
+   "label": "37"
+  },
+  {
+   "xa": 1880,
+   "xb": 2606,
+   "label": "38"
+  },
+  {
+   "xa": 2606,
+   "xb": 3182,
+   "label": "39"
+  }
+ ],
+ "8": [
+  {
+   "xa": 94,
+   "xb": 1192,
+   "label": "40"
+  },
+  {
+   "xa": 1192,
+   "xb": 1659,
+   "label": "41"
+  },
+  {
+   "xa": 1659,
+   "xb": 1836,
+   "label": "42"
+  },
+  {
+   "xa": 1836,
+   "xb": 2136,
+   "label": "43"
+  },
+  {
+   "xa": 2136,
+   "xb": 2621,
+   "label": "44"
+  },
+  {
+   "xa": 2621,
+   "xb": 3114,
+   "label": "45"
+  },
+  {
+   "xa": 3114,
+   "xb": 3480,
+   "label": "46"
+  }
+ ],
+ "9": [
+  {
+   "xa": 271,
+   "xb": 1022,
+   "label": "47"
+  },
+  {
+   "xa": 1022,
+   "xb": 1496,
+   "label": "48"
+  },
+  {
+   "xa": 1496,
+   "xb": 1721,
+   "label": "49"
+  },
+  {
+   "xa": 1721,
+   "xb": 2140,
+   "label": "50"
+  },
+  {
+   "xa": 2140,
+   "xb": 2376,
+   "label": "51"
+  },
+  {
+   "xa": 2376,
+   "xb": 2870,
+   "label": "52"
+  },
+  {
+   "xa": 2870,
+   "xb": 3480,
+   "label": "53–56"
+  }
+ ],
+ "meta": {
+  "bars": [
+   1,
+   56
+  ],
+  "meters": [
+   {
+    "bar": 1,
+    "meter": "4/4"
+   },
+   {
+    "bar": 54,
+    "meter": "3/8"
+   }
+  ],
+  "tempos": [
+   {
+    "bar": 1,
+    "text": "Andante",
+    "mm": ""
+   },
+   {
+    "bar": 24,
+    "text": "Allegro",
+    "mm": ""
+   },
+   {
+    "bar": 51,
+    "text": "Andante come prima",
+    "mm": ""
+   },
+   {
+    "bar": 54,
+    "text": "Andantino",
+    "mm": ""
+   }
+  ],
+  "local_bar_count": 56,
+  "key_signatures": [
+   {
+    "bar": 1,
+    "key": "3 sharps"
+   },
+   {
+    "bar": 54,
+    "key": "1 flat"
+   }
+  ],
+  "rehearsal": [],
+  "repeats": "Multirests: bars 1-8 (8), 13-15 (3), 46 (1), tail 3-bar rest = 54-56 under 3/8+1-flat courtesy. Fermatas on bar 24 first sonority (Allegro p stacc. e sotto voce), bar 51 double bar, bar 54 rest. 'rall.' end of 3rd system, 'Andante (come prima)' at 51. Bar numbers inferred; not printed.",
+  "movement_last_bar": {},
+  "page_bar_offset": 0
+ }
+}

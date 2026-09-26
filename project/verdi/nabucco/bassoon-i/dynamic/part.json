@@ -1,0 +1,82 @@
+{
+ "id": "verdi-nabucco-bassoon1",
+ "instrument": "bassoon",
+ "title": "ヴェルディ《ナブッコ》序曲 ファゴット1番",
+ "subtitle": "Sinfonia · 音名（CDEFGAH）",
+ "composer": "Giuseppe Verdi",
+ "work": "Nabucco — Sinfonia",
+ "part": "Fagotto 1（FAGOTTO I. 両パート共用譜表・Fagotto I（上声部））",
+ "source": {
+  "file": "fagotti.pdf (user-supplied, not committed)",
+  "sha256": "440d283f33173edee63ac7e68f6f845da91e85ba0f77de8ff88cba672e9070fb",
+  "pages": [
+   1,
+   2,
+   3,
+   4
+  ]
+ },
+ "dpi": 355,
+ "movements": [
+  {
+   "key": "S",
+   "short": "序曲",
+   "title": "Sinfonia（序曲）",
+   "last": 329,
+   "pages": [
+    1,
+    2,
+    3,
+    4
+   ],
+   "meters": [
+    [
+     1,
+     "4/4"
+    ],
+    [
+     54,
+     "3/8"
+    ],
+    [
+     108,
+     "2/2"
+    ]
+   ],
+   "tempos": [
+    [
+     1,
+     66
+    ],
+    [
+     24,
+     138
+    ],
+    [
+     51,
+     66
+    ],
+    [
+     54,
+     50
+    ],
+    [
+     108,
+     160
+    ],
+    [
+     276,
+     184
+    ]
+   ]
+  }
+ ],
+ "status": "Assistant transcription from the shared Fagotti staff (upper/lower voice split by stem direction and register); single-pass decode, no independent musician audit. Many readings carry 'uncertain' flags and are excluded from playback.",
+ "limitations": [
+  "このPDFの表紙は「FAGOTTO I.」です。序曲では1番・2番が一本の譜表を共用し、ユニゾン(a2)と二声部が混在します。上声部=Fagotto I、下声部=Fagotto II に分離しています。",
+  "小節番号は印刷されていないため、序曲の最初を1小節目として数えた通し番号です（1ページ目1〜56、2ページ目54〜129、3ページ目130〜219、4ページ目220〜329）。リハーサル記号 A=70, B=89, C=130, D=151, E=182, F=206, G=227, H=246, I=300。",
+  "テンポにメトロノーム記号がないため、Andante ♩=66、Allegro ♩=138、Andantino ♪=100、Allegro(¢) ♩=160、Più mosso ♩=184 の目安で再生します。フェルマータ・rall. は反映していません。",
+  "不確かな音（'uncertain'フラグ）は再生に含めません。リズム・声部分離・小節番号は推定が含まれます。"
+ ],
+ "pdf": "reader/pdf/Verdi_Nabucco_Bassoon1_reading.pdf"
+}

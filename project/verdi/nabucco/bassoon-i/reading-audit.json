@@ -1,0 +1,32 @@
+{
+ "schema_version": 1,
+ "composer": "Giuseppe Verdi",
+ "work": "Nabucco, Sinfonia",
+ "part": "Fagotto 1, shared staff",
+ "source": {
+  "sha256": "440d283f33173edee63ac7e68f6f845da91e85ba0f77de8ff88cba672e9070fb",
+  "physical_pages_reviewed": [
+   1,
+   2,
+   3,
+   4
+  ],
+  "total_pages": 44,
+  "included_in_repository": false,
+  "edition_reference": "User-supplied Fagotto I/II combined part; IMSLP Nabucco work page. Byte identity not tested.",
+  "edition_reference_url": "https://imslp.org/wiki/Nabucco_(Verdi,_Giuseppe)"
+ },
+ "review": {
+  "status": "not_yet_audited",
+  "reviewer_model": "single-pass assistant decode",
+  "method": "OMR candidate heads (filled/hollow) + manual strip reading at 355dpi; rhythm and bar assignment inferred from meter anchors, rehearsal letters, and the committed trombone-ii meta (last=329; A=70,B=89).",
+  "reviewed_dimensions": [],
+  "page_results": [],
+  "known_gaps": [
+   "many dur/off assignments estimated from spacing rather than stem/flag resolution",
+   "whole-note rows on p3 sys10 / p4 sys13-14 partially missed by head detector — positions interpolated",
+   "bar counts between rehearsal letters unverified",
+   "accidental scope (courtesy vs real) flagged but unresolved on p2 sys3-4, p4 sys9-12"
+  ]
+ }
+}
