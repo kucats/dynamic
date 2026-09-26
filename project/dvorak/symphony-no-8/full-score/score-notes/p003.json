@@ -1,0 +1,1299 @@
+{
+ "work": "dvorak-8",
+ "source": "work/score.pdf sha256:f644a29d78440db51cb15d007be6d0f8198e253f9adb53845e9a8334977f7026 (Bartos critical edition)",
+ "page": 3,
+ "system": 1,
+ "bars": "1-6",
+ "dpi": 600,
+ "staff_map": {
+  "1": "Fl.I",
+  "2": "Fl.II",
+  "3": "Ob.I.II",
+  "4": "Cl.I.II.A",
+  "5": "Fag.I.II",
+  "6": "Cor.F I.II",
+  "7": "Cor.F III.IV",
+  "8": "Trbe I.II.F",
+  "9": "Trbni I.II",
+  "10": "Trbni III e Tb",
+  "11": "Timp.G,D",
+  "12": "Viol.I",
+  "13": "Viol.II",
+  "14": "Vle",
+  "15": "Vlc",
+  "16": "Cb"
+ },
+ "clefs": {
+  "4": "treble (Cl in A, 2b)",
+  "5": "bass",
+  "6": "treble (Cor in F, 2#)",
+  "9": "alto",
+  "14": "alto",
+  "15": "bass",
+  "16": "bass"
+ },
+ "convention": "pitch as printed (transposing instruments keep written pitch); dur w/h/h./q/q./8/t8 + qr/hr/wr rests; off = quarter-beat offset in bar; empty bar = whole-bar rest",
+ "rests": {
+  "comment": "whole-bar rests confirmed on all six bars for these staves",
+  "staves": [
+   1,
+   2,
+   3,
+   7,
+   8,
+   10,
+   11,
+   12,
+   13
+  ]
+ },
+ "verified": {
+  "9": "trombone-i notes_p01 + trombone-ii trombone2-notes.json (exact)",
+  "6-lower": "horn-ii notes_p09",
+  "15": "vc part cross-check"
+ },
+ "systems": [
+  {
+   "system": 1,
+   "rows": [
+    {
+     "row": 1,
+     "instrument": "Fl.I",
+     "clef": "treble",
+     "bars": {
+      "1": [],
+      "2": [],
+      "3": [],
+      "4": [],
+      "5": [],
+      "6": []
+     },
+     "all_rest": true
+    },
+    {
+     "row": 2,
+     "instrument": "Fl.II",
+     "clef": "treble",
+     "bars": {
+      "1": [],
+      "2": [],
+      "3": [],
+      "4": [],
+      "5": [],
+      "6": []
+     },
+     "all_rest": true
+    },
+    {
+     "row": 3,
+     "instrument": "Ob.I.II",
+     "clef": "treble",
+     "bars": {
+      "1": [],
+      "2": [],
+      "3": [],
+      "4": [],
+      "5": [],
+      "6": []
+     },
+     "all_rest": true
+    },
+    {
+     "row": 4,
+     "instrument": "Cl.I.II.A",
+     "clef": "treble (Cl in A, 2b)",
+     "bars": {
+      "1": [
+       {
+        "p": [
+         "B4"
+        ],
+        "dur": "h",
+        "off": 0,
+        "unc": true,
+        "note": "hollow head ~j4=B4 line (Bb4 via key); 'a 2'"
+       },
+       {
+        "p": [
+         "E4"
+        ],
+        "dur": "q",
+        "off": 2,
+        "unc": true,
+        "note": "head ~j0"
+       },
+       {
+        "p": [
+         "E4"
+        ],
+        "dur": "q",
+        "off": 3,
+        "unc": true,
+        "note": "head ~j0"
+       }
+      ],
+      "2": [
+       {
+        "p": [
+         "A4"
+        ],
+        "dur": "h.",
+        "off": 0,
+        "unc": true,
+        "note": "head ~j3-4 with dot"
+       },
+       {
+        "p": [
+         "Eb4"
+        ],
+        "dur": "q",
+        "off": 3,
+        "unc": true,
+        "note": "flat + head ~j1"
+       }
+      ],
+      "3": [
+       {
+        "p": [
+         "E4"
+        ],
+        "dur": "q",
+        "off": 0,
+        "unc": true,
+        "note": "head ~j0"
+       },
+       {
+        "p": [
+         "Ab4"
+        ],
+        "dur": "h",
+        "off": 1,
+        "unc": true,
+        "note": "flat + hollow ~j3"
+       },
+       {
+        "p": [
+         "E4"
+        ],
+        "dur": "q",
+        "off": 3,
+        "unc": true
+       }
+      ],
+      "4": [
+       {
+        "p": [
+         "Eb4"
+        ],
+        "dur": "q",
+        "off": 0,
+        "unc": true,
+        "note": "flat + head ~j0"
+       },
+       {
+        "p": [
+         "G4"
+        ],
+        "dur": "q",
+        "off": 1,
+        "unc": true,
+        "note": "head ~j2"
+       },
+       {
+        "p": [
+         "Bb4"
+        ],
+        "dur": "q.",
+        "off": 2,
+        "unc": true,
+        "note": "flat + head ~j4 + dot"
+       },
+       {
+        "p": [
+         "Gb4"
+        ],
+        "dur": "8",
+        "off": 3.5,
+        "unc": true,
+        "note": "flat + head ~j2-3"
+       }
+      ],
+      "5": [
+       {
+        "p": [
+         "E4"
+        ],
+        "dur": "h",
+        "off": 0,
+        "unc": true,
+        "note": "hollow ~j0"
+       },
+       {
+        "p": [
+         "Ab4"
+        ],
+        "dur": "q",
+        "off": 2,
+        "unc": true,
+        "note": "flat + head ~j3"
+       },
+       {
+        "p": [
+         "G4"
+        ],
+        "dur": "q",
+        "off": 3,
+        "unc": true,
+        "note": "head ~j2"
+       }
+      ],
+      "6": [
+       {
+        "p": [
+         "Gb4"
+        ],
+        "dur": "h",
+        "off": 0,
+        "unc": true,
+        "note": "flat + hollow ~j1"
+       },
+       {
+        "p": [
+         "E4"
+        ],
+        "dur": "h",
+        "off": 2,
+        "unc": true,
+        "note": "hollow ~j0"
+       }
+      ]
+     }
+    },
+    {
+     "row": 5,
+     "instrument": "Fag.I.II",
+     "clef": "bass",
+     "bars": {
+      "1": [
+       {
+        "p": [
+         "C4",
+         "A2"
+        ],
+        "dur": "h",
+        "off": 0,
+        "unc": true,
+        "note": "upper hollow ~j9-10; lower ~j0-1"
+       },
+       {
+        "p": [
+         "B3",
+         "G2"
+        ],
+        "dur": "q",
+        "off": 2,
+        "unc": true
+       },
+       {
+        "p": [
+         "B3",
+         "G2"
+        ],
+        "dur": "q",
+        "off": 3,
+        "unc": true
+       }
+      ],
+      "2": [
+       {
+        "p": [
+         "D4",
+         "B2"
+        ],
+        "dur": "h.",
+        "off": 0,
+        "unc": true,
+        "note": "upper ~j11 + dot; flat on lower"
+       },
+       {
+        "p": [
+         "B3",
+         "C3"
+        ],
+        "dur": "q",
+        "off": 3,
+        "unc": true
+       }
+      ],
+      "3": [
+       {
+        "p": [
+         "C4",
+         "A2"
+        ],
+        "dur": "h",
+        "off": 0,
+        "unc": true
+       },
+       {
+        "p": [
+         "B3",
+         "G2"
+        ],
+        "dur": "q",
+        "off": 2,
+        "unc": true
+       },
+       {
+        "p": [
+         "C4",
+         "A2"
+        ],
+        "dur": "q",
+        "off": 3,
+        "unc": true
+       }
+      ],
+      "4": [
+       {
+        "p": [
+         "B3",
+         "G2"
+        ],
+        "dur": "q",
+        "off": 0,
+        "unc": true
+       },
+       {
+        "p": [
+         "C4",
+         "A2"
+        ],
+        "dur": "q",
+        "off": 1,
+        "unc": true
+       },
+       {
+        "p": [
+         "D4",
+         "B2"
+        ],
+        "dur": "q.",
+        "off": 2,
+        "unc": true
+       },
+       {
+        "p": [
+         "C4",
+         "A2"
+        ],
+        "dur": "8",
+        "off": 3.5,
+        "unc": true
+       }
+      ],
+      "5": [
+       {
+        "p": [
+         "C4",
+         "A2"
+        ],
+        "dur": "h",
+        "off": 0,
+        "unc": true
+       },
+       {
+        "p": [
+         "B3",
+         "G2"
+        ],
+        "dur": "q",
+        "off": 2,
+        "unc": true
+       },
+       {
+        "p": [
+         "C4",
+         "A2"
+        ],
+        "dur": "q",
+        "off": 3,
+        "unc": true
+       }
+      ],
+      "6": [
+       {
+        "p": [
+         "B3",
+         "G2"
+        ],
+        "dur": "h",
+        "off": 0,
+        "unc": true
+       },
+       {
+        "p": [
+         "C4",
+         "A2"
+        ],
+        "dur": "h",
+        "off": 2,
+        "unc": true
+       }
+      ]
+     }
+    },
+    {
+     "row": 6,
+     "instrument": "Cor.F I.II",
+     "clef": "treble (Cor in F, 2#)",
+     "bars": {
+      "1": [
+       {
+        "p": [
+         "B4",
+         "A4"
+        ],
+        "dur": "h",
+        "off": 0,
+        "unc": true,
+        "note": "score ~B4 vs committed HnII A4"
+       },
+       {
+        "p": [
+         "G4",
+         "A4"
+        ],
+        "dur": "q",
+        "off": 2,
+        "unc": true,
+        "note": "score ~G4 vs committed A4"
+       },
+       {
+        "p": [
+         "A4"
+        ],
+        "dur": "q",
+        "off": 3
+       }
+      ],
+      "2": [
+       {
+        "p": [
+         "D5",
+         "D5"
+        ],
+        "dur": "h.",
+        "off": 0
+       },
+       {
+        "p": [
+         "C5",
+         "C5"
+        ],
+        "dur": "q",
+        "off": 3
+       }
+      ],
+      "3": [
+       {
+        "p": [
+         "A4"
+        ],
+        "dur": "h",
+        "off": 0
+       },
+       {
+        "p": [
+         "Bb4"
+        ],
+        "dur": "q",
+        "off": 2
+       },
+       {
+        "p": [
+         "G4"
+        ],
+        "dur": "q",
+        "off": 3
+       }
+      ],
+      "4": [
+       {
+        "p": [
+         "F4"
+        ],
+        "dur": "q",
+        "off": 0
+       },
+       {
+        "p": [
+         "A4"
+        ],
+        "dur": "q",
+        "off": 1
+       },
+       {
+        "p": [
+         "C5"
+        ],
+        "dur": "q.",
+        "off": 2
+       },
+       {
+        "p": [
+         "Bb4"
+        ],
+        "dur": "8",
+        "off": 3.5
+       }
+      ],
+      "5": [
+       {
+        "p": [
+         "A4"
+        ],
+        "dur": "h",
+        "off": 0
+       },
+       {
+        "p": [
+         "G4"
+        ],
+        "dur": "t8",
+        "off": 2,
+        "unc": "triplet"
+       },
+       {
+        "p": [
+         "Bb4"
+        ],
+        "dur": "t8",
+        "off": 2.667,
+        "unc": "triplet"
+       },
+       {
+        "p": [
+         "A4"
+        ],
+        "dur": "t8",
+        "off": 3.333,
+        "unc": "triplet"
+       }
+      ],
+      "6": [
+       {
+        "p": [
+         "F4"
+        ],
+        "dur": "h",
+        "off": 0
+       },
+       {
+        "p": [],
+        "dur": "qr",
+        "off": 2,
+        "unc": true,
+        "note": "rest inferred"
+       },
+       {
+        "p": [
+         "F4"
+        ],
+        "dur": "q",
+        "off": 3
+       }
+      ]
+     }
+    },
+    {
+     "row": 7,
+     "instrument": "Cor.F III.IV",
+     "clef": "treble",
+     "bars": {
+      "1": [],
+      "2": [],
+      "3": [],
+      "4": [],
+      "5": [],
+      "6": []
+     },
+     "all_rest": true
+    },
+    {
+     "row": 8,
+     "instrument": "Trbe I.II.F",
+     "clef": "treble",
+     "bars": {
+      "1": [],
+      "2": [],
+      "3": [],
+      "4": [],
+      "5": [],
+      "6": []
+     },
+     "all_rest": true
+    },
+    {
+     "row": 9,
+     "instrument": "Trbni I.II",
+     "clef": "alto",
+     "bars": {
+      "1": [
+       {
+        "p": [
+         "Bb3",
+         "G3"
+        ],
+        "dur": "w",
+        "off": 0
+       }
+      ],
+      "2": [
+       {
+        "p": [
+         "D4",
+         "Bb3"
+        ],
+        "dur": "h",
+        "off": 0
+       },
+       {
+        "p": [
+         "D4",
+         "A3"
+        ],
+        "dur": "h",
+        "off": 2
+       }
+      ],
+      "3": [
+       {
+        "p": [
+         "Bb3",
+         "G3"
+        ],
+        "dur": "h",
+        "off": 0
+       },
+       {
+        "p": [
+         "G3"
+        ],
+        "dur": "q",
+        "off": 2
+       },
+       {
+        "p": [
+         "A3"
+        ],
+        "dur": "q",
+        "off": 3
+       }
+      ],
+      "4": [
+       {
+        "p": [
+         "Bb3",
+         "G3"
+        ],
+        "dur": "h",
+        "off": 0
+       },
+       {
+        "p": [
+         "C4",
+         "Gb3"
+        ],
+        "dur": "h",
+        "off": 2
+       }
+      ],
+      "5": [
+       {
+        "p": [
+         "Bb3",
+         "F3"
+        ],
+        "dur": "h",
+        "off": 0
+       },
+       {
+        "p": [
+         "C4",
+         "A3"
+        ],
+        "dur": "h",
+        "off": 2
+       }
+      ],
+      "6": [
+       {
+        "p": [
+         "Bb3",
+         "G3"
+        ],
+        "dur": "h",
+        "off": 0
+       }
+      ]
+     }
+    },
+    {
+     "row": 10,
+     "instrument": "Trbni III e Tb",
+     "clef": "bass",
+     "bars": {
+      "1": [],
+      "2": [],
+      "3": [],
+      "4": [],
+      "5": [],
+      "6": []
+     },
+     "all_rest": true
+    },
+    {
+     "row": 11,
+     "instrument": "Timp.G,D",
+     "clef": "bass",
+     "bars": {
+      "1": [],
+      "2": [],
+      "3": [],
+      "4": [],
+      "5": [],
+      "6": []
+     },
+     "all_rest": true
+    },
+    {
+     "row": 12,
+     "instrument": "Viol.I",
+     "clef": "treble",
+     "bars": {
+      "1": [],
+      "2": [],
+      "3": [],
+      "4": [],
+      "5": [],
+      "6": []
+     },
+     "all_rest": true
+    },
+    {
+     "row": 13,
+     "instrument": "Viol.II",
+     "clef": "treble",
+     "bars": {
+      "1": [],
+      "2": [],
+      "3": [],
+      "4": [],
+      "5": [],
+      "6": []
+     },
+     "all_rest": true
+    },
+    {
+     "row": 14,
+     "instrument": "Vle",
+     "clef": "alto",
+     "bars": {
+      "1": [
+       {
+        "p": [
+         "C4",
+         "F3"
+        ],
+        "dur": "q",
+        "off": 0,
+        "unc": true,
+        "note": "grace+head ~j4 + ~j0"
+       },
+       {
+        "p": [
+         "B3",
+         "G3"
+        ],
+        "dur": "q",
+        "off": 1,
+        "unc": true,
+        "note": "~j3+~j1"
+       },
+       {
+        "p": [],
+        "dur": "hr",
+        "off": 2,
+        "unc": true,
+        "note": "rest block mid-bar"
+       }
+      ],
+      "2": [
+       {
+        "p": [
+         "A3",
+         "F3"
+        ],
+        "dur": "q",
+        "off": 0,
+        "unc": true,
+        "note": "~j2+~j0"
+       },
+       {
+        "p": [
+         "G3",
+         "E3"
+        ],
+        "dur": "q",
+        "off": 1,
+        "unc": true
+       },
+       {
+        "p": [],
+        "dur": "hr",
+        "off": 2,
+        "unc": true
+       }
+      ],
+      "3": [
+       {
+        "p": [
+         "C4",
+         "A3"
+        ],
+        "dur": "q",
+        "off": 0,
+        "unc": true
+       },
+       {
+        "p": [
+         "B3",
+         "G3"
+        ],
+        "dur": "q",
+        "off": 1,
+        "unc": true
+       },
+       {
+        "p": [],
+        "dur": "hr",
+        "off": 2,
+        "unc": true
+       }
+      ],
+      "4": [
+       {
+        "p": [
+         "B3",
+         "G3"
+        ],
+        "dur": "q",
+        "off": 0,
+        "unc": true,
+        "note": "flat seen"
+       },
+       {
+        "p": [
+         "A3",
+         "F3"
+        ],
+        "dur": "q",
+        "off": 1,
+        "unc": true
+       },
+       {
+        "p": [
+         "C4",
+         "A3"
+        ],
+        "dur": "q",
+        "off": 2,
+        "unc": true
+       },
+       {
+        "p": [
+         "B3",
+         "G3"
+        ],
+        "dur": "q",
+        "off": 3,
+        "unc": true
+       }
+      ],
+      "5": [
+       {
+        "p": [
+         "C4",
+         "A3"
+        ],
+        "dur": "q",
+        "off": 0,
+        "unc": true
+       },
+       {
+        "p": [
+         "B3",
+         "G3"
+        ],
+        "dur": "q",
+        "off": 1,
+        "unc": true
+       },
+       {
+        "p": [
+         "C4",
+         "A3"
+        ],
+        "dur": "q",
+        "off": 2,
+        "unc": true
+       },
+       {
+        "p": [
+         "B3",
+         "G3"
+        ],
+        "dur": "q",
+        "off": 3,
+        "unc": true
+       }
+      ],
+      "6": [
+       {
+        "p": [
+         "A3",
+         "F3"
+        ],
+        "dur": "q",
+        "off": 0,
+        "unc": true
+       },
+       {
+        "p": [],
+        "dur": "qr",
+        "off": 1,
+        "unc": true
+       },
+       {
+        "p": [],
+        "dur": "hr",
+        "off": 2,
+        "unc": true
+       }
+      ]
+     }
+    },
+    {
+     "row": 15,
+     "instrument": "Vlc",
+     "clef": "bass",
+     "bars": {
+      "1": [
+       {
+        "p": [
+         "C4"
+        ],
+        "dur": "h",
+        "off": 0
+       },
+       {
+        "p": [
+         "D4"
+        ],
+        "dur": "q",
+        "off": 2
+       },
+       {
+        "p": [
+         "D4"
+        ],
+        "dur": "q",
+        "off": 3
+       }
+      ],
+      "2": [
+       {
+        "p": [
+         "G4"
+        ],
+        "dur": "h.",
+        "off": 0
+       },
+       {
+        "p": [
+         "F4"
+        ],
+        "dur": "q",
+        "off": 3
+       }
+      ],
+      "3": [
+       {
+        "p": [
+         "C4"
+        ],
+        "dur": "h",
+        "off": 0
+       },
+       {
+        "p": [
+         "Eb4"
+        ],
+        "dur": "q",
+        "off": 2,
+        "unc": true,
+        "note": "Eb4 vs Db4"
+       },
+       {
+        "p": [
+         "C4"
+        ],
+        "dur": "q",
+        "off": 3
+       }
+      ],
+      "4": [
+       {
+        "p": [
+         "Bb3"
+        ],
+        "dur": "q",
+        "off": 0
+       },
+       {
+        "p": [
+         "C4"
+        ],
+        "dur": "q",
+        "off": 1
+       },
+       {
+        "p": [
+         "E4"
+        ],
+        "dur": "q.",
+        "off": 2,
+        "unc": true,
+        "note": "nat-sign + dot"
+       },
+       {
+        "p": [
+         "Eb4"
+        ],
+        "dur": "8",
+        "off": 3.5,
+        "unc": true
+       }
+      ],
+      "5": [
+       {
+        "p": [
+         "D4"
+        ],
+        "dur": "h",
+        "off": 0,
+        "unc": true,
+        "note": "hollow ~j11"
+       },
+       {
+        "p": [
+         "C4"
+        ],
+        "dur": "q",
+        "off": 2
+       },
+       {
+        "p": [
+         "Eb4"
+        ],
+        "dur": "q",
+        "off": 3,
+        "unc": true,
+        "note": "flat + head ~j11-12"
+       }
+      ],
+      "6": [
+       {
+        "p": [
+         "C4"
+        ],
+        "dur": "h",
+        "off": 0
+       },
+       {
+        "p": [
+         "D4"
+        ],
+        "dur": "h",
+        "off": 2,
+        "unc": true,
+        "note": "hollow ~j11"
+       }
+      ]
+     }
+    },
+    {
+     "row": 16,
+     "instrument": "Cb",
+     "clef": "bass",
+     "bars": {
+      "1": [
+       {
+        "p": [
+         "F3"
+        ],
+        "dur": "q",
+        "off": 0,
+        "unc": true,
+        "note": "filled ~j6 pizz"
+       },
+       {
+        "p": [],
+        "dur": "qr",
+        "off": 1,
+        "unc": true
+       },
+       {
+        "p": [],
+        "dur": "hr",
+        "off": 2,
+        "unc": true
+       },
+       {
+        "p": [
+         "C4"
+        ],
+        "dur": "q",
+        "off": 3,
+        "unc": true,
+        "note": "filled ~j10"
+       }
+      ],
+      "2": [
+       {
+        "p": [
+         "B3"
+        ],
+        "dur": "q",
+        "off": 0,
+        "unc": true,
+        "note": "~j9-10"
+       },
+       {
+        "p": [],
+        "dur": "qr",
+        "off": 1,
+        "unc": true
+       },
+       {
+        "p": [],
+        "dur": "hr",
+        "off": 2,
+        "unc": true
+       }
+      ],
+      "3": [
+       {
+        "p": [
+         "Bb2"
+        ],
+        "dur": "q",
+        "off": 0,
+        "unc": true,
+        "note": "flat + ~j1"
+       },
+       {
+        "p": [
+         "C3"
+        ],
+        "dur": "q",
+        "off": 1,
+        "unc": true
+       },
+       {
+        "p": [
+         "D3"
+        ],
+        "dur": "q",
+        "off": 2,
+        "unc": true
+       }
+      ],
+      "4": [
+       {
+        "p": [
+         "A2"
+        ],
+        "dur": "q",
+        "off": 0,
+        "unc": true
+       },
+       {
+        "p": [],
+        "dur": "qr",
+        "off": 1,
+        "unc": true
+       },
+       {
+        "p": [
+         "Eb3"
+        ],
+        "dur": "q",
+        "off": 2,
+        "unc": true,
+        "note": "flat + ~j3"
+       },
+       {
+        "p": [],
+        "dur": "qr",
+        "off": 3,
+        "unc": true
+       }
+      ],
+      "5": [
+       {
+        "p": [
+         "B2"
+        ],
+        "dur": "q",
+        "off": 0,
+        "unc": true
+       },
+       {
+        "p": [
+         "C3"
+        ],
+        "dur": "q",
+        "off": 1,
+        "unc": true
+       },
+       {
+        "p": [],
+        "dur": "hr",
+        "off": 2,
+        "unc": true
+       }
+      ],
+      "6": [
+       {
+        "p": [
+         "A2"
+        ],
+        "dur": "q",
+        "off": 0,
+        "unc": true
+       },
+       {
+        "p": [],
+        "dur": "hr",
+        "off": 1,
+        "unc": true
+       }
+      ]
+     }
+    }
+   ]
+  }
+ ]
+}
