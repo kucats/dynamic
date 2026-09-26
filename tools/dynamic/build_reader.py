@@ -58,6 +58,7 @@ def staff_extent(im, ST) -> tuple[int, int]:
 
 def crop_system(im, s: list[float], first: bool, cx: tuple[int, int]):
     import cv2
+    import numpy as np
 
     top = max(0, int(s[0]) - (200 if first else 150))
     bot = min(im.shape[0], int(s[4]) + 100)
@@ -125,7 +126,7 @@ def review_items(notes: list[dict], systems: list[dict]) -> list[dict]:
 
 def build(part_dir: Path, pdf: Path, work: Path) -> dict:
     import cv2
-    from common import HORN_KEYS, TROMBONE_POS, label, label_german, parse_pitch, staves, transpose
+    from common import CLARINET_KEYS, HORN_KEYS, TROMBONE_POS, label, label_german, parse_pitch, staves, transpose
 
     cfg = json.loads((part_dir / "part.json").read_text(encoding="utf-8"))
     pages = sorted({p for m in cfg["movements"] for p in m["pages"]})
@@ -164,6 +165,12 @@ def build(part_dir: Path, pdf: Path, work: Path) -> dict:
             if cfg.get("instrument") == "trombone":        # non-transposing; German names + slide position
                 w_ = label_german(L, a, wo)
                 rec.update(key="C", w=w_, f=w_, snd=w_, pos=TROMBONE_POS.get(w_[2]))
+            elif cfg.get("instrument") == "clarinet":      # in A / Bb; 'f' = how a Bb clarinet reads it
+                key = n.get("cl_key") or cfg.get("default_cl_key", "A")
+                dl, ds = CLARINET_KEYS[key]
+                s_ = transpose(L, a, wo, dl, ds)
+                f_ = transpose(*s_, 1, 2)
+                rec.update(key=key, w=label(L, a, wo), f=label(*f_), snd=label(*s_))
             else:
                 key = n.get("horn_key") or cfg.get("default_horn_key", "F")
                 dl, ds = HORN_KEYS[key]
