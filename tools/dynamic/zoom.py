@@ -12,7 +12,21 @@ from cand import staves_of, staff_y
 LET='CDEFGAB'
 p=int(sys.argv[1]); s=int(sys.argv[2])
 im=cv2.imread(f'work/p{p}.png',0); B=im<140
-ST=staves_of(B); st=ST[s-1]
+ovf=f'work/systems_p{p}.json'
+if os.path.exists(ovf):
+    # reviewed layout override: fit each line's left/right y to the image so skew is preserved
+    def _fit(sys5):
+        L=[];R=[]
+        for k in range(5):
+            y0=max(0,int(sys5[k])-9)
+            for xw,out in ((range(300,900),L),(range(Wx-900,Wx-300),R)):
+                band=B[y0:y0+19,xw.start:xw.stop]
+                out.append(y0+int(band.sum(1).argmax()))
+        return dict(xl=600,xr=Wx-600,l=L,r=R,m=sys5)
+    Wx=B.shape[1]; ST=[_fit(s) for s in json.load(open(ovf))['systems']]
+else:
+    ST=staves_of(B)
+st=ST[s-1]
 cj=json.load(open(f'work/cand_p{p}.json'))
 def render(x0,x1,out):
     top=int(min(st['l'][0],st['r'][0]))-170; bot=int(max(st['l'][4],st['r'][4]))+150

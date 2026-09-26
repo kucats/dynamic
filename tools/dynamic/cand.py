@@ -1,4 +1,4 @@
-import cv2, numpy as np, json, sys
+import cv2, numpy as np, json, sys, os
 LET='CDEFGAB'
 def staves_of(B):
     H,W=B.shape
@@ -34,7 +34,11 @@ def pname(step):  # step 0 = E4 (treble bottom line)
 def run(p):
     im=cv2.imread(f'work/p{p}.png',0); B=(im<140)
     b=B.astype(np.uint8)
-    ST=staves_of(B)
+    ovf=f'work/systems_p{p}.json'
+    if os.path.exists(ovf):          # reviewed layout override (same indexing as zoom.py)
+        ST=[dict(xl=650,xr=2450,l=s,r=s,m=s) for s in json.load(open(ovf))['systems']]
+    else:
+        ST=staves_of(B)
     # filled heads
     k=cv2.getStructuringElement(cv2.MORPH_ELLIPSE,(15,13))
     op=cv2.morphologyEx(b,cv2.MORPH_OPEN,k)

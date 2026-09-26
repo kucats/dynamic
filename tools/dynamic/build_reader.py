@@ -135,9 +135,9 @@ def build(part_dir: Path, pdf: Path, work: Path) -> dict:
     wdir = work / cfg["id"]
     for page in pages:
         im = cv2.imread(str(render_page(pdf, page, wdir, dpi)), cv2.IMREAD_GRAYSCALE)
-        ST = staves(im < 140)
-        cx = staff_extent(im, ST)
         data = json.loads((part_dir / f"pages/notes_p{page:02d}.json").read_text(encoding="utf-8"))
+        ST = [list(map(float, s)) for s in data.get("systems", [])] or staves(im < 140)
+        cx = staff_extent(im, ST)
         bars = json.loads((part_dir / f"pages/bars_p{page:02d}.json").read_text(encoding="utf-8"))
         mv_here = [m["key"] for m in cfg["movements"] if page in m["pages"]]
         sys_index = {}
@@ -164,6 +164,9 @@ def build(part_dir: Path, pdf: Path, work: Path) -> dict:
             if cfg.get("instrument") == "trombone":        # non-transposing; German names + slide position
                 w_ = label_german(L, a, wo)
                 rec.update(key="C", w=w_, f=w_, snd=w_, pos=TROMBONE_POS.get(w_[2]))
+            elif cfg.get("instrument") == "violin":        # non-transposing; written solfège only
+                w_ = label(L, a, wo)
+                rec.update(key="C", w=w_, f=w_, snd=w_)
             else:
                 key = n.get("horn_key") or cfg.get("default_horn_key", "F")
                 dl, ds = HORN_KEYS[key]

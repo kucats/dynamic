@@ -8,7 +8,7 @@
 | `cand.py` | 符頭候補の検出と候補オーバーレイ（読み取りの下書き） |
 | `zoom.py` / `check.py` | サブエージェント用：段の拡大図（音高ガイド付き）と読み取り結果の重ね描き |
 | `check_rhythm.py` | 音価・開始位置が拍子からはみ出していないかの検査 |
-| `barlines.py` / `bars_overlay.py` | 縦線（小節線）の自動検出・多小節休み判定・小節番号の推定と確認図 |
+| `barlines.py` / `bars_auto.py` / `bars_overlay.py` | 縦線（小節線）の自動検出・多小節休み判定・小節番号の推定下書きと確認図 |
 | `score_staves.py` | 総譜ページの五線検出・段→システムの割り付け（`public/score/<id>/index.json` のバンドを利用。休みの段は省略されるため段→楽器の対応はシステムごとに左マージンの楽器名で決める） |
 | `score_zoom.py` | 総譜の1段だけを拡大した音高ガイド付き図（treble/bass/altoガイド＋index由来の小節線・小節番号を重畳） |
 | `pack_notes.py` | 閲覧データを軽量配信用に分割（行配列パック＋画像分離＋システム/ページ単位の音符シャード。`docs/packed-delivery.md`） |
@@ -34,7 +34,7 @@ python3 tools/build_catalog.py && python3 tools/validate_catalog.py
 
 ## データ形式（project/**/dynamic/pages）
 
-`notes_pNN.json` の `notes[]`: `sys`（ページ内の段）, `x`/`y`（300dpiのページ座標）, `pitch`（印刷どおりの記譜音、例 `Bb4`）, `clef`, `bar`, `dur`/`off`（全音符=1の分数）, `tie_from_prev`, `uncertain`, 任意で `horn_key`（管）と `notation: "old-bass-clef"`。
+`notes_pNN.json` の `notes[]`: `sys`（ページ内の段）, `x`/`y`（300dpiのページ座標）, `pitch`（印刷どおりの記譜音、例 `Bb4`）, `clef`, `bar`, `dur`/`off`（全音符=1の分数）, `tie_from_prev`, `uncertain`, 任意で `horn_key`（管）, `notation: "old-bass-clef"`, `sim: true`（他楽器の引用/cue音）。ページ上部に `"systems": [[5線のy座標 x5], ...]` を置くと、レビュー済みの段割りとして `build_reader.py`・`zoom.py`・`cand.py`・`bars_overlay.py` が自動検出の代わりに使います（密集ページで自動検出が幽霊段を作るとき用）。
 `bars_pNN.json`: 段ごとの小節区間 `{xa, xb, label}`（多小節休みは `"61–64"`）。
 
 ## 中間データから再生成する（途中からやり直す）
@@ -58,7 +58,7 @@ python3 tools/dynamic/validate_reader.py
 
 - 読み取りの修正は `notes_pNN.json`（音高 `pitch`、音価 `dur`、開始位置 `off`、小節 `bar`、タイ `tie_from_prev`）を直して `build_reader.py` を再実行します。
 - 小節番号の修正は `bars_pNN.json` の `label` を直します。`validate_reader.py` が、音符とその小節番号の食い違いを検出します。
-- 楽器ごとの表示：ホルンは記譜ドレミ（任意でF管読み・実音）、トロンボーン（`"instrument": "trombone"`）はドイツ式音名（H＝シ）＋B♭テナーの基本ポジション（`common.py` の `TROMBONE_POS`）。
+- 楽器ごとの表示：ホルンは記譜ドレミ（任意でF管読み・実音）、トロンボーン（`"instrument": "trombone"`）はドイツ式音名（H＝シ）＋B♭テナーの基本ポジション（`common.py` の `TROMBONE_POS`）、ヴァイオリン（`"instrument": "violin"`）は非移調で記譜ドレミのみ1行。
 - ラベルの配置：1列に収まらない箇所は、音の高い方を上段、低い方を下段（少し小さい字）に分けます（`public/reader/app.js` の `layout`）。
 - 未解決の読みは `uncertain` に残し、生成 JSON では `unc` と `review_items` に出力します。`review_items[].playback` は `false` で、アプリは該当音を単音試聴・ロングトーン・通し再生から除外します。
 - 既存の切り出し画像を保ったまま出典・制約・要確認情報だけ更新する場合は、`python3 tools/dynamic/build_reader.py --refresh-metadata project/<composer>/<work>/<part>/dynamic` を使います。完全な画像再生成には元PDFが必要です。

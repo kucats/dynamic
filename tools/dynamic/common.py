@@ -1,6 +1,17 @@
 """Shared helpers for the DYNAMIC score-reading pipeline (staff detection, pitch spelling)."""
 from __future__ import annotations
 
+import json
+import os
+
+
+def load_systems(page: int, B):
+    """Reviewed staff layout: prefer work/systems_p<page>.json (list of 5 staff-line y's) when present."""
+    f = f"work/systems_p{page}.json"
+    if os.path.exists(f):
+        return json.load(open(f))["systems"]
+    return staves(B)
+
 LET = 'CDEFGAB'
 SEMI = [0, 2, 4, 5, 7, 9, 11]
 SOL = {'C': 'ド', 'D': 'レ', 'E': 'ミ', 'F': 'ファ', 'G': 'ソ', 'A': 'ラ', 'B': 'シ'}
