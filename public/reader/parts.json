@@ -1,324 +1,388 @@
 {
- "schema": 1,
- "parts": [
-  {
-   "id": "dvorak8-violin2",
-   "title": "ドヴォルザーク 交響曲第8番 ヴァイオリン2番",
-   "subtitle": "全4楽章 · 音名（CDEFGAB）",
-   "part": "Violin II（ト音記号）",
-   "work": "Symphony No. 8 in G major, Op. 88",
-   "composer": "Antonín Dvořák",
-   "status": "機械検出＋印刷小節番号（5小節ごと）で節位置を割り当てた一次転記。全音符に unc フラグあり（原譜との照合監査は未実施）。",
-   "pdf": null,
-   "movements": [
+  "schema": 1,
+  "parts": [
     {
-     "key": "I",
-     "title": "第1楽章 Allegro con brio",
-     "short": null,
-     "notes": 1999
+      "id": "dvorak8-clarinet1",
+      "title": "ドヴォルザーク 交響曲第8番 クラリネット1番",
+      "subtitle": "第1〜4楽章 · 音名（CDEFGAH）＋実音",
+      "part": "Clarinetto I（in A / muta in B）",
+      "work": "Symphony No. 8 in G major, Op. 88",
+      "composer": "Antonín Dvořák",
+      "status": "Devinの読譜パイプラインが1ページずつ原譜と照合した転記（音高・調号・臨時記号・キュー除外・音価・小節番号）。第三者による独立監査は未実施。不明瞭な音・小節番号は unc でフラグ。",
+      "pdf": null,
+      "movements": [
+        {
+          "key": "I",
+          "title": "第1楽章 Allegro con brio",
+          "short": null,
+          "notes": 705
+        },
+        {
+          "key": "II",
+          "title": "第2楽章 Adagio",
+          "short": null,
+          "notes": 428
+        },
+        {
+          "key": "III",
+          "title": "第3楽章 Allegretto grazioso",
+          "short": null,
+          "notes": 319
+        },
+        {
+          "key": "IV",
+          "title": "第4楽章 Allegro ma non troppo",
+          "short": null,
+          "notes": 477
+        }
+      ],
+      "notes": 1929,
+      "data": "reader/data/dvorak8-clarinet1.json"
     },
     {
-     "key": "II",
-     "title": "第2楽章 Adagio",
-     "short": null,
-     "notes": 700
+      "id": "dvorak8-clarinet2",
+      "title": "Symphony No. 8 in G major, Op. 88 — Clarinet II",
+      "subtitle": "ドヴォルザーク 交響曲第8番 ト長調 Op.88 — クラリネット II",
+      "part": "Clarinet II",
+      "work": "Symphony No. 8 in G major, Op. 88",
+      "composer": "Antonín Dvořák",
+      "status": "Devinの読譜パイプラインが1ページずつ原譜と照合した転記（音高・調号・臨時記号・キュー除外・音価・小節番号）。第三者による独立監査は未実施。不明瞭な音・小節番号は unc でフラグ。",
+      "pdf": null,
+      "movements": [
+        {
+          "key": "I",
+          "title": "I. Allegro con brio",
+          "short": null,
+          "notes": 504
+        },
+        {
+          "key": "II",
+          "title": "II. Adagio",
+          "short": null,
+          "notes": 296
+        },
+        {
+          "key": "III",
+          "title": "III. Allegretto grazioso — Molto vivace",
+          "short": null,
+          "notes": 281
+        },
+        {
+          "key": "IV",
+          "title": "IV. Allegro ma non troppo",
+          "short": null,
+          "notes": 450
+        }
+      ],
+      "notes": 1531,
+      "data": "reader/data/dvorak8-clarinet2.json"
     },
     {
-     "key": "III",
-     "title": "第3楽章 Allegretto grazioso – Molto vivace（trio）",
-     "short": null,
-     "notes": 1059
+      "id": "dvorak8-contrabass",
+      "title": "ドヴォルザーク 交響曲第8番 コントラバス",
+      "subtitle": "第1〜4楽章 · 記譜ドレミ",
+      "part": "Contrabasso (bass clef, sounds an octave below written)",
+      "work": "Symphony No. 8 in G major, Op. 88",
+      "composer": "Antonín Dvořák",
+      "status": "Devinが原譜と照合しながら1ページずつ転記した機械支援の読み（全音符・小節番号は est 扱い）。第三者による独立監査は未実施。",
+      "pdf": null,
+      "movements": [
+        {
+          "key": "I",
+          "title": "第1楽章 Allegro con brio",
+          "short": null,
+          "notes": 837
+        },
+        {
+          "key": "II",
+          "title": "第2楽章 Adagio",
+          "short": null,
+          "notes": 436
+        },
+        {
+          "key": "III",
+          "title": "第3楽章 Allegretto grazioso",
+          "short": null,
+          "notes": 480
+        },
+        {
+          "key": "IV",
+          "title": "第4楽章 Allegro ma non troppo",
+          "short": null,
+          "notes": 767
+        }
+      ],
+      "notes": 2520,
+      "data": "reader/data/dvorak8-contrabass.json"
     },
     {
-     "key": "IV",
-     "title": "第4楽章 Allegro ma non troppo",
-     "short": null,
-     "notes": 1451
+      "id": "dvorak8-horn2",
+      "title": "ドヴォルザーク 交響曲第8番 ホルン2番",
+      "subtitle": "第1〜4楽章 · 記譜ドレミ",
+      "part": "Corno II (in F)",
+      "work": "Symphony No. 8 in G major, Op. 88",
+      "composer": "Antonín Dvořák",
+      "status": "Claudeのサブエージェントが1ページずつ原譜と照合した転記（自己チェック済み）。第三者による独立監査は未実施。",
+      "pdf": "reader/pdf/Dvorak8_Horn2_reading.pdf",
+      "movements": [
+        {
+          "key": "I",
+          "title": "第1楽章 Allegro con brio",
+          "short": null,
+          "notes": 384
+        },
+        {
+          "key": "II",
+          "title": "第2楽章 Adagio",
+          "short": null,
+          "notes": 124
+        },
+        {
+          "key": "III",
+          "title": "第3楽章 Allegretto grazioso",
+          "short": null,
+          "notes": 56
+        },
+        {
+          "key": "IV",
+          "title": "第4楽章 Allegro ma non troppo",
+          "short": null,
+          "notes": 357
+        }
+      ],
+      "notes": 921,
+      "data": "reader/data/dvorak8-horn2.json"
+    },
+    {
+      "id": "dvorak8-horn3-mvt3",
+      "title": "ドヴォルザーク 交響曲第8番 ホルン3番",
+      "subtitle": "第3楽章 · 記譜ドレミ／F管読み／実音",
+      "part": "Corno III (in D / in C)",
+      "work": "Symphony No. 8 in G major, Op. 88",
+      "composer": "Antonín Dvořák",
+      "status": "Claudeが原譜と1音ずつ照合した転記。サブエージェントによる再照合で207〜215小節をキューとして除外済み。第三者による独立監査は未実施。",
+      "pdf": "reader/pdf/Dvorak8_Horn3_Movement3_reading.pdf",
+      "movements": [
+        {
+          "key": "III",
+          "title": "第3楽章 Allegretto grazioso",
+          "notes": 57
+        }
+      ],
+      "notes": 57,
+      "data": "reader/data/dvorak8-horn3-mvt3.json"
+    },
+    {
+      "id": "dvorak8-trombone1",
+      "title": "ドヴォルザーク 交響曲第8番 トロンボーン1番",
+      "subtitle": "第1・4楽章 · 音名（CDEFGAH）＋ポジション",
+      "part": "Trombone I（アルト記号）",
+      "work": "Symphony No. 8 in G major, Op. 88",
+      "composer": "Antonín Dvořák",
+      "status": "Claudeのサブエージェントが1ページずつ原譜と照合した転記（音高・調号・臨時記号・キュー除外・音価・小節番号）。第三者による独立監査は未実施。第2・3楽章は休み（Tacet）。",
+      "pdf": "reader/pdf/Dvorak8_Trombone1_reading.pdf",
+      "movements": [
+        {
+          "key": "I",
+          "title": "第1楽章 Allegro con brio",
+          "short": null,
+          "notes": 305
+        },
+        {
+          "key": "IV",
+          "title": "第4楽章 Allegro ma non troppo",
+          "short": null,
+          "notes": 269
+        }
+      ],
+      "notes": 574,
+      "data": "reader/data/dvorak8-trombone1.json"
+    },
+    {
+      "id": "dvorak8-viola",
+      "title": "ドヴォルザーク 交響曲第8番 ヴィオラ",
+      "subtitle": "第1〜4楽章 · 記譜ドレミ",
+      "part": "Viola",
+      "work": "Symphony No. 8 in G major, Op. 88",
+      "composer": "Antonín Dvořák",
+      "status": "Automatic staff/head/barline extraction reviewed at system level for bar numbering; notes carry 'auto' uncertainty flags except where hand-verified (p.1 systems 1-2). Not yet a note-level audit.",
+      "pdf": "reader/pdf/Dvorak8_Viola_reading.pdf",
+      "movements": [
+        {
+          "key": "I",
+          "title": "第1楽章 Allegro con brio",
+          "short": null,
+          "notes": 3845
+        },
+        {
+          "key": "II",
+          "title": "第2楽章 Adagio",
+          "short": null,
+          "notes": 1251
+        },
+        {
+          "key": "III",
+          "title": "第3楽章 Allegretto grazioso",
+          "short": null,
+          "notes": 1991
+        },
+        {
+          "key": "IV",
+          "title": "第4楽章 Allegro ma non troppo",
+          "short": null,
+          "notes": 2685
+        }
+      ],
+      "notes": 9772,
+      "data": "reader/data/dvorak8-viola.json"
+    },
+    {
+      "id": "dvorak8-violin2",
+      "title": "ドヴォルザーク 交響曲第8番 ヴァイオリン2番",
+      "subtitle": "全4楽章 · 音名（CDEFGAB）",
+      "part": "Violin II（ト音記号）",
+      "work": "Symphony No. 8 in G major, Op. 88",
+      "composer": "Antonín Dvořák",
+      "status": "機械検出＋印刷小節番号（5小節ごと）で節位置を割り当てた一次転記。全音符に unc フラグあり（原譜との照合監査は未実施）。",
+      "pdf": null,
+      "movements": [
+        {
+          "key": "I",
+          "title": "第1楽章 Allegro con brio",
+          "short": null,
+          "notes": 1999
+        },
+        {
+          "key": "II",
+          "title": "第2楽章 Adagio",
+          "short": null,
+          "notes": 700
+        },
+        {
+          "key": "III",
+          "title": "第3楽章 Allegretto grazioso – Molto vivace（trio）",
+          "short": null,
+          "notes": 1059
+        },
+        {
+          "key": "IV",
+          "title": "第4楽章 Allegro ma non troppo",
+          "short": null,
+          "notes": 1451
+        }
+      ],
+      "notes": 5209,
+      "data": "reader/data/dvorak8-violin2.json"
+    },
+    {
+      "id": "karelia-oboe1",
+      "title": "シベリウス カレリア組曲 オーボエ1番",
+      "subtitle": "全楽章 · 音名（CDEFGAB）＋オクターブ",
+      "part": "Oboe I & Cor Anglais（Oboe I e Corno inglese）",
+      "work": "Karelia Suite, Op. 11",
+      "composer": "Jean Sibelius",
+      "status": "Devin単一セッションによる転記（340dpiレンダリング→符頭検出→手作業照合）。独立監査は未実施。ページ1は全音符・休符を目視確認済み。ページ2〜4のメロディ部は符頭検出を基に小節分割を推定しており、分割線（連桁内の真の小節線を一部見落とし）に不確実性あり。",
+      "pdf": null,
+      "movements": [
+        {
+          "key": "I",
+          "title": "第1楽章 Intermezzo",
+          "short": null,
+          "notes": 127
+        },
+        {
+          "key": "II",
+          "title": "第2楽章 Ballade（Tempo di menuetto）",
+          "short": null,
+          "notes": 185
+        },
+        {
+          "key": "III",
+          "title": "第3楽章 Alla marcia",
+          "short": null,
+          "notes": 784
+        }
+      ],
+      "notes": 1096,
+      "data": "reader/data/karelia-oboe1.json"
+    },
+    {
+      "id": "karelia-oboe2",
+      "title": "シベリウス カレリア組曲 オーボエ2番",
+      "subtitle": "全楽章 · 音名（CDEFGAB）＋オクターブ",
+      "part": "Oboe II",
+      "work": "Karelia Suite, Op. 11",
+      "composer": "Jean Sibelius",
+      "status": "Devin単一セッションによる転記（340dpiレンダリング→符頭検出→小節分割推定）。独立監査は未実施。第1楽章は休符数字ブロックから小節番号を再構成し、オーボエ1パートと同じ連鎖で整合済み。メロディ部・連桁区間の小節分割は推定で uncertain フラグ付き。",
+      "pdf": null,
+      "movements": [
+        {
+          "key": "I",
+          "title": "第1楽章 Intermezzo",
+          "short": null,
+          "notes": 157
+        },
+        {
+          "key": "II",
+          "title": "第2楽章 Ballade（Tempo di menuetto）",
+          "short": null,
+          "notes": 138
+        },
+        {
+          "key": "III",
+          "title": "第3楽章 Alla marcia",
+          "short": null,
+          "notes": 796
+        }
+      ],
+      "notes": 1091,
+      "data": "reader/data/karelia-oboe2.json"
+    },
+    {
+      "id": "verdi-nabucco-trombone2",
+      "title": "ヴェルディ《ナブッコ》序曲 トロンボーン2番",
+      "subtitle": "Sinfonia · 音名（CDEFGAH）＋ポジション",
+      "part": "Trombone 2（ヘ音記号・テナートロンボーン）",
+      "work": "Nabucco — Sinfonia",
+      "composer": "Giuseppe Verdi",
+      "status": "Assistant transcription compared page by page with the source; no independent musician audit. The page 2, bar 4 E-sharp remains unresolved and is excluded from all note playback.",
+      "pdf": "reader/pdf/Verdi_Nabucco_Trombone2_reading.pdf",
+      "movements": [
+        {
+          "key": "S",
+          "title": "Sinfonia（序曲）",
+          "short": "序曲",
+          "notes": 492
+        }
+      ],
+      "notes": 492,
+      "data": "reader/data/verdi-nabucco-trombone2.json"
+    },
+    {
+      "id": "verdi-nabucco-violin2",
+      "title": "ヴェルディ《ナブッコ》ヴァイオリン2番",
+      "subtitle": "序曲＋全曲 · 音名（CDEFGAB）",
+      "part": "Violin 2（ト音記号）",
+      "work": "Nabucco — complete part",
+      "composer": "Giuseppe Verdi",
+      "status": "Auto-extract candidate pass over the full 64-page part plus manual transcription of pp.1-2 (Sinfonia start). No musician audit; note pitches on pp.3-64 are detector candidates flagged 'auto-heads' and must be verified before playback.",
+      "pdf": null,
+      "movements": [
+        {
+          "key": "S",
+          "title": "Sinfonia（序曲）",
+          "short": "序曲",
+          "notes": 2021
+        },
+        {
+          "key": "1",
+          "title": "Atto I — Nº 1 Coro d'Introduzione onward",
+          "short": "Nº1-",
+          "notes": 22102
+        }
+      ],
+      "notes": 24123,
+      "data": "reader/data/verdi-nabucco-violin2.json"
     }
-   ],
-   "notes": 5209,
-   "data": "reader/data/dvorak8-violin2.json"
-  },
-  {
-   "id": "dvorak8-horn2",
-   "title": "ドヴォルザーク 交響曲第8番 ホルン2番",
-   "subtitle": "第1〜4楽章 · 記譜ドレミ",
-   "part": "Corno II (in F)",
-   "work": "Symphony No. 8 in G major, Op. 88",
-   "composer": "Antonín Dvořák",
-   "status": "Claudeのサブエージェントが1ページずつ原譜と照合した転記（自己チェック済み）。第三者による独立監査は未実施。",
-   "pdf": "reader/pdf/Dvorak8_Horn2_reading.pdf",
-   "movements": [
-    {
-     "key": "I",
-     "title": "第1楽章 Allegro con brio",
-     "short": null,
-     "notes": 384
-    },
-    {
-     "key": "II",
-     "title": "第2楽章 Adagio",
-     "short": null,
-     "notes": 124
-    },
-    {
-     "key": "III",
-     "title": "第3楽章 Allegretto grazioso",
-     "short": null,
-     "notes": 56
-    },
-    {
-     "key": "IV",
-     "title": "第4楽章 Allegro ma non troppo",
-     "short": null,
-     "notes": 357
-    }
-   ],
-   "notes": 921,
-   "data": "reader/data/dvorak8-horn2.json"
-  },
-  {
-   "id": "dvorak8-horn3-mvt3",
-   "title": "ドヴォルザーク 交響曲第8番 ホルン3番",
-   "subtitle": "第3楽章 · 記譜ドレミ／F管読み／実音",
-   "part": "Corno III (in D / in C)",
-   "work": "Symphony No. 8 in G major, Op. 88",
-   "composer": "Antonín Dvořák",
-   "status": "Claudeが原譜と1音ずつ照合した転記。サブエージェントによる再照合で207〜215小節をキューとして除外済み。第三者による独立監査は未実施。",
-   "pdf": "reader/pdf/Dvorak8_Horn3_Movement3_reading.pdf",
-   "movements": [
-    {
-     "key": "III",
-     "title": "第3楽章 Allegretto grazioso",
-     "notes": 57
-    }
-   ],
-   "notes": 57,
-   "data": "reader/data/dvorak8-horn3-mvt3.json"
-  },
-  {
-   "id": "dvorak8-trombone1",
-   "title": "ドヴォルザーク 交響曲第8番 トロンボーン1番",
-   "subtitle": "第1・4楽章 · 音名（CDEFGAH）＋ポジション",
-   "part": "Trombone I（アルト記号）",
-   "work": "Symphony No. 8 in G major, Op. 88",
-   "composer": "Antonín Dvořák",
-   "status": "Claudeのサブエージェントが1ページずつ原譜と照合した転記（音高・調号・臨時記号・キュー除外・音価・小節番号）。第三者による独立監査は未実施。第2・3楽章は休み（Tacet）。",
-   "pdf": "reader/pdf/Dvorak8_Trombone1_reading.pdf",
-   "movements": [
-    {
-     "key": "I",
-     "title": "第1楽章 Allegro con brio",
-     "short": null,
-     "notes": 305
-    },
-    {
-     "key": "IV",
-     "title": "第4楽章 Allegro ma non troppo",
-     "short": null,
-     "notes": 269
-    }
-   ],
-   "notes": 574,
-   "data": "reader/data/dvorak8-trombone1.json"
-  },
-  {
-   "id": "verdi-nabucco-trombone2",
-   "title": "ヴェルディ《ナブッコ》序曲 トロンボーン2番",
-   "subtitle": "Sinfonia · 音名（CDEFGAH）＋ポジション",
-   "part": "Trombone 2（ヘ音記号・テナートロンボーン）",
-   "work": "Nabucco — Sinfonia",
-   "composer": "Giuseppe Verdi",
-   "status": "Assistant transcription compared page by page with the source; no independent musician audit. The page 2, bar 4 E-sharp remains unresolved and is excluded from all note playback.",
-   "pdf": "reader/pdf/Verdi_Nabucco_Trombone2_reading.pdf",
-   "movements": [
-    {
-     "key": "S",
-     "title": "Sinfonia（序曲）",
-     "short": "序曲",
-     "notes": 492
-    }
-   ],
-   "notes": 492,
-   "data": "reader/data/verdi-nabucco-trombone2.json"
-  },
-  {
-   "id": "dvorak8-clarinet1",
-   "title": "ドヴォルザーク 交響曲第8番 クラリネット1番",
-   "subtitle": "第1〜4楽章 · 音名（CDEFGAH）＋実音",
-   "part": "Clarinetto I（in A / muta in B）",
-   "work": "Symphony No. 8 in G major, Op. 88",
-   "composer": "Antonín Dvořák",
-   "status": "Devinの読譜パイプラインが1ページずつ原譜と照合した転記（音高・調号・臨時記号・キュー除外・音価・小節番号）。第三者による独立監査は未実施。不明瞭な音・小節番号は unc でフラグ。",
-   "pdf": null,
-   "movements": [
-    {
-     "key": "I",
-     "title": "第1楽章 Allegro con brio",
-     "short": null,
-     "notes": 705
-    },
-    {
-     "key": "II",
-     "title": "第2楽章 Adagio",
-     "short": null,
-     "notes": 428
-    },
-    {
-     "key": "III",
-     "title": "第3楽章 Allegretto grazioso",
-     "short": null,
-     "notes": 319
-    },
-    {
-     "key": "IV",
-     "title": "第4楽章 Allegro ma non troppo",
-     "short": null,
-     "notes": 477
-    }
-   ],
-   "notes": 1929,
-   "data": "reader/data/dvorak8-clarinet1.json"
-  },
-  {
-   "id": "dvorak8-clarinet2",
-   "title": "Symphony No. 8 in G major, Op. 88 — Clarinet II",
-   "subtitle": "ドヴォルザーク 交響曲第8番 ト長調 Op.88 — クラリネット II",
-   "part": "Clarinet II",
-   "work": "Symphony No. 8 in G major, Op. 88",
-   "composer": "Antonín Dvořák",
-   "status": "Devinの読譜パイプラインが1ページずつ原譜と照合した転記（音高・調号・臨時記号・キュー除外・音価・小節番号）。第三者による独立監査は未実施。不明瞭な音・小節番号は unc でフラグ。",
-   "pdf": null,
-   "movements": [
-    {
-     "key": "I",
-     "title": "I. Allegro con brio",
-     "short": null,
-     "notes": 504
-    },
-    {
-     "key": "II",
-     "title": "II. Adagio",
-     "short": null,
-     "notes": 296
-    },
-    {
-     "key": "III",
-     "title": "III. Allegretto grazioso — Molto vivace",
-     "short": null,
-     "notes": 281
-    },
-    {
-     "key": "IV",
-     "title": "IV. Allegro ma non troppo",
-     "short": null,
-     "notes": 450
-    }
-   ],
-   "notes": 1531,
-   "data": "reader/data/dvorak8-clarinet2.json"
-  },
-  {
-   "id": "dvorak8-viola",
-   "title": "ドヴォルザーク 交響曲第8番 ヴィオラ",
-   "subtitle": "第1〜4楽章 · 記譜ドレミ",
-   "part": "Viola",
-   "work": "Symphony No. 8 in G major, Op. 88",
-   "composer": "Antonín Dvořák",
-   "status": "Automatic staff/head/barline extraction reviewed at system level for bar numbering; notes carry 'auto' uncertainty flags except where hand-verified (p.1 systems 1-2). Not yet a note-level audit.",
-   "pdf": "reader/pdf/Dvorak8_Viola_reading.pdf",
-   "movements": [
-    {
-     "key": "I",
-     "title": "第1楽章 Allegro con brio",
-     "short": null,
-     "notes": 3845
-    },
-    {
-     "key": "II",
-     "title": "第2楽章 Adagio",
-     "short": null,
-     "notes": 1251
-    },
-    {
-     "key": "III",
-     "title": "第3楽章 Allegretto grazioso",
-     "short": null,
-     "notes": 1991
-    },
-    {
-     "key": "IV",
-     "title": "第4楽章 Allegro ma non troppo",
-     "short": null,
-     "notes": 2685
-    }
-   ],
-   "notes": 9772,
-   "data": "reader/data/dvorak8-viola.json"
-  },
-  {
-   "id": "dvorak8-contrabass",
-   "title": "ドヴォルザーク 交響曲第8番 コントラバス",
-   "subtitle": "第1〜4楽章 · 記譜ドレミ",
-   "part": "Contrabasso (bass clef, sounds an octave below written)",
-   "work": "Symphony No. 8 in G major, Op. 88",
-   "composer": "Antonín Dvořák",
-   "status": "Devinが原譜と照合しながら1ページずつ転記した機械支援の読み（全音符・小節番号は est 扱い）。第三者による独立監査は未実施。",
-   "pdf": null,
-   "movements": [
-    {
-     "key": "I",
-     "title": "第1楽章 Allegro con brio",
-     "short": null,
-     "notes": 837
-    },
-    {
-     "key": "II",
-     "title": "第2楽章 Adagio",
-     "short": null,
-     "notes": 436
-    },
-    {
-     "key": "III",
-     "title": "第3楽章 Allegretto grazioso",
-     "short": null,
-     "notes": 480
-    },
-    {
-     "key": "IV",
-     "title": "第4楽章 Allegro ma non troppo",
-     "short": null,
-     "notes": 767
-    }
-   ],
-   "notes": 2520,
-   "data": "reader/data/dvorak8-contrabass.json"
-  },
-  {
-   "id": "verdi-nabucco-violin2",
-   "title": "ヴェルディ《ナブッコ》ヴァイオリン2番",
-   "subtitle": "序曲＋全曲 · 音名（CDEFGAB）",
-   "part": "Violin 2（ト音記号）",
-   "work": "Nabucco — complete part",
-   "composer": "Giuseppe Verdi",
-   "status": "Auto-extract candidate pass over the full 64-page part plus manual transcription of pp.1-2 (Sinfonia start). No musician audit; note pitches on pp.3-64 are detector candidates flagged 'auto-heads' and must be verified before playback.",
-   "pdf": null,
-   "movements": [
-    {
-     "key": "S",
-     "title": "Sinfonia（序曲）",
-     "short": "序曲",
-     "notes": 2021
-    },
-    {
-     "key": "1",
-     "title": "Atto I — Nº 1 Coro d'Introduzione onward",
-     "short": "Nº1-",
-     "notes": 22102
-    }
-   ],
-   "notes": 24123,
-   "data": "reader/data/verdi-nabucco-violin2.json"
-  }
- ]
+  ]
 }
