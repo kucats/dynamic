@@ -15,15 +15,16 @@ def staves_of(B):
             if d.max()-d.min()<7 and 18<d.mean()<34: st.append(s); i+=5
             else: i+=1
         return st
-    mid=lines_in(1400,1700)
-    L=lines_in(500,800); R=lines_in(2300,2600)
+    bands=[(x0,lines_in(x0,x0+300)) for x0 in (1400,500,2300,900,1900)]
+    allst=sorted(((x0,s) for x0,band in bands for s in band),key=lambda t:t[1][0])
+    merged=[]
+    for x0,s in allst:
+        if merged and abs(s[0]-merged[-1][0][1][0])<40: merged[-1].append((x0,s))
+        else: merged.append([(x0,s)])
     out=[]
-    for s in mid:
-        def near(lst):
-            c=[t for t in lst if abs(t[0]-s[0])<15]
-            return c[0] if c else s
-        l=near(L); r=near(R)
-        out.append(dict(xl=650,xr=2450,l=l,r=r,m=s))
+    for grp in merged:
+        grp.sort(key=lambda t:t[0])
+        out.append(dict(xl=grp[0][0]+150,xr=grp[-1][0]+150,l=grp[0][1],r=grp[-1][1],m=grp[len(grp)//2][1]))
     return out
 def staff_y(st,x,k):  # line k (0 top) at x
     t=(x-st['xl'])/(st['xr']-st['xl'])
