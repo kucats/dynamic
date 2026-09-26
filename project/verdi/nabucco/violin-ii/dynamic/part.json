@@ -1,0 +1,224 @@
+{
+ "id": "verdi-nabucco-violin2",
+ "instrument": "violin",
+ "title": "ヴェルディ《ナブッコ》ヴァイオリン2番",
+ "subtitle": "序曲＋全曲 · 音名（CDEFGAB）",
+ "composer": "Giuseppe Verdi",
+ "work": "Nabucco — complete part",
+ "part": "Violin 2（ト音記号）",
+ "source": {
+  "file": "violin2.pdf (user-supplied, not committed)",
+  "sha256": "aec8bbfee829647090be029cc31a3ba5669055301b334a3c8dae552a505d4742",
+  "pages": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11,
+   12,
+   13,
+   14,
+   15,
+   16,
+   17,
+   18,
+   19,
+   20,
+   21,
+   22,
+   23,
+   24,
+   25,
+   26,
+   27,
+   28,
+   29,
+   30,
+   31,
+   32,
+   33,
+   34,
+   35,
+   36,
+   37,
+   38,
+   39,
+   40,
+   41,
+   42,
+   43,
+   44,
+   45,
+   46,
+   47,
+   48,
+   49,
+   50,
+   51,
+   52,
+   53,
+   54,
+   55,
+   56,
+   57,
+   58,
+   59,
+   60,
+   61,
+   62,
+   63,
+   64
+  ]
+ },
+ "dpi": 300,
+ "movements": [
+  {
+   "key": "S",
+   "short": "序曲",
+   "title": "Sinfonia（序曲）",
+   "last": 335,
+   "pages": [
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "meters": [
+    [
+     1,
+     "4/4"
+    ],
+    [
+     51,
+     "3/8"
+    ],
+    [
+     110,
+     "2/2"
+    ]
+   ],
+   "tempos": [
+    [
+     1,
+     66
+    ],
+    [
+     24,
+     138
+    ],
+    [
+     51,
+     50
+    ],
+    [
+     110,
+     160
+    ],
+    [
+     273,
+     184
+    ]
+   ]
+  },
+  {
+   "key": "1",
+   "short": "Nº1-",
+   "title": "Atto I — Nº 1 Coro d'Introduzione onward",
+   "last": 2918,
+   "pages": [
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61,
+    62,
+    63,
+    64
+   ],
+   "sequence": [
+    [
+     336,
+     2918
+    ]
+   ],
+   "meters": [
+    [
+     336,
+     "4/4"
+    ]
+   ],
+   "tempos": [
+    [
+     336,
+     120
+    ]
+   ]
+  }
+ ],
+ "status": "Auto-extract candidate pass over the full 64-page part plus manual transcription of pp.1-2 (Sinfonia start). No musician audit; note pitches on pp.3-64 are detector candidates flagged 'auto-heads' and must be verified before playback.",
+ "limitations": [
+  "No printed bar numbers; continuous part numbering is used (Sinfonia = 1-335 here). Against the trombone-ii ground truth (3/8=54, 2/2=108, Più mosso=270, end=329) this numbering runs up to +6 ahead by the end of the Sinfonia.",
+  "pp.3-64 の notes はノートヘッド自動検出（heads.py）の候補で uncertain='auto-heads'。リズム(dur/off)は推定で未検証。",
+  "ページ内の多声部・密集パッセージは未分離；cue notes / 弱音器記号の位置特定は未完了。",
+  "楽章境界は Sinfonia(1-5頁)と Atto I Nº1(6頁〜)のみ同定；以降のナンバー境界・調・拍子・速度は未同定。",
+  "17 notes at the right page edge fell outside the system crop and were dropped."
+ ]
+}

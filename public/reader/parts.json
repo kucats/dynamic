@@ -287,6 +287,32 @@
    ],
    "notes": 2520,
    "data": "reader/data/dvorak8-contrabass.json"
+  },
+  {
+   "id": "verdi-nabucco-violin2",
+   "title": "ヴェルディ《ナブッコ》ヴァイオリン2番",
+   "subtitle": "序曲＋全曲 · 音名（CDEFGAB）",
+   "part": "Violin 2（ト音記号）",
+   "work": "Nabucco — complete part",
+   "composer": "Giuseppe Verdi",
+   "status": "Auto-extract candidate pass over the full 64-page part plus manual transcription of pp.1-2 (Sinfonia start). No musician audit; note pitches on pp.3-64 are detector candidates flagged 'auto-heads' and must be verified before playback.",
+   "pdf": null,
+   "movements": [
+    {
+     "key": "S",
+     "title": "Sinfonia（序曲）",
+     "short": "序曲",
+     "notes": 2021
+    },
+    {
+     "key": "1",
+     "title": "Atto I — Nº 1 Coro d'Introduzione onward",
+     "short": "Nº1-",
+     "notes": 22102
+    }
+   ],
+   "notes": 24123,
+   "data": "reader/data/verdi-nabucco-violin2.json"
   }
  ]
 }
