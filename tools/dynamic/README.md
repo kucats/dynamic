@@ -18,6 +18,22 @@
 | `render_pdfs.py` | 閲覧アプリの印刷モードからA3のPDFを作成 |
 | `prompts/` | サブエージェントに渡した指示（00が全体の手順） |
 
+## 工程の状態管理（新規・再開作業）
+
+`workflow.py` と `workflow_data.py` が、ページごとの
+**source → bars → pitch → rhythm → audit** を管理します。
+小節番号は全ページで確定してから音高へ進み、音価のみの変更では音高工程を失効させません。
+既存ファイルは自動で完了/監査済みにはなりません。`status` / `next` は読み取り専用です。
+
+```sh
+python3 tools/dynamic/workflow.py status project/dvorak/symphony-no-8/trombone-i/dynamic
+python3 tools/dynamic/workflow.py next project/dvorak/symphony-no-8/trombone-i/dynamic --json
+```
+
+初期化、原譜ハッシュ確認、claim/finish、独立監査、再開・差し戻しの手順は
+[工程管理の仕様](../../docs/dynamic-workflow.md) を参照してください。
+下記の従来手順は成果物の作り方であり、それだけで新しいworkflowの状態は更新されません。
+
 ## 再現手順
 
 ```sh
