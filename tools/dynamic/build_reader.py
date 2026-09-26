@@ -177,6 +177,9 @@ def build(part_dir: Path, pdf: Path, work: Path) -> dict:
             elif cfg.get("instrument") == "cello":          # non-transposing strings; solfège labels
                 w_ = label(L, a, wo)
                 rec.update(key="C", w=w_, f=w_, snd=w_)
+            elif cfg.get("instrument") != "horn":          # non-transposing instruments (violin, etc.)
+                w_ = label(L, a, wo)
+                rec.update(key="C", w=w_, f=w_, snd=w_)
             else:
                 key = n.get("horn_key") or cfg.get("default_horn_key", "F")
                 dl, ds = HORN_KEYS[key]
