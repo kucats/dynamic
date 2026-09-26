@@ -4,6 +4,7 @@ import { alignPhrase } from './follow-alignment.mjs';
 export const STEP = 0.2;
 const SPEEDS = [0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.35, 1.5];
 const popcount = (n) => { let k = 0; for (; n; n &= n - 1) k++; return k; };
+const contextualMatch = (c) => ['context-dtw', 'event-sequence'].includes(c?.method);
 
 export function profileMatchesReader(reader, profile) {
   if (profile?.schema !== 2 || profile.id !== reader.id ||
@@ -163,7 +164,7 @@ export class PhraseMatcher {
     if (changes < 3) return this.result = this.snapshot(this.anchor ? 'predicting' : 'listening', []);
     const matches = this.search(time);
     const candidates = [];
-    for (const c of matches) if (c.score >= (c.method === 'context-dtw' ? .25 : .38) && candidates.every((p) => Math.abs(p.time - c.time) > 2.4)) {
+    for (const c of matches) if (c.score >= (contextualMatch(c) ? .25 : .38) && candidates.every((p) => Math.abs(p.time - c.time) > 2.4)) {
       candidates.push({ ...locate(this.score, c.time), score: c.score, speed: c.speed, context: c.context || 0 });
       if (candidates.length === 3) break;
     }
@@ -175,7 +176,7 @@ export class PhraseMatcher {
       best = matches.find((c) => Math.abs(c.time - predicted) <= radius);
     }
     const distant = best && candidates.find((c) => Math.abs(c.time - best.time) > 2.4);
-    const contextual = best?.method === 'context-dtw';
+    const contextual = contextualMatch(best);
     const clear = best && best.score >= (contextual ? .30 : .48) && best.recent >= .22 &&
       (this.anchor || !distant || best.score - distant.score > (contextual ? .035 : .07)) &&
       (this.anchor || this.score.duration < 20 || contextual);

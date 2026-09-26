@@ -3,11 +3,13 @@ import { compileScore, PhraseMatcher, profileMatchesReader, spectralChroma } fro
 import { alignChroma } from '../../public/reader/follow-alignment.mjs';
 import { summarizeStates } from './following_metrics.mjs';
 import { harmonicSalience, PartPitchMatcher } from './following_part.mjs';
+import { EventSequenceMatcher } from './following_events.mjs';
+import { controlOrder } from './following_controls.mjs';
 const [input, part, movement, referenceInput, windowArgument = '32', control = 'none', configuration = '{}'] = process.argv.slice(2);
 const options = { template: 'ensemble', features: 'chroma', tolerateErrors: false, ...JSON.parse(configuration) };
-if (!['ensemble', 'part'].includes(options.template) || !['chroma', 'harmonic'].includes(options.features) ||
+if (!['ensemble', 'part'].includes(options.template) || !['chroma', 'harmonic', 'events'].includes(options.features) ||
     typeof options.tolerateErrors !== 'boolean' ||
-    !['none', 'shuffle'].includes(control) || (options.features === 'harmonic' && options.template !== 'part') ||
+    !['none', 'shuffle', 'shuffle-blocks'].includes(control) || (options.features !== 'chroma' && options.template !== 'part') ||
     (options.tolerateErrors && options.features !== 'harmonic')) throw new Error('Invalid score diagnostic option');
 if (referenceInput && (options.template !== 'ensemble' || options.features !== 'chroma' || options.tolerateErrors))
   throw new Error('Reference diagnostics do not use score-template options');
@@ -16,15 +18,8 @@ const reader = JSON.parse(readFileSync(new URL(`public/reader/data/${part}.json`
 const profile = JSON.parse(readFileSync(new URL(`public/reader/following/${part}.json`, root)));
 if (!profileMatchesReader(reader, profile)) throw new Error('Stale following profile: run tools/dynamic/build_following.py');
 const score = compileScore(reader, movement, options.template === 'part' ? null : profile);
-const matcher = options.features === 'harmonic' ? new PartPitchMatcher(score, reader, options) : new PhraseMatcher(score);
-function shuffledIndices(length) {
-  const order = Array.from({ length }, (_, i) => i); let seed = 94731;
-  for (let i = order.length - 1; i > 0; i--) {
-    seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0;
-    const j = seed % (i + 1); [order[i], order[j]] = [order[j], order[i]];
-  }
-  return order;
-}
+const matcher = options.features === 'events' ? new EventSequenceMatcher(score, reader) :
+  options.features === 'harmonic' ? new PartPitchMatcher(score, reader, options) : new PhraseMatcher(score);
 function spectra(path) {
   const bytes = readFileSync(path);
   return new Float32Array(bytes.buffer, bytes.byteOffset, bytes.length / 4);
@@ -40,11 +35,11 @@ const evaluatedEnd = floats[floats.length - 4098] + 8192 / 48000 / 2;
 if (referenceInput) {
   const query = features(floats), referenceFrames = features(spectra(referenceInput));
   const reference = referenceFrames.map((f) => f.chroma), windowSeconds = Number(windowArgument);
-  if (![8, 16, 32].includes(windowSeconds) || !['none', 'shuffle'].includes(control)) throw new Error('Invalid diagnostic option');
-  if (control === 'shuffle') {
+  if (![8, 16, 32].includes(windowSeconds)) throw new Error('Invalid diagnostic option');
+  if (control !== 'none') {
     // Deterministic negative control: same timbres and pitch distribution, with
     // musical order destroyed. This is explicitly not the original recording.
-    const shuffled = shuffledIndices(query.length).map((i) => query[i].chroma);
+    const shuffled = controlOrder(query.length, control).map((i) => query[i].chroma);
     query.forEach((f, i) => { f.chroma = shuffled[i]; });
   }
   const trace = [], timings = [], size = Math.round(windowSeconds / .2);
@@ -73,13 +68,13 @@ if (referenceInput) {
   process.exit(0);
 }
 const counts = {}, trace = [], states = [], timings = [];
-const order = control === 'shuffle' ? shuffledIndices(floats.length / 4098) : null;
+const order = control !== 'none' ? controlOrder(floats.length / 4098, control) : null;
 let frames = 0, rewinds = 0, previous = null;
 for (let i = 0; i < floats.length; i += 4098) {
   const featureOffset = order ? order[i / 4098] * 4098 : i;
   const time = floats[i], rms = floats[featureOffset + 1], db = floats.subarray(featureOffset + 2, featureOffset + 4098);
   const start = performance.now();
-  const extract = options.features === 'harmonic' ? harmonicSalience : spectralChroma;
+  const extract = options.features !== 'chroma' ? harmonicSalience : spectralChroma;
   const result = matcher.push(time, rms >= .008 ? extract(db, 48000, 8192) : null);
   timings.push(performance.now() - start);
   frames++; counts[result.status] = (counts[result.status] || 0) + 1;
@@ -91,7 +86,9 @@ for (let i = 0; i < floats.length; i += 4098) {
     tempo: result.tempo, candidates: result.candidates.map((c) => ({ bar: c.bar, score: +c.score.toFixed(3) })) });
 }
 timings.sort((a, b) => a - b);
-console.log(JSON.stringify({ algorithm: options.features === 'harmonic' ? 'part-harmonic-diagnostic-v1' : 'local-ensemble-context-dtw-v2',
+writeFileSync(1, JSON.stringify({ algorithm: options.features === 'events' ? 'part-event-sequence-diagnostic-v1' :
+  options.features === 'harmonic' ? 'part-harmonic-diagnostic-v1' : 'local-ensemble-context-dtw-v2',
   part, movement, ...options, control, frames, counts, rewinds,
+  ...(matcher.diagnostic ? { event_diagnostic: matcher.diagnostic } : {}),
   ...summarizeStates(states, .2, evaluatedEnd),
-  processing_ms: { p50: timings[Math.floor(timings.length * .5)], p95: timings[Math.floor(timings.length * .95)], max: timings.at(-1) }, trace }));
+  processing_ms: { p50: timings[Math.floor(timings.length * .5)], p95: timings[Math.floor(timings.length * .95)], max: timings.at(-1) }, trace }) + '\n');

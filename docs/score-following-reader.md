@@ -90,9 +90,30 @@ python3 tools/dynamic/evaluate_following.py '<local-recording.m4a>' \
 
 `--features harmonic` はMIDI 36〜84の49次元、各候補音の1〜6倍音の局所ピークを使う。最大ピークをトロンボーンと断定しない。分離モデルや楽器識別器ではない。音の抜けや誤音を含む人工例では位置維持を検査できるが、主録音ではこの方式の改善を確認できなかった。異なる特徴に同じ判定基準を適用した初期比較であり、特徴方式一般の優劣やトロンボーン単独照合の不可能性を示す結果ではない。
 
-次は発音した音符列と発音間隔を使い、誤音・脱落・余分な音を明示的に扱う照合を比較する。今回の負の寄与の制限は、その完全な代替ではない。参考となる [Nakamura et al., Real-Time Audio-to-Score Alignment (2016)](https://eita-nakamura.github.io/articles/TNakamura_etal_AudioScofo_ACMIEEE_TASLP_2015.pdf) は、それらの演奏誤りを分けてモデル化した単音演奏の研究。合奏トロンボーンの精度は別途評価する。
+発音した音符列と発音間隔を使う試作を追加した（次節）。負の寄与の制限だけの方式とは別に比較する。参考となる [Nakamura et al., Real-Time Audio-to-Score Alignment (2016)](https://eita-nakamura.github.io/articles/TNakamura_etal_AudioScofo_ACMIEEE_TASLP_2015.pdf) は、それらの演奏誤りを分けてモデル化した単音演奏の研究。合奏トロンボーンの精度は別途評価する。
 
 主録音の集約結果は `project/dvorak/symphony-no-8/trombone-i/reviews/score-following-trombone-20260926.md`。音符密度の低いパートの扱い、演奏中の音だけでの再取得、休符中の予測を分けて改善する。
+
+### 音符列と発音間隔の試作
+
+`tools/dynamic/following_events.mjs` はオフライン専用。倍音特徴の最大成分が2フレーム続いたときに新しい音高領域として分割し、49次元の特徴は保持する。最大32秒・直近24イベントを使い、譜面イベント列との置換・挿入・削除を評価する。予期しない音は、別楽器や抽出誤りの可能性もあり、奏者のミスと断定しない。
+
+時間間隔は、途中で飛ばした観測と譜面イベントの両方を含めて計算する。7種類の速度仮説に対する間隔のずれと編集費用を、観測イベント数で正規化する。休符フレームの比率を一致点へ掛けない。少なくとも8観測・6つの支持・4種類の音高、直近の音響支持、費用から得る類似度0.68以上を要求し、その後に既存の連続取得・手動優先・近傍補正の制御を通す。各閾値は合成例による試作値で、実演で校正済みではない。
+
+```sh
+python3 tools/dynamic/evaluate_following.py '<local-recording.m4a>' \
+  --template part --features events --out /tmp/part-events.json
+python3 tools/dynamic/evaluate_following.py '<local-recording.m4a>' \
+  --template part --features events --control shuffle-blocks --out /tmp/part-events-control.json
+```
+
+`shuffle-blocks` は固定seedで2秒ずつのブロック順を崩す。各ブロック内の音高持続を保ち、長い音の並びを壊した対照。フレームごとの `shuffle` では発音候補自体がほぼ消えたため、対照を追加した。いずれも正解小節のラベルにはならない。
+
+主電話録音ではイベント試作も追従確定0秒。readerに採用していない。200 ms間隔では短音・同音連打を十分分離できず、最大成分による区切りが合奏でトロンボーンの発音に対応する保証もない。次は独立した小節アンカーと発音候補のレビュー、より短いhop/複数の区切り仮説を比較する。集約記録: `project/dvorak/symphony-no-8/trombone-i/reviews/score-following-events-20260926.md`。
+
+## 「落ちた🎙️」と合奏同期への組み込み
+
+右メニューから前・後・この辺を指定する探索、右下の候補表示、ルームA〜Dの多数決は [Issue #53](https://github.com/kucats/dynamic/issues/53) と [組み込み設計](score-following-integration.md) にまとめた。新UIとルーム同期は未実装。ローカル音声処理とルームへの位置候補共有を別設定にし、本人の手動指定・範囲制約・最後のBPMによる予測を全段階で維持する。
 
 ## 現時点の限界と次のリモート接続
 

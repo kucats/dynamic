@@ -48,9 +48,9 @@ def main():
     p.add_argument('--node', default='node')
     p.add_argument('--reference', type=Path, help='diagnostic audio-to-audio comparison; never supplies score bars')
     p.add_argument('--reference-window', type=int, choices=[8, 16, 32], default=32)
-    p.add_argument('--control', '--reference-control', dest='control', choices=['none', 'shuffle'], default='none')
+    p.add_argument('--control', '--reference-control', dest='control', choices=['none', 'shuffle', 'shuffle-blocks'], default='none')
     p.add_argument('--template', choices=['ensemble', 'part'], default='ensemble')
-    p.add_argument('--features', choices=['chroma', 'harmonic'], default='chroma')
+    p.add_argument('--features', choices=['chroma', 'harmonic', 'events'], default='chroma')
     p.add_argument('--tolerate-errors', action='store_true', help='diagnostic: cap negative evidence; never adds positive support')
     p.add_argument('--channel', choices=['mix', 'left', 'right'], default='mix')
     args = p.parse_args()
@@ -60,8 +60,8 @@ def main():
         p.error('unknown part')
     if not args.reference and args.reference_window != 32:
         p.error('--reference-window requires --reference')
-    if args.features == 'harmonic' and args.template != 'part':
-        p.error('--features harmonic requires --template part')
+    if args.features != 'chroma' and args.template != 'part':
+        p.error('--features harmonic/events requires --template part')
     if args.tolerate_errors and args.features != 'harmonic':
         p.error('--tolerate-errors requires --features harmonic')
     if args.reference and (args.template != 'ensemble' or args.features != 'chroma' or args.tolerate_errors):
