@@ -2554,7 +2554,7 @@
    "bar": 38,
    "dur": "1",
    "off": "3/4",
-   "uncertain": ""
+   "uncertain": "rhythm overfull: bar union 7/4 vs 3/2 meter; dur likely 3/4 not 1 (rhythm-structure-validation-20260926)"
   },
   {
    "sys": 9,
