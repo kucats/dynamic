@@ -1,0 +1,111 @@
+{
+ "id": "verdi-nabucco-horn4",
+ "instrument": "horn",
+ "title": "ヴェルディ《ナブッコ》序曲 ホルン4番",
+ "subtitle": "Sinfonia · 音名（CDEFGAH）",
+ "composer": "Giuseppe Verdi",
+ "work": "Nabucco — Sinfonia",
+ "part": "Corno IV（ト音記号）",
+ "source": {
+  "file": "nabucco-horn4.pdf (user-supplied, not committed)",
+  "sha256": "7136dd99e8cb111a296a6a5b4764d3273fb25e3cb588e768720f68ea8674d12e",
+  "pages": [
+   1,
+   2,
+   3,
+   4
+  ]
+ },
+ "dpi": 355,
+ "movements": [
+  {
+   "key": "S",
+   "short": "序曲",
+   "title": "Sinfonia（序曲）",
+   "last": 290,
+   "pages": [
+    1,
+    2,
+    3,
+    4
+   ],
+   "meters": [
+    [
+     1,
+     "4/4"
+    ],
+    [
+     49,
+     "3/8"
+    ],
+    [
+     102,
+     "2/2"
+    ]
+   ],
+   "tempos": [
+    [
+     1,
+     66
+    ],
+    [
+     22,
+     138
+    ],
+    [
+     46,
+     66
+    ],
+    [
+     49,
+     50
+    ],
+    [
+     102,
+     160
+    ],
+    [
+     251,
+     184
+    ]
+   ],
+   "transpositions": [
+    [
+     1,
+     "in Re"
+    ],
+    [
+     102,
+     "unreadable crook change at the p.1→2 break"
+    ]
+   ]
+  }
+ ],
+ "splits": [
+  {
+   "page": 1,
+   "note": "Sinfonia begins at page 1 system 1 (Andante, 4/4, 'in Re'). 3/8 Andantino at local bar ~49 (horn tacet). New clef + crook marking at very end of page 1."
+  },
+  {
+   "page": 2,
+   "note": "Finale section begins: 'Allegro' + alla-breve (¢) + new crook at system 1. Rehearsal letters C (~bar 22), D (~bar 39)."
+  },
+  {
+   "page": 3,
+   "note": "Rehearsal letters E (bar 1), F (~23), G (~44), H (~60). Printed digits 1-7 over repeat bars are repeat counters, not rehearsal marks."
+  },
+  {
+   "page": 4,
+   "note": "Più mosso ~bar 25 of page 4. Ends 'VUOTA' + fermata + final double bar = end of Sinfonia; ATTO I begins on page 5 (not decoded)."
+  }
+ ],
+ "status": "Assistant transcription of the Sinfonia only (pages 1-4). Structure (bar count, multirests, meter/tempo changes, rehearsal letters) verified visually; dense staccato-eighth passages were decoded from detected note heads with slot-snapped offsets and carry 'uncertain' flags. No independent musician audit.",
+ "limitations": [
+  "Bar numbers are page-local (counted from 1 on each page: p.1=101, p.2=61, p.3=64, p.4=64). This edition prints no bar numbers; boxed digits are rehearsal/repeat marks.",
+  "Horn part has no key signature; written pitch shown. Crook 'in Re' at bar 1; a crook change at the page 1→2 break is printed but unreadable at scan quality.",
+  "Measure-repeat bars are emitted as sim=true clones of the previous bar at mid-staff y; the underlying figure repeats the previous bar.",
+  "The dense Allegro staccato passage (p.1 systems 3-7 and most of pp.2-4) is transcribed as eighth-note figures at detected head positions; rest placement inside those bars and alternating second pitches are marked uncertain.",
+  "Rest bars are implicit (not emitted). Fermatas noted in meta.repeats per page. Cue notes (small cue-like head below staff ~p.1 bar 14) excluded.",
+  "Old-edition voicing may differ from modern scores (fanfare reads D5/Bb4 where a LilyPond reference score shows C5/A4 chord tones); transcribed literally as printed."
+ ]
+}
