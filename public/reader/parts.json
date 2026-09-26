@@ -211,6 +211,44 @@
    ],
    "notes": 9772,
    "data": "reader/data/dvorak8-viola.json"
+  },
+  {
+   "id": "dvorak8-contrabass",
+   "title": "ドヴォルザーク 交響曲第8番 コントラバス",
+   "subtitle": "第1〜4楽章 · 記譜ドレミ",
+   "part": "Contrabasso (bass clef, sounds an octave below written)",
+   "work": "Symphony No. 8 in G major, Op. 88",
+   "composer": "Antonín Dvořák",
+   "status": "Devinが原譜と照合しながら1ページずつ転記した機械支援の読み（全音符・小節番号は est 扱い）。第三者による独立監査は未実施。",
+   "pdf": null,
+   "movements": [
+    {
+     "key": "I",
+     "title": "第1楽章 Allegro con brio",
+     "short": null,
+     "notes": 837
+    },
+    {
+     "key": "II",
+     "title": "第2楽章 Adagio",
+     "short": null,
+     "notes": 436
+    },
+    {
+     "key": "III",
+     "title": "第3楽章 Allegretto grazioso",
+     "short": null,
+     "notes": 480
+    },
+    {
+     "key": "IV",
+     "title": "第4楽章 Allegro ma non troppo",
+     "short": null,
+     "notes": 767
+    }
+   ],
+   "notes": 2520,
+   "data": "reader/data/dvorak8-contrabass.json"
   }
  ]
 }
