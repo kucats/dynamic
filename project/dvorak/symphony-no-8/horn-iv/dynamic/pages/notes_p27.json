@@ -1,0 +1,702 @@
+{
+ "page": 27,
+ "movements": [
+  {
+   "mvt": "III",
+   "starts_at": {
+    "sys": 1,
+    "x": 300
+   }
+  }
+ ],
+ "notes": [
+  {
+   "sys": 1,
+   "x": 337,
+   "y": 538,
+   "pitch": "F6",
+   "clef": "G",
+   "bar": 22,
+   "tie_from_prev": false,
+   "uncertain": "before anchor; bar estimated",
+   "dur": "1/2",
+   "off": "0"
+  },
+  {
+   "sys": 1,
+   "x": 450,
+   "y": 548,
+   "pitch": "F6",
+   "clef": "G",
+   "bar": 23,
+   "tie_from_prev": false,
+   "uncertain": "before anchor; bar estimated",
+   "dur": "1/2",
+   "off": "0"
+  },
+  {
+   "sys": 1,
+   "x": 1216,
+   "y": 769,
+   "pitch": "C4",
+   "clef": "G",
+   "bar": 27,
+   "tie_from_prev": false,
+   "uncertain": "auto-draft",
+   "dur": "1/8",
+   "off": "0"
+  },
+  {
+   "sys": 1,
+   "x": 1399,
+   "y": 770,
+   "pitch": "C4",
+   "clef": "G",
+   "bar": 29,
+   "tie_from_prev": false,
+   "uncertain": "auto-draft",
+   "dur": "1/8",
+   "off": "0"
+  },
+  {
+   "sys": 1,
+   "x": 1618,
+   "y": 681,
+   "pitch": "C5",
+   "clef": "G",
+   "bar": 30,
+   "tie_from_prev": false,
+   "uncertain": "auto-draft",
+   "dur": "1/8",
+   "off": "0"
+  },
+  {
+   "sys": 1,
+   "x": 1753,
+   "y": 772,
+   "pitch": "C4",
+   "clef": "G",
+   "bar": 31,
+   "tie_from_prev": false,
+   "uncertain": "auto-draft",
+   "dur": "1/8",
+   "off": "0"
+  },
+  {
+   "sys": 1,
+   "x": 1924,
+   "y": 772,
+   "pitch": "C4",
+   "clef": "G",
+   "bar": 32,
+   "tie_from_prev": false,
+   "uncertain": "auto-draft",
+   "dur": "1/8",
+   "off": "0"
+  },
+  {
+   "sys": 1,
+   "x": 2104,
+   "y": 809,
+   "pitch": "G3",
+   "clef": "F",
+   "bar": 34,
+   "tie_from_prev": false,
+   "uncertain": "bass clef, old-style; pitch flagged",
+   "dur": "1/8",
+   "off": "0"
+  },
+  {
+   "sys": 1,
+   "x": 2250,
+   "y": 810,
+   "pitch": "G3",
+   "clef": "F",
+   "bar": 35,
+   "tie_from_prev": false,
+   "uncertain": "bass clef, old-style; pitch flagged",
+   "dur": "1/8",
+   "off": "0"
+  },
+  {
+   "sys": 1,
+   "x": 2431,
+   "y": 797,
+   "pitch": "A3",
+   "clef": "F",
+   "bar": 36,
+   "tie_from_prev": false,
+   "uncertain": "bass clef, old-style; pitch flagged",
+   "dur": "1/8",
+   "off": "0"
+  },
+  {
+   "sys": 1,
+   "x": 2463,
+   "y": 840,
+   "pitch": "E3",
+   "clef": "F",
+   "bar": 36,
+   "tie_from_prev": false,
+   "uncertain": "bass clef, old-style; pitch flagged",
+   "dur": "1/2",
+   "off": "0"
+  },
+  {
+   "sys": 1,
+   "x": 2572,
+   "y": 800,
+   "pitch": "A3",
+   "clef": "F",
+   "bar": 37,
+   "tie_from_prev": false,
+   "uncertain": "bass clef, old-style; pitch flagged",
+   "dur": "1/8",
+   "off": "0"
+  },
+  {
+   "sys": 2,
+   "x": 458,
+   "y": 1251,
+   "pitch": "C5",
+   "clef": "F",
+   "bar": 37,
+   "tie_from_prev": false,
+   "uncertain": "bass clef, old-style; pitch flagged",
+   "dur": "1/8",
+   "off": "0"
+  },
+  {
+   "sys": 2,
+   "x": 628,
+   "y": 1117,
+   "pitch": "F6",
+   "clef": "F",
+   "bar": 41,
+   "tie_from_prev": false,
+   "uncertain": "bass clef, old-style; pitch flagged",
+   "dur": "1/2",
+   "off": "0"
+  },
+  {
+   "sys": 2,
+   "x": 657,
+   "y": 1305,
+   "pitch": "F4",
+   "clef": "F",
+   "bar": 42,
+   "tie_from_prev": false,
+   "uncertain": "bass clef, old-style; pitch flagged",
+   "dur": "1/8",
+   "off": "0"
+  },
+  {
+   "sys": 2,
+   "x": 849,
+   "y": 1305,
+   "pitch": "F4",
+   "clef": "F",
+   "bar": 46,
+   "tie_from_prev": false,
+   "uncertain": "bass clef, old-style; pitch flagged",
+   "dur": "1/8",
+   "off": "0"
+  },
+  {
+   "sys": 2,
+   "x": 1097,
+   "y": 1342,
+   "pitch": "C4",
+   "clef": "F",
+   "bar": 52,
+   "tie_from_prev": false,
+   "uncertain": "bass clef, old-style; pitch flagged",
+   "dur": "1/8",
+   "off": "0"
+  },
+  {
+   "sys": 2,
+   "x": 1282,
+   "y": 1343,
+   "pitch": "C4",
+   "clef": "G",
+   "bar": 56,
+   "tie_from_prev": false,
+   "uncertain": "auto-draft",
+   "dur": "1/8",
+   "off": "0"
+  },
+  {
+   "sys": 2,
+   "x": 1503,
+   "y": 1396,
+   "pitch": "F3",
+   "clef": "G",
+   "bar": 61,
+   "tie_from_prev": false,
+   "uncertain": "cue (Trbe) \u2014 excluded",
+   "dur": "1/8",
+   "off": "0",
+   "sim": true
+  },
+  {
+   "sys": 2,
+   "x": 1694,
+   "y": 1396,
+   "pitch": "F3",
+   "clef": "G",
+   "bar": 66,
+   "tie_from_prev": false,
+   "uncertain": "auto-draft",
+   "dur": "1/8",
+   "off": "0"
+  },
+  {
+   "sys": 2,
+   "x": 1931,
+   "y": 1396,
+   "pitch": "F3",
+   "clef": "G",
+   "bar": 71,
+   "tie_from_prev": false,
+   "uncertain": "auto-draft",
+   "dur": "1/8",
+   "off": "0"
+  },
+  {
+   "sys": 2,
+   "x": 2156,
+   "y": 1398,
+   "pitch": "F3",
+   "clef": "G",
+   "bar": 77,
+   "tie_from_prev": false,
+   "uncertain": "auto-draft",
+   "dur": "1/8",
+   "off": "0"
+  },
+  {
+   "sys": 2,
+   "x": 2450,
+   "y": 1398,
+   "pitch": "F3",
+   "clef": "G",
+   "bar": 83,
+   "tie_from_prev": false,
+   "uncertain": "auto-draft",
+   "dur": "1/8",
+   "off": "0"
+  },
+  {
+   "sys": 3,
+   "x": 406,
+   "y": 1634,
+   "pitch": "C4",
+   "clef": "G",
+   "bar": 70,
+   "tie_from_prev": false,
+   "uncertain": "auto-draft",
+   "dur": "1/8",
+   "off": "0"
+  },
+  {
+   "sys": 3,
+   "x": 564,
+   "y": 1632,
+   "pitch": "C4",
+   "clef": "G",
+   "bar": 70,
+   "tie_from_prev": false,
+   "uncertain": "auto-draft",
+   "dur": "1/8",
+   "off": "0"
+  },
+  {
+   "sys": 3,
+   "x": 677,
+   "y": 1465,
+   "pitch": "B5",
+   "clef": "G",
+   "bar": 71,
+   "tie_from_prev": false,
+   "uncertain": "auto-draft",
+   "dur": "1/2",
+   "off": "0"
+  },
+  {
+   "sys": 3,
+   "x": 722,
+   "y": 1595,
+   "pitch": "F4",
+   "clef": "G",
+   "bar": 71,
+   "tie_from_prev": false,
+   "uncertain": "auto-draft",
+   "dur": "1/8",
+   "off": "0"
+  },
+  {
+   "sys": 4,
+   "x": 345,
+   "y": 1783,
+   "pitch": "G5",
+   "clef": "G",
+   "bar": 79,
+   "tie_from_prev": false,
+   "uncertain": "before anchor; bar estimated",
+   "dur": "1/2",
+   "off": "0"
+  },
+  {
+   "sys": 4,
+   "x": 1381,
+   "y": 1836,
+   "pitch": "C5",
+   "clef": "G",
+   "bar": 88,
+   "tie_from_prev": false,
+   "uncertain": "auto-draft",
+   "dur": "1/8",
+   "off": "0"
+  },
+  {
+   "sys": 5,
+   "x": 2038,
+   "y": 2095,
+   "pitch": "E5",
+   "clef": "G",
+   "bar": 139,
+   "tie_from_prev": false,
+   "uncertain": "auto-draft",
+   "dur": "1/2",
+   "off": "0"
+  },
+  {
+   "sys": 6,
+   "x": 440,
+   "y": 2315,
+   "pitch": "C6",
+   "clef": "G",
+   "bar": 172,
+   "tie_from_prev": false,
+   "uncertain": "before anchor; bar estimated",
+   "dur": "1/2",
+   "off": "0"
+  },
+  {
+   "sys": 7,
+   "x": 417,
+   "y": 2695,
+   "pitch": "C5",
+   "clef": "G",
+   "bar": 183,
+   "tie_from_prev": false,
+   "uncertain": "cue (Ob.I) \u2014 excluded",
+   "dur": "1/2",
+   "off": "0",
+   "sim": true
+  },
+  {
+   "sys": 7,
+   "x": 621,
+   "y": 2748,
+   "pitch": "F4",
+   "clef": "G",
+   "bar": 184,
+   "tie_from_prev": false,
+   "uncertain": "before anchor; bar estimated",
+   "dur": "1/2",
+   "off": "0"
+  },
+  {
+   "sys": 7,
+   "x": 791,
+   "y": 2654,
+   "pitch": "F5",
+   "clef": "G",
+   "bar": 185,
+   "tie_from_prev": false,
+   "uncertain": "auto-draft",
+   "dur": "1/8",
+   "off": "0"
+  },
+  {
+   "sys": 7,
+   "x": 871,
+   "y": 2654,
+   "pitch": "F5",
+   "clef": "G",
+   "bar": 185,
+   "tie_from_prev": false,
+   "uncertain": "auto-draft",
+   "dur": "1/8",
+   "off": "0"
+  },
+  {
+   "sys": 7,
+   "x": 994,
+   "y": 2697,
+   "pitch": "C5",
+   "clef": "G",
+   "bar": 185,
+   "tie_from_prev": false,
+   "uncertain": "auto-draft",
+   "dur": "1/2",
+   "off": "0"
+  },
+  {
+   "sys": 7,
+   "x": 1179,
+   "y": 2698,
+   "pitch": "C5",
+   "clef": "G",
+   "bar": 186,
+   "tie_from_prev": false,
+   "uncertain": "auto-draft",
+   "dur": "1/2",
+   "off": "0"
+  },
+  {
+   "sys": 7,
+   "x": 1356,
+   "y": 2725,
+   "pitch": "A4",
+   "clef": "G",
+   "bar": 186,
+   "tie_from_prev": false,
+   "uncertain": "auto-draft",
+   "dur": "1/2",
+   "off": "0"
+  },
+  {
+   "sys": 7,
+   "x": 1783,
+   "y": 2710,
+   "pitch": "B4",
+   "clef": "G",
+   "bar": 189,
+   "tie_from_prev": false,
+   "uncertain": "auto-draft",
+   "dur": "1/8",
+   "off": "0"
+  },
+  {
+   "sys": 7,
+   "x": 1886,
+   "y": 2695,
+   "pitch": "C5",
+   "clef": "G",
+   "bar": 189,
+   "tie_from_prev": false,
+   "uncertain": "auto-draft",
+   "dur": "1/8",
+   "off": "0"
+  },
+  {
+   "sys": 7,
+   "x": 2079,
+   "y": 2694,
+   "pitch": "C5",
+   "clef": "G",
+   "bar": 190,
+   "tie_from_prev": false,
+   "uncertain": "auto-draft",
+   "dur": "1/2",
+   "off": "0"
+  },
+  {
+   "sys": 8,
+   "x": 463,
+   "y": 2982,
+   "pitch": "C5",
+   "clef": "G",
+   "bar": 191,
+   "tie_from_prev": false,
+   "uncertain": "auto-draft",
+   "dur": "1/8",
+   "off": "0"
+  },
+  {
+   "sys": 9,
+   "x": 967,
+   "y": 3230,
+   "pitch": "F5",
+   "clef": "G",
+   "bar": 209,
+   "tie_from_prev": false,
+   "uncertain": "auto-draft",
+   "dur": "1/8",
+   "off": "0"
+  },
+  {
+   "sys": 9,
+   "x": 1094,
+   "y": 3230,
+   "pitch": "F5",
+   "clef": "G",
+   "bar": 209,
+   "tie_from_prev": false,
+   "uncertain": "auto-draft",
+   "dur": "1/8",
+   "off": "0"
+  },
+  {
+   "sys": 9,
+   "x": 1318,
+   "y": 3268,
+   "pitch": "C5",
+   "clef": "G",
+   "bar": 211,
+   "tie_from_prev": false,
+   "uncertain": "auto-draft",
+   "dur": "1/2",
+   "off": "0"
+  },
+  {
+   "sys": 9,
+   "x": 1590,
+   "y": 3270,
+   "pitch": "C5",
+   "clef": "G",
+   "bar": 212,
+   "tie_from_prev": false,
+   "uncertain": "auto-draft",
+   "dur": "1/2",
+   "off": "0"
+  },
+  {
+   "sys": 9,
+   "x": 2100,
+   "y": 3272,
+   "pitch": "C5",
+   "clef": "G",
+   "bar": 215,
+   "tie_from_prev": false,
+   "uncertain": "auto-draft",
+   "dur": "1/2",
+   "off": "0"
+  },
+  {
+   "sys": 9,
+   "x": 2392,
+   "y": 3282,
+   "pitch": "B4",
+   "clef": "G",
+   "bar": 217,
+   "tie_from_prev": false,
+   "uncertain": "auto-draft",
+   "dur": "1/8",
+   "off": "0"
+  },
+  {
+   "sys": 9,
+   "x": 2521,
+   "y": 3271,
+   "pitch": "C5",
+   "clef": "G",
+   "bar": 218,
+   "tie_from_prev": false,
+   "uncertain": "auto-draft",
+   "dur": "1/8",
+   "off": "0"
+  },
+  {
+   "sys": 10,
+   "x": 690,
+   "y": 3591,
+   "pitch": "A4",
+   "clef": "G",
+   "bar": 219,
+   "tie_from_prev": false,
+   "uncertain": "before anchor; bar estimated",
+   "dur": "1/8",
+   "off": "0"
+  },
+  {
+   "sys": 10,
+   "x": 890,
+   "y": 3575,
+   "pitch": "B4",
+   "clef": "G",
+   "bar": 220,
+   "tie_from_prev": false,
+   "uncertain": "auto-draft",
+   "dur": "1/8",
+   "off": "0"
+  },
+  {
+   "sys": 10,
+   "x": 1104,
+   "y": 3590,
+   "pitch": "A4",
+   "clef": "G",
+   "bar": 220,
+   "tie_from_prev": false,
+   "uncertain": "auto-draft",
+   "dur": "1/8",
+   "off": "0"
+  },
+  {
+   "sys": 10,
+   "x": 1127,
+   "y": 3535,
+   "pitch": "E5",
+   "clef": "G",
+   "bar": 220,
+   "tie_from_prev": false,
+   "uncertain": "auto-draft",
+   "dur": "1/2",
+   "off": "0"
+  },
+  {
+   "sys": 10,
+   "x": 1611,
+   "y": 3562,
+   "pitch": "C5",
+   "clef": "G",
+   "bar": 222,
+   "tie_from_prev": false,
+   "uncertain": "auto-draft",
+   "dur": "1/8",
+   "off": "0"
+  }
+ ],
+ "meta": {
+  "bars": [
+   1,
+   231
+  ],
+  "meters": [
+   {
+    "bar": 1,
+    "meter": "3/8"
+   },
+   {
+    "bar": 181,
+    "meter": "2/4"
+   }
+  ],
+  "tempos": [
+   {
+    "bar": 1,
+    "text": "Allegretto grazioso",
+    "mm": "\u2669.=50"
+   },
+   {
+    "bar": 181,
+    "text": "CODA - Molto vivace",
+    "mm": "\ud834\udd5d.=80"
+   }
+  ],
+  "transpositions": [
+   {
+    "bar": 25,
+    "text": "in D"
+   }
+  ],
+  "repeats": "segno at bar 2; \u2295 at end of bar 86 (before rehearsal D); 'Dal segno sin al \u2295 e poi la Coda' at bar 180; playback sequence 1-180, 2-86, 181-231; fermata on final bar 231.",
+  "movement_last_bar": {
+   "III": 231
+  }
+ }
+}
