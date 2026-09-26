@@ -97,6 +97,70 @@
    ],
    "notes": 492,
    "data": "reader/data/verdi-nabucco-trombone2.json"
+  },
+  {
+   "id": "karelia-oboe1",
+   "title": "シベリウス カレリア組曲 オーボエ1番",
+   "subtitle": "全楽章 · 音名（CDEFGAB）＋オクターブ",
+   "part": "Oboe I & Cor Anglais（Oboe I e Corno inglese）",
+   "work": "Karelia Suite, Op. 11",
+   "composer": "Jean Sibelius",
+   "status": "Devin単一セッションによる転記（340dpiレンダリング→符頭検出→手作業照合）。独立監査は未実施。ページ1は全音符・休符を目視確認済み。ページ2〜4のメロディ部は符頭検出を基に小節分割を推定しており、分割線（連桁内の真の小節線を一部見落とし）に不確実性あり。",
+   "pdf": null,
+   "movements": [
+    {
+     "key": "I",
+     "title": "第1楽章 Intermezzo",
+     "short": null,
+     "notes": 127
+    },
+    {
+     "key": "II",
+     "title": "第2楽章 Ballade（Tempo di menuetto）",
+     "short": null,
+     "notes": 185
+    },
+    {
+     "key": "III",
+     "title": "第3楽章 Alla marcia",
+     "short": null,
+     "notes": 784
+    }
+   ],
+   "notes": 1096,
+   "data": "reader/data/karelia-oboe1.json"
+  },
+  {
+   "id": "karelia-oboe2",
+   "title": "シベリウス カレリア組曲 オーボエ2番",
+   "subtitle": "全楽章 · 音名（CDEFGAB）＋オクターブ",
+   "part": "Oboe II",
+   "work": "Karelia Suite, Op. 11",
+   "composer": "Jean Sibelius",
+   "status": "Devin単一セッションによる転記（340dpiレンダリング→符頭検出→小節分割推定）。独立監査は未実施。第1楽章は休符数字ブロックから小節番号を再構成し、オーボエ1パートと同じ連鎖で整合済み。メロディ部・連桁区間の小節分割は推定で uncertain フラグ付き。",
+   "pdf": null,
+   "movements": [
+    {
+     "key": "I",
+     "title": "第1楽章 Intermezzo",
+     "short": null,
+     "notes": 157
+    },
+    {
+     "key": "II",
+     "title": "第2楽章 Ballade（Tempo di menuetto）",
+     "short": null,
+     "notes": 138
+    },
+    {
+     "key": "III",
+     "title": "第3楽章 Alla marcia",
+     "short": null,
+     "notes": 796
+    }
+   ],
+   "notes": 1091,
+   "data": "reader/data/karelia-oboe2.json"
   }
  ]
 }
