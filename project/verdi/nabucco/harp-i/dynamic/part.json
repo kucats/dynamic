@@ -1,0 +1,110 @@
+{
+ "id": "verdi-nabucco-harp1",
+ "instrument": "harp",
+ "title": "ヴェルディ《ナブッコ》ハープ1番",
+ "subtitle": "Coro d'Introduzione · Terzettino · Atto IV",
+ "composer": "Giuseppe Verdi",
+ "work": "Nabucco — Harp 1",
+ "part": "Arpa 1（グランドスタッフ）",
+ "source": {
+  "file": "nabucco-harp.pdf (user-supplied, not committed)",
+  "sha256": "cae654e67e9fb4e3f791978c28a04fe84de734b671bd41b0144a6ce97df97ea7",
+  "pages": [
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8
+  ]
+ },
+ "dpi": 300,
+ "movements": [
+  {
+   "key": "coro",
+   "short": "合唱",
+   "title": "Atto I — Coro d'Introduzione «Gli arredi festivi»",
+   "last": 138,
+   "pages": [
+    2,
+    3,
+    4,
+    5
+   ],
+   "meters": [
+    [
+     1,
+     "2/2"
+    ]
+   ],
+   "tempos": [
+    [
+     1,
+     132
+    ],
+    [
+     45,
+     110
+    ]
+   ]
+  },
+  {
+   "key": "terz",
+   "short": "三重唱",
+   "title": "Recitativo e Terzettino",
+   "last": 58,
+   "pages": [
+    6,
+    7
+   ],
+   "meters": [
+    [
+     1,
+     "4/4"
+    ]
+   ],
+   "tempos": [
+    [
+     32,
+     76
+    ]
+   ]
+  },
+  {
+   "key": "atto4",
+   "short": "第4幕",
+   "title": "Atto IV — Preludio, Scena ed Aria, Marcia funebre, Preghiera e Finale quarto",
+   "last": 30,
+   "pages": [
+    8
+   ],
+   "meters": [
+    [
+     1,
+     "4/4"
+    ]
+   ],
+   "tempos": [
+    [
+     1,
+     56
+    ],
+    [
+     10,
+     76
+    ]
+   ]
+  }
+ ],
+ "status": "Assistant transcription, machine-extracted heads verified by overlay spot-checks; page 2 figure verified in detail. Remaining pages flagged uncertain where detection confidence is lower. No independent musician audit.",
+ "limitations": [
+  "このPDFは HARP 1 のみ（ハープ2番は別冊の可能性）。表紙「HARP 1」＋楽章は連続（練習番号 ③–㉚）、末尾「Il resto dell'Opera Tace」。",
+  "小節番号は印刷されていないため通し番号。休符小節の数字（44, 29, 8, 8, 1, 10, 3, 4…）は読み取って累計した。",
+  "Coro: 練習③「Un poco meno mosso」は bar45。ハープは bar77（練習④・E major 4-sharp key change）から。拍子はアラ・ブレーヴェ（2/2）。",
+  "Terzettino: レチタティーヴォは TACE SINO ALLA CHIAMATA（bars 1–3 は推定）。練習㉔–㉖の間は27小節の休み（8+8+1+10）＋cue bar31。演奏は bar32–。",
+  "Atto IV: bars 1–9 は TACE（3+4+cue+fermata）。練習㉙「Andante moderato」で bar10 から演奏（2-sharp key）。末尾「Il resto dell'Opera Tace」。",
+  "pages 3–8 の音高は自動検出ベース；'uncertain' に 'det'/'offgrid' と印がある音は未検証。全 notes の dur/off は16分グリッドへの位置推定でリズム未監査。cue notes (小さな符頭・他パート引用) は原則除外。",
+  "テンポにメトロノーム記号なし：Allegro mosso ≈132、Un poco meno mosso ≈110、Andante ≈76、Adagio ≈56、Andante moderato ≈76 の目安。フェルマータ・rit. は未反映。"
+ ]
+}
