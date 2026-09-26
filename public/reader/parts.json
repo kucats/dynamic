@@ -97,6 +97,26 @@
    ],
    "notes": 492,
    "data": "reader/data/verdi-nabucco-trombone2.json"
+  },
+  {
+   "id": "verdi-nabucco-violin1",
+   "title": "ヴェルディ《ナブッコ》ヴァイオリン1番",
+   "subtitle": "序曲（Sinfonia のみ）· 音名（CDEFGAB）",
+   "part": "Violin 1（ト音記号）",
+   "work": "Nabucco — Sinfonia (序曲) only",
+   "composer": "Giuseppe Verdi",
+   "status": "Manual-transcription + detector-assisted decode of the Sinfonia only (pages 1-5 of 67; Atto I starts p.6). Bar boundaries and meter/tempo anchors verified against ground truth (329 bars; 3/8@54, 2/2@108, Più mosso@270). pp.3-5 pitch coverage is partial: dense beamed figuration under-detected by blob pass; sparse slots flagged 'auto-detect partial bar'. No musician audit — not playback-safe.",
+   "pdf": null,
+   "movements": [
+    {
+     "key": "S",
+     "title": "Sinfonia（序曲）",
+     "short": "序曲",
+     "notes": 987
+    }
+   ],
+   "notes": 987,
+   "data": "reader/data/verdi-nabucco-violin1.json"
   }
  ]
 }
