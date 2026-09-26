@@ -1,0 +1,323 @@
+{
+ "page": 14,
+ "movements": [
+  {
+   "mvt": "I",
+   "starts_at": {
+    "sys": 4,
+    "x": 950
+   }
+  }
+ ],
+ "notes": [
+  {
+   "sys": 4,
+   "x": 1082.1,
+   "y": 1174.9,
+   "pitch": "B5",
+   "clef": "G",
+   "bar": 230,
+   "dur": "1/4",
+   "off": "0",
+   "tie_from_prev": false,
+   "uncertain": "auto-draft: dur from head fill; bar unlabeled; C.ingl. passage (muta markers seen)",
+   "instr": "english-horn",
+   "id": 45
+  },
+  {
+   "sys": 4,
+   "x": 1203.9,
+   "y": 1255.6,
+   "pitch": "C5",
+   "clef": "G",
+   "bar": 230,
+   "dur": "1/8",
+   "off": "1/4",
+   "tie_from_prev": false,
+   "uncertain": "auto-draft: dur from head fill; bar unlabeled; C.ingl. passage (muta markers seen)",
+   "instr": "english-horn",
+   "id": 46
+  },
+  {
+   "sys": 4,
+   "x": 1394.6,
+   "y": 1255.8,
+   "pitch": "C5",
+   "clef": "G",
+   "bar": 231,
+   "dur": "1/8",
+   "off": "0",
+   "tie_from_prev": false,
+   "uncertain": "auto-draft: dur from head fill; bar unlabeled; C.ingl. passage (muta markers seen)",
+   "instr": "english-horn",
+   "id": 47
+  },
+  {
+   "sys": 4,
+   "x": 2292.4,
+   "y": 1162.8,
+   "pitch": "C6",
+   "clef": "G",
+   "bar": 235,
+   "dur": "1/4",
+   "off": "0",
+   "tie_from_prev": false,
+   "uncertain": "auto-draft: dur from head fill; bar unlabeled; C.ingl. passage (muta markers seen)",
+   "instr": "english-horn",
+   "id": 48
+  },
+  {
+   "sys": 5,
+   "x": 1272.2,
+   "y": 1441.6,
+   "pitch": "D6",
+   "clef": "G",
+   "bar": 238,
+   "dur": "1/4",
+   "off": "0",
+   "tie_from_prev": false,
+   "uncertain": "auto-draft: dur from head fill; bar unlabeled; C.ingl. passage (muta markers seen)",
+   "instr": "english-horn",
+   "id": 49
+  },
+  {
+   "sys": 5,
+   "x": 1286.0,
+   "y": 1625.3,
+   "pitch": "D4",
+   "clef": "G",
+   "bar": 238,
+   "dur": "1/4",
+   "off": "1/4",
+   "tie_from_prev": false,
+   "uncertain": "auto-draft: dur from head fill; bar unlabeled; C.ingl. passage (muta markers seen)",
+   "instr": "english-horn",
+   "id": 50
+  },
+  {
+   "sys": 5,
+   "x": 1377.1,
+   "y": 1599.4,
+   "pitch": "F4",
+   "clef": "G",
+   "bar": 238,
+   "dur": "1/4",
+   "off": "1/2",
+   "tie_from_prev": false,
+   "uncertain": "auto-draft: dur from head fill; bar unlabeled; C.ingl. passage (muta markers seen)",
+   "instr": "english-horn",
+   "id": 51
+  },
+  {
+   "sys": 5,
+   "x": 1469.4,
+   "y": 1499.3,
+   "pitch": "G5",
+   "clef": "G",
+   "bar": 238,
+   "dur": "1/4",
+   "off": "3/4",
+   "tie_from_prev": false,
+   "uncertain": "auto-draft: dur from head fill; bar unlabeled; C.ingl. passage (muta markers seen)",
+   "instr": "english-horn",
+   "id": 52
+  },
+  {
+   "sys": 5,
+   "x": 1522.0,
+   "y": 1571.5,
+   "pitch": "A4",
+   "clef": "G",
+   "bar": 239,
+   "dur": "1/8",
+   "off": "0",
+   "tie_from_prev": false,
+   "uncertain": "auto-draft: dur from head fill; bar unlabeled; C.ingl. passage (muta markers seen)",
+   "instr": "english-horn",
+   "id": 53
+  },
+  {
+   "sys": 5,
+   "x": 1612.7,
+   "y": 1597.1,
+   "pitch": "F4",
+   "clef": "G",
+   "bar": 239,
+   "dur": "1/8",
+   "off": "1/8",
+   "tie_from_prev": false,
+   "uncertain": "auto-draft: dur from head fill; bar unlabeled; C.ingl. passage (muta markers seen)",
+   "instr": "english-horn",
+   "id": 54
+  },
+  {
+   "sys": 5,
+   "x": 1672.0,
+   "y": 1557.3,
+   "pitch": "B4",
+   "clef": "G",
+   "bar": 240,
+   "dur": "1/8",
+   "off": "0",
+   "tie_from_prev": false,
+   "uncertain": "auto-draft: dur from head fill; bar unlabeled; C.ingl. passage (muta markers seen)",
+   "instr": "english-horn",
+   "id": 55
+  },
+  {
+   "sys": 5,
+   "x": 1724.0,
+   "y": 1564.4,
+   "pitch": "B4",
+   "clef": "G",
+   "bar": 240,
+   "dur": "1/4",
+   "off": "1/8",
+   "tie_from_prev": false,
+   "uncertain": "auto-draft: dur from head fill; bar unlabeled; C.ingl. passage (muta markers seen)",
+   "instr": "english-horn",
+   "id": 56
+  },
+  {
+   "sys": 5,
+   "x": 1773.8,
+   "y": 1598.2,
+   "pitch": "F4",
+   "clef": "G",
+   "bar": 240,
+   "dur": "1/8",
+   "off": "3/8",
+   "tie_from_prev": false,
+   "uncertain": "auto-draft: dur from head fill; bar unlabeled; C.ingl. passage (muta markers seen)",
+   "instr": "english-horn",
+   "id": 57
+  },
+  {
+   "sys": 5,
+   "x": 1828.9,
+   "y": 1572.5,
+   "pitch": "A4",
+   "clef": "G",
+   "bar": 241,
+   "dur": "1/8",
+   "off": "0",
+   "tie_from_prev": false,
+   "uncertain": "auto-draft: dur from head fill; bar unlabeled; C.ingl. passage (muta markers seen)",
+   "instr": "english-horn",
+   "id": 58
+  },
+  {
+   "sys": 5,
+   "x": 1937.6,
+   "y": 1597.9,
+   "pitch": "F4",
+   "clef": "G",
+   "bar": 241,
+   "dur": "1/8",
+   "off": "1/8",
+   "tie_from_prev": false,
+   "uncertain": "auto-draft: dur from head fill; bar unlabeled; C.ingl. passage (muta markers seen)",
+   "instr": "english-horn",
+   "id": 59
+  },
+  {
+   "sys": 5,
+   "x": 1998.7,
+   "y": 1557.7,
+   "pitch": "B4",
+   "clef": "G",
+   "bar": 242,
+   "dur": "1/8",
+   "off": "0",
+   "tie_from_prev": false,
+   "uncertain": "auto-draft: dur from head fill; bar unlabeled; C.ingl. passage (muta markers seen)",
+   "instr": "english-horn",
+   "id": 60
+  },
+  {
+   "sys": 5,
+   "x": 2113.2,
+   "y": 1599.4,
+   "pitch": "F4",
+   "clef": "G",
+   "bar": 242,
+   "dur": "1/8",
+   "off": "1/8",
+   "tie_from_prev": false,
+   "uncertain": "auto-draft: dur from head fill; bar unlabeled; C.ingl. passage (muta markers seen)",
+   "instr": "english-horn",
+   "id": 61
+  },
+  {
+   "sys": 5,
+   "x": 2237.5,
+   "y": 1574.0,
+   "pitch": "A4",
+   "clef": "G",
+   "bar": 244,
+   "dur": "1/8",
+   "off": "0",
+   "tie_from_prev": false,
+   "uncertain": "auto-draft: dur from head fill; bar unlabeled; C.ingl. passage (muta markers seen)",
+   "instr": "english-horn",
+   "id": 62
+  },
+  {
+   "sys": 5,
+   "x": 2344.5,
+   "y": 1599.9,
+   "pitch": "F4",
+   "clef": "G",
+   "bar": 244,
+   "dur": "1/8",
+   "off": "1/8",
+   "tie_from_prev": false,
+   "uncertain": "auto-draft: dur from head fill; bar unlabeled; C.ingl. passage (muta markers seen)",
+   "instr": "english-horn",
+   "id": 63
+  }
+ ],
+ "meta": {
+  "bars": {
+   "I": [
+    223,
+    245
+   ]
+  },
+  "meters": [
+   {
+    "bar": 223,
+    "meter": "4/4",
+    "mvt": "I"
+   }
+  ],
+  "tempos": [
+   {
+    "bar": 230,
+    "text": "poco meno mosso",
+    "mm": "",
+    "mvt": "I"
+   }
+  ],
+  "key_signatures": [
+   {
+    "bar": 223,
+    "key": "written pitch as printed",
+    "mvt": "I"
+   }
+  ],
+  "transpositions": [
+   {
+    "bar": 223,
+    "text": "muta in C.ingl.",
+    "mvt": "I"
+   },
+   {
+    "bar": 245,
+    "text": "muta in Ob.II.",
+    "mvt": "I"
+   }
+  ],
+  "repeats": "english-horn excerpt embedded in oboe-ii p14 s4-s5; bars approximate +-3"
+ }
+}
