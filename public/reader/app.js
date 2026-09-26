@@ -413,7 +413,7 @@
   let condMod = null;
   const SVGNS = 'http://www.w3.org/2000/svg';
   const COND_SRC = { plan: '曲ごとの目安', auto: 'テンポから自動', forced: '固定' };
-  const condX = (x) => (S.condMirror ? x : -x);   // default: seen from the players' side
+  const condX = (x) => condMod.displayX(x, S.condMirror);
   const condPath = (pts) => pts.map((q, i) => `${i ? 'L' : 'M'}${condX(q.x).toFixed(3)} ${q.y.toFixed(3)}`).join('');
   function condPattern(n) {
     const vis = $('condVis');
