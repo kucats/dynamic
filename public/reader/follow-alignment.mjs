@@ -19,7 +19,7 @@ export function alignPhrase(frames, score, options = {}) {
     let sum = 0; for (let k = 0; k < 12; k++) if (mask & 1 << k) sum += f.chroma[k];
     return sum / norms[index];
   }));
-  return align(frames, dots, ids, score.masks, options);
+  return alignEvidence(frames, dots, ids, score.masks, options);
 }
 
 // Diagnostic audio-to-audio comparison uses the SAME alignment recurrence.
@@ -33,10 +33,14 @@ export function alignChroma(frames, reference, options = {}) {
     let sum = 0; for (let k = 0; k < 12; k++) sum += f.chroma[k] * r[k];
     return sum;
   }));
-  return align(frames, dots, ids, masks, options);
+  return alignEvidence(frames, dots, ids, masks, options);
 }
 
-function align(frames, dots, ids, masks, { step = .2, predicted = null, radius = 12 } = {}) {
+// Shared recurrence for offline feature experiments. outlierFloor=0 treats a
+// contradicting observation as missing evidence, never as a positive match.
+// The reader keeps the original -1 floor until labelled evaluation supports a
+// change. Fresh-support gating below always uses the unmodified similarities.
+export function alignEvidence(frames, dots, ids, masks, { step = .2, predicted = null, radius = 12, outlierFloor = -1 } = {}) {
   const n = frames.length, m = ids.length;
   if (n < 2 || n * m > 4_000_000) return [];
   // (1,1), (1,2), (2,1) permit local tempo changes between half and double
@@ -46,7 +50,7 @@ function align(frames, dots, ids, masks, { step = .2, predicted = null, radius =
   let previousCost = new Float32Array(m).fill(1);
   for (let i = 0; i < n; i++) {
     const row = new Float32Array(width).fill(Infinity), cost = new Float32Array(m);
-    for (let j = 0; j < m; j++) cost[j] = 1 - (ids[j] < 0 ? 0 : dots[i][ids[j]]);
+    for (let j = 0; j < m; j++) cost[j] = 1 - (ids[j] < 0 ? 0 : Math.max(outlierFloor, dots[i][ids[j]]));
     for (let j = 0; j < m; j++) {
       let best = previous[j + 1] + 2 * cost[j], direction = 1;
       if (j > 0) {

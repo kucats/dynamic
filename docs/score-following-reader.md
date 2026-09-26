@@ -66,6 +66,34 @@ python3 tools/dynamic/evaluate_following.py '<local-recording.m4a>' \
 
 参照診断は32秒の履歴で1秒ごとに更新し、現在までの入力だけを使う。参照候補の連続性を3回要求する。すべての候補は未監査。8秒・32秒で同じ連続区間が得られた場合は、その録音で長窓の優位を主張しない。
 
+### 近接パート・誤音を含む演奏の診断
+
+残タスクは [Issue #52](https://github.com/kucats/dynamic/issues/52)。全声部の整備を待たず、単独パート・音域を保った倍音特徴・左右チャンネルを比較する評価経路がある。**この比較方式はreaderでは有効にしていない**。既定の合奏照合と手動指定・テンポ予測は維持する。
+
+```sh
+# 開いているパートだけの譜面を使う（Dvořák Trombone I / IV が既定）
+python3 tools/dynamic/evaluate_following.py '<local-recording.m4a>' \
+  --template part --out /tmp/part-chroma.json
+# オクターブを潰さず、複数の音高仮説を保つ倍音特徴
+python3 tools/dynamic/evaluate_following.py '<local-recording.m4a>' \
+  --template part --features harmonic --out /tmp/part-harmonic.json
+# 矛盾する観測の負の寄与を0で止める。正の一致へは変換しない
+python3 tools/dynamic/evaluate_following.py '<local-recording.m4a>' \
+  --template part --features harmonic --tolerate-errors --out /tmp/part-errors.json
+# 同条件で左右を比較。right は2ch以上が必要
+python3 tools/dynamic/evaluate_following.py '<local-recording.m4a>' \
+  --template part --channel left --out /tmp/part-left.json
+# 音の順番を壊した対照は、すべての方式で比較できる
+python3 tools/dynamic/evaluate_following.py '<local-recording.m4a>' \
+  --template part --control shuffle --out /tmp/part-shuffle.json
+```
+
+`--features harmonic` はMIDI 36〜84の49次元、各候補音の1〜6倍音の局所ピークを使う。最大ピークをトロンボーンと断定しない。分離モデルや楽器識別器ではない。音の抜けや誤音を含む人工例では位置維持を検査できるが、主録音ではこの方式の改善を確認できなかった。異なる特徴に同じ判定基準を適用した初期比較であり、特徴方式一般の優劣やトロンボーン単独照合の不可能性を示す結果ではない。
+
+次は発音した音符列と発音間隔を使い、誤音・脱落・余分な音を明示的に扱う照合を比較する。今回の負の寄与の制限は、その完全な代替ではない。参考となる [Nakamura et al., Real-Time Audio-to-Score Alignment (2016)](https://eita-nakamura.github.io/articles/TNakamura_etal_AudioScofo_ACMIEEE_TASLP_2015.pdf) は、それらの演奏誤りを分けてモデル化した単音演奏の研究。合奏トロンボーンの精度は別途評価する。
+
+主録音の集約結果は `project/dvorak/symphony-no-8/trombone-i/reviews/score-following-trombone-20260926.md`。音符密度の低いパートの扱い、演奏中の音だけでの再取得、休符中の予測を分けて改善する。
+
 ## 現時点の限界と次のリモート接続
 
 実録音での自動追従の持続時間はまだ短く、合奏の小節精度を達成したとはいえない。特に弦・木管主体、長休符、同じ主題、拍内のテンポ変動で候補が曖昧になる。元の再生タイムラインに省略された反復は復元していない。必要な戻りは現在地を指定する。iPhone/iPadの実機精度・遅延・電池負荷は未検証。

@@ -18,9 +18,15 @@ ROOT = Path(__file__).resolve().parents[2]
 SR, FFT, HOP = 48000, 8192, 9600
 
 
-def extract(audio_path, directory, name):
+def extract(audio_path, directory, name, channel='mix'):
     pcm, spectra = directory / f'{name}.f32', directory / f'{name}-spectra.f32'
-    subprocess.run(['ffmpeg', '-v', 'error', '-i', str(audio_path), '-ac', '1', '-ar', str(SR),
+    channel_args = [] if channel == 'mix' else ['-af', f"pan=mono|c0=c{0 if channel == 'left' else 1}"]
+    if channel == 'right':
+        probe = subprocess.run(['ffprobe', '-v', 'error', '-select_streams', 'a:0', '-show_entries',
+                                'stream=channels', '-of', 'json', str(audio_path)], check=True, capture_output=True, text=True)
+        if json.loads(probe.stdout)['streams'][0]['channels'] < 2:
+            raise ValueError('right channel requires a recording with at least two channels')
+    subprocess.run(['ffmpeg', '-v', 'error', '-i', str(audio_path), '-map', '0:a:0', *channel_args, '-ac', '1', '-ar', str(SR),
                     '-f', 'f32le', str(pcm)], check=True)
     audio = np.memmap(pcm, dtype='<f4', mode='r')
     n = np.arange(FFT)
@@ -42,27 +48,40 @@ def main():
     p.add_argument('--node', default='node')
     p.add_argument('--reference', type=Path, help='diagnostic audio-to-audio comparison; never supplies score bars')
     p.add_argument('--reference-window', type=int, choices=[8, 16, 32], default=32)
-    p.add_argument('--reference-control', choices=['none', 'shuffle'], default='none')
+    p.add_argument('--control', '--reference-control', dest='control', choices=['none', 'shuffle'], default='none')
+    p.add_argument('--template', choices=['ensemble', 'part'], default='ensemble')
+    p.add_argument('--features', choices=['chroma', 'harmonic'], default='chroma')
+    p.add_argument('--tolerate-errors', action='store_true', help='diagnostic: cap negative evidence; never adds positive support')
+    p.add_argument('--channel', choices=['mix', 'left', 'right'], default='mix')
     args = p.parse_args()
     if args.out.resolve().is_relative_to(ROOT):
         p.error('--out must be outside the repository')
     if args.part not in {x.stem for x in (ROOT / 'public/reader/data').glob('*.json')}:
         p.error('unknown part')
-    if not args.reference and (args.reference_control != 'none' or args.reference_window != 32):
-        p.error('reference diagnostic options require --reference')
+    if not args.reference and args.reference_window != 32:
+        p.error('--reference-window requires --reference')
+    if args.features == 'harmonic' and args.template != 'part':
+        p.error('--features harmonic requires --template part')
+    if args.tolerate_errors and args.features != 'harmonic':
+        p.error('--tolerate-errors requires --features harmonic')
+    if args.reference and (args.template != 'ensemble' or args.features != 'chroma' or args.tolerate_errors):
+        p.error('reference-audio diagnostics do not use score-template/part-feature options')
     with tempfile.TemporaryDirectory(prefix='dynamic-follow-') as tmp:
-        spectra, duration = extract(args.audio, Path(tmp), 'phone')
+        spectra, duration = extract(args.audio, Path(tmp), 'phone', args.channel)
         command = [args.node, str(Path(__file__).with_name('following_replay.mjs')), str(spectra), args.part, args.movement]
         reference_info = {}
+        ref = ''
         if args.reference:
             ref, ref_duration = extract(args.reference, Path(tmp), 'reference')
-            command.extend([str(ref), str(args.reference_window), args.reference_control])
             reference_info = {'reference_sha256': hashlib.sha256(args.reference.read_bytes()).hexdigest(),
                               'reference_decoded_seconds': ref_duration}
+        command.extend([str(ref), str(args.reference_window), args.control, json.dumps({
+            'template': args.template, 'features': args.features, 'tolerateErrors': args.tolerate_errors})])
         run = subprocess.run(command, check=True, capture_output=True, text=True)
         result = json.loads(run.stdout)
         result.update(audio_sha256=hashlib.sha256(args.audio.read_bytes()).hexdigest(),
-                      decoded_seconds=duration, extraction='mono mix; 48 kHz; 8192 Blackman FFT; 200 ms hop',
+                      decoded_seconds=duration, channel=args.channel,
+                      extraction=f'mono {args.channel}; 48 kHz; 8192 Blackman FFT; 200 ms hop',
                       time_note='Trace timestamps are FFT-window centers; samples are available 85.333 ms later. '
                                 'Sample-and-hold coverage is clipped at the final analyzed sample.',
                       measure_accuracy=None, accuracy_note='No independently reviewed audio-to-measure labels supplied. '
