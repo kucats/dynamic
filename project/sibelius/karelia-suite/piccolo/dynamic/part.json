@@ -1,0 +1,67 @@
+{
+ "id": "sibelius-karelia-piccolo",
+ "instrument": "Flauto piccolo",
+ "title": "Karelia Suite",
+ "subtitle": "Op. 11",
+ "composer": "Jean Sibelius",
+ "work": "karelia-suite",
+ "part": "piccolo",
+ "source": {
+  "file": "karelia-flute.pdf",
+  "sha256": "a7b5a67f1c8dc5fbbec294e55367ea6bfbd1f88733c63aae9a508001727d4d70",
+  "pages": [
+   7,
+   8
+  ]
+ },
+ "dpi": 340,
+ "movements": [
+  {
+   "key": "I",
+   "title": "Intermezzo",
+   "last": 0,
+   "pages": [],
+   "meters": [],
+   "tempos": [],
+   "conduct": "tacet",
+   "conduct_note": "tacet ('I. Intermezzo, II. Ballade tacet' printed on p7)"
+  },
+  {
+   "key": "II",
+   "title": "Ballade",
+   "last": 0,
+   "pages": [],
+   "meters": [],
+   "tempos": [],
+   "conduct": "tacet",
+   "conduct_note": "tacet"
+  },
+  {
+   "key": "III",
+   "title": "Alla marcia",
+   "last": 293,
+   "pages": [
+    7,
+    8
+   ],
+   "meters": [
+    [
+     1,
+     "2/4"
+    ]
+   ],
+   "tempos": [
+    [
+     1,
+     "Moderato"
+    ],
+    [
+     289,
+     "Poco largamente"
+    ]
+   ],
+   "conduct": "3 sharps; 2 flats at A(68); 3 sharps at C(~176)",
+   "conduct_note": "piccolo enters bar156 at B; written pitch as printed (sounds 8va); ends p8"
+  }
+ ]
+}
