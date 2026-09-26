@@ -86,7 +86,7 @@
    "key_signatures": [
     [
      1,
-     "C"
+     "3 flats"
     ]
    ],
    "splits_note": "starts mid-page 4"
@@ -120,7 +120,7 @@
    "key_signatures": [
     [
      1,
-     "Eb"
+     "2 flats"
     ]
    ]
   },
@@ -174,5 +174,5 @@
   }
  ],
  "status": "draft: pages auto-drafted + printed-number anchors; sparse anchors p13",
- "limitations": "Draft decode, low confidence: pitches from auto head-detection, mostly unproofed; dur from head fill only (no beam/stem analysis); offs auto; bar labels +-3 (range labels cover merged barlines). mvt I bars 1-69 absent from source pages (first printed ~70). C.ingl. passage on p14 (~bars 223-245) tagged instr=english-horn; cues marked sim. Movement starts: I p13 s1, II p15 s5, III p17 s1, IV p19 s1."
+ "limitations": "Draft decode, low confidence: pitches from auto head-detection, mostly unproofed; dur from head fill only (no beam/stem analysis); offs auto; bar labels +-3 (range labels cover merged barlines). mvt I bars 1-69 absent from source pages (first printed ~70). C.ingl. passage on p14 (~bars 223-245) tagged instr=english-horn; cues marked sim. Movement starts: I p13 s1, II p15 s5, III p17 s1, IV p19 s1.; key sigs corrected post-review: II=Eb(3b), III=Gm(2b)"
 }
