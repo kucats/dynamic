@@ -125,7 +125,7 @@ def review_items(notes: list[dict], systems: list[dict]) -> list[dict]:
 
 def build(part_dir: Path, pdf: Path, work: Path) -> dict:
     import cv2
-    from common import HORN_KEYS, TROMBONE_POS, label, label_german, parse_pitch, staves, transpose
+    from common import HORN_KEYS, TROMBONE_POS, TRUMPET_KEYS, label, label_german, parse_pitch, staves, transpose
 
     cfg = json.loads((part_dir / "part.json").read_text(encoding="utf-8"))
     pages = sorted({p for m in cfg["movements"] for p in m["pages"]})
@@ -164,6 +164,11 @@ def build(part_dir: Path, pdf: Path, work: Path) -> dict:
             if cfg.get("instrument") == "trombone":        # non-transposing; German names + slide position
                 w_ = label_german(L, a, wo)
                 rec.update(key="C", w=w_, f=w_, snd=w_, pos=TROMBONE_POS.get(w_[2]))
+            elif cfg.get("instrument") == "trumpet":       # crook transposes up (in Re = +M2); f column = sounding
+                key = n.get("horn_key") or cfg.get("default_horn_key", "C")
+                dl, ds = TRUMPET_KEYS[key]
+                s_ = transpose(L, a, wo, dl, ds)
+                rec.update(key=key, w=label(L, a, wo), f=label(*s_), snd=label(*s_))
             else:
                 key = n.get("horn_key") or cfg.get("default_horn_key", "F")
                 dl, ds = HORN_KEYS[key]
