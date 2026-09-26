@@ -1,0 +1,20 @@
+{
+ "id": "verdi-nabucco-englishhorn",
+ "instrument": "english-horn",
+ "title": "ヴェルディ《ナブッコ》序曲 コールアングレ",
+ "subtitle": "Sinfonia · tacet",
+ "composer": "Giuseppe Verdi",
+ "work": "Nabucco — Sinfonia",
+ "part": "Corno Inglese（「OBOE I. - CORNO INGLESE」結合譜）",
+ "source": {"file": "オーボエ1・2・EH.pdf (user-supplied, not committed)", "sha256": "5dde18158ff2e242111257f9994ede1063e3456c66c5bfd8e7a54169c13dfa79", "pages": [1, 2, 3, 4]},
+ "dpi": 300,
+ "movements": [{"key": "S", "short": "序曲", "title": "Sinfonia（序曲）", "last": 329, "pages": [1, 2, 3, 4],
+   "meters": [[1, "4/4"], [54, "3/8"], [108, "2/2"]],
+   "tempos": [[1, 66], [24, 138], [51, 66], [54, 50], [108, 160], [270, 184]],
+   "tacet": true}],
+ "status": "序曲ではコールアングレの記載なし（tacet）。結合譜内に持ち替え指示・独立段は見当たらない。",
+ "limitations": [
+  "このPDFは「OBOE I. - CORNO INGLESE」の結合譜ですが、Sinfonia（PDF 1〜4ページ）の各システム開始・転回部に「Corno Inglese」への持ち替え指示は印刷されていません。コールアングレ独立の音は序曲内に存在しないと判断しました。",
+  "EHが実際に活躍するのは序曲以降の幕内ナンバーです（このファイルでは確認範囲外）。"
+ ]
+}
