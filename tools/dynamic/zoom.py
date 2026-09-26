@@ -9,6 +9,7 @@ Default X range: whole width in two halves -> writes OUT_a.png and OUT_b.png
 import cv2, json, sys, numpy as np
 import os; sys.path.insert(0,os.path.dirname(os.path.abspath(__file__)))
 from cand import staves_of, staff_y
+from common import staves_override
 LET='CDEFGAB'
 p=int(sys.argv[1]); s=int(sys.argv[2])
 im=cv2.imread(f'work/p{p}.png',0); B=im<140

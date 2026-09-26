@@ -60,6 +60,23 @@ def staves(B):
     return [list(np.mean(np.array(grp), axis=0)) for grp in merged]
 
 
+def staves_override(page, staves_of_style=False):
+    """Manual staff list when auto-detection misses/duplicates a system.
+
+    Reads work/staves_p{page}.json (list of {xl,xr,l,r,m} dicts, the
+    cand.staves_of format) if present. Returns None otherwise.
+    With staves_of_style=False, returns plain lists of 5 y-values (the
+    common.staves format, using each staff's mid-window lines 'm').
+    """
+    path = f'work/staves_p{page}.json'
+    if not os.path.exists(path):
+        return None
+    data = json.load(open(path))
+    if staves_of_style:
+        return data
+    return [s['m'] for s in data]
+
+
 def parse_pitch(p: str):
     """'Bb4' -> ('B', -1, 4)"""
     return p[0], ACC_IN[p[1:-1]], int(p[-1])
