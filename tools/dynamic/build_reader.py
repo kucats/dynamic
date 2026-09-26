@@ -170,9 +170,13 @@ def build(part_dir: Path, pdf: Path, work: Path) -> dict:
             if cfg.get("instrument") == "trombone":        # non-transposing; German names + slide position
                 w_ = label_german(L, a, wo)
                 rec.update(key="C", w=w_, f=w_, snd=w_, pos=TROMBONE_POS.get(w_[2]))
-            elif cfg.get("instrument") == "cello":          # non-transposing strings; solfège labels
+            elif cfg.get("instrument") in ("cello", "violin", "oboe"):  # non-transposing; solfège labels
                 w_ = label(L, a, wo)
                 rec.update(key="C", w=w_, f=w_, snd=w_)
+            elif cfg.get("instrument") == "english-horn":   # in F: sounds a fifth below written
+                dl, ds = HORN_KEYS["F"]
+                s_ = transpose(L, a, wo, dl, ds)
+                rec.update(key="F", w=label(L, a, wo), f=label(L, a, wo), snd=label(*s_))
             else:
                 key = n.get("horn_key") or mvt_horn_key.get(sy["mvt"]) or cfg.get("default_horn_key", "F")
                 dl, ds = HORN_KEYS[key]
