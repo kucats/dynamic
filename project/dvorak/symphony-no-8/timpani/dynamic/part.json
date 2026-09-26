@@ -1,0 +1,244 @@
+{
+ "id": "dvorak8-timpani",
+ "instrument": "timpani",
+ "title": "ドヴォルザーク 交響曲第8番 ティンパニ",
+ "subtitle": "全4楽章 · 音名（CDEFGAH）",
+ "composer": "Antonín Dvořák",
+ "work": "Symphony No. 8 in G major, Op. 88",
+ "part": "Timpani",
+ "source": {
+  "file": "timpani.pdf (user-supplied via Google Drive, not committed)",
+  "sha256": "e7d457fe399633c0627ebc2db72c64a6647294cceca21b28ce8583291da201d7",
+  "pages": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8
+  ]
+ },
+ "dpi": 300,
+ "splits": [
+  {
+   "page": 3,
+   "first_system": 2,
+   "movement": "II",
+   "note": "page 3: mvt I ends at system 1 (bar 318); mvt II starts at system 2"
+  },
+  {
+   "page": 4,
+   "first_system": 3,
+   "movement": "III",
+   "note": "page 4: mvt II ends ~172 at system 2 (fermata); mvt III starts at system 3"
+  },
+  {
+   "page": 6,
+   "first_system": 1,
+   "movement": "IV",
+   "note": "page 6: mvt IV Allegro ma non troppo starts at system 1"
+  }
+ ],
+ "status": "Devinセッションが1ページずつ原譜と照合した転記（音高・調号・臨時記号・キュー・音価・小節番号）。第三者による独立監査は未実施。小節番号は印刷された5小節ごとの番号・リハーサル記号に合わせています。",
+ "limitations": [
+  "調律は譜面の 'in G,D' などの指示に従い、muta 指示（D→C:I楽章144・IV楽章~119、C→D:I楽章207・IV楽章~205 付近）を反映しています。",
+  "キュー音（Viol.Ⅰ, Trb., Fag., Vlc.,Cb. 等）は sim+uncertain でフラグ。連打（tr~~~）はdur 1のロール開始音として記録し、内部の分割は省略しています。",
+  "第2・3・4楽章の一部の小節番号（II: 66-90付近、III: 93-104付近、IV: 111-134付近）は印刷番号アンカー間の内挿で±1-2のずれの可能性があります。",
+  "第3楽章は Segno/D.S. al Coda 構造を含み、小節番号は書き出し反復込みの通し番号。Coda 'Molto vivace' 2/4 は ~183 から。"
+ ],
+ "movements": [
+  {
+   "key": "I",
+   "title": "第1楽章 Allegro con brio",
+   "last": 318,
+   "pages": [
+    1,
+    2,
+    3
+   ],
+   "meters": [
+    [
+     1,
+     "4/4"
+    ]
+   ],
+   "tempos": [
+    [
+     1,
+     138
+    ],
+    [
+     127,
+     112
+    ],
+    [
+     143,
+     138
+    ],
+    [
+     239,
+     112
+    ],
+    [
+     251,
+     138
+    ]
+   ],
+   "key_signatures": [
+    [
+     1,
+     "in G,D"
+    ]
+   ]
+  },
+  {
+   "key": "II",
+   "title": "第2楽章 Adagio",
+   "last": 172,
+   "pages": [
+    3,
+    4
+   ],
+   "meters": [
+    [
+     1,
+     "2/4"
+    ]
+   ],
+   "tempos": [
+    [
+     1,
+     80
+    ],
+    [
+     112,
+     null
+    ],
+    [
+     134,
+     null
+    ]
+   ],
+   "key_signatures": [
+    [
+     1,
+     "in C,G"
+    ]
+   ],
+   "tempo_text": {
+    "112": "Poco più animato",
+    "134": "Tempo I. Meno mosso"
+   }
+  },
+  {
+   "key": "III",
+   "title": "第3楽章 Allegretto grazioso",
+   "last": 235,
+   "pages": [
+    4,
+    5
+   ],
+   "meters": [
+    [
+     1,
+     "3/8"
+    ],
+    [
+     183,
+     "2/4"
+    ]
+   ],
+   "tempos": [
+    [
+     1,
+     50
+    ],
+    [
+     183,
+     80
+    ],
+    [
+     180,
+     null
+    ]
+   ],
+   "key_signatures": [
+    [
+     1,
+     "in G,D"
+    ]
+   ],
+   "tempo_text": {
+    "180": "Andante in tempo",
+    "183": "Molto vivace (Coda)"
+   }
+  },
+  {
+   "key": "IV",
+   "title": "第4楽章 Allegro ma non troppo",
+   "last": 389,
+   "pages": [
+    6,
+    7,
+    8
+   ],
+   "meters": [
+    [
+     1,
+     "2/4"
+    ]
+   ],
+   "tempos": [
+    [
+     1,
+     116
+    ],
+    [
+     25,
+     108
+    ],
+    [
+     58,
+     116
+    ],
+    [
+     95,
+     116
+    ],
+    [
+     252,
+     108
+    ],
+    [
+     324,
+     116
+    ],
+    [
+     339,
+     126
+    ],
+    [
+     357,
+     144
+    ]
+   ],
+   "key_signatures": [
+    [
+     1,
+     "in D,G"
+    ]
+   ],
+   "tempo_text": {
+    "25": "Un poco meno mosso",
+    "58": "Un poco più mosso",
+    "95": "(letter E, ♩=116)",
+    "252": "Tempo I. Meno mosso",
+    "324": "Tempo I.",
+    "339": "Tempo I.",
+    "357": "Più animato"
+   }
+  }
+ ]
+}
