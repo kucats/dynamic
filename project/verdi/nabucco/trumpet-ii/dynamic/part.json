@@ -1,0 +1,82 @@
+{
+  "id": "verdi-nabucco-trumpet2",
+  "instrument": "trumpet",
+  "title": "ヴェルディ《ナブッコ》序曲 トランペット2番",
+  "subtitle": "Sinfonia · Tromba 2 in Re",
+  "composer": "Giuseppe Verdi",
+  "work": "Nabucco — Sinfonia",
+  "part": "Tromba II in Re（ト音記号・D調トランペット）",
+  "source": {
+    "file": "トランペット2.pdf (user-supplied, not committed)",
+    "sha256": "9a7f74c96c8946bf9aa68e390f0188331432495a6aa3d54939cd8312a48d5619",
+    "pages": [
+      1,
+      2,
+      3,
+      4
+    ]
+  },
+  "dpi": 300,
+  "movements": [
+    {
+      "key": "S",
+      "short": "序曲",
+      "title": "Sinfonia（序曲）",
+      "last": 329,
+      "pages": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "meters": [
+        [
+          1,
+          "4/4"
+        ],
+        [
+          54,
+          "3/8"
+        ],
+        [
+          108,
+          "2/2"
+        ]
+      ],
+      "tempos": [
+        [
+          1,
+          66
+        ],
+        [
+          24,
+          138
+        ],
+        [
+          51,
+          66
+        ],
+        [
+          54,
+          50
+        ],
+        [
+          108,
+          160
+        ],
+        [
+          270,
+          184
+        ]
+      ]
+    }
+  ],
+  "default_horn_key": "D",
+  "status": "Assistant transcription; no independent musician audit. Alternating figure/measure-repeat passages near the close (bars ~247-329) have approximate interior bar splits and are flagged uncertain.",
+  "limitations": [
+    "このPDFの表紙は「TROMBA II」です（トランペット2番、in Re＝D管）。",
+    "小節番号は印刷されていないため、序曲の最初を1小節目として数えた通し番号です（1ページ目1〜88、2ページ目89〜177、3ページ目178〜246、4ページ目247〜329）。4ページ目の247-250は「4」と数えられた休符、319-328は番号付き連続休符、329はフェルマータ付き最終小節です。",
+    "小節反復記号（％）の小節は直前の小節の繰り返しを示します。247以降の交代パターン区では小節境界が近似値です。",
+    "テンポにメトロノーム記号がないため、Andante ♩=66、Allegro ♩=138、Andantino ♪=100、Allegro(¢) ♩=160、Più mosso ♩=184 の目安で再生します。フェルマータ・rit. は反映していません。"
+  ]
+}

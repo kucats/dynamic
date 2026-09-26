@@ -1,0 +1,85 @@
+{
+ "id": "verdi-nabucco-violin1",
+ "instrument": "violin",
+ "title": "ヴェルディ《ナブッコ》ヴァイオリン1番",
+ "subtitle": "序曲（Sinfonia のみ）· 音名（CDEFGAB）",
+ "composer": "Giuseppe Verdi",
+ "work": "Nabucco — Sinfonia (序曲) only",
+ "part": "Violin 1（ト音記号）",
+ "source": {
+  "file": "nabucco-violin1.pdf (user-supplied, not committed)",
+  "sha256": "a04ccd1634c6ad1e1e02a74e6a7f143aff796980e2c83446952d637687873a19",
+  "pages": [
+   1,
+   2,
+   3,
+   4,
+   5
+  ]
+ },
+ "dpi": 340,
+ "movements": [
+  {
+   "key": "S",
+   "short": "序曲",
+   "title": "Sinfonia（序曲）",
+   "last": 329,
+   "pages": [
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "meters": [
+    [
+     1,
+     "4/4"
+    ],
+    [
+     54,
+     "3/8"
+    ],
+    [
+     108,
+     "2/2"
+    ]
+   ],
+   "tempos": [
+    [
+     1,
+     66
+    ],
+    [
+     24,
+     138
+    ],
+    [
+     51,
+     66
+    ],
+    [
+     54,
+     50
+    ],
+    [
+     108,
+     160
+    ],
+    [
+     270,
+     184
+    ]
+   ]
+  }
+ ],
+ "status": "Manual-transcription + detector-assisted decode of the Sinfonia only (pages 1-5 of 67; Atto I starts p.6). Bar boundaries and meter/tempo anchors verified against ground truth (329 bars; 3/8@54, 2/2@108, Più mosso@270). pp.3-5 pitch coverage is partial: dense beamed figuration under-detected by blob pass; sparse slots flagged 'auto-detect partial bar'. No musician audit — not playback-safe.",
+ "limitations": [
+  "この楽譜には小節番号の印字なし。連続番号付けは本パート固有の配置；トロンボーン2番の基準(329 bars; 3/8=54, 2/2=108, Più mosso=270)と一致させた。",
+  "p.2: sys8-11 の bar 境界は近似（小節線検出が stem と混同気味）；pizz/ARCO 指示とリハーサル A/B の小節位置は ±1-2 小節の誤差があり得る。",
+  "pp.3-5 (bars 108-329): 連符・連打（assai staccato 及び Più mosso の 16分/8分音型）でノートヘッド検出が不完全 — 各小節に実在する全ノートの一部のみ uncertain フラグ付きで収録。rest-only bars は音符エントリなし。",
+  "Rehearsal letters F/G/I の bar 位置は概算（'~' 表記）。",
+  "Crescendo hairpins / articulation (staccato dots, accents) は概ね読み取ったが個々の note への対応づけは未完了。",
+  "Key-signature change observed at the 2/2 section start (p.3 sys1 shows flat + alla-breve sign) — interpreted as continuing A-major context; not encoded as key change."
+ ]
+}

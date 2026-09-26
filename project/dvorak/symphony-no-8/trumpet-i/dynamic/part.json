@@ -1,0 +1,212 @@
+{
+  "id": "dvorak8-trumpet1",
+  "instrument": "trumpet",
+  "title": "ドヴォルザーク 交響曲第8番 トランペット1番",
+  "subtitle": "全楽章 · F管（第3楽章 D管、第1・4楽章の一部 C管）",
+  "composer": "Antonín Dvořák",
+  "work": "Symphony No. 8 in G major, Op. 88",
+  "part": "Tromba I / Trompete I（トレブル記号）",
+  "source": {
+    "file": "trumpet.pdf (user-supplied, not committed)",
+    "sha256": "6e773339b5e3a887d1a96715560f28b9ca02ee84721d47bb7c53acc536589e4e",
+    "pages": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ]
+  },
+  "dpi": 340,
+  "movements": [
+    {
+      "key": "I",
+      "title": "第1楽章 Allegro con brio",
+      "last": 318,
+      "pages": [
+        1,
+        2,
+        3
+      ],
+      "meters": [
+        [
+          1,
+          "4/4"
+        ]
+      ],
+      "tempos": [
+        [
+          1,
+          138
+        ],
+        [
+          143,
+          138
+        ],
+        [
+          239,
+          112
+        ],
+        [
+          251,
+          138
+        ]
+      ],
+      "conduct": [
+        [
+          1,
+          2
+        ],
+        [
+          239,
+          4
+        ],
+        [
+          251,
+          2
+        ]
+      ],
+      "conduct_note": "指揮の振り方はテンポ表示と拍子から決めた練習用の目安で、譜面に書かれた指示ではありません。"
+    },
+    {
+      "key": "II",
+      "title": "第2楽章 Adagio",
+      "last": 166,
+      "pages": [
+        3,
+        4
+      ],
+      "meters": [
+        [
+          1,
+          "2/4"
+        ]
+      ],
+      "tempos": [
+        [
+          1,
+          80
+        ]
+      ],
+      "conduct": [
+        [
+          1,
+          2
+        ]
+      ],
+      "conduct_note": "同上。"
+    },
+    {
+      "key": "III",
+      "title": "第3楽章 Allegretto grazioso（muta in D）",
+      "last": 228,
+      "pages": [
+        4,
+        5
+      ],
+      "meters": [
+        [
+          1,
+          "3/8"
+        ]
+      ],
+      "tempos": [
+        [
+          1,
+          50
+        ],
+        [
+          176,
+          null
+        ]
+      ],
+      "conduct": [
+        [
+          1,
+          1
+        ]
+      ],
+      "conduct_note": "3/8、1拍子系。176小節あたりに Andante（Trio 相当）の表示。"
+    },
+    {
+      "key": "IV",
+      "title": "第4楽章 Allegro ma non troppo",
+      "last": 432,
+      "pages": [
+        5,
+        6,
+        7
+      ],
+      "meters": [
+        [
+          1,
+          "2/4"
+        ]
+      ],
+      "tempos": [
+        [
+          1,
+          116
+        ],
+        [
+          20,
+          108
+        ],
+        [
+          31,
+          116
+        ],
+        [
+          255,
+          108
+        ],
+        [
+          290,
+          null
+        ],
+        [
+          340,
+          126
+        ]
+      ],
+      "conduct": [
+        [
+          1,
+          2
+        ]
+      ],
+      "conduct_note": "同上。"
+    }
+  ],
+  "splits": [
+    {
+      "page": 3,
+      "first_system": 5,
+      "movement": "II",
+      "note": "page 3: movement I ends at bar 318 (system 4); movement II 'Adagio' starts at system 5"
+    },
+    {
+      "page": 4,
+      "first_system": 5,
+      "movement": "III",
+      "note": "page 4: movement II ends at bar 166 (system 4); movement III 'Allegretto grazioso' (muta in D) starts at system 5"
+    },
+    {
+      "page": 5,
+      "first_system": 7,
+      "movement": "IV",
+      "note": "page 5: movement III ends ~bar 228 with fermata (system 6); movement IV 'Allegro ma non troppo' starts at system 7"
+    }
+  ],
+  "status": "Devinセッションが7ページを原譜と照合した転記（音高・音価・小節番号・移調・キュー除外）。印刷小節番号（5小節ごと、小節線跨ぎ）は各ページで確認済み。独立監査は未実施。",
+  "limitations": [
+    "移調: 第1楽章はF管、215小節から muta in C（印刷指示確認済み）。第2楽章はF管。第3楽章は全体 muta in D。第4楽章はF管、126小節あたりに muta in C、以降の muta in F の復帰位置は未確定（要確認）。",
+    "a2（2本ユニゾン）箇所は上側の音を記録し、下側の音は uncertain 欄に 'a2 lower <pitch>' として記録。",
+    "キュー音（Timp./Cor./Viol.I./Vlc.Cb./Trbne 表記の小音符）は notes から除外し、meta.repeats に記録。",
+    "休符ブロック内部の小節分割は補間（各ページ meta の 'interior splits interpolated'）— 要検証。",
+    "第4楽章の末尾番号はこのパート譜の印刷番号に従い ~432 とした（trombone-i はホルン番号基準で 389）。異なる版の番号系は一致しない場合あり。",
+    "音価判定（beams/stem/hollow）は画像ベースのため '16?' / 'stem?' フラグ多数。赤点線枠＝要確認。"
+  ]
+}

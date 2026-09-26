@@ -1,0 +1,216 @@
+{
+ "id": "dvorak8-clarinet2",
+ "instrument": "clarinet",
+ "default_cl_key": "A",
+ "title": "Symphony No. 8 in G major, Op. 88 — Clarinet II",
+ "subtitle": "ドヴォルザーク 交響曲第8番 ト長調 Op.88 — クラリネット II",
+ "composer": "Antonín Dvořák",
+ "work": "Symphony No. 8 in G major, Op. 88",
+ "part": "Clarinet II",
+ "source": {
+  "file": "work/clarinet.pdf",
+  "sha256": "af83e05b3228539d796637a6bcc01cc561629d6adbdf0204ef900ab4ba8b1bd5",
+  "pages": "12-21"
+ },
+ "dpi": 300,
+ "movements": [
+  {
+   "key": "I",
+   "title": "I. Allegro con brio",
+   "last": 318,
+   "pages": [
+    12,
+    13,
+    14,
+    15
+   ],
+   "cl_key": "A",
+   "meters": [
+    [
+     1,
+     "4/4"
+    ]
+   ],
+   "tempos": [
+    [
+     1,
+     138
+    ],
+    [
+     127,
+     112
+    ],
+    [
+     143,
+     138
+    ],
+    [
+     239,
+     112
+    ],
+    [
+     251,
+     138
+    ]
+   ],
+   "conduct": [],
+   "conduct_note": ""
+  },
+  {
+   "key": "II",
+   "title": "II. Adagio",
+   "last": 170,
+   "pages": [
+    15,
+    16,
+    17
+   ],
+   "cl_key": "Bb",
+   "meters": [
+    [
+     1,
+     "2/4"
+    ]
+   ],
+   "tempos": [
+    [
+     1,
+     40
+    ],
+    [
+     113,
+     54
+    ],
+    [
+     133,
+     40
+    ]
+   ],
+   "conduct": [],
+   "conduct_note": "muta in B (B管=B♭管) — 第2楽章冒頭でB♭管に持ち替え"
+  },
+  {
+   "key": "III",
+   "title": "III. Allegretto grazioso — Molto vivace",
+   "last": 231,
+   "pages": [
+    17,
+    18,
+    19
+   ],
+   "cl_key": "A",
+   "meters": [
+    [
+     1,
+     "3/8"
+    ],
+    [
+     181,
+     "2/4"
+    ]
+   ],
+   "tempos": [
+    [
+     1,
+     75
+    ],
+    [
+     181,
+     160
+    ]
+   ],
+   "conduct": [],
+   "conduct_note": "冒頭セーニョ記号 + p で開始（A管に戻る）"
+  },
+  {
+   "key": "IV",
+   "title": "IV. Allegro ma non troppo",
+   "last": 389,
+   "pages": [
+    19,
+    20,
+    21
+   ],
+   "cl_key": "A",
+   "meters": [
+    [
+     1,
+     "2/4"
+    ]
+   ],
+   "tempos": [
+    [
+     1,
+     116
+    ],
+    [
+     26,
+     108
+    ],
+    [
+     59,
+     116
+    ],
+    [
+     75,
+     126
+    ],
+    [
+     93,
+     116
+    ],
+    [
+     253,
+     108
+    ],
+    [
+     323,
+     116
+    ],
+    [
+     337,
+     72
+    ],
+    [
+     339,
+     126
+    ],
+    [
+     356,
+     144
+    ]
+   ],
+   "conduct": [],
+   "conduct_note": "muta in A at bar 1; volta first/second endings at ~94-96"
+  }
+ ],
+ "splits": [
+  {
+   "page": 15,
+   "first_system": 9,
+   "movement": "II",
+   "note": "page 15: mvt I ends at system 8 (bar 318); 'Adagio / muta in B' begins at system 9"
+  },
+  {
+   "page": 17,
+   "first_system": 8,
+   "movement": "III",
+   "note": "page 17: mvt II ends at system 7 (bar 170, fermata); 'Allegretto grazioso' begins at system 8"
+  },
+  {
+   "page": 19,
+   "first_system": 10,
+   "movement": "IV",
+   "note": "page 19: mvt III ends at system 9 (bar 231, fermata); 'Allegro ma non troppo / muta in A' begins at system 10"
+  }
+ ],
+ "status": "Devinの読譜パイプラインが1ページずつ原譜と照合した転記（音高・調号・臨時記号・キュー除外・音価・小節番号）。第三者による独立監査は未実施。不明瞭な音・小節番号は unc でフラグ。",
+ "limitations": [
+  "音名はドイツ式（H＝シ、B♭＝シ♭）。数字はオクターブ（C4＝中央のド）。",
+  "第2楽章冒頭で「muta in B」（B管=B♭管）の持ち替え指示が印刷されています。transpositions に記録。",
+  "14ページ末〜15ページ冒頭は重複刻（275〜292が両ページに印刷）。p14 末尾の小節番号は暫定（clarinet-i p3/p4と同じ構造）。",
+  "複小節休符が多く、休符区間の小節番号は印刷された番号（5の倍数）とリハーサル文字から推定しています。±1〜3の誤差を含む区間は各ページ meta に記録。",
+  "Viol.I / Fl.I / Fag.I / Ob.I などのキュー音符は sim/unc で除外扱い。要確認の音には赤い点線の枠（unc フラグ）。",
+  "meters/tempos normalized to pairs schema; values follow horn-ii/trombone-i conventions."
+ ]
+}

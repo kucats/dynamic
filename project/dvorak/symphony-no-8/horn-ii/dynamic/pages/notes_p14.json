@@ -498,9 +498,9 @@
    "clef": "G",
    "bar": 71,
    "tie_from_prev": false,
-   "uncertain": "accidental looks like sharp (broken); could be natural -> A4",
    "dur": "1/8",
-   "off": "1/4"
+   "off": "1/4",
+   "verified": "score cross-check (Bartos score staff, 2026-09-26)"
   },
   {
    "sys": 3,

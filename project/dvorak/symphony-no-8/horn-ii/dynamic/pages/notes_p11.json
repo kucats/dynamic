@@ -234,9 +234,9 @@
    "clef": "G",
    "bar": 287,
    "tie_from_prev": false,
-   "uncertain": "accidental read as sharp (small)",
    "dur": "1/4",
-   "off": "0"
+   "off": "0",
+   "verified": "score cross-check (Bartos score staff, 2026-09-26)"
   },
   {
    "sys": 2,
@@ -666,9 +666,9 @@
    "clef": "G",
    "bar": 298,
    "tie_from_prev": false,
-   "uncertain": "E#4 as printed (sharp, whole note on bottom line)",
    "dur": "1",
-   "off": "0"
+   "off": "0",
+   "verified": "score cross-check (Bartos score staff, 2026-09-26)"
   },
   {
    "sys": 4,

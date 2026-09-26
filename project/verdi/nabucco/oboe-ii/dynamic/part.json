@@ -1,0 +1,19 @@
+{
+ "id": "verdi-nabucco-oboe2",
+ "instrument": "oboe",
+ "title": "ヴェルディ《ナブッコ》序曲 オーボエ2番",
+ "subtitle": "Sinfonia · 独立段なし",
+ "composer": "Giuseppe Verdi",
+ "work": "Nabucco — Sinfonia",
+ "part": "Oboe II（「OBOE I. - CORNO INGLESE」結合譜）",
+ "source": {"file": "オーボエ1・2・EH.pdf (user-supplied, not committed)", "sha256": "5dde18158ff2e242111257f9994ede1063e3456c66c5bfd8e7a54169c13dfa79", "pages": [1, 2, 3, 4]},
+ "dpi": 300,
+ "movements": [{"key": "S", "short": "序曲", "title": "Sinfonia（序曲）", "last": 329, "pages": [1, 2, 3, 4],
+   "meters": [[1, "4/4"], [54, "3/8"], [108, "2/2"]],
+   "tempos": [[1, 66], [24, 138], [51, 66], [54, 50], [108, 160], [270, 184]]}],
+ "status": "この結合譜にはオーボエ2番の独立した段（専用システム）はありません。",
+ "limitations": [
+  "ファイル名は「オーボエ1・2・EH」ですが実際の印刷は「OBOE I. - CORNO INGLESE」の1段のみで、Sinfonia全体を通じて第2オーボエ専用の段は確認できません。",
+  "第2オーボエの音はオーボエ1番の段に a2 / ユニゾンで含まれている可能性があります（oboe-i の採譜データを参照）。"
+ ]
+}

@@ -1,0 +1,79 @@
+{
+ "id": "dvorak8-eh",
+ "instrument": "english-horn",
+ "title": "ドヴォルザーク 交響曲第8番 イングリッシュホルン",
+ "subtitle": "抜粋 (オーボエ2番内の持ち替え)",
+ "composer": "Antonín Dvořák",
+ "work": "Symphony No. 8 in G major, Op. 88",
+ "part": "Corno inglese (muta in Ob.II)",
+ "source": {
+  "file": "oboe.pdf (user-supplied, not committed; Google Drive id 1K88blrw0PyIgvU52ScrSwW62vm80L9iK)",
+  "sha256": "06c75fbe9cb7771e4606806066f2a502971a8c30edbc63896c4a852d19a9623e",
+  "pages": [
+   14
+  ]
+ },
+ "dpi": 300,
+ "movements": [
+  {
+   "key": "I",
+   "title": "第1楽章 Allegro con brio (抜粋 ~223-245)",
+   "last": 245,
+   "pages": [
+    14
+   ],
+   "meters": [
+    [
+     223,
+     "4/4"
+    ]
+   ],
+   "tempos": [
+    [
+     230,
+     "poco meno mosso"
+    ]
+   ],
+   "conduct": [],
+   "key_signatures": [
+    [
+     223,
+     "as printed"
+    ]
+   ]
+  },
+  {
+   "key": "II",
+   "title": "第2楽章 Adagio",
+   "last": 0,
+   "pages": [],
+   "meters": [],
+   "tempos": [],
+   "conduct": [],
+   "key_signatures": []
+  },
+  {
+   "key": "III",
+   "title": "第3楽章 Allegretto grazioso",
+   "last": 0,
+   "pages": [],
+   "meters": [],
+   "tempos": [],
+   "conduct": [],
+   "key_signatures": []
+  },
+  {
+   "key": "IV",
+   "title": "第4楽章 Allegro ma non troppo",
+   "last": 0,
+   "pages": [],
+   "meters": [],
+   "tempos": [],
+   "conduct": [],
+   "key_signatures": []
+  }
+ ],
+ "splits": [],
+ "status": "draft excerpt only (C.ingl. passage inside oboe-ii part)",
+ "limitations": "Only the muta passage (~I.223-245) exists in this source file; no dedicated EH pages. Pitch/timing unproofed draft."
+}

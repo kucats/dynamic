@@ -58,6 +58,7 @@ def staff_extent(im, ST) -> tuple[int, int]:
 
 def crop_system(im, s: list[float], first: bool, cx: tuple[int, int]):
     import cv2
+    import numpy as np
 
     top = max(0, int(s[0]) - (200 if first else 150))
     bot = min(im.shape[0], int(s[4]) + 100)
@@ -125,26 +126,32 @@ def review_items(notes: list[dict], systems: list[dict]) -> list[dict]:
 
 def build(part_dir: Path, pdf: Path, work: Path) -> dict:
     import cv2
-    from common import HORN_KEYS, TROMBONE_POS, label, label_german, parse_pitch, staves, transpose
+    from common import CLARINET_KEYS, HORN_KEYS, TROMBONE_POS, TRUMPET_KEYS, label, label_german, parse_pitch, staves, transpose
 
     cfg = json.loads((part_dir / "part.json").read_text(encoding="utf-8"))
     pages = sorted({p for m in cfg["movements"] for p in m["pages"]})
-    splits = {s["page"]: s for s in cfg.get("splits", [])}
+    splits: dict[int, list[dict]] = {}
+    for s in cfg.get("splits", []):
+        splits.setdefault(s["page"], []).append(s)
+    for sl in splits.values():
+        sl.sort(key=lambda e: e["first_system"])
+    mvt_horn_key = {m["key"]: m["horn_key"] for m in cfg["movements"] if m.get("horn_key")}
     systems, notes = [], []
     dpi = cfg.get("dpi", 300)
     wdir = work / cfg["id"]
     for page in pages:
         im = cv2.imread(str(render_page(pdf, page, wdir, dpi)), cv2.IMREAD_GRAYSCALE)
-        ST = staves(im < 140)
-        cx = staff_extent(im, ST)
         data = json.loads((part_dir / f"pages/notes_p{page:02d}.json").read_text(encoding="utf-8"))
+        ST = [list(map(float, s)) for s in data.get("systems", [])] or staves(im < 140)
+        cx = staff_extent(im, ST)
         bars = json.loads((part_dir / f"pages/bars_p{page:02d}.json").read_text(encoding="utf-8"))
         mv_here = [m["key"] for m in cfg["movements"] if page in m["pages"]]
         sys_index = {}
         for si, s in enumerate(ST, 1):
             mv = mv_here[0]
-            if page in splits and si >= splits[page]["first_system"]:
-                mv = splits[page]["movement"]
+            for sp in splits.get(page, []):
+                if si >= sp["first_system"]:
+                    mv = sp["movement"]
             crop, top = crop_system(im, s, si == 1, cx)
             segs = [[round(g["xa"] - cx[0]), round(g["xb"] - cx[0]), g.get("label", "")]
                     for g in bars.get(str(si), [])]
@@ -161,11 +168,36 @@ def build(part_dir: Path, pdf: Path, work: Path) -> dict:
                        bar=n["bar"], off=float(Fraction(n["off"])), dur=float(Fraction(n["dur"])),
                        tie=bool(n.get("tie_from_prev")), unc=n.get("uncertain") or "", old=old, p=n["pitch"],
                        sim=bool(n.get("sim")))
-            if cfg.get("instrument") == "trombone":        # non-transposing; German names + slide position
+            instr = n.get("instrument") or cfg.get("instrument")
+            if instr == "trombone":        # non-transposing; German names + slide position
                 w_ = label_german(L, a, wo)
                 rec.update(key="C", w=w_, f=w_, snd=w_, pos=TROMBONE_POS.get(w_[2]))
+            elif cfg.get("instrument") == "clarinet":      # in A / Bb; 'f' = how a Bb clarinet reads it
+                key = n.get("cl_key") or cfg.get("default_cl_key", "A")
+                dl, ds = CLARINET_KEYS[key]
+                s_ = transpose(L, a, wo, dl, ds)
+                f_ = transpose(*s_, 1, 2)
+                rec.update(key=key, w=label(L, a, wo), f=label(*f_), snd=label(*s_))
+            elif cfg.get("instrument") == "viola":         # non-transposing, alto clef, sounds as written
+                w_ = label(L, a, wo)
+                rec.update(key="C", w=w_, f=w_, snd=w_)
+            elif cfg.get("instrument") == "cello":          # non-transposing strings; solfège labels
+                w_ = label(L, a, wo)
+                rec.update(key="C", w=w_, f=w_, snd=w_)
+            elif cfg.get("instrument") == "trumpet":       # crook transposes up (in Re = +M2); f column = sounding
+                key = n.get("horn_key") or cfg.get("default_horn_key", "C")
+                dl, ds = TRUMPET_KEYS[key]
+                s_ = transpose(L, a, wo, dl, ds)
+                rec.update(key=key, w=label(L, a, wo), f=label(*s_), snd=label(*s_))
+            elif cfg.get("instrument") == "english-horn":   # in F: sounds a fifth below written
+                dl, ds = HORN_KEYS["F"]
+                s_ = transpose(L, a, wo, dl, ds)
+                rec.update(key="F", w=label(L, a, wo), f=label(L, a, wo), snd=label(*s_))
+            elif cfg.get("instrument") != "horn":          # non-transposing instruments (violin, etc.)
+                w_ = label(L, a, wo)
+                rec.update(key="C", w=w_, f=w_, snd=w_)
             else:
-                key = n.get("horn_key") or cfg.get("default_horn_key", "F")
+                key = n.get("horn_key") or mvt_horn_key.get(sy["mvt"]) or cfg.get("default_horn_key", "F")
                 dl, ds = HORN_KEYS[key]
                 s_ = transpose(L, a, wo, dl, ds)
                 f_ = transpose(*s_, 4, 7)

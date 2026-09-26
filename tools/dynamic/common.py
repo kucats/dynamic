@@ -1,6 +1,17 @@
 """Shared helpers for the DYNAMIC score-reading pipeline (staff detection, pitch spelling)."""
 from __future__ import annotations
 
+import json
+import os
+
+
+def load_systems(page: int, B):
+    """Reviewed staff layout: prefer work/systems_p<page>.json (list of 5 staff-line y's) when present."""
+    f = f"work/systems_p{page}.json"
+    if os.path.exists(f):
+        return json.load(open(f))["systems"]
+    return staves(B)
+
 LET = 'CDEFGAB'
 SEMI = [0, 2, 4, 5, 7, 9, 11]
 SOL = {'C': 'ド', 'D': 'レ', 'E': 'ミ', 'F': 'ファ', 'G': 'ソ', 'A': 'ラ', 'B': 'シ'}
@@ -36,11 +47,34 @@ def staves(B):
     allst.sort(key=lambda s: s[0])
     merged: list[list[list[float]]] = []
     for s in allst:
-        if merged and abs(merged[-1][0][0] - s[0]) < 80:
+        # Compare to the running mean, not the first detection: on skewed pages the
+        # same staff's top line shifts across column probes and can drift >80px from
+        # the first sample while staying close to the group's average. Threshold 200:
+        # skew-shifted duplicates observed up to ~124px apart, real adjacent systems
+        # are >=~249px apart.
+        top_mean = sum(g[0] for g in merged[-1]) / len(merged[-1]) if merged else 0
+        if merged and abs(top_mean - s[0]) < 200:
             merged[-1].append(s)
         else:
             merged.append([s])
     return [list(np.mean(np.array(grp), axis=0)) for grp in merged]
+
+
+def staves_override(page, staves_of_style=False):
+    """Manual staff list when auto-detection misses/duplicates a system.
+
+    Reads work/staves_p{page}.json (list of {xl,xr,l,r,m} dicts, the
+    cand.staves_of format) if present. Returns None otherwise.
+    With staves_of_style=False, returns plain lists of 5 y-values (the
+    common.staves format, using each staff's mid-window lines 'm').
+    """
+    path = f'work/staves_p{page}.json'
+    if not os.path.exists(path):
+        return None
+    data = json.load(open(path))
+    if staves_of_style:
+        return data
+    return [s['m'] for s in data]
 
 
 def parse_pitch(p: str):
@@ -66,6 +100,13 @@ def label(L, a, o):
 
 # horn crook -> (letter steps, semitones) from written to sounding pitch
 HORN_KEYS = {'F': (-4, -7), 'E': (-5, -8), 'Eb': (-5, -9), 'D': (-6, -10), 'C': (-7, -12), 'G': (-3, -5), 'Bb': (-1, -2)}
+
+# clarinet -> (letter steps, semitones) from written to sounding pitch
+CLARINET_KEYS = {'A': (-2, -3), 'Bb': (-1, -2)}
+
+# trumpet crook -> (letter steps, semitones) from written to sounding pitch
+TRUMPET_KEYS = {'C': (0, 0), 'Db': (1, 1), 'D': (1, 2), 'Eb': (2, 3), 'E': (2, 4), 'F': (3, 5),
+                'G': (-3, -5), 'A': (-2, -3), 'Bb': (-1, -2)}
 
 GERMAN = {'C': 'C', 'D': 'D', 'E': 'E', 'F': 'F', 'G': 'G', 'A': 'A', 'B': 'H'}
 

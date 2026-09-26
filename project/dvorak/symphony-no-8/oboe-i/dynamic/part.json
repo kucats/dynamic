@@ -1,0 +1,432 @@
+{
+ "id": "dvorak8-oboe1",
+ "instrument": "oboe",
+ "title": "ドヴォルザーク 交響曲第8番 オーボエ1番",
+ "subtitle": "全楽章 · 音名（CDEFGAH）",
+ "composer": "Antonín Dvořák",
+ "work": "Symphony No. 8 in G major, Op. 88",
+ "part": "Oboe I",
+ "source": {
+  "file": "oboe.pdf (user-supplied, not committed; Google Drive id 1K88blrw0PyIgvU52ScrSwW62vm80L9iK)",
+  "sha256": "06c75fbe9cb7771e4606806066f2a502971a8c30edbc63896c4a852d19a9623e",
+  "pages": [
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11
+  ]
+ },
+ "dpi": 300,
+ "movements": [
+  {
+   "key": "I",
+   "title": "第1楽章 Allegro con brio",
+   "last": 318,
+   "pages": [
+    2,
+    3,
+    4
+   ],
+   "meters": [
+    [
+     1,
+     "4/4"
+    ]
+   ],
+   "tempos": [
+    [
+     1,
+     138
+    ]
+   ],
+   "conduct": [
+    [
+     1,
+     2
+    ]
+   ],
+   "key_signatures": [
+    [
+     1,
+     "G"
+    ]
+   ]
+  },
+  {
+   "key": "II",
+   "title": "第2楽章 Adagio",
+   "last": 170,
+   "pages": [
+    4,
+    5
+   ],
+   "meters": [
+    [
+     1,
+     "2/4"
+    ]
+   ],
+   "tempos": [
+    [
+     1,
+     80
+    ]
+   ],
+   "conduct": [
+    [
+     1,
+     2
+    ]
+   ],
+   "key_signatures": [
+    [
+     1,
+     "3 flats"
+    ]
+   ],
+   "splits_note": "starts mid-page 4"
+  },
+  {
+   "key": "III",
+   "title": "第3楽章 Allegretto grazioso",
+   "last": 231,
+   "pages": [
+    6,
+    7,
+    8
+   ],
+   "meters": [
+    [
+     1,
+     "3/8"
+    ]
+   ],
+   "tempos": [
+    [
+     1,
+     138
+    ]
+   ],
+   "conduct": [
+    [
+     1,
+     1
+    ]
+   ],
+   "key_signatures": [
+    [
+     1,
+     "2 flats"
+    ]
+   ]
+  },
+  {
+   "key": "IV",
+   "title": "第4楽章 Allegro ma non troppo",
+   "last": 396,
+   "pages": [
+    8,
+    9,
+    10,
+    11
+   ],
+   "meters": [
+    [
+     1,
+     "2/4"
+    ]
+   ],
+   "tempos": [
+    [
+     1,
+     116
+    ]
+   ],
+   "conduct": [
+    [
+     1,
+     2
+    ]
+   ],
+   "key_signatures": [
+    [
+     1,
+     "G"
+    ]
+   ]
+  }
+ ],
+ "splits": [
+  {
+   "page": 4,
+   "first_system": 0,
+   "movement": "II",
+   "note": "movement I ends ~318; II Adagio starts mid-page (refine)"
+  },
+  {
+   "page": 8,
+   "first_system": 0,
+   "movement": "IV",
+   "note": "III coda then IV starts (refine)"
+  }
+ ],
+ "status": "draft: pages auto-drafted + printed-number anchored; p2 hand-verified",
+ "limitations": [
+  "ページ2の小節102-104付近に±2の境界曖昧あり（s4/s5）。複数小節を束ねたseg内の音のbarは按比例推定。キュー音はsimフラグ。所要確認多数。",
+  ";",
+  " ",
+  "n",
+  "o",
+  "t",
+  "e",
+  " ",
+  "p",
+  "i",
+  "t",
+  "c",
+  "h",
+  "e",
+  "s",
+  " ",
+  "f",
+  "r",
+  "o",
+  "m",
+  " ",
+  "a",
+  "u",
+  "t",
+  "o",
+  " ",
+  "h",
+  "e",
+  "a",
+  "d",
+  "-",
+  "d",
+  "e",
+  "t",
+  "e",
+  "c",
+  "t",
+  "i",
+  "o",
+  "n",
+  ",",
+  " ",
+  "m",
+  "o",
+  "s",
+  "t",
+  "l",
+  "y",
+  " ",
+  "u",
+  "n",
+  "p",
+  "r",
+  "o",
+  "o",
+  "f",
+  "e",
+  "d",
+  ";",
+  " ",
+  "b",
+  "a",
+  "r",
+  " ",
+  "m",
+  "a",
+  "p",
+  " ",
+  "+",
+  "-",
+  "3",
+  " ",
+  "(",
+  "r",
+  "a",
+  "n",
+  "g",
+  "e",
+  " ",
+  "l",
+  "a",
+  "b",
+  "e",
+  "l",
+  "s",
+  " ",
+  "c",
+  "o",
+  "v",
+  "e",
+  "r",
+  " ",
+  "m",
+  "e",
+  "r",
+  "g",
+  "e",
+  "d",
+  " ",
+  "b",
+  "a",
+  "r",
+  "l",
+  "i",
+  "n",
+  "e",
+  "s",
+  ")",
+  ";",
+  " ",
+  "m",
+  "v",
+  "t",
+  " ",
+  "I",
+  " ",
+  "b",
+  "a",
+  "r",
+  "s",
+  " ",
+  "1",
+  "-",
+  "7",
+  "0",
+  " ",
+  "a",
+  "b",
+  "s",
+  "e",
+  "n",
+  "t",
+  " ",
+  "f",
+  "r",
+  "o",
+  "m",
+  " ",
+  "s",
+  "o",
+  "u",
+  "r",
+  "c",
+  "e",
+  " ",
+  "p",
+  "a",
+  "g",
+  "e",
+  "s",
+  " ",
+  "(",
+  "f",
+  "i",
+  "r",
+  "s",
+  "t",
+  " ",
+  "p",
+  "r",
+  "i",
+  "n",
+  "t",
+  "e",
+  "d",
+  " ",
+  "b",
+  "a",
+  "r",
+  " ",
+  "7",
+  "1",
+  ")",
+  ";",
+  " ",
+  "I",
+  "V",
+  " ",
+  "l",
+  "a",
+  "s",
+  "t",
+  " ",
+  "b",
+  "a",
+  "r",
+  " ",
+  "~",
+  "3",
+  "9",
+  "6",
+  " ",
+  "e",
+  "s",
+  "t",
+  ";",
+  " ",
+  "k",
+  "e",
+  "y",
+  " ",
+  "s",
+  "i",
+  "g",
+  "s",
+  " ",
+  "c",
+  "o",
+  "r",
+  "r",
+  "e",
+  "c",
+  "t",
+  "e",
+  "d",
+  " ",
+  "p",
+  "o",
+  "s",
+  "t",
+  "-",
+  "r",
+  "e",
+  "v",
+  "i",
+  "e",
+  "w",
+  ":",
+  " ",
+  "I",
+  "I",
+  "=",
+  "E",
+  "b",
+  "(",
+  "3",
+  "b",
+  ")",
+  ",",
+  " ",
+  "I",
+  "I",
+  "I",
+  "=",
+  "G",
+  "m",
+  "(",
+  "2",
+  "b",
+  ")"
+ ]
+}

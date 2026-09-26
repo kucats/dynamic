@@ -1,0 +1,129 @@
+{
+  "id": "karelia-oboe2",
+  "instrument": "oboe",
+  "title": "シベリウス カレリア組曲 オーボエ2番",
+  "subtitle": "全楽章 · 音名（CDEFGAB）＋オクターブ",
+  "composer": "Jean Sibelius",
+  "work": "Karelia Suite, Op. 11",
+  "part": "Oboe II",
+  "source": {
+    "file": "karelia-oboe.pdf (user-supplied, not committed)",
+    "sha256": "2c7c9d91a3b8dce7743a4dec41f91d64db05de2b4507f25d323c9c982d105cd0",
+    "pages": [
+      5,
+      6,
+      7
+    ]
+  },
+  "dpi": 340,
+  "movements": [
+    {
+      "key": "I",
+      "title": "第1楽章 Intermezzo",
+      "last": 173,
+      "pages": [
+        5
+      ],
+      "meters": [
+        [
+          1,
+          "2/4"
+        ]
+      ],
+      "tempos": [
+        [
+          1,
+          72
+        ],
+        [
+          138,
+          84
+        ]
+      ],
+      "conduct": [
+        [
+          1,
+          2
+        ]
+      ],
+      "conduct_note": "指揮の振り方は拍子から決めた練習用の目安で、譜面に書かれた指示ではありません。"
+    },
+    {
+      "key": "II",
+      "title": "第2楽章 Ballade（Tempo di menuetto）",
+      "last": 190,
+      "pages": [
+        5,
+        6
+      ],
+      "meters": [
+        [
+          1,
+          "3/4"
+        ]
+      ],
+      "tempos": [
+        [
+          1,
+          90
+        ]
+      ],
+      "conduct": [
+        [
+          1,
+          3
+        ]
+      ],
+      "conduct_note": "指揮の振り方は拍子から決めた練習用の目安で、譜面に書かれた指示ではありません。"
+    },
+    {
+      "key": "III",
+      "title": "第3楽章 Alla marcia",
+      "last": 224,
+      "pages": [
+        6,
+        7
+      ],
+      "meters": [
+        [
+          1,
+          "2/4"
+        ]
+      ],
+      "tempos": [
+        [
+          1,
+          104
+        ]
+      ],
+      "conduct": [
+        [
+          1,
+          2
+        ]
+      ],
+      "conduct_note": "指揮の振り方は拍子から決めた練習用の目安で、譜面に書かれた指示ではありません。"
+    }
+  ],
+  "splits": [
+    {
+      "page": 5,
+      "first_system": 8,
+      "movement": "II",
+      "note": "page 5: movement I ends at system 7 (bar 173); movement II 'Tempo di menuetto' starts at system 8"
+    },
+    {
+      "page": 6,
+      "first_system": 4,
+      "movement": "III",
+      "note": "page 6: movement II ends at system 3 (bar ~190, fermata); movement III 'Alla marcia' starts at system 4"
+    }
+  ],
+  "status": "Devin単一セッションによる転記（340dpiレンダリング→符頭検出→小節分割推定）。独立監査は未実施。第1楽章は休符数字ブロックから小節番号を再構成し、オーボエ1パートと同じ連鎖で整合済み。メロディ部・連桁区間の小節分割は推定で uncertain フラグ付き。",
+  "limitations": [
+    "小節番号は各楽章ローカルで、印刷された複小節休符の数字から再構成（ブロック数字＝小節数、単小節数字＝連続位置）。このパート譜には5小節ごとの小節番号印刷がありません。",
+    "第1楽章: 休符数字 2+22+16+6+4+4(+Trp.I cue 2)+(21)=77 → E=78, 旋律 86-92; G=130, アーク1-9=130-138 (保持音符), H=150, 終=173。オーボエ1パートと一致。",
+    "第2楽章（190小節推定）と第3楽章（224小節推定）は旋律区間の小節分割が連桁内小節線の見落としにより不確実。オーボエ1パートの第2楽章は268小節と読まれ、パート間の照合で残存誤差あり。総譜での照合を推奨します。",
+    "キュー音符（Trp.I/Viola/Klar./Ob.I/Viol.I 表記）は notes から除外し meta.repeats に記録しています。"
+  ]
+}
