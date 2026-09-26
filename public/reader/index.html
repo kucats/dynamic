@@ -89,6 +89,11 @@
       <button id="memoListBtn" class="ghost" type="button" hidden aria-haspopup="dialog">練習メモ一覧<span id="memoCount" class="memo-count"></span></button>
       <span class="fine">小節をクリックして「この小節にメモを追加」を選びます。</span>
     </fieldset>
+    <fieldset id="followSettings"><legend>実験機能</legend>
+      <label><input type="checkbox" id="scoreFollowEnabled"> 譜面追従を有効にする</label>
+      <label>処理モード <select id="scoreFollowMode"><option value="local">ローカル（この端末）</option><option value="remote" disabled>リモート（準備中）</option></select></label>
+      <span id="scoreFollowLoad" class="fine" role="status">有効にした後、上の「マイク開始」で聴き始めます。音声は保存・送信しません。</span>
+    </fieldset>
     <fieldset><legend>その他</legend>
       <label><input type="checkbox" id="lines" checked> 音符と字をつなぐ線</label>
     </fieldset>
@@ -110,6 +115,7 @@
       <li>小節番号や音符のない所をクリック（右クリック）：メニューから「○小節目のスコアを見る」で総譜をその小節で開きます。「総譜」ボタンは選んだ音の小節で開きます。総譜の画像は開いたときに読み込みます。</li>
       <li>＋／－：譜面の拡大・縮小（スマホでは横にスクロールできます）。</li>
       <li>チューナー（右上）：マイクで吹いている音の高さを測り、音名とセント（±50）で表示します。緑の帯（±5セント）に針が入れば合っています。下の帯は直近6秒のゆれです。基準ピッチ（A4＝436〜446Hz）を選べ、ホルンでは実音とF管読みを切り替えられます。マイクは開いている間だけ使い、音は端末の外に送りません。</li>
+      <li>譜面追従（実験）：設定で有効にし「マイク開始」を押します。選択中の楽章でフレーズを照合し、小節と位置候補を青く表示します。候補ボタン、現在地入力、小節メニューから位置を上書きできます。手動指定を優先し、見失っても最後のテンポで点線のカーソルが進みます。「再探索」で指定を解除します。停止ボタンで予測も止まります。合奏の精度は検証中で、一部の反復は現在地の再指定が必要です。</li>
       <li>トロンボーンの3D（右上）：3D奏者を表示し、選んだ音に合わせたスライド位置を見られます。ボタンを押すまで3Dモデルは読み込みません。</li>
       <li>上部スライダーで譜読み字の大きさを変更し、小節番号は下・上・オフを切り替えられます。</li>
       <li>設定でF管の読み替えや実音の行、通し再生の音を切り替えられます。</li>
@@ -180,5 +186,6 @@
 <script type="module" src="memo.js"></script>
 <script src="trombone3d-addon.js"></script>
 <script src="tuner-addon.js"></script>
+<script src="follow-addon.js"></script>
 </body>
 </html>

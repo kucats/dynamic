@@ -1,0 +1,22 @@
+{
+  "IV": [
+    {"label":"A","bar":26,"page":3,"evidence":"pages/notes_p03.json meta.rehearsal"},
+    {"label":"B","bar":42,"page":3,"evidence":"pages/notes_p03.json meta.rehearsal"},
+    {"label":"C","bar":59,"page":3,"evidence":"part.json limitations: corrected printed horn numbering; supersedes stale meta.rehearsal=58"},
+    {"label":"D","bar":75,"page":3,"evidence":"part.json limitations: corrected printed horn numbering; supersedes stale meta.rehearsal=74"},
+    {"label":"E","bar":93,"page":4,"evidence":"pages/notes_p04.json meta.rehearsal"},
+    {"label":"F","bar":112,"page":4,"evidence":"pages/notes_p04.json meta.rehearsal"},
+    {"label":"G","bar":146,"page":4,"evidence":"pages/notes_p04.json meta.rehearsal"},
+    {"label":"H","bar":170,"page":4,"evidence":"pages/notes_p04.json meta.rehearsal"},
+    {"label":"J","bar":189,"page":4,"evidence":"pages/notes_p04.json meta.rehearsal"},
+    {"label":"K","bar":203,"page":4,"evidence":"pages/notes_p04.json meta.rehearsal"},
+    {"label":"L","bar":219,"page":4,"evidence":"pages/notes_p04.json meta.rehearsal"},
+    {"label":"M","bar":233,"page":4,"evidence":"pages/notes_p04.json meta.rehearsal"},
+    {"label":"N","bar":253,"page":5,"evidence":"pages/notes_p05.json meta.rehearsal"},
+    {"label":"O","bar":271,"page":5,"evidence":"pages/notes_p05.json meta.rehearsal"},
+    {"label":"P","bar":295,"page":5,"evidence":"pages/notes_p05.json meta.rehearsal"},
+    {"label":"Q","bar":311,"page":5,"evidence":"pages/notes_p05.json meta.rehearsal"},
+    {"label":"R","bar":339,"page":5,"evidence":"pages/notes_p05.json meta.rehearsal"},
+    {"label":"S","bar":356,"page":5,"evidence":"pages/notes_p05.json meta.rehearsal"}
+  ]
+}

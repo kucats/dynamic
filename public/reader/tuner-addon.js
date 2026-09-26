@@ -33,7 +33,7 @@
     btn.onclick = () => setOpen(!open);
     const info = document.getElementById('infoBtn');
     info ? info.before(btn) : document.querySelector('.toplinks')?.append(btn);
-    window.__tuner = { get tuner() { return tuner; }, get open() { return open; } };
+    window.__tuner = { get tuner() { return tuner; }, get open() { return open; }, close: () => setOpen(false) };
   }
   // The button does not depend on part data, so it appears even while the part is loading.
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start, { once: true }); else start();

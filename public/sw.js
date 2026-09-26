@@ -1,5 +1,5 @@
 /* DYNAMIC offline cache: stale-while-revalidate for same-origin GET requests */
-const CACHE = 'dynamic-v10';
+const CACHE = 'dynamic-v11';
 // Full-score page images are cached only after a viewer has opened them, in their own bounded cache.
 const SCORE_CACHE = 'dynamic-score-v1';
 const SCORE_MAX = 120;
@@ -14,6 +14,18 @@ self.addEventListener('fetch', (e) => {
   const requestUrl = new URL(req.url);
   // Login and per-user memo API responses must never be cached or served offline.
   if (/^\/(?:api\/|login$|logout$)/.test(requestUrl.pathname)) return;
+  // Small score-following templates follow note corrections. Prefer the new
+  // template online, while allowing a compatible cached copy when offline.
+  if (/\/reader\/following\/[^/]+\.json$/.test(requestUrl.pathname)) {
+    e.respondWith(caches.open(CACHE).then(async (c) => {
+      try {
+        const r = await fetch(req);
+        if (r.ok) await c.put(req, r.clone());
+        return r;
+      } catch { return (await c.match(req)) || Response.error(); }
+    }));
+    return;
+  }
   // Cloudflare redirects explicit index.html URLs to their directory URLs.
   // Safari rejects redirected responses returned from a service worker, so
   // request the canonical directory route directly and preserve query params.

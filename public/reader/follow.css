@@ -1,0 +1,23 @@
+.sf-panel { border-top:1px solid #bfd9ee; padding:8px 16px 6px; font-size:13px; }
+.sf-panel[hidden] { display:none; }
+.sf-head,.sf-controls,.sf-candidates { display:flex; flex-wrap:wrap; align-items:center; gap:6px 10px; }
+.sf-head strong { color:#1369a8; }
+.sf-state { color:#516578; }
+.sf-position { font-weight:700; }
+.sf-controls { margin-top:7px; }
+.sf-controls label { display:inline-flex; align-items:center; gap:4px; }
+.sf-controls input[type=number] { width:70px; padding:6px; font:inherit; }
+.sf-controls select { max-width:100px; padding:5px; font:inherit; }
+.sf-panel button { font-size:12px; padding:6px 9px; }
+.sf-candidates { margin-top:6px; min-height:28px; }
+.sf-candidates:empty { display:none; }
+.sf-candidates button { background:#eaf4ff; border-color:#b5d7f7; color:#185c91; }
+.sf-candidates button[aria-pressed=true] { border:2px solid #166cbc; }
+.sf-note { font-size:11px; color:#667581; margin:5px 0 0; line-height:1.5; }
+.sf-map { display:block; width:100%; height:17px; margin-top:6px; background:#edf2f5; border-radius:4px; }
+.sf-region { fill:#208ae0; pointer-events:none; }
+.sf-cursor { stroke:#0969b6; stroke-width:4; vector-effect:non-scaling-stroke; pointer-events:none; }
+.sf-held { stroke-dasharray:5 4; }
+.sf-overlay { pointer-events:none; }
+@media(max-width:600px) { .sf-panel { font-size:12px; } .sf-controls { gap:5px; } .sf-note { max-height:3em; overflow:auto; } }
+@media print { .sf-panel,.sf-overlay,#followSettings { display:none!important; } }

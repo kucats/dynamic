@@ -265,6 +265,7 @@
     // Keep the selected measure visible on phones after memo saves or row changes.
     for (const [id, left] of scrolls) { const sc = $(id)?.querySelector('.sc'); if (sc) sc.scrollLeft = left; }
     if (cur) mark(cur, false);
+    emit('render');
   }
 
   // ---------- selection ----------
@@ -327,6 +328,7 @@
   }
   async function one(n, actualSound = true) {
     if (!n || n.unc) return;
+    emit('audio-start');
     await audio(); voice(actualSound ? n.snd[2] : pitchOf(n), ctx.currentTime + 0.02, 0.85);
     emit('sound', { note: n, delayMs: 0, seconds: 0.85 });
   }
@@ -341,6 +343,7 @@
   }
   async function startPractice(n) {
     if (!n || n.unc) return;
+    emit('audio-start');
     stopPractice(); await audio();
     if (!$('practice').open || Number($('practice').dataset.noteId) !== n.id) return;
     const seconds = Number($('practiceDuration').value) || 4;
@@ -483,6 +486,7 @@
   }
 
   async function play() {
+    emit('audio-start');
     stop(); await audio();
     if (!metroMod) {
       try { metroMod = await import('./metronome.mjs'); } catch (e) { metroMod = null; /* play without metronome */ }
@@ -540,9 +544,11 @@
   // ---------- movements / jump ----------
   let currentMvt = null;
   function setMvt(key, scroll) {
+    const changed = currentMvt !== key;
     currentMvt = key;
     document.querySelectorAll('#mvts button').forEach((b) => b.setAttribute('aria-selected', String(b.dataset.k === key)));
     if (scroll) { stop(); $('mv-' + key).scrollIntoView({ behavior: 'smooth' }); }
+    if (changed) emit('movement', { movement: key });
   }
   function segRange(lab) { const [a, b] = lab.split('–').map(Number); return [a, b || a]; }
   function jumpTo(bar) {
@@ -801,9 +807,9 @@
     $('infoBody').innerHTML = `<p><b>${esc(D.work)}</b> · ${esc(D.part)}</p><p><span class="badge">要確認あり・第三者監査前</span> ${esc(D.status)}</p><ul class="lim">${D.limitations.map((l) => `<li>${esc(l)}</li>`).join('')}</ul>`;
     syncToolbarLayout(); syncControls(); wire(); renderScore(); setMvt(D.movements[0].key, false);
     if (PRINT) document.body.classList.add('print');
-    window.__dynamic = { data: D, timeline, select, get cur() { return cur; }, get playing() { return !!playing; }, jumpTo,
+    window.__dynamic = { data: D, timeline, select, get cur() { return cur; }, get movement() { return currentMvt; }, get playing() { return !!playing; }, jumpTo,
       openScore,
-      ext: { part: PART, print: PRINT, esc, segRange, mvNum: MV_NUM, stop, setMvt, rerender: renderScore, addSystemHook: (f) => { systemHooks.push(f); }, addBarMenuHook: (f) => { barMenuHooks.push(f); }, addSvgHook: (f) => { svgHooks.push(f); }, addNoteHook: (f) => { noteHooks.push(f); } } };
+      ext: { part: PART, print: PRINT, esc, segRange, mvNum: MV_NUM, stop, stopPractice, setMvt, rerender: renderScore, addSystemHook: (f) => { systemHooks.push(f); }, addBarMenuHook: (f) => { barMenuHooks.push(f); }, addSvgHook: (f) => { svgHooks.push(f); }, addNoteHook: (f) => { noteHooks.push(f); } } };
     document.dispatchEvent(new Event('dynamic:ready'));
   }
   init();

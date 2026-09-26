@@ -10,7 +10,9 @@
 
 静的ファイルだけで動きます（ビルド不要・外部CDN不使用）。Cloudflare Workers の Static Assets として `public/` を配信します。認証済みの開発環境から `npx wrangler deploy` でデプロイできます。
 
-将来の音声追従では、Workers を静的配信と WebSocket のシグナリング/API 入口に使えます。WebRTC の音声処理と TURN は別サービスとして扱い、実機・ネットワーク検証後に接続します。現時点の音声追従実験パッケージは `tools/score_following/` にあり、本番サイトには含まれません。
+reader の設定にローカルの[譜面追従（実験）](docs/score-following-reader.md)があります。候補・練習番号・手動指定・見失ったときのテンポ予測に対応します。合奏の小節精度は検証中です。リモートモードは無効で、音声は保存・送信しません。
+
+将来のリモート追従では、Workers を静的配信と WebSocket のシグナリング/API 入口に使えます。WebRTC の音声処理と TURN は別サービスとして扱い、実機・ネットワーク検証後に接続します。サーバー実験パッケージは `tools/score_following/` にあり、readerからは接続しません。
 
 Cloudflare のデプロイ手順と将来の音声経路は [`docs/deployment/cloudflare-workers.md`](docs/deployment/cloudflare-workers.md) を参照してください。
 

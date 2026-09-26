@@ -13,6 +13,7 @@
 | `score_zoom.py` | 総譜の1段だけを拡大した音高ガイド付き図（treble/bass/altoガイド＋index由来の小節線・小節番号を重畳） |
 | `pack_notes.py` | 閲覧データを軽量配信用に分割（行配列パック＋画像分離＋システム/ページ単位の音符シャード。`docs/packed-delivery.md`） |
 | `build_reader.py` | `project/**/dynamic/` のデータ＋原譜から `public/reader/data/<id>.json` を生成 |
+| `build_following.py` | 閲覧データの実音・タイムラインから実験的な合奏照合データを生成。音符修正後に再実行 |
 | `refresh_reader_pitches.py` | PDFなしで、レビュー済みの音高・要確認フラグを既存の閲覧データへ反映（小節・音価・タイを照合） |
 | `validate_reader.py` | 閲覧データの整合性検査（小節番号と音符、タイムライン、画像形式、パス漏れ） |
 | `render_pdfs.py` | 閲覧アプリの印刷モードからA3のPDFを作成 |
@@ -54,7 +55,10 @@ python3 tools/build_catalog.py && python3 tools/validate_catalog.py
 ```sh
 python3 tools/dynamic/refresh_reader_pitches.py project/dvorak/symphony-no-8/trombone-i/dynamic
 python3 tools/dynamic/validate_reader.py
+python3 tools/dynamic/build_following.py
 ```
+
+`build_reader.py` で再生成した場合も、続けて `build_following.py` を実行します。正確な全声部・実音・発音位置・音価・反復順は譜面追従の手掛かりになります。再生成確認は `build_following.py --check`。詳細は [譜面追従](../../docs/score-following-reader.md) を参照してください。
 
 - 読み取りの修正は `notes_pNN.json`（音高 `pitch`、音価 `dur`、開始位置 `off`、小節 `bar`、タイ `tie_from_prev`）を直して `build_reader.py` を再実行します。
 - 小節番号の修正は `bars_pNN.json` の `label` を直します。`validate_reader.py` が、音符とその小節番号の食い違いを検出します。
