@@ -1,0 +1,48 @@
+{
+ "schema_version": 1,
+ "composer": "Giuseppe Verdi",
+ "work": "Nabucco, Sinfonia",
+ "part": "Fagotto 2 (lower voice of shared Fagotti staff)",
+ "source": {
+  "filename": "fagotti.pdf",
+  "sha256": "440d283f33173edee63ac7e68f6f845da91e85ba0f77de8ff88cba672e9070fb",
+  "physical_pages": [
+   1,
+   2,
+   3,
+   4
+  ],
+  "total_pages": 44,
+  "original_pdf_committed": false
+ },
+ "status": "assistant_transcription_unaudited",
+ "systems_reviewed": 0,
+ "noteheads_by_page": {
+  "1": 177,
+  "2": 153,
+  "3": 215,
+  "4": 287
+ },
+ "uncertain_note_count": 227,
+ "audited_dimensions": [],
+ "not_audited": [
+  "all notes — single-pass assistant decode",
+  "durations and rests",
+  "ties",
+  "voice separation edge cases",
+  "bar numbering between rehearsal anchors",
+  "cue-note separation",
+  "tempo"
+ ],
+ "omr_candidates_verified": false,
+ "playback_authorized": false,
+ "playback_mode": "disabled_pending_audit",
+ "playback_warning_required": true,
+ "playback_timing_verified": false,
+ "limitations": [
+  "Decoded from the shared 'FAGOTTO I.' staff covering both Fagotto I and II; voices split by register/stem — shared (a2) notes appear in both parts.",
+  "Bar numbers are inferred (rehearsal letters A-I + trombone-II cross-check at A=70/B=89, end bar 329); ±1 uncertainty possible between anchors.",
+  "227 notes carry 'uncertain' flags (register, accidental, or bar-position guesses) and are excluded from playback.",
+  "Sinfonia only (PDF pages 1-4); 'ATTO I' begins page 5."
+ ]
+}

@@ -13,7 +13,8 @@ from playwright.async_api import async_playwright
 
 ROOT = Path(__file__).resolve().parents[2]
 ROWS = {"dvorak8-horn2": "w", "dvorak8-horn3-mvt3": "wfs", "dvorak8-trombone1": "wp",
-        "verdi-nabucco-trombone2": "wp"}
+        "verdi-nabucco-trombone2": "wp", "verdi-nabucco-bassoon1": "w",
+        "verdi-nabucco-bassoon2": "w"}
 
 
 async def main(base: str, selected_parts: list[str] | None = None) -> None:

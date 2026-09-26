@@ -97,6 +97,46 @@
    ],
    "notes": 492,
    "data": "reader/data/verdi-nabucco-trombone2.json"
+  },
+  {
+   "id": "verdi-nabucco-bassoon1",
+   "title": "ヴェルディ《ナブッコ》序曲 ファゴット1番",
+   "subtitle": "Sinfonia · 音名（CDEFGAH）",
+   "part": "Fagotto 1（FAGOTTO I. 両パート共用譜表・Fagotto I（上声部））",
+   "work": "Nabucco — Sinfonia",
+   "composer": "Giuseppe Verdi",
+   "status": "Assistant transcription from the shared Fagotti staff (upper/lower voice split by stem direction and register); single-pass decode, no independent musician audit. Many readings carry 'uncertain' flags and are excluded from playback.",
+   "pdf": "reader/pdf/Verdi_Nabucco_Bassoon1_reading.pdf",
+   "movements": [
+    {
+     "key": "S",
+     "title": "Sinfonia（序曲）",
+     "short": "序曲",
+     "notes": 769
+    }
+   ],
+   "notes": 769,
+   "data": "reader/data/verdi-nabucco-bassoon1.json"
+  },
+  {
+   "id": "verdi-nabucco-bassoon2",
+   "title": "ヴェルディ《ナブッコ》序曲 ファゴット2番",
+   "subtitle": "Sinfonia · 音名（CDEFGAH）",
+   "part": "Fagotto 2（FAGOTTO I. 両パート共用譜表・Fagotto II（下声部））",
+   "work": "Nabucco — Sinfonia",
+   "composer": "Giuseppe Verdi",
+   "status": "Assistant transcription from the shared Fagotti staff (upper/lower voice split by stem direction and register); single-pass decode, no independent musician audit. Many readings carry 'uncertain' flags and are excluded from playback.",
+   "pdf": "reader/pdf/Verdi_Nabucco_Bassoon2_reading.pdf",
+   "movements": [
+    {
+     "key": "S",
+     "title": "Sinfonia（序曲）",
+     "short": "序曲",
+     "notes": 833
+    }
+   ],
+   "notes": 833,
+   "data": "reader/data/verdi-nabucco-bassoon2.json"
   }
  ]
 }
