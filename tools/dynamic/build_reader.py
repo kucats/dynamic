@@ -58,6 +58,7 @@ def staff_extent(im, ST) -> tuple[int, int]:
 
 def crop_system(im, s: list[float], first: bool, cx: tuple[int, int]):
     import cv2
+    import numpy as np
 
     top = max(0, int(s[0]) - (200 if first else 150))
     bot = min(im.shape[0], int(s[4]) + 100)
