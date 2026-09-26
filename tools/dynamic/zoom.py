@@ -31,6 +31,8 @@ def render(x0,x1,out):
         cv2.putText(c,'('+bn+')',(52,y+5),cv2.FONT_HERSHEY_SIMPLEX,0.4,(120,120,120),1)
         da=3+k; an=LET[da%7]+str(3+da//7)          # alto clef (C clef on the middle line)
         cv2.putText(c,'['+an+']',(112,y+5),cv2.FONT_HERSHEY_SIMPLEX,0.4,(170,0,170),1)
+        dt=1+k; tn2=LET[dt%7]+str(3+dt//7)         # tenor clef (C clef on the 4th line from the bottom)
+        cv2.putText(c,'{'+tn2+'}',(150,y+5),cv2.FONT_HERSHEY_SIMPLEX,0.38,(30,90,140),1)
         cv2.line(c,(170,y),(pad-2,y),colr,1)
     for x in range((x0//100+1)*100,x1,100):
         X=x-x0+pad; cv2.line(c,(X,0),(X,14),(200,0,0),1)

@@ -11,12 +11,15 @@ bad=0; missing=0
 by={}
 for i,n in enumerate(d['notes']):
     if 'dur' not in n or 'off' not in n or n.get('bar') is None: missing+=1; continue
-    by.setdefault(n['bar'],[]).append((F(n['off']),F(n['dur']),i+1,n['pitch']))
-for b,ns in sorted(by.items()):
+    # two-part staves carry "v" (1, 2, or 12 for both); overlap is only real inside one voice
+    v = n.get('v', 0)
+    for vv in ({1, 2} if v == 12 else {v}):
+        by.setdefault((n['bar'], vv), []).append((F(n['off']), F(n['dur']), i + 1, n['pitch']))
+for (b,_v),ns in sorted(by.items()):
     mt=meter(b)
     L=F(mt) if mt else None
     ns.sort()
     for k,(o,du,i,pp) in enumerate(ns):
-        if L is not None and o+du>L: print(f'bar {b}: note #{i} {pp} off {o} dur {du} exceeds bar length {L} ({mt})'); bad+=1
-        if k+1<len(ns) and ns[k+1][0] < o+du and du>0: print(f'bar {b}: note #{i} overlaps next note #{ns[k+1][2]}'); bad+=1
+        if L is not None and o+du>L: print(f'bar {b} v{_v}: note #{i} {pp} off {o} dur {du} exceeds bar length {L} ({mt})'); bad+=1
+        if k+1<len(ns) and ns[k+1][0] < o+du and du>0: print(f'bar {b} v{_v}: note #{i} overlaps next note #{ns[k+1][2]}'); bad+=1
 print('missing fields:',missing,' problems:',bad, ' (meter unknown for bars before first meter entry on this page -> pass "meters" including the meter in force at the top of the page)')
